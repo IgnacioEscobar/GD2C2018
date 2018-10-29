@@ -38,3 +38,5 @@ select
 	null as ciudad,
 	Espec_Empresa_Cuit as cuit
 from gd_esquema.Maestra
+
+-- se encuentran 15 empresas (n2 hasta n16)
