@@ -1,20 +1,4 @@
 USE GD2C2018
--- Reset de tablas
-IF OBJECT_ID('tempdb.dbo.#empresas', 'U') IS NOT NULL
-  DROP TABLE #empresas; 
-
--- Creacion de tablas
-CREATE TABLE "#empresas" (
-	razon_social	nvarchar (255)	,
-	cuit			nvarchar (255)	,
-	email			nvarchar (50)	,
-	fecha_creacion	datetime		,
-	codigo_postal	nvarchar (50)	,
-	calle			nvarchar (50)	,
-	numero_calle	numeric (18,0)	,
-	piso			numeric (18,0)	,
-	departamento	nvarchar (50)
-)
 
 -- Variables correspondientes a las columnas de la tabla maestra incial
 DECLARE @Espec_Empresa_Razon_Social nvarchar (255)
@@ -150,13 +134,16 @@ BEGIN
 	-- Migracion
 
 	-- Migracion de empresas de espectaculo
-	IF NOT EXISTS(	SELECT cuit from "#empresas" 
+	IF NOT EXISTS(	SELECT cuit from PEAKY_BLINDERS.Empresa 
 					WHERE cuit=@Espec_Empresa_Cuit)
-		INSERT INTO "#empresas" VALUES (
+		INSERT INTO PEAKY_BLINDERS.Empresa VALUES (
+			NULL							,
 			@Espec_Empresa_Razon_Social		,
 			@Espec_Empresa_Cuit				,
 			@Espec_Empresa_Mail				,
+			NULL							,
 			@Espec_Empresa_Fecha_Creacion	,
+			NULL							,
 			@Espec_Empresa_Cod_Postal		,
 			@Espec_Empresa_Dom_Calle		,
 			@Espec_Empresa_Nro_Calle		,
@@ -209,5 +196,3 @@ END
 
 CLOSE migration_cursor  
 DEALLOCATE migration_cursor
-
-select * from "#empresas"
