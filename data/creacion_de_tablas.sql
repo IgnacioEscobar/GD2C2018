@@ -53,13 +53,18 @@ create table PEAKY_BLINDERS.Publicacion (
 	estado					varchar (10)	,
 	grado					int				,
 	descripcion				varchar (255)	,
-	stock					int				,
 	fecha_creacion			date			, 	
 	fechahora_espectaculo	datetime		,
 	calle					varchar (50)	,
 	numero_calle			smallint		,		
 	responsable				int				, -- FK
 	rubro					int				, -- FK
+)
+
+create table PEAKY_BLINDERS.Fecha (
+	ID						int				PRIMARY KEY NOT NULL IDENTITY(1,1),
+	pubicacion				int				, -- FK
+	fechahora_espectaculo	datetime		,
 )
 
 create table PEAKY_BLINDERS.Platea (
@@ -101,13 +106,14 @@ create table PEAKY_BLINDERS.Item (
 
 create table PEAKY_BLINDERS.Compra (
   ID						int				PRIMARY KEY NOT NULL IDENTITY(1,1),
-  publicacion				int				, -- FK
   cliente					int				, -- FK
+  fecha						int				, -- FK
   medio_de_pago				varchar(15)
 )
 
 create table PEAKY_BLINDERS.Ubicacion (
   ID						int				PRIMARY KEY NOT NULL IDENTITY(1,1),
+  platea					int				, -- FK
   compra					int				, -- FK
   fila						varchar (2)		,
   asiento					int				,
