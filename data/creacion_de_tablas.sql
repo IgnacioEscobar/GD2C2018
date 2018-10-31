@@ -62,6 +62,15 @@ create table PEAKY_BLINDERS.Publicacion (
 	rubro					int				, -- FK
 )
 
+create table PEAKY_BLINDERS.Platea (
+	ID						int				PRIMARY KEY NOT NULL IDENTITY(1,1),
+	publicacion				int				, -- FK
+	stock_sin_numerar		int				,
+	cantidad_asientos		int				,
+	asientos_por_fila		int				,
+	costo					money
+)
+
 create table PEAKY_BLINDERS.Rubro (
   ID						int				PRIMARY KEY NOT NULL IDENTITY(1,1),
   descripcion				varchar(255)
