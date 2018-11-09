@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet
+namespace PalcoNet.Registro_de_Usuario
 {
-    public partial class Form1 : Form
+    public partial class FormRegistroCliente : Form
     {
-        public Form1()
+        public FormRegistroCliente()
         {
             InitializeComponent();
         }
-
     }
 }

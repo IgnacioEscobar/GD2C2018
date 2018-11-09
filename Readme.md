@@ -1,17 +1,17 @@
-# tp gdd-2c-2018 (PalcoNet)
+﻿# tp gdd-2c-2018 (PalcoNet)
 ---
 
 #### Curso:
 - K3522
 
 #### Numero de grupo:
-- ???
+- 57
 
 #### Integrantes
 | Nombre y Apellido   | Legajo    |
 |:-------------------:|:---------:|
 | Ignacio Escobar     |           |
-| Gabriel Ruderman    |           |
+| Gabriel Ruderman    | 158.797-3 |
 | Santiago Khazki     |           |
 | Juan Ignacio Cuiule | 158.198-6 |
 
