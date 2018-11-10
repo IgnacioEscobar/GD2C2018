@@ -16,5 +16,11 @@ namespace PalcoNet.Registro_de_Usuario
         {
             InitializeComponent();
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
