@@ -100,7 +100,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(20, 158);
+            this.label4.Location = new System.Drawing.Point(6, 157);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(102, 13);
             this.label4.TabIndex = 8;
@@ -109,7 +109,7 @@
             // rbnEmpresa
             // 
             this.rbnEmpresa.AutoSize = true;
-            this.rbnEmpresa.Location = new System.Drawing.Point(23, 197);
+            this.rbnEmpresa.Location = new System.Drawing.Point(9, 196);
             this.rbnEmpresa.Name = "rbnEmpresa";
             this.rbnEmpresa.Size = new System.Drawing.Size(66, 17);
             this.rbnEmpresa.TabIndex = 7;
@@ -120,7 +120,7 @@
             // rbnCliente
             // 
             this.rbnCliente.AutoSize = true;
-            this.rbnCliente.Location = new System.Drawing.Point(23, 174);
+            this.rbnCliente.Location = new System.Drawing.Point(9, 173);
             this.rbnCliente.Name = "rbnCliente";
             this.rbnCliente.Size = new System.Drawing.Size(57, 17);
             this.rbnCliente.TabIndex = 6;
