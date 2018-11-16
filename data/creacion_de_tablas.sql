@@ -41,11 +41,11 @@ create table PEAKY_BLINDERS.Cliente (
 )
 
 create table PEAKY_BLINDERS.Usuario (
-	ID						int				PRIMARY KEY NOT NULL IDENTITY(1,1),
-	usuario					varchar (30)	,  --FK
-	contrasenna				binary  (20) 	,  -- Nota: Usar SHA1 o SHA (o cambiar el tipo de dato)
-	cant_fallos				int				,
-	habilitado				bit
+	ID int PRIMARY KEY NOT NULL IDENTITY(1,1),
+	usuario varchar (30),  --FK
+	contrasenna	binary(32),
+	cant_fallos	int,
+	habilitado bit
 )
 
 create table PEAKY_BLINDERS.Publicacion (
@@ -81,11 +81,11 @@ create table PEAKY_BLINDERS.Rubro (
   descripcion				varchar(255)
 )
 
-create table PEAKY_BLINDERS.Punto (
-  ID						int				PRIMARY KEY NOT NULL IDENTITY(1,1),
-  cliente					int				, -- FK
-  cantidad					int				,
-  fecha_adquisicion			datetime
+create table PEAKY_BLINDERS.Movimiento_Puntos (
+  ID int PRIMARY KEY NOT NULL IDENTITY(1,1),
+  cliente int, -- FK
+  variacion	int,
+  fecha	datetime
 )
 
 create table PEAKY_BLINDERS.Factura (
@@ -119,4 +119,4 @@ create table PEAKY_BLINDERS.Ubicacion (
   asiento					int				,
   sin_numerar				bit				,
   monto						money			
-) 
+)
