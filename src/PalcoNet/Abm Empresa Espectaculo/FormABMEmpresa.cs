@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Abm_Empresa_Espectaculo
 {
-    public partial class Form1 : Form
+    public partial class FormABMEmpresa : Form
     {
-        public Form1()
+        public FormABMEmpresa()
         {
             InitializeComponent();
+        }
+
+        private void btnMostrar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("EL NOMBRE ES " + txtEmpresa.Text);
         }
     }
 }
