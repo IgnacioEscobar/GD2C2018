@@ -80,11 +80,11 @@
     <Compile Include="Canje Puntos\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar\Pagar.cs">
+    <Compile Include="Comprar\FormPagar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar\Pagar.Designer.cs">
-      <DependentUpon>Pagar.cs</DependentUpon>
+    <Compile Include="Comprar\FormPagar.Designer.cs">
+      <DependentUpon>FormPagar.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprar\FormComprarEntrada.cs">
       <SubType>Form</SubType>
@@ -161,8 +161,8 @@
     <EmbeddedResource Include="Abm Rol\FormABMRol.resx">
       <DependentUpon>FormABMRol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\Pagar.resx">
-      <DependentUpon>Pagar.cs</DependentUpon>
+    <EmbeddedResource Include="Comprar\FormPagar.resx">
+      <DependentUpon>FormPagar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormComprarEntrada.resx">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>
