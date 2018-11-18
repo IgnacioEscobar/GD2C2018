@@ -1,6 +1,6 @@
 ﻿namespace PalcoNet.Comprar
 {
-    partial class Pagar
+    partial class FormPagar
     {
         /// <summary>
         /// Required designer variable.
@@ -123,14 +123,14 @@
             this.btnSiguiente.Text = "PAGAR";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             // 
-            // Pagar
+            // FormPagar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(301, 239);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Pagar";
-            this.Text = "Form1";
+            this.Name = "FormPagar";
+            this.Text = "Pagar";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
