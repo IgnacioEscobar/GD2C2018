@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Comprar
 {
-    public partial class Form1 : Form
+    public partial class Pagar : Form
     {
-        public Form1()
+        public Pagar()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
