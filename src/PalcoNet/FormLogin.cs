@@ -1,4 +1,5 @@
 ﻿using PalcoNet.Registro_de_Usuario;
+using PalcoNet.Login;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,13 +54,27 @@ namespace PalcoNet
                 else
                 {
                     /*
-                     * Traer conrtaseña de la DB para validar login
+                     * Traer contraseña de la DB para validar login
                      */
                     string contrasena = "1234";
                     if (txtContrasena.Text == contrasena)
                     {
-                        // Ir a otro Form
-                        MessageBox.Show("Avanza de Form");
+                        /*
+                         * Traer roles asignados
+                         */
+                        int cantRolesAsignados = 3;
+
+                        if (cantRolesAsignados == 1)
+                        {
+                            // Ir a otro Form
+                            MessageBox.Show("Avanza de Form");
+                        }
+                        else
+                        {
+                            FormElegirRol formElegirRol = new FormElegirRol();
+                            this.Hide();
+                            formElegirRol.Show();
+                        }                        
                     }
                     else
                     {
