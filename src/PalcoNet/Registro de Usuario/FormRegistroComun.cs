@@ -26,48 +26,18 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == "")
+            Form proximoForm;
+            if (rbnCliente.Checked)
             {
-                lblError.Text = "Ingrese usuario";
-            }
-            else if (txtContrasena1.Text == "" || txtContrasena2.Text == "")
-            {
-                lblError.Text = "Ingrese contraseña";
-            }
-            else if (!rbnCliente.Checked && !rbnEmpresa.Checked)
-            {
-                lblError.Text = "Seleccione un perfil";
-            }
-            else if (txtContrasena1.Text != txtContrasena2.Text)
-            {
-                lblError.Text = "Las contraseñas no coinciden";
+                proximoForm = new FormRegistroCliente();
             }
             else
             {
-                /*
-                 * Verificar en la DB si ya existe
-                 */
-                Form proximoForm;
-                if (rbnCliente.Checked)
-                {
-                    proximoForm = new FormRegistroCliente();
-                }
-                else
-                {
-                    proximoForm = new FormRegistroEmpresa();
-                }
-
-                this.Hide();
-                proximoForm.Show();
+                proximoForm = new FormRegistroEmpresa();
             }
 
-            lblError.Visible = true;
+            this.Hide();
+            proximoForm.Show();
         }
-
-        private void FormRegistroComun_Load(object sender, EventArgs e)
-        {
-            lblError.Visible = false;
-        }
-
     }
 }

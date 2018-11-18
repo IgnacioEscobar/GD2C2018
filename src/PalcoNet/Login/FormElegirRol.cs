@@ -23,5 +23,10 @@ namespace PalcoNet.Login
             this.Hide();
             formLogin.Show();
         }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

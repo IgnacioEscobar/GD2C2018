@@ -1,6 +1,4 @@
-﻿using PalcoNet.Registro_de_Usuario;
-using PalcoNet.Login;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,13 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using PalcoNet.Registro_de_Usuario;
+using PalcoNet.Login;
+
 namespace PalcoNet
 {
     public partial class FormLogin : Form
     {
+        string usuario = "";
+
         public FormLogin()
         {
             InitializeComponent();
+        }
+
+        public FormLogin(string usuario)
+        {
+            InitializeComponent();
+            this.usuario = usuario;
         }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
@@ -28,6 +37,11 @@ namespace PalcoNet
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
+            txtUsuario.Text = usuario;
+            if (usuario != "")
+            {
+                txtContrasena.Focus();
+            }
             lblError.Visible = false;
         }
 
@@ -82,9 +96,7 @@ namespace PalcoNet
                     }
                 }
             }
-
             lblError.Visible = true;
         }
-
     }
 }

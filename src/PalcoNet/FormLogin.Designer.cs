@@ -140,6 +140,7 @@
             this.ClientSize = new System.Drawing.Size(314, 284);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.groupBox1.ResumeLayout(false);

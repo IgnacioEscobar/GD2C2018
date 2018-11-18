@@ -92,16 +92,17 @@
             // 
             this.btnSiguiente.Location = new System.Drawing.Point(133, 100);
             this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(130, 44);
+            this.btnSiguiente.Size = new System.Drawing.Size(115, 44);
             this.btnSiguiente.TabIndex = 7;
             this.btnSiguiente.Text = "SIGUIENTE";
             this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // FormElegirRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(277, 156);
+            this.ClientSize = new System.Drawing.Size(258, 156);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSiguiente);
             this.Controls.Add(this.radioButton3);
@@ -109,6 +110,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioButton1);
             this.Name = "FormElegirRol";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.ResumeLayout(false);
             this.PerformLayout();
