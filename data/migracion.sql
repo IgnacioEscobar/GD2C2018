@@ -178,3 +178,22 @@ insert into medios_de_pago values ('Efectivo');
 --   id_factura int REFERENCES facturas (id_factura),
 --   descripcion varchar(100),
 -- )
+
+-- Tipos de ubicacion --
+create table tipos_de_ubicacion (
+  id_tipo_de_ubicacion smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(15)
+);
+
+SET IDENTITY_INSERT tipos_de_ubicacion ON;
+
+insert into tipos_de_ubicacion (
+  id_tipo_de_ubicacion,
+  descripcion
+)
+select distinct
+  Ubicacion_Tipo_Codigo,
+  Ubicacion_Tipo_Descripcion
+from gd_esquema.Maestra;
+
+SET IDENTITY_INSERT tipos_de_ubicacion OFF;
