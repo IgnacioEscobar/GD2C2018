@@ -5,8 +5,8 @@ create table empresas (
   razon_social varchar(60),
   mail varchar(60),
   calle varchar(60),
-  numero int,
-  piso int,
+  numero smallint,
+  piso tinyint,
   departamento char,
   localidad varchar(60), -- estos datos no estan en la tabla maestra
   codigo_postal varchar(4),
@@ -26,17 +26,14 @@ insert into empresas (
   ciudad,
   cuit
 )
-select
-  distinct
+select distinct
   Espec_Empresa_Razon_Social as razon_social,
   Espec_Empresa_Mail as mail,
   Espec_Empresa_Dom_Calle as calle,
   Espec_Empresa_Nro_Calle as numero,
   Espec_Empresa_Piso as piso,
   Espec_Empresa_Depto as departamento,
-  null as localidad,
   Espec_Empresa_Cod_Postal as codigo_postal,
-  null as ciudad,
   Espec_Empresa_Cuit as cuit
 from gd_esquema.Maestra;
 
@@ -82,3 +79,51 @@ join estados E on M.Espectaculo_Estado = E.descripcion
 join empresas EM on EM.razon_social = M.Espec_Empresa_Razon_Social;
 
 SET IDENTITY_INSERT publicaiones OFF;
+
+-- Clientes --
+create table clientes (
+  id_cliente int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  -- id_usuario int REFERENCES usuarios
+  nombre varchar(60),
+  apellido varchar(60),
+  -- tipo_de_documento,
+  numero_de_documento int,
+  -- cuil
+  mail varchar(60),
+  -- telefono ???
+  calle varchar(60),
+  numero smallint,
+  piso tinyint,
+  depto char,
+  localidad varchar(60),
+  codigo_postal varchar(4),
+  fecha_nacimiento date,
+  fecha_creacion date,
+  -- tarjeta_de_credito_asociada
+)
+
+insert into clientes (
+  nombre,
+  apellido,
+  numero_de_documento,
+  mail,
+  calle,
+  numero,
+  piso,
+  depto,
+  codigo_postal,
+  fecha_nacimiento
+)
+select distinct
+  Cli_Nombre,
+  Cli_Apeliido,
+  Cli_Dni,
+  Cli_Mail,
+  Cli_Dom_Calle,
+  Cli_Nro_Calle,
+  Cli_Piso,
+  Cli_Depto,
+  Cli_Cod_Postal,
+  Cli_Fecha_Nac
+from gd_esquema.Maestra
+where Cli_Dni is not null
