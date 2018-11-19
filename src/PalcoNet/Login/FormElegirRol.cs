@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Registro_de_Usuario
+namespace PalcoNet.Login
 {
-    public partial class FormRegistroComun : Form
+    public partial class FormElegirRol : Form
     {
-        public FormRegistroComun()
+        public FormElegirRol()
         {
             InitializeComponent();
         }
 
-        private void btnRegresar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             FormLogin formLogin = new FormLogin();
             this.Hide();
@@ -26,18 +26,7 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            Form proximoForm;
-            if (rbnCliente.Checked)
-            {
-                proximoForm = new FormRegistroCliente();
-            }
-            else
-            {
-                proximoForm = new FormRegistroEmpresa();
-            }
 
-            this.Hide();
-            proximoForm.Show();
         }
     }
 }

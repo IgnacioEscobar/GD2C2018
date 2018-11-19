@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abm Cliente\Form1.cs">
+    <Compile Include="Abm Cliente\FormABMCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Cliente\FormABMCliente.Designer.cs">
+      <DependentUpon>FormABMCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Empresa Espectaculo\Form1.cs">
       <SubType>Form</SubType>
@@ -62,11 +62,11 @@
     <Compile Include="Abm Grado\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Rol\Form1.cs">
+    <Compile Include="Abm Rol\FormABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Rol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Rol\FormABMRol.Designer.cs">
+      <DependentUpon>FormABMRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Rubro\Form1.cs">
       <SubType>Form</SubType>
@@ -85,8 +85,17 @@
     <Compile Include="Comprar\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Comprar\FormPagar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar\FormPagar.Designer.cs">
+      <DependentUpon>FormPagar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Comprar\FormComprarEntrada.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar\FormComprarEntrada.Designer.cs">
+      <DependentUpon>FormComprarEntrada.cs</DependentUpon>
     </Compile>
     <Compile Include="Editar Publicacion\Form1.cs">
       <SubType>Form</SubType>
@@ -94,12 +103,13 @@
     <Compile Include="Editar Publicacion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogin.cs">
+    <Compile Include="Login\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormLogin.Designer.cs">
+    <Compile Include="Login\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="funciones_utiles\GeneradorDeContrasenasAleatorias.cs" />
     <Compile Include="Generar Publicacion\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +134,12 @@
     <Compile Include="Listado Estadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\FormElegirRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormElegirRol.Designer.cs">
+      <DependentUpon>FormElegirRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registro de Usuario\FormRegistroEmpresa.cs">
@@ -144,8 +160,23 @@
     <Compile Include="Registro de Usuario\FormRegistroComun.Designer.cs">
       <DependentUpon>FormRegistroComun.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormLogin.resx">
+    <EmbeddedResource Include="Abm Cliente\FormABMCliente.resx">
+      <DependentUpon>FormABMCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rol\FormABMRol.resx">
+      <DependentUpon>FormABMRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar\FormPagar.resx">
+      <DependentUpon>FormPagar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar\FormComprarEntrada.resx">
+      <DependentUpon>FormComprarEntrada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormElegirRol.resx">
+      <DependentUpon>FormElegirRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

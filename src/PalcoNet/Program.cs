@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using PalcoNet.Abm_Cliente;
+
 namespace PalcoNet
 {
     static class Program
@@ -16,8 +18,7 @@ namespace PalcoNet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            DB_Espectaculos.mostrarEmpresas();
-            Application.Run(new FormLogin());
+            Application.Run(new FormABMCliente());
         }
     }
 }
