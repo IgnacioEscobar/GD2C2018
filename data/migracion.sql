@@ -197,3 +197,22 @@ select distinct
 from gd_esquema.Maestra;
 
 SET IDENTITY_INSERT tipos_de_ubicacion OFF;
+
+-- Compras --
+create table compras (
+  id_compra int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_cliente REFERENCES clientes (id_cliente),
+  id_medio_de_pago REFERENCES medios_de_pago (id_medio_de_pago),
+  fecha date
+);
+
+insert into compras (
+  id_cliente,
+  id_medio_de_pago,
+  fecha
+)
+select C.id_cliente, MP.id_medio_de_pago, Compra_Fecha
+from gd_esquema.Maestra M
+join clientes C on C.numero_de_documento = M.Cli_Dni
+join medios_de_pago MP on MP.descripcion = M.Forma_Pago_Desc
+where Compra_Fecha is not null;
