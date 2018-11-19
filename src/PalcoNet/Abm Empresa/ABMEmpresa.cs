@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Registro_de_Usuario
+namespace PalcoNet.Abm_Empresa
 {
-    public partial class Form1 : Form
+    public partial class ABMEmpresa : Form
     {
-        public Form1()
+        public ABMEmpresa()
         {
             InitializeComponent();
         }
