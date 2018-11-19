@@ -80,6 +80,11 @@
     <Compile Include="Canje Puntos\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="DB_Espectaculos.cs" />
+    <Compile Include="SQL_Connector.cs" />
+    <Compile Include="Comprar\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Comprar\FormPagar.cs">
       <SubType>Form</SubType>
     </Compile>
