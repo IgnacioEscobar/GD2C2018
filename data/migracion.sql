@@ -80,13 +80,23 @@ join empresas EM on EM.razon_social = M.Espec_Empresa_Razon_Social;
 
 SET IDENTITY_INSERT publicaiones OFF;
 
+-- Tipos de documentos
+create table tipos_de_documentos (
+  id_tipo_de_documento smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(10)
+)
+
+SET IDENTITY_INSERT tipos_de_documentos ON;
+insert into tipos_de_documentos values (1, 'DNI')
+SET IDENTITY_INSERT tipos_de_documentos OFF;
+
 -- Clientes --
 create table clientes (
   id_cliente int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   -- id_usuario int REFERENCES usuarios
   nombre varchar(60),
   apellido varchar(60),
-  -- tipo_de_documento,
+  id_tipo_de_documento smallint REFERENCES tipos_de_documentos,
   numero_de_documento int,
   -- cuil
   mail varchar(60),
@@ -106,6 +116,7 @@ insert into clientes (
   nombre,
   apellido,
   numero_de_documento,
+  id_tipo_de_documento,
   mail,
   calle,
   numero,
@@ -118,6 +129,7 @@ select distinct
   Cli_Nombre,
   Cli_Apeliido,
   Cli_Dni,
+  1,
   Cli_Mail,
   Cli_Dom_Calle,
   Cli_Nro_Calle,
