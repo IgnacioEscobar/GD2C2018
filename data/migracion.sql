@@ -43,7 +43,7 @@ create table estados (
   descripcion varchar(25)
 );
 
-insert into estados values ('Publicada');
+insert into estados values ('Borrador'), ('Publicada'), ('Finalizada');
 -- es el único estado que aparece en la db, hay que agregar más
 
 -- Publicaciones --
@@ -60,6 +60,9 @@ create table publicaiones (
 );
 
 set IDENTITY_INSERT publicaiones ON;
+
+-- podríamos remplazar el join con estados
+-- dado que los que vienen estan todos en el estado 2
 
 insert into publicaiones (
   id_publicacion,
@@ -87,7 +90,7 @@ create table tipos_de_documentos (
 )
 
 SET IDENTITY_INSERT tipos_de_documentos ON;
-insert into tipos_de_documentos values (1, 'DNI')
+insert into tipos_de_documentos values (1, 'DNI'), (2, 'LC'), (3, 'LE');
 SET IDENTITY_INSERT tipos_de_documentos OFF;
 
 -- Clientes --
