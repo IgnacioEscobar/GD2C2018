@@ -75,6 +75,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="DB_Espectaculos.cs" />
+    <Compile Include="funciones_utiles\GestorDB.cs" />
     <Compile Include="SQL_Connector.cs" />
     <Compile Include="Comprar\FormPagar.cs">
       <SubType>Form</SubType>

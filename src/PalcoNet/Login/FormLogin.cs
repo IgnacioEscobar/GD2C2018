@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 using PalcoNet.Registro_de_Usuario;
 using PalcoNet.Login;
-using System.Data.SqlClient;
+using PalcoNet.funciones_utiles;
 
 namespace PalcoNet
 {
@@ -58,30 +58,17 @@ namespace PalcoNet
             }
             else
             {
-                SqlConnection conn = new SqlConnection(@"Data source=localhost\SQLSERVER2012; Initial Catalog=GD2C2018;user=gdEspectaculos2018;password=gd2018");
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.storedProcedure("autenticar_usuario");
+                gestor.parametroPorValor("@usuario", txtUsuario.Text);
+                gestor.parametroPorValor("@contrasena", txtContrasena.Text);
+                gestor.parametroPorReferencia("@user_id", SqlDbType.Int);
+                int result = gestor.ejecutarStoredProcedure();
                 
-                SqlCommand cmd = new SqlCommand("PEAKY_BLINDERS.autenticar_usuario", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
-                cmd.Parameters.AddWithValue("@contrasenna", txtContrasena.Text);
-                cmd.Parameters.Add(new SqlParameter("@id",SqlDbType.Int));
-                cmd.Parameters["@id"].Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
-                cmd.Parameters["@ReturnVal"].Direction = ParameterDirection.ReturnValue;
-                
-                try {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                }
-                catch (Exception ex) { 
-                    Console.WriteLine(ex.Message); 
-                }
-
-                int userId;
-                int result = Convert.ToInt32(cmd.Parameters["@ReturnVal"].Value);
+                int userId;                
                 if (result == 1) {
-                    userId = Convert.ToInt32(cmd.Parameters["@id"].Value);
+                    userId = Convert.ToInt32(gestor.obtenerValor("@user_id"));
                 }
 
                 if (result == 2)
