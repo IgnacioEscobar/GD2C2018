@@ -14,10 +14,28 @@ namespace PalcoNet.funciones_utiles
     {
         SqlConnection conexion;
         SqlCommand query;
+        SqlDataReader registros;
 
         public void conectar()
         {
             conexion = new SqlConnection(@"Data source=localhost\SQLSERVER2012; Initial Catalog=GD2C2018;user=gdEspectaculos2018;password=gd2018");
+            conexion.Open();
+        }
+
+        public void desconectar()
+        {
+            conexion.Close();
+        }
+
+        public void consulta(string cadena)
+        {
+            SqlCommand comando = new SqlCommand(cadena, conexion);
+            registros = comando.ExecuteReader();
+        }
+
+        public SqlDataReader obtenerRegistros()
+        {
+            return registros;
         }
 
         public void storedProcedure(string procedure)
@@ -43,9 +61,7 @@ namespace PalcoNet.funciones_utiles
             {
                 query.Parameters.Add("@ReturnVal", SqlDbType.Int);
                 query.Parameters["@ReturnVal"].Direction = ParameterDirection.ReturnValue;
-                conexion.Open();
                 query.ExecuteNonQuery();
-                conexion.Close();
                 return Convert.ToInt32(query.Parameters["@ReturnVal"].Value);
 
             }

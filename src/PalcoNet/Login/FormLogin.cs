@@ -65,6 +65,7 @@ namespace PalcoNet
                 gestor.parametroPorValor("@contrasena", txtContrasena.Text);
                 gestor.parametroPorReferencia("@user_id", SqlDbType.Int);
                 int result = gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
                 
                 int userId;                
                 if (result == 1) {

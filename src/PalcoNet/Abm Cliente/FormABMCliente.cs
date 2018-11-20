@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+
+using PalcoNet.funciones_utiles;
 
 namespace PalcoNet.Abm_Cliente
 {
@@ -19,28 +22,30 @@ namespace PalcoNet.Abm_Cliente
 
         private void FormABMCliente_Load(object sender, EventArgs e)
         {
-            dgvClientes.ColumnCount = 3;
+            dgvClientes.ColumnCount = 4;
             dgvClientes.ColumnHeadersVisible = true;
-            dgvClientes.Columns[0].Name = "Nombre";
-            dgvClientes.Columns[1].Name = "Nombre";
-            dgvClientes.Columns[2].Name = "CUIL";
+            dgvClientes.Columns[0].Name = "NOMBRE";
+            dgvClientes.Columns[1].Name = "APELLIDO";
+            dgvClientes.Columns[2].Name = "TIPO DOCUMENTO";
+            dgvClientes.Columns[3].Name = "DOCUMENTO";
 
-            /*
-             * Traer clientes de la base
-             * Pongo unos de ejemplo
-             */
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            gestor.consulta("select nombre, apellido, tipo_documento, documento from PEAKY_BLINDERS.Cliente");
+            SqlDataReader lector = gestor.obtenerRegistros();
 
-            string[] row1 = new string[] { "Ignacio", "Escobar", "00-12345678-0" };
-            string[] row2 = new string[] { "Juan Ignacio", "Cuiule", "00-12345678-0" };
-            string[] row3 = new string[] { "Santiago", "Khazki", "00-12345678-0" };
-            string[] row4 = new string[] { "Gabriel", "Ruderman", "00-12345678-0" };
-
-            object[] rows = new object[] { row1, row2, row3, row4 };
-
-            foreach (string[] rowArray in rows)
+            while (lector.Read())
             {
-                dgvClientes.Rows.Add(rowArray);
+                object[] row = new string[]
+                {
+                    lector["nombre"].ToString(),
+                    lector["apellido"].ToString(),
+                    lector["tipo_documento"].ToString(),
+                    lector["documento"].ToString()
+                };
+                dgvClientes.Rows.Add(row);
             }
+            gestor.desconectar();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

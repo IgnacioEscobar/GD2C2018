@@ -96,6 +96,7 @@
             this.Name = "FormABMEmpresa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormABMEmpresa";
+            this.Load += new System.EventHandler(this.FormABMEmpresa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).EndInit();
             this.ResumeLayout(false);
 
