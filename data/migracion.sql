@@ -224,6 +224,32 @@ from gd_esquema.Maestra;
 
 SET IDENTITY_INSERT tipos_de_ubicacion OFF;
 
+-- Ubicaciones --
+create table ubicaciones (
+  id_ubicacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_publicacion int REFERENCES publicaiones (id_publicacion),
+  id_tipo_de_ubicacion smallint REFERENCES tipos_de_ubicacion (id_tipo_de_ubicacion),
+  fila tinyint,
+  asiento tinyint,
+  precio int
+)
+
+insert into ubicacion (
+  id_publicacion,
+  id_tipo_de_ubicacion,
+  fila,
+  asiento,
+  precio
+)
+select distinct
+  M.Espectaculo_Cod,
+  TU.id_tipo_de_ubicacion,
+  M.Ubicacion_Fila,
+  M.Ubicacion_Asiento,
+  M.Ubicacion_Precio
+from gd_esquema.Maestra M
+join tipos_de_ubicacion TU on M.Ubicacion_Tipo_Descripcion = TU.descripcion
+
 -- Compras --
 create table compras (
   id_compra int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -232,7 +258,8 @@ create table compras (
   fecha datetime,
   cantidad smallint,
   id_presentacion int REFERENCES presentaciones (id_presentacion),
-  -- id_ubicacion int REFERENCES ubicaciones (id_ubicacion)
+  id_ubicacion int REFERENCES ubicaciones (id_ubicacion),
+  monto int
 );
 
 insert into compras (
