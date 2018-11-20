@@ -254,44 +254,45 @@ from gd_esquema.Maestra M
 join tipos_de_ubicacion TU on M.Ubicacion_Tipo_Descripcion = TU.descripcion
 
 -- Compras --
--- create table compras (
---   id_compra int PRIMARY KEY NOT NULL IDENTITY(1, 1),
---   id_cliente int REFERENCES clientes (id_cliente),
---   id_medio_de_pago REFERENCES medios_de_pago (id_medio_de_pago),
---   fecha datetime,
---   cantidad smallint,
---   id_presentacion int REFERENCES presentaciones (id_presentacion),
---   id_ubicacion int REFERENCES ubicaciones (id_ubicacion),
---   monto int
--- );
+create table compras (
+  id_compra int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_cliente int REFERENCES clientes (id_cliente),
+  id_medio_de_pago REFERENCES medios_de_pago (id_medio_de_pago),
+  fecha datetime,
+  cantidad smallint,
+  id_presentacion int REFERENCES presentaciones (id_presentacion),
+  id_ubicacion int REFERENCES ubicaciones (id_ubicacion),
+  monto int
+);
 
--- insert into compras (
---   id_cliente,
---   id_medio_de_pago,
---   fecha,
---   cantidad,
---   id_presentacion,
---   id_ubicacion,
---   monto
--- )
--- select C.id_cliente, MP.id_medio_de_pago, Compra_Fecha
--- from gd_esquema.Maestra M
--- join clientes C on C.numero_de_documento = M.Cli_Dni
--- join medios_de_pago MP on MP.descripcion = M.Forma_Pago_Desc
--- where Compra_Fecha is not null;
-
--- select
--- 	C.id_cliente,
--- 	MP.id_medio_de_pago,
--- 	Compra_Fecha,
--- 	Compra_Cantidad,
--- 	PRS.id_presentacion
--- from gd_esquema.Maestra M
--- join clientes C on C.numero_de_documento = M.Cli_Dni
--- join medios_de_pago MP on MP.descripcion = M.Forma_Pago_Desc
--- join presentaciones PRS on M.Espectaculo_Cod = PRS.id_espectaculo and M.Espectaculo_Fecha = PRS.fecha_hora and M.Espectaculo_Fecha_Venc = PRS.fecha_venc
--- where Compra_Fecha is not null
-
+insert into compras (
+  id_cliente,
+  id_medio_de_pago,
+  fecha,
+  cantidad,
+  id_presentacion,
+  id_ubicacion,
+  monto
+)
+select distinct
+  C.id_cliente,
+  1, -- todo lo que venia de la base era en efectivo
+  M.Compra_Fecha,
+  M.Compra_Cantidad,
+  PRS.id_presentacion,
+  U.id_ubicacion,
+  M.Ubicacion_Precio
+from gd_esquema.Maestra M
+join clientes C on C.numero_de_documento = M.Cli_Dni
+join presentaciones PRS on M.Espectaculo_Cod = PRS.id_publicacion
+-- ^^ nos tomamos la libertad de ver solo id de publicacion
+-- porque la db hay solo una presentacion por cada publicacion
+join ubicaciones U on
+  M.Espectaculo_Cod = U.id_publicacion and
+  M.Ubicacion_Fila = U.Ubicacion_Fila and
+  M.Ubicacion_Asiento = U.asiento and
+  M.Ubicacion_Precio = U.precio
+where Compra_Fecha is not null and Item_Factura_Monto is null
 
 -- -- Items --
 -- create table items (
