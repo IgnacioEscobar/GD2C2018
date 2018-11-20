@@ -54,13 +54,23 @@ create table rubros (
 
 insert into rubros values ('Vacio');
 
+-- Grados --
+create table grados (
+  id_grado tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  muliplicador decimal(2, 2)
+)
+
+set IDENTITY_INSERT grados ON;
+insert into grados values (1, 0.10);
+set IDENTITY_INSERT grados OFF;
+
 -- Publicaciones --
 create table publicaiones (
   id_publicacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_estado int REFERENCES estados (id_estado),
-  -- id_grado int REFERENCES grados (id_grado),
-  -- stock smallint,
-  -- direccion varchar(60),
+  id_grado int REFERENCES grados (id_grado),
+  stock smallint,
+  direccion varchar(60),
   id_empresa int REFERENCES empresas (id_empresa),
   id_rubro int REFERENCES rubros (id_rubro)
 );
@@ -73,12 +83,14 @@ set IDENTITY_INSERT publicaiones ON;
 insert into publicaiones (
   id_publicacion,
   id_estado,
+  id_grado,
   id_empresa,
   id_rubro
 )
 select distinct
   Espectaculo_Cod,
   E.id_estado,
+  1 -- grado de 0.1
   EM.id_empresa,
   1 -- rubro vacio
 from gd_esquema.Maestra M
