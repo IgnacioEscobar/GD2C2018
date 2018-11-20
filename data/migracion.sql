@@ -257,10 +257,12 @@ join tipos_de_ubicacion TU on M.Ubicacion_Tipo_Descripcion = TU.descripcion
 create table compras (
   id_compra int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_cliente int REFERENCES clientes (id_cliente),
-  id_medio_de_pago REFERENCES medios_de_pago (id_medio_de_pago),
+  id_medio_de_pago int REFERENCES medios_de_pago (id_medio_de_pago),
   fecha datetime,
   cantidad smallint,
   id_presentacion int REFERENCES presentaciones (id_presentacion),
+  id_publicacion int REFERENCES publicaciones (id_publicacion),
+  -- ^^ desnormalizacion para hacer mas simple la migración y cualquier consulta futura
   id_ubicacion int REFERENCES ubicaciones (id_ubicacion),
   monto int
 );
@@ -271,6 +273,7 @@ insert into compras (
   fecha,
   cantidad,
   id_presentacion,
+  id_publicacion,
   id_ubicacion,
   monto
 )
@@ -280,6 +283,7 @@ select distinct
   M.Compra_Fecha,
   M.Compra_Cantidad,
   PRS.id_presentacion,
+  M.Espectaculo_Cod,
   U.id_ubicacion,
   M.Ubicacion_Precio
 from gd_esquema.Maestra M
@@ -289,36 +293,42 @@ join presentaciones PRS on M.Espectaculo_Cod = PRS.id_publicacion
 -- porque la db hay solo una presentacion por cada publicacion
 join ubicaciones U on
   M.Espectaculo_Cod = U.id_publicacion and
-  M.Ubicacion_Fila = U.Ubicacion_Fila and
+  M.Ubicacion_Fila = U.fila and
   M.Ubicacion_Asiento = U.asiento and
   M.Ubicacion_Precio = U.precio
 where Compra_Fecha is not null and Item_Factura_Monto is null
 
 -- -- Items --
--- create table items (
---   id_item int PRIMARY KEY NOT NULL IDENTITY(1, 1),
---   id_factura int REFERENCES facturas (id_factura),
---   descripcion varchar(100),
---   id_compra int REFERENCES compras (id_compra),
---   cantidad tinyint,
---   comision decimal(6,2)
--- )
+create table items (
+  id_item int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_factura int REFERENCES facturas (id_factura),
+  descripcion varchar(100),
+  id_compra int REFERENCES compras (id_compra),
+  cantidad tinyint,
+  comision decimal(6,2)
+)
 
--- insert into items (
---   id_factura,
---   descripcion,
---   id_compra,
---   cantidad,
---   comision
--- )
--- select distinct
---   F.id_factura
---   M.Item_Factura_Descripcion,
---   C.id_compra,
---   M.Item_Factura_Cantidad,
---   M.Item_Factura_Monto
--- from gd_esquema.Maestra M
--- join facturas F on F.nro_factura = M.Factura_Nro
--- join compras C on 
---   C.id_presentacion = M.Espectaculo_Cod and
---   C.fecha 
+insert into items (
+  id_factura,
+  descripcion,
+  id_compra,
+  cantidad,
+  comision
+)
+select
+  F.id_factura,
+  M.Item_Factura_Descripcion,
+  C.id_compra,
+  M.Item_Factura_Cantidad,
+  M.Item_Factura_Monto
+from gd_esquema.Maestra M
+join facturas F on F.nro_factura = M.Factura_Nro
+join compras C on
+  C.id_publicacion = M.Espectaculo_Cod and
+  C.monto = M.Ubicacion_Precio and
+  C.fecha = Compra_Fecha and
+  C.cantidad = Compra_Cantidad
+join ubicaciones U on
+  C.id_ubicacion = U.id_ubicacion and
+  U.fila = M.Ubicacion_Fila and
+  U.asiento = M.Ubicacion_Asiento
