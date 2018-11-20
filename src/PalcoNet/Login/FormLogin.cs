@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using PalcoNet.Registro_de_Usuario;
 using PalcoNet.Login;
+using System.Data.SqlClient;
 
 namespace PalcoNet
 {
@@ -57,21 +58,39 @@ namespace PalcoNet
             }
             else
             {
-                /*
-                 * Traer usuario de la DB para verificar que existe
-                 */
-                bool existe_usuario = true;
-                if (!existe_usuario)
+                SqlConnection conn = new SqlConnection(@"Data source=localhost\SQLSERVER2012; Initial Catalog=GD2C2018;user=gdEspectaculos2018;password=gd2018");
+                
+                SqlCommand cmd = new SqlCommand("PEAKY_BLINDERS.autenticar_usuario", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@usuario", txtUsuario.Text);
+                cmd.Parameters.AddWithValue("@contrasenna", txtContrasena.Text);
+                cmd.Parameters.Add(new SqlParameter("@id",SqlDbType.Int));
+                cmd.Parameters["@id"].Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                cmd.Parameters["@ReturnVal"].Direction = ParameterDirection.ReturnValue;
+                
+                try {
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                catch (Exception ex) { 
+                    Console.WriteLine(ex.Message); 
+                }
+
+                int userId;
+                int result = Convert.ToInt32(cmd.Parameters["@ReturnVal"].Value);
+                if (result == 1) {
+                    userId = Convert.ToInt32(cmd.Parameters["@id"].Value);
+                }
+
+                if (result == 2)
                 {
                     lblError.Text = "El usuario es inválido";
                 }
                 else
                 {
-                    /*
-                     * Traer contraseña de la DB para validar login
-                     */
-                    string contrasena = "1234";
-                    if (txtContrasena.Text == contrasena)
+                    if (result == 1)
                     {
                         /*
                          * Traer roles asignados
