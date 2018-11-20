@@ -149,7 +149,7 @@ create table medios_de_pago (
   descripcion varchar(20)
 );
 
-insert into medios_de_pago values ('Efectivo');
+insert into medios_de_pago values ('Efectivo'), ('Tarjeta de Crédito');
 
 -- Factura --
 -- create table facturas (
