@@ -50,6 +50,12 @@
     <Compile Include="Abm Cliente\FormABMCliente.Designer.cs">
       <DependentUpon>FormABMCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Empresa Espectaculo\FormABMEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Empresa Espectaculo\FormABMEmpresa.Designer.cs">
+      <DependentUpon>FormABMEmpresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Grado\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     <EmbeddedResource Include="Abm Cliente\FormABMCliente.resx">
       <DependentUpon>FormABMCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Empresa Espectaculo\FormABMEmpresa.resx">
+      <DependentUpon>FormABMEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\FormABMRol.resx">
       <DependentUpon>FormABMRol.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,9 +210,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Abm Empresa Espectaculo\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
