@@ -152,28 +152,28 @@ create table medios_de_pago (
 insert into medios_de_pago values ('Efectivo'), ('Tarjeta de Crédito');
 
 -- Factura --
--- create table facturas (
---   id_factura int PRIMARY KEY NOT NULL IDENTITY(1, 1),
---   nro_factura int unique,
---   fecha date,
---   total int,
---   id_medio_de_pago int REFERENCES medios_de_pago (id_medio_de_pago),
--- );
+create table facturas (
+  id_factura int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  nro_factura int unique,
+  fecha date,
+  total int,
+  id_medio_de_pago int REFERENCES medios_de_pago (id_medio_de_pago),
+);
 
--- insert into facturas (
---   nro_factura,
---   fecha,
---   total,
---   id_medio_de_pago
--- )
--- select distinct
---   Factura_Nro,
---   Factura_Fecha,
---   Factura_Total,
---   id_medio_de_pago
--- from gd_esquema.Maestra M
--- join medios_de_pago MP on M.Forma_Pago_Desc = MP.descripcion 
--- where Factura_Nro is not null;
+insert into facturas (
+  nro_factura,
+  fecha,
+  total,
+  id_medio_de_pago
+)
+select distinct
+  Factura_Nro,
+  Factura_Fecha,
+  Factura_Total,
+  id_medio_de_pago
+from gd_esquema.Maestra M
+join medios_de_pago MP on M.Forma_Pago_Desc = MP.descripcion 
+where Factura_Nro is not null;
 
 -- -- Items --
 -- create table items (
