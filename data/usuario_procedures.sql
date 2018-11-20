@@ -12,18 +12,18 @@ GO
 
 CREATE PROCEDURE PEAKY_BLINDERS.autenticar_usuario 
 @usuario     varchar(30),
-@contrasenna varchar(30)
+@contrasenna varchar(30),
+@id int output
 AS
 	BEGIN  
 		DECLARE @esperada	binary(32);
 
-		IF EXISTS (	SELECT contrasenna 
-					FROM PEAKY_BLINDERS.Usuario
-					WHERE usuario LIKE @usuario AND cant_fallos <= 3 )
+		SELECT TOP 1 @esperada = contrasenna, @id = ID
+		FROM PEAKY_BLINDERS.Usuario
+		WHERE usuario=@usuario AND cant_fallos <= 3
+
+		IF @esperada IS NOT NULL
 			BEGIN
-				SELECT @esperada =( SELECT contrasenna
-									FROM PEAKY_BLINDERS.Usuario
-									WHERE usuario LIKE @usuario)
 				IF HASHBYTES ('SHA2_256', @contrasenna) = @esperada
 					BEGIN
 						UPDATE PEAKY_BLINDERS.Usuario
@@ -40,6 +40,6 @@ AS
 					END
 			END
 		ELSE
-			RETURN 0
+			RETURN 2
 	END
 GO
