@@ -46,17 +46,23 @@ create table estados (
 insert into estados values ('Borrador'), ('Publicada'), ('Finalizada');
 -- es el único estado que aparece en la db, hay que agregar más
 
+-- Rubros --
+create table rubros (
+  id_rubro tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(15)
+);
+
+insert into rubros values ('Vacio');
+
 -- Publicaciones --
 create table publicaiones (
   id_publicacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_estado int REFERENCES estados (id_estado),
-  -- id_grado ???
-  -- stock ???
-  fecha date,
-  fecha_vencimiento date,
-  -- direccion varchar(60) ???
+  -- id_grado int REFERENCES grados (id_grado),
+  -- stock smallint,
+  -- direccion varchar(60),
   id_empresa int REFERENCES empresas (id_empresa),
-  -- id_rubro int REFERENCES rubros (id_rubro) ???
+  id_rubro int REFERENCES rubros (id_rubro)
 );
 
 set IDENTITY_INSERT publicaiones ON;
@@ -67,21 +73,38 @@ set IDENTITY_INSERT publicaiones ON;
 insert into publicaiones (
   id_publicacion,
   id_estado,
-  fecha,
-  fecha_vencimiento,
-  id_empresa
+  id_empresa,
+  id_rubro
 )
 select distinct
   Espectaculo_Cod,
   E.id_estado,
-  Espectaculo_Fecha,
-  Espectaculo_Fecha_Venc,
-  EM.id_empresa
+  EM.id_empresa,
+  1 -- rubro vacio
 from gd_esquema.Maestra M
 join estados E on M.Espectaculo_Estado = E.descripcion
 join empresas EM on EM.razon_social = M.Espec_Empresa_Razon_Social;
 
 SET IDENTITY_INSERT publicaiones OFF;
+
+-- Presentaciones --
+create table presentaciones (
+  id_presentacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_publicacion int REFERENCES publicaiones (id_publicacion),
+  fecha_hora datetime,
+  fecha_venc datetime
+)
+
+insert into presentaciones (
+  id_publicacion,
+  fecha_hora,
+  fecha_venc
+)
+select distinct
+  Espectaculo_Cod,
+  Espectaculo_Fecha,
+  Espectaculo_Fecha_Venc
+from gd_esquema.Maestra
 
 -- Tipos de documentos
 create table tipos_de_documentos (
@@ -110,8 +133,8 @@ create table clientes (
   depto char,
   localidad varchar(60),
   codigo_postal varchar(4),
-  fecha_nacimiento date,
-  fecha_creacion date,
+  fecha_nacimiento datetime,
+  fecha_creacion datetime,
   -- tarjeta_de_credito_asociada
 );
 
@@ -155,7 +178,7 @@ insert into medios_de_pago values ('Efectivo'), ('Tarjeta de Crédito');
 create table facturas (
   id_factura int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   nro_factura int unique,
-  fecha date,
+  fecha datetime,
   total int,
   id_medio_de_pago int REFERENCES medios_de_pago (id_medio_de_pago),
 );
@@ -206,7 +229,10 @@ create table compras (
   id_compra int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_cliente REFERENCES clientes (id_cliente),
   id_medio_de_pago REFERENCES medios_de_pago (id_medio_de_pago),
-  fecha date
+  fecha datetime,
+  cantidad smallint,
+  id_presentacion int REFERENCES presentaciones (id_presentacion),
+  -- id_ubicacion int REFERENCES ubicaciones (id_ubicacion)
 );
 
 insert into compras (
