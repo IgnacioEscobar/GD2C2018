@@ -332,3 +332,16 @@ join ubicaciones U on
   C.id_ubicacion = U.id_ubicacion and
   U.fila = M.Ubicacion_Fila and
   U.asiento = M.Ubicacion_Asiento
+
+-- Roles --
+create table roles (
+  id_rol tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(30)
+)
+
+set IDENTITY_INSERT roles on;
+insert into roles (id_rol, descripcion) values
+  (1, 'Empresa'),
+  (2, 'Administrativo'),
+  (3, 'Cliente');
+set IDENTITY_INSERT roles off;
