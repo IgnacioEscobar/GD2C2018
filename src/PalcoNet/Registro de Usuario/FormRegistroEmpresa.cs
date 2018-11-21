@@ -14,15 +14,30 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroEmpresa : Form
     {
+        string razonSocial;
+        string cuit;
+        string mail;
+
         public FormRegistroEmpresa()
         {
             InitializeComponent();
+            this.razonSocial = "";
+            this.cuit = "";
+            this.mail = "";
+        }
+
+        public FormRegistroEmpresa(string razonSocial, string cuit, string mail)
+        {
+            InitializeComponent();
+            this.razonSocial = razonSocial;
+            this.cuit = cuit;
+            this.mail = mail;
         }
 
         private bool validarCampos()
         {
             // TODO: chequear que campos son obligatorios
-            if (txtCUIT1.Text == "" || txtCUIT2.Text == "" || txtCUIT3.Text == "")
+            if (txtCUIT.Text == "")
             {
                 lblError.Text = "Complete el CUIT";
                 lblError.Visible = true;
@@ -35,7 +50,7 @@ namespace PalcoNet.Registro_de_Usuario
         {
             if (validarCampos())
             {
-                string usuario = txtCUIT1.Text + txtCUIT2.Text + txtCUIT3.Text;
+                string usuario = txtCUIT.Text;
                 GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                 MessageBox.Show("Usuario: " + usuario
                     + "\nContraseña: " + generadorDeContrasenas.generar(10)
@@ -50,6 +65,9 @@ namespace PalcoNet.Registro_de_Usuario
         private void FormRegistroEmpresa_Load(object sender, EventArgs e)
         {
             lblError.Visible = false;
+            txtRazonSocial.Text = razonSocial;
+            txtCUIT.Text = cuit;
+            txtMail.Text = mail;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

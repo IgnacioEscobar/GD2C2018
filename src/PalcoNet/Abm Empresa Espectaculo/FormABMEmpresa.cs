@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
+using PalcoNet.Registro_de_Usuario;
 
 namespace PalcoNet.Abm_Empresa_Espectaculo
 {
@@ -21,6 +22,24 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
         {
             InitializeComponent();
         }
+
+        // Metodos auxiliares
+
+        private void mostrarRegistros(SqlDataReader lector)
+        {
+            while (lector.Read())
+            {
+                object[] row = new string[]
+                {
+                    lector["razon_social"].ToString(),
+                    lector["cuit"].ToString(),
+                    lector["mail"].ToString(),
+                };
+                dgvEmpresas.Rows.Add(row);
+            }
+        }
+
+        // -------------------
 
         private void FormABMEmpresa_Load(object sender, EventArgs e)
         {
@@ -101,20 +120,26 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             gestor.desconectar();
         }
 
-        // Metodos auxiliares
-
-        private void mostrarRegistros(SqlDataReader lector)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
-            while (lector.Read())
+            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa();
+            this.Hide();
+            formRegistroEmpresa.Show();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            string[] param = new string[3];
+            int i = 0;
+            foreach (DataGridViewCell item in dgvEmpresas.CurrentRow.Cells)
             {
-                object[] row = new string[]
-                {
-                    lector["razon_social"].ToString(),
-                    lector["cuit"].ToString(),
-                    lector["mail"].ToString(),
-                };
-                dgvEmpresas.Rows.Add(row);
+                param[i] = item.Value.ToString();
+                i++;
             }
+
+            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(param[0], param[1], param[2]);
+            this.Hide();
+            formRegistroEmpresa.Show();
         }
 
     }

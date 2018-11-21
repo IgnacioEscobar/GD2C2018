@@ -22,6 +22,24 @@ namespace PalcoNet.Abm_Cliente
             InitializeComponent();
         }
 
+        // Metodos auxiliares
+
+        private void mostrarRegistros(SqlDataReader lector)
+        {
+            while (lector.Read())
+            {
+                object[] row = new string[]
+                {
+                    lector["nombre"].ToString(),
+                    lector["apellido"].ToString(),
+                    lector["numero_de_documento"].ToString()
+                };
+                dgvClientes.Rows.Add(row);
+            }
+        }
+
+        // -------------------
+
         private void FormABMCliente_Load(object sender, EventArgs e)
         {
             dgvClientes.ColumnCount = 3;
@@ -106,22 +124,6 @@ namespace PalcoNet.Abm_Cliente
             txtApellido.Text = "";
             txtDocumento.Text = "";
             txtMail.Text = "";
-        }
-
-        // Metodos auxiliares
-
-        private void mostrarRegistros(SqlDataReader lector)
-        {
-            while (lector.Read())
-            {
-                object[] row = new string[]
-                {
-                    lector["nombre"].ToString(),
-                    lector["apellido"].ToString(),
-                    lector["numero_de_documento"].ToString()
-                };
-                dgvClientes.Rows.Add(row);
-            }
         }
 
     }

@@ -49,12 +49,10 @@
             this.txtMail = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtCUIT1 = new System.Windows.Forms.TextBox();
-            this.txtCUIT2 = new System.Windows.Forms.TextBox();
+            this.txtCUIT = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCUIT3 = new System.Windows.Forms.TextBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -245,12 +243,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtCUIT1);
-            this.groupBox1.Controls.Add(this.txtCUIT2);
+            this.groupBox1.Controls.Add(this.txtCUIT);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtRazonSocial);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtCUIT3);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(262, 101);
@@ -258,21 +254,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DATOS DE LA EMPRESA";
             // 
-            // txtCUIT1
+            // txtCUIT
             // 
-            this.txtCUIT1.Location = new System.Drawing.Point(6, 71);
-            this.txtCUIT1.MaxLength = 2;
-            this.txtCUIT1.Name = "txtCUIT1";
-            this.txtCUIT1.Size = new System.Drawing.Size(42, 20);
-            this.txtCUIT1.TabIndex = 19;
-            // 
-            // txtCUIT2
-            // 
-            this.txtCUIT2.Location = new System.Drawing.Point(54, 71);
-            this.txtCUIT2.MaxLength = 8;
-            this.txtCUIT2.Name = "txtCUIT2";
-            this.txtCUIT2.Size = new System.Drawing.Size(154, 20);
-            this.txtCUIT2.TabIndex = 17;
+            this.txtCUIT.Location = new System.Drawing.Point(6, 71);
+            this.txtCUIT.MaxLength = 2;
+            this.txtCUIT.Name = "txtCUIT";
+            this.txtCUIT.Size = new System.Drawing.Size(250, 20);
+            this.txtCUIT.TabIndex = 19;
             // 
             // label1
             // 
@@ -298,14 +286,6 @@
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "CUIT";
-            // 
-            // txtCUIT3
-            // 
-            this.txtCUIT3.Location = new System.Drawing.Point(214, 71);
-            this.txtCUIT3.MaxLength = 1;
-            this.txtCUIT3.Name = "txtCUIT3";
-            this.txtCUIT3.Size = new System.Drawing.Size(42, 20);
-            this.txtCUIT3.TabIndex = 10;
             // 
             // FormRegistroEmpresa
             // 
@@ -357,11 +337,9 @@
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtCUIT1;
-        private System.Windows.Forms.TextBox txtCUIT2;
+        private System.Windows.Forms.TextBox txtCUIT;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtRazonSocial;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCUIT3;
     }
 }
