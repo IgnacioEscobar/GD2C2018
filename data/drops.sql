@@ -1,3 +1,5 @@
+if OBJECT_ID('roles', 'U') is not null
+  drop table roles;
 if OBJECT_ID('items', 'U') is not null
   drop table items;
 if OBJECT_ID('compras', 'U') is not null
