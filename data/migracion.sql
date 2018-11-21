@@ -126,56 +126,6 @@ SET IDENTITY_INSERT tipos_de_documentos ON;
 insert into tipos_de_documentos (id_tipo_de_documento, descripcion) values (1, 'DNI'), (2, 'LC'), (3, 'LE');
 SET IDENTITY_INSERT tipos_de_documentos OFF;
 
--- Clientes --
-create table clientes (
-  id_cliente int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  id_usuario int REFERENCES usuarios (id_usuario),
-  nombre varchar(60),
-  apellido varchar(60),
-  id_tipo_de_documento smallint REFERENCES tipos_de_documentos,
-  numero_de_documento int,
-  -- cuil
-  mail varchar(60),
-  -- telefono ???
-  calle varchar(60),
-  numero smallint,
-  piso tinyint,
-  depto char,
-  localidad varchar(60),
-  codigo_postal varchar(4),
-  fecha_nacimiento datetime,
-  fecha_creacion datetime,
-  -- tarjeta_de_credito_asociada
-);
-
-insert into clientes (
-  nombre,
-  apellido,
-  numero_de_documento,
-  id_tipo_de_documento,
-  mail,
-  calle,
-  numero,
-  piso,
-  depto,
-  codigo_postal,
-  fecha_nacimiento
-)
-select distinct
-  Cli_Nombre,
-  Cli_Apeliido,
-  Cli_Dni,
-  1,
-  Cli_Mail,
-  Cli_Dom_Calle,
-  Cli_Nro_Calle,
-  Cli_Piso,
-  Cli_Depto,
-  Cli_Cod_Postal,
-  Cli_Fecha_Nac
-from gd_esquema.Maestra
-where Cli_Dni is not null;
-
 -- Usuarios --
 create table usuarios (
   id_usuario int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -229,6 +179,64 @@ create table funcionalidades_por_rol (
 -- insert into funcionalidades_por_rol (id_rol, id_funcionalidad) values
 --   (...)
 --   (...)
+
+-- Clientes --
+create table clientes (
+  id_cliente int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_usuario int REFERENCES usuarios (id_usuario),
+  nombre varchar(60),
+  apellido varchar(60),
+  id_tipo_de_documento smallint REFERENCES tipos_de_documentos,
+  numero_de_documento int,
+  -- cuil
+  mail varchar(60),
+  -- telefono ???
+  calle varchar(60),
+  numero smallint,
+  piso tinyint,
+  depto char,
+  localidad varchar(60),
+  codigo_postal varchar(4),
+  fecha_nacimiento datetime,
+  fecha_creacion datetime,
+  -- tarjeta_de_credito_asociada
+);
+
+insert into clientes (
+  nombre,
+  apellido,
+  numero_de_documento,
+  id_tipo_de_documento,
+  mail,
+  calle,
+  numero,
+  piso,
+  depto,
+  codigo_postal,
+  fecha_nacimiento
+)
+select distinct
+  Cli_Nombre,
+  Cli_Apeliido,
+  Cli_Dni,
+  1,
+  Cli_Mail,
+  Cli_Dom_Calle,
+  Cli_Nro_Calle,
+  Cli_Piso,
+  Cli_Depto,
+  Cli_Cod_Postal,
+  Cli_Fecha_Nac
+from gd_esquema.Maestra
+where Cli_Dni is not null;
+
+-- Movimientos de puntos
+create table movimientos_de_puntos (
+  id_movimiento int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_cliente int REFERENCES clientes (id_cliente),
+  variacion int,
+  fecha datetime
+)
 
 -- Medio de Pago --
 create table medios_de_pago (

@@ -10,12 +10,20 @@ if OBJECT_ID('facturas', 'U') is not null
   drop table facturas;
 if OBJECT_ID('medios_de_pago', 'U') is not null
   drop table medios_de_pago;
+if OBJECT_ID('movimientos_de_puntos', 'U') is not null
+  drop table movimientos_de_puntos;
+if OBJECT_ID('clientes', 'U') is not null
+  drop table clientes;
+if OBJECT_ID('funcionalidades_por_rol', 'U') is not null
+  drop table funcionalidades_por_rol;
+if OBJECT_ID('funcionalidades', 'U') is not null
+  drop table funcionalidades;
+if OBJECT_ID('roles_por_usuario', 'U') is not null
+  drop table roles_por_usuario;
 if OBJECT_ID('roles', 'U') is not null
   drop table roles;
 if OBJECT_ID('usuarios', 'U') is not null
   drop table usuarios;
-if OBJECT_ID('clientes', 'U') is not null
-  drop table clientes;
 if OBJECT_ID('tipos_de_documentos', 'U') is not null
   drop table tipos_de_documentos;
 if OBJECT_ID('presentaciones', 'U') is not null
