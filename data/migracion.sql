@@ -205,6 +205,31 @@ create table roles_por_usuario (
   id_rol tinyint REFERENCES roles (id_rol)
 );
 
+-- Funcionalidades --
+create table funcionalidades (
+  id_funcionalidad tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(30)
+)
+
+-- TODO: Cargar Funcionalidades
+-- set IDENTITY_INSERT funcionalidades on;
+-- insert into funcionalidades (id_funcionalidad, descripcion) values
+--   (...)
+--   (...)
+-- set IDENTITY_INSERT funcionalidades off;
+
+-- Funcionalidades x Rol
+create table funcionalidades_por_rol (
+  id_funcionalidad_por_rol smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_rol tinyint REFERENCES roles (id_rol),
+  id_funcionalidad tinyint REFERENCES funcionalidades (id_funcionalidad)
+)
+
+-- TODO: Cargar Relaciones FxR
+-- insert into funcionalidades_por_rol (id_rol, id_funcionalidad) values
+--   (...)
+--   (...)
+
 -- Medio de Pago --
 create table medios_de_pago (
   id_medio_de_pago int PRIMARY KEY NOT NULL IDENTITY(1, 1),
