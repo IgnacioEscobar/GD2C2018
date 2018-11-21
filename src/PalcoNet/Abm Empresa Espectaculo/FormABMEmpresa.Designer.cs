@@ -34,6 +34,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dgvEmpresas = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.txtMail = new System.Windows.Forms.TextBox();
             this.txtCUIT = new System.Windows.Forms.TextBox();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -84,12 +84,17 @@
             // 
             // dgvEmpresas
             // 
+            this.dgvEmpresas.AllowUserToAddRows = false;
+            this.dgvEmpresas.AllowUserToDeleteRows = false;
             this.dgvEmpresas.AllowUserToOrderColumns = true;
             this.dgvEmpresas.AllowUserToResizeRows = false;
             this.dgvEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmpresas.Location = new System.Drawing.Point(12, 90);
+            this.dgvEmpresas.MultiSelect = false;
             this.dgvEmpresas.Name = "dgvEmpresas";
+            this.dgvEmpresas.ReadOnly = true;
+            this.dgvEmpresas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmpresas.Size = new System.Drawing.Size(573, 409);
             this.dgvEmpresas.TabIndex = 10;
             // 
@@ -109,6 +114,15 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(264, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Mail:";
             // 
             // btnBuscar
             // 
@@ -169,15 +183,6 @@
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(151, 20);
             this.txtRazonSocial.TabIndex = 0;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(264, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Mail:";
             // 
             // FormABMEmpresa
             // 
