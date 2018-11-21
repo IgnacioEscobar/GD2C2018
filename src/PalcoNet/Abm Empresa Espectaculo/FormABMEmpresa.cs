@@ -15,6 +15,8 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 {
     public partial class FormABMEmpresa : Form
     {
+        string query_defecto = "SELECT razon_social, cuit, mail FROM dbo.empresas";
+
         public FormABMEmpresa()
         {
             InitializeComponent();
@@ -22,29 +24,16 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
         private void FormABMEmpresa_Load(object sender, EventArgs e)
         {
-            dgvEmpresas.ColumnCount = 4;
+            dgvEmpresas.ColumnCount = 3;
             dgvEmpresas.ColumnHeadersVisible = true;
             dgvEmpresas.Columns[0].Name = "RAZON SOCIAL";
             dgvEmpresas.Columns[1].Name = "CUIT";
-            dgvEmpresas.Columns[2].Name = "EMAIL";
-            dgvEmpresas.Columns[3].Name = "TELEFONO";
+            dgvEmpresas.Columns[2].Name = "MAIL";
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT razon_social, cuit, email, telefono FROM PEAKY_BLINDERS.Empresa");
-            SqlDataReader lector = gestor.obtenerRegistros();
-
-            while (lector.Read())
-            {
-                object[] row = new string[]
-                {
-                    lector["razon_social"].ToString(),
-                    lector["cuit"].ToString(),
-                    lector["email"].ToString(),
-                    lector["telefono"].ToString()
-                };
-                dgvEmpresas.Rows.Add(row);
-            }
+            gestor.consulta(query_defecto);
+            this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
         }
 
@@ -52,44 +41,61 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
         {
             txtRazonSocial.Text = "";
             txtCUIT.Text = "";
-            txtEmail.Text = "";
+            txtMail.Text = "";
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string razonSocial = txtRazonSocial.Text;
             string cuit = txtCUIT.Text;
-            string email = txtEmail.Text;
+            string mail = txtMail.Text;
 
-            List<string[]> listaCampos = new List<string[]>();
+            List<object[]> listaCampos = new List<object[]>();
 
             if (razonSocial != "")
             {
-                string[] tuplaRazonSocial = { "razon_social", razonSocial };
+                object[] tuplaRazonSocial = { "razon_social", razonSocial, false };
                 listaCampos.Add(tuplaRazonSocial);
             }
             if (cuit != "")
             {
-                string[] tuplaCUIT = { "CUIT", cuit };
+                object[] tuplaCUIT = { "cuit", cuit, true };
                 listaCampos.Add(tuplaCUIT);
             }
-            if (email != "")
+            if (mail != "")
             {
-                string[] tuplaEmail = { "email", email };
-                listaCampos.Add(tuplaEmail);
+                object[] tuplaMail = { "mail", mail, false };
+                listaCampos.Add(tuplaMail);
             }
 
+            int cant_filtros = listaCampos.Count();
+            if (cant_filtros > 0) dgvEmpresas.Rows.Clear();
+
             string filtro = "";
-            for (int i = 0; i < listaCampos.Count(); i++)
+            for (int i = 0; i < cant_filtros; i++)
             {
-                string[] tuplaCampos = listaCampos[i];
-                filtro += tuplaCampos[0] + "=" + tuplaCampos[1];
+                object[] tuplaCampos = listaCampos[i];
+                string comparacion, cierre;
+                if (Convert.ToBoolean(tuplaCampos[2])) // busqueda exacta
+                {
+                    comparacion = " = '";
+                    cierre = "'";
+                }
+                else // busqueda aproximada
+                {
+                    comparacion = " LIKE '%";
+                    cierre = "%'";
+                }
+                filtro += tuplaCampos[0] + comparacion + tuplaCampos[1] + cierre;
                 if (i != listaCampos.Count() - 1) filtro += " AND ";
             }
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT razon_social, CUIT, email, telefono FROM PEAKY_BLINDERS.Cliente WHERE " + filtro);
+
+            string query = query_defecto;
+            if (cant_filtros > 0) query += " WHERE " + filtro;
+            gestor.consulta(query);
 
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
@@ -104,9 +110,8 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
                 object[] row = new string[]
                 {
                     lector["razon_social"].ToString(),
-                    lector["CUIT"].ToString(),
-                    lector["email"].ToString(),
-                    lector["telefono"].ToString()
+                    lector["cuit"].ToString(),
+                    lector["mail"].ToString(),
                 };
                 dgvEmpresas.Rows.Add(row);
             }

@@ -38,9 +38,10 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
             this.txtCUIT = new System.Windows.Forms.TextBox();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +57,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(591, 112);
+            this.btnEliminar.Location = new System.Drawing.Point(591, 190);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(211, 44);
             this.btnEliminar.TabIndex = 13;
@@ -65,7 +66,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(591, 62);
+            this.btnModificar.Location = new System.Drawing.Point(591, 140);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(211, 44);
             this.btnModificar.TabIndex = 12;
@@ -74,7 +75,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(591, 12);
+            this.btnAgregar.Location = new System.Drawing.Point(591, 90);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(211, 44);
             this.btnAgregar.TabIndex = 11;
@@ -87,32 +88,33 @@
             this.dgvEmpresas.AllowUserToResizeRows = false;
             this.dgvEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmpresas.Location = new System.Drawing.Point(12, 171);
+            this.dgvEmpresas.Location = new System.Drawing.Point(12, 90);
             this.dgvEmpresas.Name = "dgvEmpresas";
-            this.dgvEmpresas.Size = new System.Drawing.Size(573, 328);
+            this.dgvEmpresas.Size = new System.Drawing.Size(573, 409);
             this.dgvEmpresas.TabIndex = 10;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.btnLimpiar);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtEmail);
+            this.groupBox1.Controls.Add(this.txtMail);
             this.groupBox1.Controls.Add(this.txtCUIT);
             this.groupBox1.Controls.Add(this.txtRazonSocial);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(573, 124);
+            this.groupBox1.Size = new System.Drawing.Size(573, 72);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(436, 86);
+            this.btnBuscar.Location = new System.Drawing.Point(420, 45);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(131, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(147, 20);
             this.btnBuscar.TabIndex = 7;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -120,9 +122,9 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(299, 86);
+            this.btnLimpiar.Location = new System.Drawing.Point(267, 45);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(131, 23);
+            this.btnLimpiar.Size = new System.Drawing.Size(147, 20);
             this.btnLimpiar.TabIndex = 6;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -146,27 +148,36 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Razón social:";
             // 
-            // txtEmail
+            // txtMail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(416, 19);
-            this.txtEmail.MaxLength = 8;
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(151, 20);
-            this.txtEmail.TabIndex = 2;
+            this.txtMail.Location = new System.Drawing.Point(299, 19);
+            this.txtMail.MaxLength = 8;
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(268, 20);
+            this.txtMail.TabIndex = 2;
             // 
             // txtCUIT
             // 
-            this.txtCUIT.Location = new System.Drawing.Point(72, 45);
+            this.txtCUIT.Location = new System.Drawing.Point(84, 45);
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(151, 20);
             this.txtCUIT.TabIndex = 1;
             // 
             // txtRazonSocial
             // 
-            this.txtRazonSocial.Location = new System.Drawing.Point(72, 19);
+            this.txtRazonSocial.Location = new System.Drawing.Point(84, 19);
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(151, 20);
             this.txtRazonSocial.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(264, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Mail:";
             // 
             // FormABMEmpresa
             // 
@@ -181,7 +192,7 @@
             this.Controls.Add(this.dgvEmpresas);
             this.Name = "FormABMEmpresa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormABMEmpresa";
+            this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormABMEmpresa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -202,8 +213,9 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.TextBox txtCUIT;
         private System.Windows.Forms.TextBox txtRazonSocial;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -15,6 +15,8 @@ namespace PalcoNet.Abm_Cliente
 {
     public partial class FormABMCliente : Form
     {
+        string query_defecto = "SELECT nombre, apellido, numero_de_documento FROM dbo.clientes";
+
         public FormABMCliente()
         {
             InitializeComponent();
@@ -22,16 +24,78 @@ namespace PalcoNet.Abm_Cliente
 
         private void FormABMCliente_Load(object sender, EventArgs e)
         {
-            dgvClientes.ColumnCount = 4;
+            dgvClientes.ColumnCount = 3;
             dgvClientes.ColumnHeadersVisible = true;
             dgvClientes.Columns[0].Name = "NOMBRE";
             dgvClientes.Columns[1].Name = "APELLIDO";
-            dgvClientes.Columns[2].Name = "TIPO DOCUMENTO";
-            dgvClientes.Columns[3].Name = "DOCUMENTO";
+            dgvClientes.Columns[2].Name = "DOCUMENTO";
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT nombre, apellido, tipo_documento, documento FROM PEAKY_BLINDERS.Cliente");
+            gestor.consulta(query_defecto);
+            this.mostrarRegistros(gestor.obtenerRegistros());
+            gestor.desconectar();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombre.Text;
+            string apellido = txtApellido.Text;
+            string documento = txtDocumento.Text;
+            string mail = txtMail.Text;
+
+            List<object[]> listaCampos = new List<object[]>();
+
+            if (nombre != "")
+            {
+                object[] tuplaNombre = { "nombre", nombre, false };
+                listaCampos.Add(tuplaNombre);
+            }
+            if (apellido != "")
+            {
+                object[] tuplaApellido = { "apellido", apellido, false };
+                listaCampos.Add(tuplaApellido);
+            }
+            if (documento != "")
+            {
+                object[] tuplaDocumento = { "documento", documento, true };
+                listaCampos.Add(tuplaDocumento);
+            }
+            if (mail != "")
+            {
+                object[] tuplaEmail = { "mail", mail, true };
+                listaCampos.Add(tuplaEmail);
+            }
+
+            int cant_filtros = listaCampos.Count();
+            if (cant_filtros > 0) dgvClientes.Rows.Clear();
+
+            string filtro = "";
+            for (int i = 0; i < cant_filtros; i++)
+            {
+                object[] tuplaCampos = listaCampos[i];
+                string comparacion, cierre;
+                if (Convert.ToBoolean(tuplaCampos[2])) // busqueda exacta
+                {
+                    comparacion = " = '";
+                    cierre = "'";
+                }
+                else // busqueda aproximada
+                {
+                    comparacion = " LIKE '%";
+                    cierre = "%'";
+                }
+                filtro += tuplaCampos[0] + comparacion + tuplaCampos[1] + cierre;
+                if (i != listaCampos.Count() - 1) filtro += " AND ";
+            }
+
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+
+            string query = query_defecto;
+            if (cant_filtros > 0) query += " WHERE " + filtro;
+            gestor.consulta(query);
+
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
         }
@@ -41,53 +105,7 @@ namespace PalcoNet.Abm_Cliente
             txtNombre.Text = "";
             txtApellido.Text = "";
             txtDocumento.Text = "";
-            txtEmail.Text = "";
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
-            string nombre = txtNombre.Text;
-            string apellido = txtApellido.Text;
-            string documento = txtDocumento.Text;
-            string email = txtEmail.Text;
-
-            List<string[]> listaCampos = new List<string[]>();
-            
-            if (nombre != "")
-            {
-                string[] tuplaNombre = { "nombre", nombre };
-                listaCampos.Add(tuplaNombre);
-            }
-            if (apellido != "")
-            {
-                string[] tuplaApellido = { "apellido", apellido };
-                listaCampos.Add(tuplaApellido);
-            }
-            if (documento != "")
-            {
-                string[] tuplaDocumento = { "documento", documento };
-                listaCampos.Add(tuplaDocumento);
-            }
-            if (email != "")
-            {
-                string[] tuplaEmail = { "email", email };
-                listaCampos.Add(tuplaEmail);
-            }
-
-            string filtro = "";
-            for (int i = 0; i < listaCampos.Count(); i++)
-            {
-                string[] tuplaCampos = listaCampos[i];
-                filtro += tuplaCampos[0] + "=" + tuplaCampos[1];
-                if (i != listaCampos.Count() - 1) filtro += " AND ";
-            }
-
-            GestorDB gestor = new GestorDB();
-            gestor.conectar();
-            gestor.consulta("SELECT nombre, apellido, tipo_documento, documento FROM PEAKY_BLINDERS.Cliente WHERE " + filtro);
-
-            this.mostrarRegistros(gestor.obtenerRegistros());
-            gestor.desconectar();
+            txtMail.Text = "";
         }
 
         // Metodos auxiliares
@@ -100,8 +118,7 @@ namespace PalcoNet.Abm_Cliente
                 {
                     lector["nombre"].ToString(),
                     lector["apellido"].ToString(),
-                    lector["tipo_documento"].ToString(),
-                    lector["documento"].ToString()
+                    lector["numero_de_documento"].ToString()
                 };
                 dgvClientes.Rows.Add(row);
             }
