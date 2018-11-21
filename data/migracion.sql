@@ -129,7 +129,7 @@ SET IDENTITY_INSERT tipos_de_documentos OFF;
 -- Clientes --
 create table clientes (
   id_cliente int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  -- id_usuario int REFERENCES usuarios
+  id_usuario int REFERENCES usuarios (id_usuario),
   nombre varchar(60),
   apellido varchar(60),
   id_tipo_de_documento smallint REFERENCES tipos_de_documentos,
@@ -175,6 +175,35 @@ select distinct
   Cli_Fecha_Nac
 from gd_esquema.Maestra
 where Cli_Dni is not null;
+
+-- Usuarios --
+create table usuarios (
+  id_usuario int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  nombre_de_usuario varchar(40),
+  password_hash binary(32),
+  habilitado bit default 1,
+  intentos_fallidos tinyint default 0
+);
+
+-- Roles --
+create table roles (
+  id_rol tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(30)
+);
+
+set IDENTITY_INSERT roles on;
+insert into roles (id_rol, descripcion) values
+  (1, 'Empresa'),
+  (2, 'Administrativo'),
+  (3, 'Cliente');
+set IDENTITY_INSERT roles off;
+
+-- Roles x Usuario --
+create table roles_por_usuario (
+  id_rol_por_usuario int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_usuario int REFERENCES usuarios (id_usuario),
+  id_rol tinyint REFERENCES roles (id_rol)
+);
 
 -- Medio de Pago --
 create table medios_de_pago (
@@ -332,16 +361,3 @@ join ubicaciones U on
   C.id_ubicacion = U.id_ubicacion and
   U.fila = M.Ubicacion_Fila and
   U.asiento = M.Ubicacion_Asiento
-
--- Roles --
-create table roles (
-  id_rol tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  descripcion varchar(30)
-)
-
-set IDENTITY_INSERT roles on;
-insert into roles (id_rol, descripcion) values
-  (1, 'Empresa'),
-  (2, 'Administrativo'),
-  (3, 'Cliente');
-set IDENTITY_INSERT roles off;
