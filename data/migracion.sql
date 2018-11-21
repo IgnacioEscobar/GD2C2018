@@ -162,11 +162,21 @@ create table funcionalidades (
 )
 
 -- TODO: Cargar Funcionalidades
--- set IDENTITY_INSERT funcionalidades on;
--- insert into funcionalidades (id_funcionalidad, descripcion) values
---   (...)
---   (...)
--- set IDENTITY_INSERT funcionalidades off;
+set IDENTITY_INSERT funcionalidades on;
+insert into funcionalidades (id_funcionalidad, descripcion) values
+  (1, 'ABM de Rol'),
+  (2, 'ABM de Cliente'),
+  (3, 'ABM de Empresa de espectáculos'),
+  (4, 'ABM de Categoría'),
+  (5, 'ABM de grado de publicación'),
+  (6, 'Generar Publicacion'),
+  (7, 'Editar Publicacion'),
+  (8, 'Comprar'),
+  (9, 'Historial de Cliente'),
+  (10, 'Canje y Administración de puntos'),
+  (11, 'Generar rendición de comisiones'),
+  (12, 'Listado Estadistico')
+set IDENTITY_INSERT funcionalidades off;
 
 -- Funcionalidades x Rol
 create table funcionalidades_por_rol (
