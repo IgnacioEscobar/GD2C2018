@@ -50,11 +50,11 @@
     <Compile Include="Abm Cliente\FormABMCliente.Designer.cs">
       <DependentUpon>FormABMCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\Form1.cs">
+    <Compile Include="Abm Empresa Espectaculo\FormABMEmpresa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Empresa Espectaculo\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Empresa Espectaculo\FormABMEmpresa.Designer.cs">
+      <DependentUpon>FormABMEmpresa.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Grado\Form1.cs">
       <SubType>Form</SubType>
@@ -74,17 +74,25 @@
     <Compile Include="Abm Rubro\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador\FormAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\FormAdministrador.Designer.cs">
+      <DependentUpon>FormAdministrador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Canje Puntos\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Canje Puntos\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar\Pagar.cs">
+    <Compile Include="DB_Espectaculos.cs" />
+    <Compile Include="SQL_Connector.cs" />
+    <Compile Include="Comprar\FormPagar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar\Pagar.Designer.cs">
-      <DependentUpon>Pagar.cs</DependentUpon>
+    <Compile Include="Comprar\FormPagar.Designer.cs">
+      <DependentUpon>FormPagar.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprar\FormComprarEntrada.cs">
       <SubType>Form</SubType>
@@ -158,11 +166,17 @@
     <EmbeddedResource Include="Abm Cliente\FormABMCliente.resx">
       <DependentUpon>FormABMCliente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Empresa Espectaculo\FormABMEmpresa.resx">
+      <DependentUpon>FormABMEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\FormABMRol.resx">
       <DependentUpon>FormABMRol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\Pagar.resx">
-      <DependentUpon>Pagar.cs</DependentUpon>
+    <EmbeddedResource Include="Administrador\FormAdministrador.resx">
+      <DependentUpon>FormAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar\FormPagar.resx">
+      <DependentUpon>FormPagar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormComprarEntrada.resx">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>

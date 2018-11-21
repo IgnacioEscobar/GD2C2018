@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Nombre = new System.Windows.Forms.TextBox();
-            this.textBoxNum = new System.Windows.Forms.TextBox();
-            this.comboBoxMes = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxAnio = new System.Windows.Forms.ComboBox();
-            this.textBoxCSV = new System.Windows.Forms.TextBox();
             this.btnSiguiente = new System.Windows.Forms.Button();
+            this.textBoxCSV = new System.Windows.Forms.TextBox();
+            this.comboBoxAnio = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxMes = new System.Windows.Forms.ComboBox();
+            this.textBoxNum = new System.Windows.Forms.TextBox();
+            this.Nombre = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,34 +55,33 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Realizar Pago";
             // 
-            // Nombre
+            // btnSiguiente
             // 
-            this.Nombre.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.Nombre.Location = new System.Drawing.Point(6, 19);
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Size = new System.Drawing.Size(199, 20);
-            this.Nombre.TabIndex = 0;
-            this.Nombre.Text = "Nombre y Apellido";
+            this.btnSiguiente.Location = new System.Drawing.Point(7, 148);
+            this.btnSiguiente.Name = "btnSiguiente";
+            this.btnSiguiente.Size = new System.Drawing.Size(139, 44);
+            this.btnSiguiente.TabIndex = 8;
+            this.btnSiguiente.Text = "PAGAR";
+            this.btnSiguiente.UseVisualStyleBackColor = true;
             // 
-            // textBoxNum
+            // textBoxCSV
             // 
-            this.textBoxNum.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBoxNum.Location = new System.Drawing.Point(6, 54);
-            this.textBoxNum.Name = "textBoxNum";
-            this.textBoxNum.Size = new System.Drawing.Size(196, 20);
-            this.textBoxNum.TabIndex = 3;
-            this.textBoxNum.Text = "Numero de tarjeta";
+            this.textBoxCSV.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.textBoxCSV.Location = new System.Drawing.Point(7, 113);
+            this.textBoxCSV.Name = "textBoxCSV";
+            this.textBoxCSV.Size = new System.Drawing.Size(53, 20);
+            this.textBoxCSV.TabIndex = 7;
+            this.textBoxCSV.Text = "CSV";
             // 
-            // comboBoxMes
+            // comboBoxAnio
             // 
-            this.comboBoxMes.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.comboBoxMes.FormattingEnabled = true;
-            this.comboBoxMes.Location = new System.Drawing.Point(6, 85);
-            this.comboBoxMes.Name = "comboBoxMes";
-            this.comboBoxMes.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboBoxMes.Size = new System.Drawing.Size(54, 21);
-            this.comboBoxMes.TabIndex = 4;
-            this.comboBoxMes.Text = "MM";
+            this.comboBoxAnio.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.comboBoxAnio.FormattingEnabled = true;
+            this.comboBoxAnio.Location = new System.Drawing.Point(92, 85);
+            this.comboBoxAnio.Name = "comboBoxAnio";
+            this.comboBoxAnio.Size = new System.Drawing.Size(54, 21);
+            this.comboBoxAnio.TabIndex = 6;
+            this.comboBoxAnio.Text = "YYYY";
             // 
             // label1
             // 
@@ -95,33 +94,34 @@
             this.label1.Text = "/";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // comboBoxAnio
+            // comboBoxMes
             // 
-            this.comboBoxAnio.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.comboBoxAnio.FormattingEnabled = true;
-            this.comboBoxAnio.Location = new System.Drawing.Point(92, 85);
-            this.comboBoxAnio.Name = "comboBoxAnio";
-            this.comboBoxAnio.Size = new System.Drawing.Size(54, 21);
-            this.comboBoxAnio.TabIndex = 6;
-            this.comboBoxAnio.Text = "YYYY";
+            this.comboBoxMes.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.comboBoxMes.FormattingEnabled = true;
+            this.comboBoxMes.Location = new System.Drawing.Point(6, 85);
+            this.comboBoxMes.Name = "comboBoxMes";
+            this.comboBoxMes.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.comboBoxMes.Size = new System.Drawing.Size(54, 21);
+            this.comboBoxMes.TabIndex = 4;
+            this.comboBoxMes.Text = "MM";
             // 
-            // textBoxCSV
+            // textBoxNum
             // 
-            this.textBoxCSV.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBoxCSV.Location = new System.Drawing.Point(7, 113);
-            this.textBoxCSV.Name = "textBoxCSV";
-            this.textBoxCSV.Size = new System.Drawing.Size(53, 20);
-            this.textBoxCSV.TabIndex = 7;
-            this.textBoxCSV.Text = "CSV";
+            this.textBoxNum.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.textBoxNum.Location = new System.Drawing.Point(6, 54);
+            this.textBoxNum.Name = "textBoxNum";
+            this.textBoxNum.Size = new System.Drawing.Size(196, 20);
+            this.textBoxNum.TabIndex = 3;
+            this.textBoxNum.Text = "Numero de tarjeta";
             // 
-            // btnSiguiente
+            // Nombre
             // 
-            this.btnSiguiente.Location = new System.Drawing.Point(7, 148);
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(115, 44);
-            this.btnSiguiente.TabIndex = 8;
-            this.btnSiguiente.Text = "PAGAR";
-            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.Nombre.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.Nombre.Location = new System.Drawing.Point(6, 19);
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Size = new System.Drawing.Size(199, 20);
+            this.Nombre.TabIndex = 0;
+            this.Nombre.Text = "Nombre y Apellido";
             // 
             // FormPagar
             // 
