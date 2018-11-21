@@ -31,7 +31,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("select razon_social, cuit, email, telefono from PEAKY_BLINDERS.Empresa");
+            gestor.consulta("SELECT razon_social, cuit, email, telefono FROM PEAKY_BLINDERS.Empresa");
             SqlDataReader lector = gestor.obtenerRegistros();
 
             while (lector.Read())
@@ -47,5 +47,70 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             }
             gestor.desconectar();
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtRazonSocial.Text = "";
+            txtCUIT.Text = "";
+            txtEmail.Text = "";
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string razonSocial = txtRazonSocial.Text;
+            string cuit = txtCUIT.Text;
+            string email = txtEmail.Text;
+
+            List<string[]> listaCampos = new List<string[]>();
+
+            if (razonSocial != "")
+            {
+                string[] tuplaRazonSocial = { "razon_social", razonSocial };
+                listaCampos.Add(tuplaRazonSocial);
+            }
+            if (cuit != "")
+            {
+                string[] tuplaCUIT = { "CUIT", cuit };
+                listaCampos.Add(tuplaCUIT);
+            }
+            if (email != "")
+            {
+                string[] tuplaEmail = { "email", email };
+                listaCampos.Add(tuplaEmail);
+            }
+
+            string filtro = "";
+            for (int i = 0; i < listaCampos.Count(); i++)
+            {
+                string[] tuplaCampos = listaCampos[i];
+                filtro += tuplaCampos[0] + "=" + tuplaCampos[1];
+                if (i != listaCampos.Count() - 1) filtro += " AND ";
+            }
+
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            gestor.consulta("SELECT razon_social, CUIT, email, telefono FROM PEAKY_BLINDERS.Cliente WHERE " + filtro);
+
+            this.mostrarRegistros(gestor.obtenerRegistros());
+            gestor.desconectar();
+        }
+
+        // Metodos auxiliares
+
+        private void mostrarRegistros(SqlDataReader lector)
+        {
+            while (lector.Read())
+            {
+                object[] row = new string[]
+                {
+                    lector["razon_social"].ToString(),
+                    lector["CUIT"].ToString(),
+                    lector["email"].ToString(),
+                    lector["telefono"].ToString()
+                };
+                dgvEmpresas.Rows.Add(row);
+            }
+        }
+
     }
 }
