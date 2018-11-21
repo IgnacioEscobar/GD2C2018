@@ -74,6 +74,12 @@
     <Compile Include="Abm Rubro\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administrador\FormAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administrador\FormAdministrador.Designer.cs">
+      <DependentUpon>FormAdministrador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Canje Puntos\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\FormABMRol.resx">
       <DependentUpon>FormABMRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administrador\FormAdministrador.resx">
+      <DependentUpon>FormAdministrador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormPagar.resx">
       <DependentUpon>FormPagar.cs</DependentUpon>
