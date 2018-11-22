@@ -38,7 +38,7 @@ namespace PalcoNet.funciones_utiles
             return registros;
         }
 
-        public void storedProcedure(string procedure)
+        public void generarStoredProcedure(string procedure)
         {
             query = new SqlCommand("PEAKY_BLINDERS." + procedure, conexion);
             query.CommandType = CommandType.StoredProcedure;

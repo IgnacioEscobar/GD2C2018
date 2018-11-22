@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
+using PalcoNet.Registro_de_Usuario;
 
 namespace PalcoNet.Abm_Cliente
 {
@@ -124,6 +125,57 @@ namespace PalcoNet.Abm_Cliente
             txtApellido.Text = "";
             txtDocumento.Text = "";
             txtMail.Text = "";
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente();
+            this.Hide();
+            formRegistroCliente.Show();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            string[] param = new string[3];
+            int i = 0;
+            foreach (DataGridViewCell item in dgvClientes.CurrentRow.Cells)
+            {
+                param[i] = item.Value.ToString();
+                i++;
+            }
+
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(param[0], param[1], param[2]);
+            this.Hide();
+            formRegistroCliente.Show();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            string[] datos = new string[3];
+            int i = 0;
+            foreach (DataGridViewCell item in dgvClientes.CurrentRow.Cells)
+            {
+                datos[i] = item.Value.ToString();
+                i++;
+            }
+            string mensaje = "¿Confirma que desea eliminar al cliente " + datos[0] + " " + datos[1] + "?";
+            DialogResult  respuesta = MessageBox.Show(this, mensaje, "Eliminar cliente", MessageBoxButtons.YesNo);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                /*
+                 * INICIO TRANSACCION
+                 */
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.generarStoredProcedure("eliminar_cliente");
+                gestor.parametroPorValor("documento", datos[2]);
+                gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
+                /*
+                 * FIN TRANSACCION
+                 */
+            }
         }
 
     }

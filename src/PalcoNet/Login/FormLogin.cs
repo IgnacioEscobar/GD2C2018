@@ -60,7 +60,7 @@ namespace PalcoNet
             {
                 GestorDB gestor = new GestorDB();
                 gestor.conectar();
-                gestor.storedProcedure("autenticar_usuario");
+                gestor.generarStoredProcedure("autenticar_usuario");
                 gestor.parametroPorValor("@usuario", txtUsuario.Text);
                 gestor.parametroPorValor("@contrasena", txtContrasena.Text);
                 gestor.parametroPorReferencia("@user_id", SqlDbType.Int);

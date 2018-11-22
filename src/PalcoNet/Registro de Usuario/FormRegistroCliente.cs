@@ -14,9 +14,24 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroCliente : Form
     {
+        string nombre;
+        string apellido;
+        string documento;
+
         public FormRegistroCliente()
         {
             InitializeComponent();
+            this.nombre = "";
+            this.apellido = "";
+            this.documento = "";
+        }
+
+        public FormRegistroCliente(string nombre, string apellido, string documento)
+        {
+            InitializeComponent();
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.documento = documento;
         }
 
         private bool validarCampos()
@@ -35,6 +50,21 @@ namespace PalcoNet.Registro_de_Usuario
         {
             if (validarCampos())
             {
+                /*
+                 * INICIO TRANSACCION
+                 */
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.generarStoredProcedure("crear_cliente");
+                gestor.parametroPorValor("nombre", txtNombre.Text);
+                gestor.parametroPorValor("apellido", txtApellido.Text);
+                // ...TODOS LOS CAMPOS...
+                gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
+                /*
+                 * FIN TRANSACCION
+                 */
+
                 string usuario = txtCUIL1.Text + txtCUIL2.Text + txtCUIL3.Text;
                 GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                 MessageBox.Show("Usuario: " + usuario
@@ -49,6 +79,10 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void FormRegistroCliente_Load(object sender, EventArgs e)
         {
+            txtNombre.Text = nombre;
+            txtApellido.Text = apellido;
+            txtNumeroDoc.Text = documento;
+
             for (int i = 1; i <= 31; i++)
             {
                 cmbDia.Items.Add(i);

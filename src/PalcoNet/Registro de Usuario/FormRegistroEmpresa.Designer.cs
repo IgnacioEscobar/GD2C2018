@@ -75,7 +75,7 @@
             this.btnCrearCuenta.Name = "btnCrearCuenta";
             this.btnCrearCuenta.Size = new System.Drawing.Size(262, 59);
             this.btnCrearCuenta.TabIndex = 32;
-            this.btnCrearCuenta.Text = "CREAR CUENTA";
+            this.btnCrearCuenta.Text = "CONFIRMAR";
             this.btnCrearCuenta.UseVisualStyleBackColor = true;
             this.btnCrearCuenta.Click += new System.EventHandler(this.btnCrearCuenta_Click);
             // 
@@ -257,7 +257,7 @@
             // txtCUIT
             // 
             this.txtCUIT.Location = new System.Drawing.Point(6, 71);
-            this.txtCUIT.MaxLength = 2;
+            this.txtCUIT.MaxLength = 11;
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(250, 20);
             this.txtCUIT.TabIndex = 19;

@@ -33,7 +33,7 @@
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbTipoDNI = new System.Windows.Forms.ComboBox();
+            this.cmbTipoDoc = new System.Windows.Forms.ComboBox();
             this.txtCUIL3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbDia = new System.Windows.Forms.ComboBox();
@@ -45,7 +45,7 @@
             this.txtCodTelefono = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtNroDNI = new System.Windows.Forms.TextBox();
+            this.txtNumeroDoc = new System.Windows.Forms.TextBox();
             this.txtCUIL1 = new System.Windows.Forms.TextBox();
             this.txtCUIL2 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -111,13 +111,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Tipo y número de documento";
             // 
-            // cmbTipoDNI
+            // cmbTipoDoc
             // 
-            this.cmbTipoDNI.FormattingEnabled = true;
-            this.cmbTipoDNI.Location = new System.Drawing.Point(6, 113);
-            this.cmbTipoDNI.Name = "cmbTipoDNI";
-            this.cmbTipoDNI.Size = new System.Drawing.Size(90, 21);
-            this.cmbTipoDNI.TabIndex = 6;
+            this.cmbTipoDoc.FormattingEnabled = true;
+            this.cmbTipoDoc.Location = new System.Drawing.Point(6, 113);
+            this.cmbTipoDoc.Name = "cmbTipoDoc";
+            this.cmbTipoDoc.Size = new System.Drawing.Size(90, 21);
+            this.cmbTipoDoc.TabIndex = 6;
             // 
             // txtCUIL3
             // 
@@ -216,7 +216,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtNroDNI);
+            this.groupBox1.Controls.Add(this.txtNumeroDoc);
             this.groupBox1.Controls.Add(this.txtCUIL1);
             this.groupBox1.Controls.Add(this.txtCUIL2);
             this.groupBox1.Controls.Add(this.label1);
@@ -227,7 +227,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbMes);
             this.groupBox1.Controls.Add(this.cmbDia);
-            this.groupBox1.Controls.Add(this.cmbTipoDNI);
+            this.groupBox1.Controls.Add(this.cmbTipoDoc);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtCUIL3);
@@ -238,12 +238,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DATOS PERSONALES";
             // 
-            // txtNroDNI
+            // txtNumeroDoc
             // 
-            this.txtNroDNI.Location = new System.Drawing.Point(102, 113);
-            this.txtNroDNI.Name = "txtNroDNI";
-            this.txtNroDNI.Size = new System.Drawing.Size(154, 20);
-            this.txtNroDNI.TabIndex = 20;
+            this.txtNumeroDoc.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNumeroDoc.Location = new System.Drawing.Point(102, 113);
+            this.txtNumeroDoc.MaxLength = 8;
+            this.txtNumeroDoc.Name = "txtNumeroDoc";
+            this.txtNumeroDoc.Size = new System.Drawing.Size(154, 20);
+            this.txtNumeroDoc.TabIndex = 20;
             // 
             // txtCUIL1
             // 
@@ -407,7 +409,7 @@
             this.btnCrearCuenta.Name = "btnCrearCuenta";
             this.btnCrearCuenta.Size = new System.Drawing.Size(262, 59);
             this.btnCrearCuenta.TabIndex = 26;
-            this.btnCrearCuenta.Text = "CREAR CUENTA";
+            this.btnCrearCuenta.Text = "CONFIRMAR";
             this.btnCrearCuenta.UseVisualStyleBackColor = true;
             this.btnCrearCuenta.Click += new System.EventHandler(this.btnCrearCuenta_Click);
             // 
@@ -457,7 +459,7 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbTipoDNI;
+        private System.Windows.Forms.ComboBox cmbTipoDoc;
         private System.Windows.Forms.TextBox txtCUIL3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbDia;
@@ -469,7 +471,7 @@
         private System.Windows.Forms.TextBox txtCodTelefono;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtNroDNI;
+        private System.Windows.Forms.TextBox txtNumeroDoc;
         private System.Windows.Forms.TextBox txtCUIL1;
         private System.Windows.Forms.TextBox txtCUIL2;
         private System.Windows.Forms.GroupBox groupBox2;

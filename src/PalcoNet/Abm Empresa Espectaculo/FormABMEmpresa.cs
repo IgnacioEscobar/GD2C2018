@@ -142,5 +142,34 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             formRegistroEmpresa.Show();
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            string[] datos = new string[3];
+            int i = 0;
+            foreach (DataGridViewCell item in dgvEmpresas.CurrentRow.Cells)
+            {
+                datos[i] = item.Value.ToString();
+                i++;
+            }
+            string mensaje = "¿Confirma que desea eliminar a la empresa " + datos[0] + "?";
+            DialogResult respuesta = MessageBox.Show(this, mensaje, "Eliminar empresa", MessageBoxButtons.YesNo);
+
+            if (respuesta == DialogResult.Yes)
+            {
+                /*
+                 * INICIO TRANSACCION
+                 */
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.generarStoredProcedure("eliminar_empresa");
+                gestor.parametroPorValor("cuit", datos[1]);
+                gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
+                /*
+                 * FIN TRANSACCION
+                 */
+            }
+        }
+
     }
 }

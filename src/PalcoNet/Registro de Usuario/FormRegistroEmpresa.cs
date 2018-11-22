@@ -50,6 +50,21 @@ namespace PalcoNet.Registro_de_Usuario
         {
             if (validarCampos())
             {
+                /*
+                 * INICIO TRANSACCION
+                 */
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.generarStoredProcedure("crear_empresa");
+                gestor.parametroPorValor("razon_social", txtRazonSocial.Text);
+                gestor.parametroPorValor("cuit", txtCUIT.Text);
+                // ...TODOS LOS CAMPOS...
+                gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
+                /*
+                 * FIN TRANSACCION
+                 */
+
                 string usuario = txtCUIT.Text;
                 GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                 MessageBox.Show("Usuario: " + usuario
@@ -76,5 +91,6 @@ namespace PalcoNet.Registro_de_Usuario
             this.Hide();
             formLogin.Show();
         }
+
     }
 }
