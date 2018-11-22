@@ -161,7 +161,6 @@ create table funcionalidades (
   descripcion varchar(30)
 )
 
--- TODO: Cargar Funcionalidades
 set IDENTITY_INSERT funcionalidades on;
 insert into funcionalidades (id_funcionalidad, descripcion) values
   (1, 'ABM de Rol'),
@@ -175,7 +174,7 @@ insert into funcionalidades (id_funcionalidad, descripcion) values
   (9, 'Historial de Cliente'),
   (10, 'Canje y Administración de puntos'),
   (11, 'Generar rendición de comisiones'),
-  (12, 'Listado Estadistico')
+  (12, 'Listado Estadistico');
 set IDENTITY_INSERT funcionalidades off;
 
 -- Funcionalidades x Rol
@@ -185,10 +184,10 @@ create table funcionalidades_por_rol (
   id_funcionalidad tinyint REFERENCES funcionalidades (id_funcionalidad)
 )
 
--- TODO: Cargar Relaciones FxR
--- insert into funcionalidades_por_rol (id_rol, id_funcionalidad) values
---   (...)
---   (...)
+insert into funcionalidades_por_rol (id_rol, id_funcionalidad) values
+  (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 11), (2, 12),
+  (1, 6), (1, 7),
+  (3, 8), (3, 9), (3, 10);
 
 -- Clientes --
 create table clientes (
