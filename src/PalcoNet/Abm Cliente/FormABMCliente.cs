@@ -77,7 +77,7 @@ namespace PalcoNet.Abm_Cliente
             }
             if (documento != "")
             {
-                object[] tuplaDocumento = { "documento", documento, true };
+                object[] tuplaDocumento = { "numero_de_documento", documento, true };
                 listaCampos.Add(tuplaDocumento);
             }
             if (mail != "")
@@ -114,6 +114,7 @@ namespace PalcoNet.Abm_Cliente
             string query = query_defecto;
             if (cant_filtros > 0) query += " WHERE " + filtro;
             gestor.consulta(query);
+            MessageBox.Show(query);
 
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
@@ -144,7 +145,8 @@ namespace PalcoNet.Abm_Cliente
                 i++;
             }
 
-            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(param[0], param[1], param[2]);
+            string query = "SELECT * FROM dbo.clientes WHERE numero_de_documento = '" + param[2] + "'";
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(query);
             this.Hide();
             formRegistroCliente.Show();
         }

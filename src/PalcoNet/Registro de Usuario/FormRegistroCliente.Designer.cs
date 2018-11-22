@@ -63,8 +63,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnAsociarTarjeta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnCrearCuenta = new System.Windows.Forms.Button();
+            this.btnConfirmar = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtAltura = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -286,6 +288,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label13);
+            this.groupBox3.Controls.Add(this.txtAltura);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.txtCodPostal);
             this.groupBox3.Controls.Add(this.label11);
@@ -362,9 +366,10 @@
             // 
             // txtCalle
             // 
+            this.txtCalle.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCalle.Location = new System.Drawing.Point(6, 32);
             this.txtCalle.Name = "txtCalle";
-            this.txtCalle.Size = new System.Drawing.Size(250, 20);
+            this.txtCalle.Size = new System.Drawing.Size(188, 20);
             this.txtCalle.TabIndex = 18;
             // 
             // txtPiso
@@ -403,15 +408,15 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnCrearCuenta
+            // btnConfirmar
             // 
-            this.btnCrearCuenta.Location = new System.Drawing.Point(280, 279);
-            this.btnCrearCuenta.Name = "btnCrearCuenta";
-            this.btnCrearCuenta.Size = new System.Drawing.Size(262, 59);
-            this.btnCrearCuenta.TabIndex = 26;
-            this.btnCrearCuenta.Text = "CONFIRMAR";
-            this.btnCrearCuenta.UseVisualStyleBackColor = true;
-            this.btnCrearCuenta.Click += new System.EventHandler(this.btnCrearCuenta_Click);
+            this.btnConfirmar.Location = new System.Drawing.Point(280, 279);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(262, 59);
+            this.btnConfirmar.TabIndex = 26;
+            this.btnConfirmar.Text = "CONFIRMAR";
+            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // lblError
             // 
@@ -424,13 +429,29 @@
             this.lblError.Text = "mensajes de error";
             this.lblError.Visible = false;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(200, 16);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(34, 13);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "Altura";
+            // 
+            // txtAltura
+            // 
+            this.txtAltura.Location = new System.Drawing.Point(200, 32);
+            this.txtAltura.Name = "txtAltura";
+            this.txtAltura.Size = new System.Drawing.Size(56, 20);
+            this.txtAltura.TabIndex = 29;
+            // 
             // FormRegistroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 350);
             this.Controls.Add(this.lblError);
-            this.Controls.Add(this.btnCrearCuenta);
+            this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAsociarTarjeta);
             this.Controls.Add(this.groupBox3);
@@ -489,7 +510,9 @@
         private System.Windows.Forms.TextBox txtNroTelefono;
         private System.Windows.Forms.Button btnAsociarTarjeta;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnCrearCuenta;
+        private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtAltura;
     }
 }

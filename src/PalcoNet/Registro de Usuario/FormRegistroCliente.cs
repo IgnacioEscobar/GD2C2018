@@ -7,31 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
+using PalcoNet.Abm_Cliente;
 
 namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroCliente : Form
     {
-        string nombre;
-        string apellido;
-        string documento;
+        string query;
+        bool modif;
 
         public FormRegistroCliente()
         {
             InitializeComponent();
-            this.nombre = "";
-            this.apellido = "";
-            this.documento = "";
+            this.modif = false;
         }
 
-        public FormRegistroCliente(string nombre, string apellido, string documento)
+        public FormRegistroCliente(string query)
         {
+
             InitializeComponent();
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.documento = documento;
+            this.modif = true;
+            this.query = query;
         }
 
         private bool validarCampos()
@@ -46,42 +45,41 @@ namespace PalcoNet.Registro_de_Usuario
             return true;
         }
 
-        private void btnCrearCuenta_Click(object sender, EventArgs e)
+        private void cargartexto(SqlDataReader lector, TextBox txtCampo, string campo)
         {
-            if (validarCampos())
+            try
             {
-                /*
-                 * INICIO TRANSACCION
-                 */
-                GestorDB gestor = new GestorDB();
-                gestor.conectar();
-                gestor.generarStoredProcedure("crear_cliente");
-                gestor.parametroPorValor("nombre", txtNombre.Text);
-                gestor.parametroPorValor("apellido", txtApellido.Text);
-                // ...TODOS LOS CAMPOS...
-                gestor.ejecutarStoredProcedure();
-                gestor.desconectar();
-                /*
-                 * FIN TRANSACCION
-                 */
-
-                string usuario = txtCUIL1.Text + txtCUIL2.Text + txtCUIL3.Text;
-                GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                MessageBox.Show("Usuario: " + usuario
-                    + "\nContraseña: " + generadorDeContrasenas.generar(10)
-                    + "\n\n Por favor recuerde su contraseña e inicie sesión para actualizarla.");
-
-                FormLogin formLogin = new FormLogin(usuario);
-                this.Hide();
-                formLogin.Show();
+                txtCampo.Text = lector[campo].ToString();
+            }
+            catch
+            {
+                txtCampo.Text = "";
             }
         }
 
         private void FormRegistroCliente_Load(object sender, EventArgs e)
         {
-            txtNombre.Text = nombre;
-            txtApellido.Text = apellido;
-            txtNumeroDoc.Text = documento;
+            if (modif)
+            {
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.consulta(query);
+                SqlDataReader lector = gestor.obtenerRegistros();
+                if (lector.Read())
+                {
+                    cargartexto(lector, txtNombre, "nombre");
+                    cargartexto(lector, txtApellido, "apellido");
+                    cargartexto(lector, txtNumeroDoc, "numero_de_documento");
+                    cargartexto(lector, txtMail, "mail");
+                    cargartexto(lector, txtCalle, "calle");
+                    cargartexto(lector, txtAltura, "numero");
+                    cargartexto(lector, txtPiso, "piso");
+                    cargartexto(lector, txtDpto, "depto");
+                    cargartexto(lector, txtCodPostal, "codigo_postal");
+                    cargartexto(lector, txtLocalidad, "localidad");
+                }
+                gestor.desconectar();
+            }
 
             for (int i = 1; i <= 31; i++)
             {
@@ -97,9 +95,17 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            FormLogin formLogin = new FormLogin();
+            Form formDestino;
+            if (modif)
+            {
+                formDestino = new FormABMCliente();
+            }
+            else
+            {
+                formDestino = new FormLogin();
+            }
             this.Hide();
-            formLogin.Show();
+            formDestino.Show();
         }
 
         private void btnAsociarTarjeta_Click(object sender, EventArgs e)
@@ -109,5 +115,58 @@ namespace PalcoNet.Registro_de_Usuario
                 MessageBox.Show("Tarjeta de crédito registrada con éxito.");
             }            
         }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            if (validarCampos())
+            {
+                /*
+                 * INICIO TRANSACCION
+                 */
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+
+                if (!modif)
+                {
+                    gestor.generarStoredProcedure("crear_cliente");
+                }
+                else
+                {
+                    gestor.generarStoredProcedure("actualizar_cliente");
+                }
+
+                gestor.parametroPorValor("nombre", txtNombre.Text);
+                gestor.parametroPorValor("apellido", txtApellido.Text);
+                // ...TODOS LOS CAMPOS...
+                gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
+                /*
+                 * FIN TRANSACCION
+                 */
+
+                Form formDestino;
+
+                if (!modif)
+                {
+                    string usuario = txtCUIL1.Text + txtCUIL2.Text + txtCUIL3.Text;
+                    GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
+                    MessageBox.Show("Usuario: " + usuario
+                        + "\nContraseña: " + generadorDeContrasenas.generar(10)
+                        + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
+
+                    formDestino = new FormLogin();
+                }
+                else
+                {
+                    MessageBox.Show("¡Datos actualizados! (MENTIRA)");
+                    formDestino = new FormABMCliente();
+                }
+
+                this.Hide();
+                formDestino.Show();
+            }
+        }
+
+
     }
 }
