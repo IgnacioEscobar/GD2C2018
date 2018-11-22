@@ -1,6 +1,6 @@
-﻿namespace PalcoNet.Generar_Rendicion_Comisiones
+﻿namespace PalcoNet.Historial_Cliente
 {
-    partial class Form1
+    partial class FormHistorial
     {
         /// <summary>
         /// Required designer variable.

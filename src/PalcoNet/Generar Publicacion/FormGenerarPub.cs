@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Abm_Grado
+namespace PalcoNet.Generar_Publicacion
 {
-    public partial class Form1 : Form
+    public partial class FormGenerarPub : Form
     {
-        public Form1()
+        public FormGenerarPub()
         {
             InitializeComponent();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

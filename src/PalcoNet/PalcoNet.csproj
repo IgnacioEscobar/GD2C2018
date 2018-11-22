@@ -56,11 +56,11 @@
     <Compile Include="Abm Empresa Espectaculo\FormABMEmpresa.Designer.cs">
       <DependentUpon>FormABMEmpresa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Grado\Form1.cs">
+    <Compile Include="Abm Grado\FormGrado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Grado\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Grado\FormGrado.Designer.cs">
+      <DependentUpon>FormGrado.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Rol\FormABMRol.cs">
       <SubType>Form</SubType>
@@ -68,11 +68,11 @@
     <Compile Include="Abm Rol\FormABMRol.Designer.cs">
       <DependentUpon>FormABMRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Rubro\Form1.cs">
+    <Compile Include="Abm Rubro\FormRubro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Rubro\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Abm Rubro\FormRubro.Designer.cs">
+      <DependentUpon>FormRubro.cs</DependentUpon>
     </Compile>
     <Compile Include="Administrador\FormAdministrador.cs">
       <SubType>Form</SubType>
@@ -80,11 +80,11 @@
     <Compile Include="Administrador\FormAdministrador.Designer.cs">
       <DependentUpon>FormAdministrador.cs</DependentUpon>
     </Compile>
-    <Compile Include="Canje Puntos\Form1.cs">
+    <Compile Include="Canje Puntos\FormPuntos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Canje Puntos\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Canje Puntos\FormPuntos.Designer.cs">
+      <DependentUpon>FormPuntos.cs</DependentUpon>
     </Compile>
     <Compile Include="DB_Espectaculos.cs" />
     <Compile Include="SQL_Connector.cs" />
@@ -100,11 +100,11 @@
     <Compile Include="Comprar\FormComprarEntrada.Designer.cs">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>
     </Compile>
-    <Compile Include="Editar Publicacion\Form1.cs">
+    <Compile Include="Editar Publicacion\FormEditar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editar Publicacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Editar Publicacion\FormEditar.Designer.cs">
+      <DependentUpon>FormEditar.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\FormLogin.cs">
       <SubType>Form</SubType>
@@ -113,29 +113,29 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="funciones_utiles\GeneradorDeContrasenasAleatorias.cs" />
-    <Compile Include="Generar Publicacion\Form1.cs">
+    <Compile Include="Generar Publicacion\FormGenerarPub.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Publicacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Generar Publicacion\FormGenerarPub.Designer.cs">
+      <DependentUpon>FormGenerarPub.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Rendicion Comisiones\Form1.cs">
+    <Compile Include="Generar Rendicion Comisiones\FormRendicion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Rendicion Comisiones\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Generar Rendicion Comisiones\FormRendicion.Designer.cs">
+      <DependentUpon>FormRendicion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.cs">
+    <Compile Include="Historial Cliente\FormHistorial.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Historial Cliente\FormHistorial.Designer.cs">
+      <DependentUpon>FormHistorial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Listado Estadistico\Form1.cs">
+    <Compile Include="Listado Estadistico\FormListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Listado Estadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Listado Estadistico\FormListado.Designer.cs">
+      <DependentUpon>FormListado.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\FormElegirRol.cs">
       <SubType>Form</SubType>
@@ -169,17 +169,35 @@
     <EmbeddedResource Include="Abm Empresa Espectaculo\FormABMEmpresa.resx">
       <DependentUpon>FormABMEmpresa.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Grado\FormGrado.resx">
+      <DependentUpon>FormGrado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\FormABMRol.resx">
       <DependentUpon>FormABMRol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rubro\FormRubro.resx">
+      <DependentUpon>FormRubro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administrador\FormAdministrador.resx">
       <DependentUpon>FormAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Canje Puntos\FormPuntos.resx">
+      <DependentUpon>FormPuntos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormPagar.resx">
       <DependentUpon>FormPagar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormComprarEntrada.resx">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editar Publicacion\FormEditar.resx">
+      <DependentUpon>FormEditar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicacion\FormGenerarPub.resx">
+      <DependentUpon>FormGenerarPub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\FormListado.resx">
+      <DependentUpon>FormListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

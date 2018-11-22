@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Generar_Publicacion
+namespace PalcoNet.Generar_Rendicion_Comisiones
 {
-    public partial class Form1 : Form
+    public partial class FormRendicion : Form
     {
-        public Form1()
+        public FormRendicion()
         {
             InitializeComponent();
         }

@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Editar_Publicacion
+namespace PalcoNet.Listado_Estadistico
 {
-    public partial class Form1 : Form
+    public partial class FormListado : Form
     {
-        public Form1()
+        public FormListado()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
