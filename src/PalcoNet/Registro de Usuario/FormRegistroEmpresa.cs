@@ -7,31 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
+using PalcoNet.Abm_Empresa_Espectaculo;
 
 namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroEmpresa : Form
     {
-        string razonSocial;
-        string cuit;
-        string mail;
+        bool abm;
+        bool modif;
+        string query;
 
-        public FormRegistroEmpresa()
+        public FormRegistroEmpresa(bool abm)
         {
             InitializeComponent();
-            this.razonSocial = "";
-            this.cuit = "";
-            this.mail = "";
+            this.abm = abm;
+            this.modif = false;
+            this.query = "";
         }
 
-        public FormRegistroEmpresa(string razonSocial, string cuit, string mail)
+        public FormRegistroEmpresa(string query)
         {
+
             InitializeComponent();
-            this.razonSocial = razonSocial;
-            this.cuit = cuit;
-            this.mail = mail;
+            this.abm = true;
+            this.modif = true;
+            this.query = query;
         }
 
         private bool validarCampos()
@@ -46,7 +49,34 @@ namespace PalcoNet.Registro_de_Usuario
             return true;
         }
 
-        private void btnCrearCuenta_Click(object sender, EventArgs e)
+        private void cargarTexto(SqlDataReader lector, TextBox txtCampo, string campo)
+        {
+            try
+            {
+                txtCampo.Text = lector[campo].ToString();
+            }
+            catch
+            {
+                txtCampo.Text = "";
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Form formDestino;
+            if (abm)
+            {
+                formDestino = new FormABMEmpresa();
+            }
+            else
+            {
+                formDestino = new FormLogin();
+            }
+            this.Hide();
+            formDestino.Show();
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
         {
             if (validarCampos())
             {
@@ -55,7 +85,16 @@ namespace PalcoNet.Registro_de_Usuario
                  */
                 GestorDB gestor = new GestorDB();
                 gestor.conectar();
-                gestor.generarStoredProcedure("crear_empresa");
+
+                if (!modif)
+                {
+                    gestor.generarStoredProcedure("crear_empresa");
+                }
+                else
+                {
+                    gestor.generarStoredProcedure("actualizar_empresa");
+                }
+
                 gestor.parametroPorValor("razon_social", txtRazonSocial.Text);
                 gestor.parametroPorValor("cuit", txtCUIT.Text);
                 // ...TODOS LOS CAMPOS...
@@ -65,31 +104,59 @@ namespace PalcoNet.Registro_de_Usuario
                  * FIN TRANSACCION
                  */
 
-                string usuario = txtCUIT.Text;
-                GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                MessageBox.Show("Usuario: " + usuario
-                    + "\nContraseña: " + generadorDeContrasenas.generar(10)
-                    + "\n\n Por favor recuerde su contraseña e inicie sesión para actualizarla.");
+                if (!modif)
+                {
+                    string usuario = txtCUIT.Text;
+                    GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
+                    MessageBox.Show("Usuario: " + usuario
+                        + "\nContraseña: " + generadorDeContrasenas.generar(10)
+                        + "\n\n Por favor recuerde su contraseña e inicie sesión para actualizarla.");
+                }
+                else
+                {
+                    MessageBox.Show("¡Datos actualizados! (MENTIRA)");
+                }
 
-                FormLogin formLogin = new FormLogin(usuario);
+                Form formDestino;
+                if (abm)
+                {
+                    formDestino = new FormABMEmpresa();
+                }
+                else
+                {
+                    formDestino = new FormLogin();
+                }
+
                 this.Hide();
-                formLogin.Show();
+                formDestino.Show();
             }
         }
 
         private void FormRegistroEmpresa_Load(object sender, EventArgs e)
         {
-            lblError.Visible = false;
-            txtRazonSocial.Text = razonSocial;
-            txtCUIT.Text = cuit;
-            txtMail.Text = mail;
-        }
+            if (modif)
+            {
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.consulta(query);
+                SqlDataReader lector = gestor.obtenerRegistros();
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            FormLogin formLogin = new FormLogin();
-            this.Hide();
-            formLogin.Show();
+                if (lector.Read())
+                {
+                    cargarTexto(lector, txtRazonSocial, "razon_social");
+                    cargarTexto(lector, txtCUIT, "cuit");
+                    cargarTexto(lector, txtCalle, "calle");
+                    cargarTexto(lector, txtAltura, "numero");
+                    cargarTexto(lector, txtPiso, "piso");
+                    cargarTexto(lector, txtDpto, "departamento");
+                    cargarTexto(lector, txtCodigoPostal, "codigo_postal");
+                    cargarTexto(lector, txtLocalidad, "localidad");
+                    cargarTexto(lector, txtMail, "mail");
+                }
+                gestor.desconectar();
+            }
+
+            lblError.Visible = false;
         }
 
     }

@@ -122,7 +122,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa();
+            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(true);
             this.Hide();
             formRegistroEmpresa.Show();
         }
@@ -137,7 +137,8 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
                 i++;
             }
 
-            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(param[0], param[1], param[2]);
+            string query = "SELECT * FROM dbo.empresas WHERE cuit = '" + param[1] + "'";
+            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(query);
             this.Hide();
             formRegistroEmpresa.Show();
         }
@@ -168,6 +169,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
                 /*
                  * FIN TRANSACCION
                  */
+                MessageBox.Show("¡Empresa eliminada exitosamente! (MENTIRA)");
             }
         }
 

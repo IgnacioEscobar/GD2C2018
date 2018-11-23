@@ -114,7 +114,6 @@ namespace PalcoNet.Abm_Cliente
             string query = query_defecto;
             if (cant_filtros > 0) query += " WHERE " + filtro;
             gestor.consulta(query);
-            MessageBox.Show(query);
 
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
@@ -130,7 +129,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FormRegistroCliente formRegistroCliente = new FormRegistroCliente();
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(true);
             this.Hide();
             formRegistroCliente.Show();
         }
@@ -177,6 +176,7 @@ namespace PalcoNet.Abm_Cliente
                 /*
                  * FIN TRANSACCION
                  */
+                MessageBox.Show("¡Cliente eliminado exitosamente! (MENTIRA)");
             }
         }
 

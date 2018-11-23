@@ -16,12 +16,14 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroCliente : Form
     {
-        string query;
+        bool abm;
         bool modif;
+        string query;
 
-        public FormRegistroCliente()
+        public FormRegistroCliente(bool abm)
         {
             InitializeComponent();
+            this.abm = abm;
             this.modif = false;
         }
 
@@ -29,6 +31,7 @@ namespace PalcoNet.Registro_de_Usuario
         {
 
             InitializeComponent();
+            this.abm = true;
             this.modif = true;
             this.query = query;
         }
@@ -45,7 +48,7 @@ namespace PalcoNet.Registro_de_Usuario
             return true;
         }
 
-        private void cargartexto(SqlDataReader lector, TextBox txtCampo, string campo)
+        private void cargarTexto(SqlDataReader lector, TextBox txtCampo, string campo)
         {
             try
             {
@@ -54,6 +57,22 @@ namespace PalcoNet.Registro_de_Usuario
             catch
             {
                 txtCampo.Text = "";
+            }
+        }
+
+        private void cargarFecha(SqlDataReader lector, string campo)
+        {
+            try
+            {
+                cmbDia.Text = Convert.ToDateTime(lector[campo]).Day.ToString();
+                cmbMes.Text = Convert.ToDateTime(lector[campo]).Month.ToString();
+                cmbAno.Text = Convert.ToDateTime(lector[campo]).Year.ToString();
+            }
+            catch
+            {
+                cmbDia.Text = "";
+                cmbMes.Text = "";
+                cmbAno.Text = "";
             }
         }
 
@@ -67,16 +86,17 @@ namespace PalcoNet.Registro_de_Usuario
                 SqlDataReader lector = gestor.obtenerRegistros();
                 if (lector.Read())
                 {
-                    cargartexto(lector, txtNombre, "nombre");
-                    cargartexto(lector, txtApellido, "apellido");
-                    cargartexto(lector, txtNumeroDoc, "numero_de_documento");
-                    cargartexto(lector, txtMail, "mail");
-                    cargartexto(lector, txtCalle, "calle");
-                    cargartexto(lector, txtAltura, "numero");
-                    cargartexto(lector, txtPiso, "piso");
-                    cargartexto(lector, txtDpto, "depto");
-                    cargartexto(lector, txtCodPostal, "codigo_postal");
-                    cargartexto(lector, txtLocalidad, "localidad");
+                    cargarTexto(lector, txtNombre, "nombre");
+                    cargarTexto(lector, txtApellido, "apellido");
+                    cargarTexto(lector, txtNumeroDoc, "numero_de_documento");
+                    cargarTexto(lector, txtMail, "mail");
+                    cargarTexto(lector, txtCalle, "calle");
+                    cargarTexto(lector, txtAltura, "numero");
+                    cargarTexto(lector, txtPiso, "piso");
+                    cargarTexto(lector, txtDpto, "depto");
+                    cargarTexto(lector, txtCodPostal, "codigo_postal");
+                    cargarTexto(lector, txtLocalidad, "localidad");
+                    cargarFecha(lector, "fecha_nacimiento");
                 }
                 gestor.desconectar();
             }
@@ -96,7 +116,7 @@ namespace PalcoNet.Registro_de_Usuario
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Form formDestino;
-            if (modif)
+            if (abm)
             {
                 formDestino = new FormABMCliente();
             }
@@ -144,8 +164,6 @@ namespace PalcoNet.Registro_de_Usuario
                  * FIN TRANSACCION
                  */
 
-                Form formDestino;
-
                 if (!modif)
                 {
                     string usuario = txtCUIL1.Text + txtCUIL2.Text + txtCUIL3.Text;
@@ -153,20 +171,26 @@ namespace PalcoNet.Registro_de_Usuario
                     MessageBox.Show("Usuario: " + usuario
                         + "\nContraseña: " + generadorDeContrasenas.generar(10)
                         + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
-
-                    formDestino = new FormLogin();
                 }
                 else
                 {
                     MessageBox.Show("¡Datos actualizados! (MENTIRA)");
+                }
+
+                Form formDestino;
+                if (abm)
+                {
                     formDestino = new FormABMCliente();
+                }
+                else
+                {
+                    formDestino = new FormLogin();
                 }
 
                 this.Hide();
                 formDestino.Show();
             }
         }
-
 
     }
 }
