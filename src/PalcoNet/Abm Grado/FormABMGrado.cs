@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Abm_Rubro
+namespace PalcoNet.Abm_Grado
 {
-    public partial class FormRubro : Form
+    public partial class FormABMGrado : Form
     {
-        public FormRubro()
+        public FormABMGrado()
         {
             InitializeComponent();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

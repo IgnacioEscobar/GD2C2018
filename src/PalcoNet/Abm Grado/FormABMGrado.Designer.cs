@@ -1,6 +1,6 @@
 ﻿namespace PalcoNet.Abm_Grado
 {
-    partial class FormGrado
+    partial class FormABMGrado
     {
         /// <summary>
         /// Required designer variable.

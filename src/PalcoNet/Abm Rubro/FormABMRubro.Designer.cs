@@ -1,6 +1,6 @@
 ﻿namespace PalcoNet.Abm_Rubro
 {
-    partial class FormRubro
+    partial class FormABMRubro
     {
         /// <summary>
         /// Required designer variable.
