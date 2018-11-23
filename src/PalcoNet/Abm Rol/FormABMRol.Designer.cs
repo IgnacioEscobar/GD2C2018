@@ -34,8 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.ckbActivo = new System.Windows.Forms.CheckBox();
             this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAplicar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -91,31 +91,31 @@
             this.btnSeleccionar.Text = "SELECCIONAR";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             // 
-            // btnModificar
+            // btnCancelar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(12, 245);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(203, 44);
-            this.btnModificar.TabIndex = 9;
-            this.btnModificar.Text = "MODIFICAR";
-            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(12, 245);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(203, 44);
+            this.btnCancelar.TabIndex = 9;
+            this.btnCancelar.Text = "CANCELAR";
+            this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // btnAgregar
+            // btnAplicar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(221, 245);
-            this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(203, 44);
-            this.btnAgregar.TabIndex = 8;
-            this.btnAgregar.Text = "AGREGAR";
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAplicar.Location = new System.Drawing.Point(221, 245);
+            this.btnAplicar.Name = "btnAplicar";
+            this.btnAplicar.Size = new System.Drawing.Size(203, 44);
+            this.btnAplicar.TabIndex = 8;
+            this.btnAplicar.Text = "APLICAR";
+            this.btnAplicar.UseVisualStyleBackColor = true;
             // 
             // FormABMRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 301);
-            this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.btnAgregar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnAplicar);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.ckbActivo);
             this.Controls.Add(this.label2);
@@ -140,7 +140,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox ckbActivo;
         private System.Windows.Forms.Button btnSeleccionar;
-        private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAplicar;
     }
 }
