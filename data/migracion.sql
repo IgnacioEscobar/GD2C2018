@@ -125,7 +125,7 @@ from gd_esquema.Maestra
 
 -- Tipos de documentos
 create table tipos_de_documentos (
-  id_tipo_de_documento smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_tipo_de_documento tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   descripcion varchar(10)
 )
 
@@ -193,9 +193,9 @@ create table clientes (
   id_usuario int REFERENCES usuarios (id_usuario),
   nombre varchar(60),
   apellido varchar(60),
-  id_tipo_de_documento smallint REFERENCES tipos_de_documentos,
+  id_tipo_de_documento tinyint REFERENCES tipos_de_documentos,
   numero_de_documento int,
-  cuil varchar(12),
+  cuil varchar(14),
   mail varchar(60),
   telefono varchar(10),
   calle varchar(60),
@@ -247,7 +247,7 @@ create table movimientos_de_puntos (
 
 -- Medio de Pago --
 create table medios_de_pago (
-  id_medio_de_pago int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_medio_de_pago tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   descripcion varchar(20)
 );
 
@@ -259,7 +259,7 @@ create table facturas (
   nro_factura int unique,
   fecha datetime,
   total int,
-  id_medio_de_pago int REFERENCES medios_de_pago (id_medio_de_pago),
+  id_medio_de_pago tinyint REFERENCES medios_de_pago (id_medio_de_pago),
 );
 
 insert into facturas (
@@ -279,7 +279,7 @@ where Factura_Nro is not null;
 
 -- Tipos de ubicacion --
 create table tipos_de_ubicacion (
-  id_tipo_de_ubicacion smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_tipo_de_ubicacion tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   descripcion varchar(15)
 );
 
@@ -300,7 +300,7 @@ SET IDENTITY_INSERT tipos_de_ubicacion OFF;
 create table ubicaciones (
   id_ubicacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_publicacion int REFERENCES publicaciones (id_publicacion),
-  id_tipo_de_ubicacion smallint REFERENCES tipos_de_ubicacion (id_tipo_de_ubicacion),
+  id_tipo_de_ubicacion tinyint REFERENCES tipos_de_ubicacion (id_tipo_de_ubicacion),
   fila char,
   asiento tinyint,
   precio int
@@ -326,9 +326,9 @@ join tipos_de_ubicacion TU on M.Ubicacion_Tipo_Descripcion = TU.descripcion
 create table compras (
   id_compra int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_cliente int REFERENCES clientes (id_cliente),
-  id_medio_de_pago int REFERENCES medios_de_pago (id_medio_de_pago),
+  id_medio_de_pago tinyint REFERENCES medios_de_pago (id_medio_de_pago),
   fecha datetime,
-  cantidad smallint,
+  cantidad tinyint,
   id_presentacion int REFERENCES presentaciones (id_presentacion),
   id_publicacion int REFERENCES publicaciones (id_publicacion),
   -- ^^ desnormalizacion para hacer mas simple la migración y cualquier consulta futura
