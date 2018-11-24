@@ -22,8 +22,6 @@ if OBJECT_ID('roles_por_usuario', 'U') is not null
   drop table roles_por_usuario;
 if OBJECT_ID('roles', 'U') is not null
   drop table roles;
-if OBJECT_ID('usuarios', 'U') is not null
-  drop table usuarios;
 if OBJECT_ID('tipos_de_documentos', 'U') is not null
   drop table tipos_de_documentos;
 if OBJECT_ID('presentaciones', 'U') is not null
@@ -38,3 +36,5 @@ if OBJECT_ID('estados', 'U') is not null
   drop table estados;
 if OBJECT_ID('empresas', 'U') is not null
   drop table empresas;
+if OBJECT_ID('usuarios', 'U') is not null
+  drop table usuarios;

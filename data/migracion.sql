@@ -1,7 +1,16 @@
+-- Usuarios --
+create table usuarios (
+  id_usuario int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  nombre_de_usuario varchar(40),
+  password_hash binary(32),
+  habilitado bit default 1,
+  intentos_fallidos tinyint default 0
+);
+
 -- Empresas --
 create table empresas (
   id_empresa int PRIMARY KEY NOT NULL IDENTITY(1,1),
-  -- usuario int NOT NULL,
+  id_usuario int REFERENCES usuarios (id_usuario),
   razon_social varchar(60),
   mail varchar(60),
   calle varchar(60),
@@ -42,7 +51,6 @@ create table estados (
 );
 
 insert into estados values ('Borrador'), ('Publicada'), ('Finalizada');
--- es el único estado que aparece en la db, hay que agregar más
 
 -- Rubros --
 create table rubros (
@@ -87,12 +95,11 @@ insert into publicaciones (
 )
 select distinct
   Espectaculo_Cod,
-  E.id_estado,
+  2, -- estado "Publicada"
   1, -- grado de 0.1
   EM.id_empresa,
   1 -- rubro vacio
 from gd_esquema.Maestra M
-join estados E on M.Espectaculo_Estado = E.descripcion
 join empresas EM on EM.razon_social = M.Espec_Empresa_Razon_Social;
 
 SET IDENTITY_INSERT publicaciones OFF;
@@ -125,15 +132,6 @@ create table tipos_de_documentos (
 SET IDENTITY_INSERT tipos_de_documentos ON;
 insert into tipos_de_documentos (id_tipo_de_documento, descripcion) values (1, 'DNI'), (2, 'LC'), (3, 'LE');
 SET IDENTITY_INSERT tipos_de_documentos OFF;
-
--- Usuarios --
-create table usuarios (
-  id_usuario int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  nombre_de_usuario varchar(40),
-  password_hash binary(32),
-  habilitado bit default 1,
-  intentos_fallidos tinyint default 0
-);
 
 -- Roles --
 create table roles (
@@ -197,9 +195,9 @@ create table clientes (
   apellido varchar(60),
   id_tipo_de_documento smallint REFERENCES tipos_de_documentos,
   numero_de_documento int,
-  -- cuil
+  cuil varchar(12),
   mail varchar(60),
-  -- telefono ???
+  telefono varchar(10),
   calle varchar(60),
   numero smallint,
   piso tinyint,
@@ -208,7 +206,7 @@ create table clientes (
   codigo_postal varchar(4),
   fecha_nacimiento datetime,
   fecha_creacion datetime,
-  -- tarjeta_de_credito_asociada
+  tarjeta_de_credito_asociada varchar(16)
 );
 
 insert into clientes (
