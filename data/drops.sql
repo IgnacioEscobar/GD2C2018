@@ -1,40 +1,40 @@
-if OBJECT_ID('items', 'U') is not null
-  drop table items;
-if OBJECT_ID('compras', 'U') is not null
-  drop table compras;
-if OBJECT_ID('ubicaciones', 'U') is not null
-  drop table ubicaciones;
-if OBJECT_ID('tipos_de_ubicacion', 'U') is not null
-  drop table tipos_de_ubicacion;
-if OBJECT_ID('facturas', 'U') is not null
-  drop table facturas;
-if OBJECT_ID('medios_de_pago', 'U') is not null
-  drop table medios_de_pago;
-if OBJECT_ID('movimientos_de_puntos', 'U') is not null
-  drop table movimientos_de_puntos;
-if OBJECT_ID('clientes', 'U') is not null
-  drop table clientes;
-if OBJECT_ID('funcionalidades_por_rol', 'U') is not null
-  drop table funcionalidades_por_rol;
-if OBJECT_ID('funcionalidades', 'U') is not null
-  drop table funcionalidades;
-if OBJECT_ID('roles_por_usuario', 'U') is not null
-  drop table roles_por_usuario;
-if OBJECT_ID('roles', 'U') is not null
-  drop table roles;
-if OBJECT_ID('tipos_de_documentos', 'U') is not null
-  drop table tipos_de_documentos;
-if OBJECT_ID('presentaciones', 'U') is not null
-  drop table presentaciones;
-if OBJECT_ID('publicaciones', 'U') is not null
-  drop table publicaciones;
-if OBJECT_ID('grados', 'U') is not null
-  drop table grados;
-if OBJECT_ID('rubros', 'U') is not null
-  drop table rubros;
-if OBJECT_ID('estados', 'U') is not null
-  drop table estados;
-if OBJECT_ID('empresas', 'U') is not null
-  drop table empresas;
-if OBJECT_ID('usuarios', 'U') is not null
-  drop table usuarios;
+if OBJECT_ID('PEAKY_BLINDERS.items', 'U') is not null
+  drop table PEAKY_BLINDERS.items;
+if OBJECT_ID('PEAKY_BLINDERS.compras', 'U') is not null
+  drop table PEAKY_BLINDERS.compras;
+if OBJECT_ID('PEAKY_BLINDERS.ubicaciones', 'U') is not null
+  drop table PEAKY_BLINDERS.ubicaciones;
+if OBJECT_ID('PEAKY_BLINDERS.tipos_de_ubicacion', 'U') is not null
+  drop table PEAKY_BLINDERS.tipos_de_ubicacion;
+if OBJECT_ID('PEAKY_BLINDERS.facturas', 'U') is not null
+  drop table PEAKY_BLINDERS.facturas;
+if OBJECT_ID('PEAKY_BLINDERS.medios_de_pago', 'U') is not null
+  drop table PEAKY_BLINDERS.medios_de_pago;
+if OBJECT_ID('PEAKY_BLINDERS.movimientos_de_puntos', 'U') is not null
+  drop table PEAKY_BLINDERS.movimientos_de_puntos;
+if OBJECT_ID('PEAKY_BLINDERS.clientes', 'U') is not null
+  drop table PEAKY_BLINDERS.clientes;
+if OBJECT_ID('PEAKY_BLINDERS.funcionalidades_por_rol', 'U') is not null
+  drop table PEAKY_BLINDERS.funcionalidades_por_rol;
+if OBJECT_ID('PEAKY_BLINDERS.funcionalidades', 'U') is not null
+  drop table PEAKY_BLINDERS.funcionalidades;
+if OBJECT_ID('PEAKY_BLINDERS.roles_por_usuario', 'U') is not null
+  drop table PEAKY_BLINDERS.roles_por_usuario;
+if OBJECT_ID('PEAKY_BLINDERS.roles', 'U') is not null
+  drop table PEAKY_BLINDERS.roles;
+if OBJECT_ID('PEAKY_BLINDERS.tipos_de_documento', 'U') is not null
+  drop table PEAKY_BLINDERS.tipos_de_documento;
+if OBJECT_ID('PEAKY_BLINDERS.presentaciones', 'U') is not null
+  drop table PEAKY_BLINDERS.presentaciones;
+if OBJECT_ID('PEAKY_BLINDERS.publicaciones', 'U') is not null
+  drop table PEAKY_BLINDERS.publicaciones;
+if OBJECT_ID('PEAKY_BLINDERS.grados', 'U') is not null
+  drop table PEAKY_BLINDERS.grados;
+if OBJECT_ID('PEAKY_BLINDERS.rubros', 'U') is not null
+  drop table PEAKY_BLINDERS.rubros;
+if OBJECT_ID('PEAKY_BLINDERS.estados', 'U') is not null
+  drop table PEAKY_BLINDERS.estados;
+if OBJECT_ID('PEAKY_BLINDERS.empresas', 'U') is not null
+  drop table PEAKY_BLINDERS.empresas;
+if OBJECT_ID('PEAKY_BLINDERS.usuarios', 'U') is not null
+  drop table PEAKY_BLINDERS.usuarios;
