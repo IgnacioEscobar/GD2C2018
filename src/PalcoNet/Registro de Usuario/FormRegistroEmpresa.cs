@@ -97,7 +97,15 @@ namespace PalcoNet.Registro_de_Usuario
 
                 gestor.parametroPorValor("razon_social", txtRazonSocial.Text);
                 gestor.parametroPorValor("cuit", txtCUIT.Text);
-                // ...TODOS LOS CAMPOS...
+                gestor.parametroPorValor("calle", txtCalle.Text);
+                gestor.parametroPorValor("altura", txtAltura.Text);
+                gestor.parametroPorValor("piso", txtPiso.Text);
+                gestor.parametroPorValor("depto", txtDepto.Text);
+                gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
+                gestor.parametroPorValor("localidad", txtLocalidad.Text);
+                gestor.parametroPorValor("mail", txtMail.Text);
+                // TODO: falta definir formato de telefono
+
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
                 /*
@@ -148,7 +156,7 @@ namespace PalcoNet.Registro_de_Usuario
                     cargarTexto(lector, txtCalle, "calle");
                     cargarTexto(lector, txtAltura, "numero");
                     cargarTexto(lector, txtPiso, "piso");
-                    cargarTexto(lector, txtDpto, "departamento");
+                    cargarTexto(lector, txtDepto, "departamento");
                     cargarTexto(lector, txtCodigoPostal, "codigo_postal");
                     cargarTexto(lector, txtLocalidad, "localidad");
                     cargarTexto(lector, txtMail, "mail");

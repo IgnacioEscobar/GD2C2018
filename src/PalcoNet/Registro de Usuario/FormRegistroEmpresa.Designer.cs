@@ -40,7 +40,7 @@
             this.txtCodigoPostal = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
-            this.txtDpto = new System.Windows.Forms.TextBox();
+            this.txtDepto = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPiso = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -101,7 +101,7 @@
             this.groupBox3.Controls.Add(this.txtCodigoPostal);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.txtLocalidad);
-            this.groupBox3.Controls.Add(this.txtDpto);
+            this.groupBox3.Controls.Add(this.txtDepto);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.txtPiso);
             this.groupBox3.Controls.Add(this.label9);
@@ -177,12 +177,12 @@
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);
             this.txtLocalidad.TabIndex = 25;
             // 
-            // txtDpto
+            // txtDepto
             // 
-            this.txtDpto.Location = new System.Drawing.Point(200, 58);
-            this.txtDpto.Name = "txtDpto";
-            this.txtDpto.Size = new System.Drawing.Size(56, 20);
-            this.txtDpto.TabIndex = 23;
+            this.txtDepto.Location = new System.Drawing.Point(200, 58);
+            this.txtDepto.Name = "txtDepto";
+            this.txtDepto.Size = new System.Drawing.Size(56, 20);
+            this.txtDepto.TabIndex = 23;
             // 
             // label10
             // 
@@ -345,7 +345,7 @@
         private System.Windows.Forms.TextBox txtCodigoPostal;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtLocalidad;
-        private System.Windows.Forms.TextBox txtDpto;
+        private System.Windows.Forms.TextBox txtDepto;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtPiso;
         private System.Windows.Forms.Label label9;

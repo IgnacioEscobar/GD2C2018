@@ -62,14 +62,14 @@ namespace PalcoNet
                 gestor.conectar();
                 gestor.generarStoredProcedure("autenticar_usuario");
                 gestor.parametroPorValor("@usuario", txtUsuario.Text);
-                gestor.parametroPorValor("@contrasena", txtContrasena.Text);
-                gestor.parametroPorReferencia("@user_id", SqlDbType.Int);
+                gestor.parametroPorValor("@contrasenna", txtContrasena.Text);
+                gestor.parametroPorReferencia("@id", SqlDbType.Int);
                 int result = gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
                 
                 int userId;                
                 if (result == 1) {
-                    userId = Convert.ToInt32(gestor.obtenerValor("@user_id"));
+                    userId = Convert.ToInt32(gestor.obtenerValor("@id"));
                 }
 
                 if (result == 2)

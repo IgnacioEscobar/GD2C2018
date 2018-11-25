@@ -39,7 +39,7 @@ namespace PalcoNet.Registro_de_Usuario
         private bool validarCampos()
         {
             // TODO: chequear que campos son obligatorios
-            if (txtCUIL1.Text == "" || txtCUIL2.Text == "" || txtCUIL3.Text == "")
+            if (txtCUIL.Text == "")
             {
                 lblError.Text = "Complete su CUIL";
                 lblError.Visible = true;
@@ -76,8 +76,34 @@ namespace PalcoNet.Registro_de_Usuario
             }
         }
 
+        private void cargarTipoDeDocumento(SqlDataReader lector, string campo)
+        {
+            try
+            {
+                cmbTipoDoc.Text = lector[campo].ToString();
+            }
+            catch
+            {
+                cmbTipoDoc.Text = "";
+            }
+        }
+
+        private void cargarListaTiposDocumento()
+        {
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            gestor.consulta("SELECT descripcion FROM PEAKY_BLINDERS.tipos_de_documento");
+            SqlDataReader lector = gestor.obtenerRegistros();
+            while (lector.Read())
+            {
+                cmbTipoDoc.Items.Add(lector["descripcion"].ToString());
+            }
+        }
+
         private void FormRegistroCliente_Load(object sender, EventArgs e)
         {
+            cargarListaTiposDocumento();
+
             if (modif)
             {
                 GestorDB gestor = new GestorDB();
@@ -88,12 +114,14 @@ namespace PalcoNet.Registro_de_Usuario
                 {
                     cargarTexto(lector, txtNombre, "nombre");
                     cargarTexto(lector, txtApellido, "apellido");
+                    cargarTipoDeDocumento(lector, "descripcion");
                     cargarTexto(lector, txtNumeroDoc, "numero_de_documento");
+                    cargarTexto(lector, txtCUIL, "cuil");
                     cargarTexto(lector, txtMail, "mail");
                     cargarTexto(lector, txtCalle, "calle");
                     cargarTexto(lector, txtAltura, "numero");
                     cargarTexto(lector, txtPiso, "piso");
-                    cargarTexto(lector, txtDpto, "depto");
+                    cargarTexto(lector, txtDepto, "depto");
                     cargarTexto(lector, txtCodPostal, "codigo_postal");
                     cargarTexto(lector, txtLocalidad, "localidad");
                     cargarFecha(lector, "fecha_nacimiento");
@@ -157,7 +185,21 @@ namespace PalcoNet.Registro_de_Usuario
 
                 gestor.parametroPorValor("nombre", txtNombre.Text);
                 gestor.parametroPorValor("apellido", txtApellido.Text);
-                // ...TODOS LOS CAMPOS...
+                gestor.parametroPorValor("tipo_de_documento", cmbTipoDoc.Text);
+                gestor.parametroPorValor("numero_de_documento", txtNumeroDoc.Text);
+                gestor.parametroPorValor("cuil", txtCUIL.Text);
+                gestor.parametroPorValor("dia", cmbDia.Text);
+                gestor.parametroPorValor("mes", cmbMes.Text);
+                gestor.parametroPorValor("ano", cmbAno.Text);
+                gestor.parametroPorValor("calle", txtCalle.Text);
+                gestor.parametroPorValor("altura", txtAltura.Text);
+                gestor.parametroPorValor("piso", txtPiso.Text);
+                gestor.parametroPorValor("depto", txtDepto.Text);
+                gestor.parametroPorValor("codigo_postal", txtCodPostal.Text);
+                gestor.parametroPorValor("localidad", txtLocalidad.Text);
+                gestor.parametroPorValor("mail", txtMail.Text);
+                // TODO: falta definir formato de telefono
+
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
                 /*
@@ -166,9 +208,8 @@ namespace PalcoNet.Registro_de_Usuario
 
                 if (!modif)
                 {
-                    string usuario = txtCUIL1.Text + txtCUIL2.Text + txtCUIL3.Text;
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                    MessageBox.Show("Usuario: " + usuario
+                    MessageBox.Show("Usuario: " + txtCUIL.Text
                         + "\nContraseña: " + generadorDeContrasenas.generar(10)
                         + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
                 }
