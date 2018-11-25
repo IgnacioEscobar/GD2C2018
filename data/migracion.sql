@@ -83,9 +83,6 @@ create table publicaciones (
 
 set IDENTITY_INSERT publicaciones ON;
 
--- podríamos remplazar el join con estados
--- dado que los que vienen estan todos en el estado 2
-
 insert into publicaciones (
   id_publicacion,
   id_estado,
@@ -124,14 +121,14 @@ select distinct
 from gd_esquema.Maestra
 
 -- Tipos de documentos
-create table tipos_de_documentos (
+create table tipos_de_documento (
   id_tipo_de_documento tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   descripcion varchar(10)
 )
 
-SET IDENTITY_INSERT tipos_de_documentos ON;
-insert into tipos_de_documentos (id_tipo_de_documento, descripcion) values (1, 'DNI'), (2, 'LC'), (3, 'LE');
-SET IDENTITY_INSERT tipos_de_documentos OFF;
+SET IDENTITY_INSERT tipos_de_documento ON;
+insert into tipos_de_documento (id_tipo_de_documento, descripcion) values (1, 'DNI'), (2, 'LC'), (3, 'LE'), (4, 'Pasaporte');
+SET IDENTITY_INSERT tipos_de_documento OFF;
 
 -- Roles --
 create table roles (
@@ -193,7 +190,7 @@ create table clientes (
   id_usuario int REFERENCES usuarios (id_usuario),
   nombre varchar(60),
   apellido varchar(60),
-  id_tipo_de_documento tinyint REFERENCES tipos_de_documentos,
+  id_tipo_de_documento tinyint REFERENCES tipos_de_documento,
   numero_de_documento int,
   cuil varchar(14),
   mail varchar(60),
