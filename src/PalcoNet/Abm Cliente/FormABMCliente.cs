@@ -16,7 +16,7 @@ namespace PalcoNet.Abm_Cliente
 {
     public partial class FormABMCliente : Form
     {
-        string query_defecto = "SELECT nombre, apellido, numero_de_documento FROM dbo.clientes";
+        string query_defecto = "SELECT nombre, apellido, numero_de_documento FROM PEAKY_BLINDERS.clientes";
 
         public FormABMCliente()
         {
@@ -144,7 +144,7 @@ namespace PalcoNet.Abm_Cliente
                 i++;
             }
 
-            string query = "SELECT * FROM dbo.clientes WHERE numero_de_documento = '" + param[2] + "'";
+            string query = "SELECT * FROM PEAKY_BLINDERS.clientes WHERE numero_de_documento = '" + param[2] + "'";
             FormRegistroCliente formRegistroCliente = new FormRegistroCliente(query);
             this.Hide();
             formRegistroCliente.Show();

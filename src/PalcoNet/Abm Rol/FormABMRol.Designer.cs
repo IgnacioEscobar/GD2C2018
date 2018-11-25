@@ -54,6 +54,7 @@
             this.clbFuncionalidades.Name = "clbFuncionalidades";
             this.clbFuncionalidades.Size = new System.Drawing.Size(203, 184);
             this.clbFuncionalidades.TabIndex = 3;
+            this.clbFuncionalidades.SelectedIndexChanged += new System.EventHandler(this.clbFuncionalidades_SelectedIndexChanged);
             // 
             // label2
             // 
