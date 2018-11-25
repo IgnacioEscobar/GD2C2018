@@ -10,16 +10,12 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Generar_Publicacion
 {
-    public partial class FormGenerarPub : Form
+    public partial class FormGenerarPublicacion : Form
     {
-        public FormGenerarPub()
+        public FormGenerarPublicacion()
         {
             InitializeComponent();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }
