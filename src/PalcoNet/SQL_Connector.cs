@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,6 @@ using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Data;
 using System.Drawing;
-using System.Configuration;
 using System.Windows.Forms;
 
 namespace PalcoNet
@@ -19,7 +19,8 @@ namespace PalcoNet
         {
             try
             {
-                conection = new SqlConnection(@"Data source=localhost\SQLSERVER2012; Initial Catalog=GD2C2018;user=gdEspectaculos2018;password=gd2018");
+                string connectionString = ConfigurationManager.ConnectionStrings["database"].ConnectionString;
+                conection = new SqlConnection(connectionString);
                 conection.Open();
                 Console.WriteLine("Conexión a la BD correcta");
             }
