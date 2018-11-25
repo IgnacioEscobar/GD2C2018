@@ -136,7 +136,8 @@ SET IDENTITY_INSERT tipos_de_documentos OFF;
 -- Roles --
 create table roles (
   id_rol tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  descripcion varchar(30)
+  descripcion varchar(30),
+  habilitado bit default 1
 );
 
 set IDENTITY_INSERT roles on;
