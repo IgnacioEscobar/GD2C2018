@@ -1,3 +1,7 @@
+if OBJECT_ID('PEAKY_BLINDERS.crear_usuario', 'P') is not null
+  drop procedure PEAKY_BLINDERS.crear_usuario;
+if OBJECT_ID('PEAKY_BLINDERS.autenticar_usuario', 'P') is not null
+  drop procedure PEAKY_BLINDERS.autenticar_usuario;
 if OBJECT_ID('PEAKY_BLINDERS.items', 'U') is not null
   drop table PEAKY_BLINDERS.items;
 if OBJECT_ID('PEAKY_BLINDERS.compras', 'U') is not null

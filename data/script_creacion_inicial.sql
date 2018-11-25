@@ -1,3 +1,47 @@
+CREATE PROCEDURE PEAKY_BLINDERS.crear_usuario
+@usuario     varchar(30),
+@contrasenna varchar(30)
+AS
+  insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash) values (
+    @usuario, HASHBYTES('SHA2_256', @contrasenna)
+  )
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.autenticar_usuario
+@usuario     varchar(30),
+@contrasenna varchar(30),
+@id int output
+AS
+  BEGIN
+    DECLARE @esperada binary(32);
+
+    select top 1
+      @esperada = password_hash, @id = id_usuario
+    from PEAKY_BLINDERS.usuarios
+    where nombre_de_usuario = @usuario and intentos_fallidos <= 3
+
+    IF @esperada IS NOT NULL
+      BEGIN
+        IF HASHBYTES ('SHA2_256', @contrasenna) = @esperada
+          BEGIN
+            update PEAKY_BLINDERS.usuarios
+            set intentos_fallidos = 0
+            where nombre_de_usuario = @usuario
+            return 1
+          END
+        ELSE
+          BEGIN
+            update PEAKY_BLINDERS.usuarios
+            set intentos_fallidos = intentos_fallidos + 1
+            where nombre_de_usuario = @usuario
+            return 0
+          END
+      END
+    ELSE
+      return 2
+  END
+GO
+
 if OBJECT_ID('PEAKY_BLINDERS.items', 'U') is not null
   drop table PEAKY_BLINDERS.items;
 if OBJECT_ID('PEAKY_BLINDERS.compras', 'U') is not null
@@ -317,7 +361,7 @@ where Factura_Nro is not null;
 
 -- Tipos de ubicacion --
 create table PEAKY_BLINDERS.tipos_de_ubicacion (
-  id_tipo_de_ubicacion tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_tipo_de_ubicacion smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   descripcion varchar(15)
 );
 
@@ -338,7 +382,7 @@ SET IDENTITY_INSERT PEAKY_BLINDERS.tipos_de_ubicacion OFF;
 create table PEAKY_BLINDERS.ubicaciones (
   id_ubicacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_publicacion int REFERENCES PEAKY_BLINDERS.publicaciones (id_publicacion),
-  id_tipo_de_ubicacion tinyint REFERENCES PEAKY_BLINDERS.tipos_de_ubicacion (id_tipo_de_ubicacion),
+  id_tipo_de_ubicacion smallint REFERENCES PEAKY_BLINDERS.tipos_de_ubicacion (id_tipo_de_ubicacion),
   fila char,
   asiento tinyint,
   precio int
