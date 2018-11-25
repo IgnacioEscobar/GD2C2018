@@ -277,7 +277,7 @@ where Factura_Nro is not null;
 
 -- Tipos de ubicacion --
 create table PEAKY_BLINDERS.tipos_de_ubicacion (
-  id_tipo_de_ubicacion tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_tipo_de_ubicacion smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   descripcion varchar(15)
 );
 
@@ -298,7 +298,7 @@ SET IDENTITY_INSERT PEAKY_BLINDERS.tipos_de_ubicacion OFF;
 create table PEAKY_BLINDERS.ubicaciones (
   id_ubicacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_publicacion int REFERENCES PEAKY_BLINDERS.publicaciones (id_publicacion),
-  id_tipo_de_ubicacion tinyint REFERENCES PEAKY_BLINDERS.tipos_de_ubicacion (id_tipo_de_ubicacion),
+  id_tipo_de_ubicacion smallint REFERENCES PEAKY_BLINDERS.tipos_de_ubicacion (id_tipo_de_ubicacion),
   fila char,
   asiento tinyint,
   precio int
