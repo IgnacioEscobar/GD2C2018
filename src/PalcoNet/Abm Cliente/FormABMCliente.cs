@@ -176,7 +176,7 @@ namespace PalcoNet.Abm_Cliente
                 /*
                  * FIN TRANSACCION
                  */
-                MessageBox.Show("¡Cliente eliminado exitosamente! (MENTIRA)");
+                MessageBox.Show("¡Cliente eliminado exitosamente!");
             }
         }
 

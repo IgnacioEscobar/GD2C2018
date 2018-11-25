@@ -114,7 +114,7 @@ namespace PalcoNet.Registro_de_Usuario
                 }
                 else
                 {
-                    MessageBox.Show("¡Datos actualizados! (MENTIRA)");
+                    MessageBox.Show("¡Datos actualizados!");
                 }
 
                 Form formDestino;

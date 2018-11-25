@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using PalcoNet.Administrador;
+
 namespace PalcoNet.Login
 {
     public partial class FormElegirRol : Form
@@ -26,7 +28,12 @@ namespace PalcoNet.Login
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-
+            if (rdbAdministrativo.Checked)
+            {
+                FormAdministrador formAdministrador = new FormAdministrador();
+                this.Hide();
+                formAdministrador.Show();
+            }
         }
     }
 }

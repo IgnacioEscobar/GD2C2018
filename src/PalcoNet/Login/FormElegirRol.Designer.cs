@@ -30,7 +30,7 @@
         {
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.rdbAdministrativo = new System.Windows.Forms.RadioButton();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,16 +59,16 @@
             this.radioButton2.Text = "Empresa";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rdbAdministrativo
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(10, 67);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(90, 17);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Administrativo";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rdbAdministrativo.AutoSize = true;
+            this.rdbAdministrativo.Location = new System.Drawing.Point(10, 67);
+            this.rdbAdministrativo.Name = "rdbAdministrativo";
+            this.rdbAdministrativo.Size = new System.Drawing.Size(90, 17);
+            this.rdbAdministrativo.TabIndex = 3;
+            this.rdbAdministrativo.TabStop = true;
+            this.rdbAdministrativo.Text = "Administrativo";
+            this.rdbAdministrativo.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
@@ -93,7 +93,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Controls.Add(this.rdbAdministrativo);
             this.groupBox1.Controls.Add(this.btnSiguiente);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.radioButton2);
@@ -124,7 +124,7 @@
 
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton rdbAdministrativo;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.GroupBox groupBox1;
