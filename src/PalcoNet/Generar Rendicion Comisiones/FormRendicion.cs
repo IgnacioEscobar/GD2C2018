@@ -8,19 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Abm_Rol
+namespace PalcoNet.Generar_Rendicion_Comisiones
 {
-    public partial class FormABMRol : Form
+    public partial class FormRendicion : Form
     {
-        public FormABMRol()
+        public FormRendicion()
         {
             InitializeComponent();
         }
-
-        private void FormABMRol_Load(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

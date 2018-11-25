@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Generar_Rendicion_Comisiones
+namespace PalcoNet.Abm_Rubro
 {
-    public partial class Form1 : Form
+    public partial class FormABMRubro : Form
     {
-        public Form1()
+        public FormABMRubro()
         {
             InitializeComponent();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

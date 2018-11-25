@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace PalcoNet.Abm_Grado
 {
-    public partial class Form1 : Form
+    public partial class FormABMGrado : Form
     {
-        public Form1()
+        public FormABMGrado()
         {
             InitializeComponent();
         }
+
     }
 }
