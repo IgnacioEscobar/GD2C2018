@@ -193,7 +193,7 @@ create table PEAKY_BLINDERS.clientes (
   apellido varchar(60),
   id_tipo_de_documento tinyint REFERENCES PEAKY_BLINDERS.tipos_de_documento,
   numero_de_documento int,
-  cuil varchar(12),
+  cuil varchar(14),
   mail varchar(60),
   telefono varchar(10),
   calle varchar(60),
