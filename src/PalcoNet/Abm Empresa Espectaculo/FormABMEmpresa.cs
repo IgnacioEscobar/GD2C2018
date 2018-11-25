@@ -16,7 +16,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 {
     public partial class FormABMEmpresa : Form
     {
-        string query_defecto = "SELECT razon_social, cuit, mail FROM dbo.empresas";
+        string query_defecto = "SELECT razon_social, cuit, mail FROM PEAKY_BLINDERS.empresas";
 
         public FormABMEmpresa()
         {
@@ -137,7 +137,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
                 i++;
             }
 
-            string query = "SELECT * FROM dbo.empresas WHERE cuit = '" + param[1] + "'";
+            string query = "SELECT * FROM PEAKY_BLINDERS.empresas WHERE cuit = '" + param[1] + "'";
             FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(query);
             this.Hide();
             formRegistroEmpresa.Show();

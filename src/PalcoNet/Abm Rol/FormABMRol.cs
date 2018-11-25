@@ -7,6 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
+using System;
+using System.Collections;
+using System.IO;
 using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
@@ -36,6 +41,14 @@ namespace PalcoNet.Abm_Rol
             }
         }
 
+        private void tildarFuncionalidadesActivas(SqlDataReader lector)
+        {
+            while (lector.Read())
+            {
+                
+            }
+        }
+
         private void mostrarRolHabilitado(SqlDataReader lector)
         {
             if (lector.Read())
@@ -57,21 +70,30 @@ namespace PalcoNet.Abm_Rol
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query1 = "SELECT habilitado FROM roles WHERE descripcion = '" + lsbRoles.SelectedItem.ToString() + "'";
+            string query1 = "SELECT habilitado FROM PEAKY_BLINDERS.roles WHERE descripcion = '" + lsbRoles.SelectedItem.ToString() + "'";
             gestor.consulta(query1);
             this.mostrarRolHabilitado(gestor.obtenerRegistros());
             gestor.desconectar();
             gestor.conectar();
-            string query2 = "SELECT R.habilitado, F.descripcion FROM dbo.roles R "
-                            + "JOIN dbo.funcionalidades_por_rol FR ON R.id_rol = FR.id_rol "
-                            + "JOIN dbo.funcionalidades F ON FR.id_funcionalidad = F.id_funcionalidad "
-                            + "WHERE R.descripcion = '" + lsbRoles.SelectedItem.ToString() + "'";
+            string query2 = "SELECT descripcion FROM PEAKY_BLINDERS.funcionalidades";
             gestor.consulta(query2);
             this.mostrarFuncionalidades(gestor.obtenerRegistros());
+            gestor.desconectar();
+            gestor.conectar();
+            string query3 = "SELECT R.habilitado, F.descripcion FROM PEAKY_BLINDERS.roles R "
+                            + "JOIN PEAKY_BLINDERS.funcionalidades_por_rol FR ON R.id_rol = FR.id_rol "
+                            + "JOIN PEAKY_BLINDERS.funcionalidades F ON FR.id_funcionalidad = F.id_funcionalidad "
+                            + "WHERE R.descripcion = '" + lsbRoles.SelectedItem.ToString() + "'";
+            gestor.consulta(query3);
+            this.tildarFuncionalidadesActivas(gestor.obtenerRegistros());
             gestor.desconectar();
         }
 
         private void btnAplicar_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void clbFuncionalidades_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
 

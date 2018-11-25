@@ -39,5 +39,10 @@ namespace PalcoNet.Registro_de_Usuario
             this.Hide();
             proximoForm.Show();
         }
+
+        private void FormRegistroComun_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
