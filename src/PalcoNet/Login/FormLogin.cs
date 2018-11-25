@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using PalcoNet.Registro_de_Usuario;
 using PalcoNet.Login;
+using PalcoNet.funciones_utiles;
 
 namespace PalcoNet
 {
@@ -57,21 +58,27 @@ namespace PalcoNet
             }
             else
             {
-                /*
-                 * Traer usuario de la DB para verificar que existe
-                 */
-                bool existe_usuario = true;
-                if (!existe_usuario)
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.generarStoredProcedure("autenticar_usuario");
+                gestor.parametroPorValor("@usuario", txtUsuario.Text);
+                gestor.parametroPorValor("@contrasena", txtContrasena.Text);
+                gestor.parametroPorReferencia("@user_id", SqlDbType.Int);
+                int result = gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
+                
+                int userId;                
+                if (result == 1) {
+                    userId = Convert.ToInt32(gestor.obtenerValor("@user_id"));
+                }
+
+                if (result == 2)
                 {
                     lblError.Text = "El usuario es inválido";
                 }
                 else
                 {
-                    /*
-                     * Traer contraseña de la DB para validar login
-                     */
-                    string contrasena = "1234";
-                    if (txtContrasena.Text == contrasena)
+                    if (result == 1)
                     {
                         /*
                          * Traer roles asignados

@@ -1,7 +1,16 @@
+-- Usuarios --
+create table usuarios (
+  id_usuario int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  nombre_de_usuario varchar(40),
+  password_hash binary(32),
+  habilitado bit default 1,
+  intentos_fallidos tinyint default 0
+);
+
 -- Empresas --
 create table empresas (
   id_empresa int PRIMARY KEY NOT NULL IDENTITY(1,1),
-  -- usuario int NOT NULL,
+  id_usuario int REFERENCES usuarios (id_usuario),
   razon_social varchar(60),
   mail varchar(60),
   calle varchar(60),
@@ -42,7 +51,6 @@ create table estados (
 );
 
 insert into estados values ('Borrador'), ('Publicada'), ('Finalizada');
--- es el único estado que aparece en la db, hay que agregar más
 
 -- Rubros --
 create table rubros (
@@ -87,12 +95,11 @@ insert into publicaciones (
 )
 select distinct
   Espectaculo_Cod,
-  E.id_estado,
+  2, -- estado "Publicada"
   1, -- grado de 0.1
   EM.id_empresa,
   1 -- rubro vacio
 from gd_esquema.Maestra M
-join estados E on M.Espectaculo_Estado = E.descripcion
 join empresas EM on EM.razon_social = M.Espec_Empresa_Razon_Social;
 
 SET IDENTITY_INSERT publicaciones OFF;
@@ -126,17 +133,71 @@ SET IDENTITY_INSERT tipos_de_documentos ON;
 insert into tipos_de_documentos (id_tipo_de_documento, descripcion) values (1, 'DNI'), (2, 'LC'), (3, 'LE');
 SET IDENTITY_INSERT tipos_de_documentos OFF;
 
+-- Roles --
+create table roles (
+  id_rol tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(30)
+);
+
+set IDENTITY_INSERT roles on;
+insert into roles (id_rol, descripcion) values
+  (1, 'Empresa'),
+  (2, 'Administrativo'),
+  (3, 'Cliente');
+set IDENTITY_INSERT roles off;
+
+-- Roles x Usuario --
+create table roles_por_usuario (
+  id_rol_por_usuario int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_usuario int REFERENCES usuarios (id_usuario),
+  id_rol tinyint REFERENCES roles (id_rol)
+);
+
+-- Funcionalidades --
+create table funcionalidades (
+  id_funcionalidad tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(30)
+)
+
+set IDENTITY_INSERT funcionalidades on;
+insert into funcionalidades (id_funcionalidad, descripcion) values
+  (1, 'ABM de Rol'),
+  (2, 'ABM de Cliente'),
+  (3, 'ABM de Empresa de espectáculos'),
+  (4, 'ABM de Categoría'),
+  (5, 'ABM de grado de publicación'),
+  (6, 'Generar Publicacion'),
+  (7, 'Editar Publicacion'),
+  (8, 'Comprar'),
+  (9, 'Historial de Cliente'),
+  (10, 'Canje y Administración de puntos'),
+  (11, 'Generar rendición de comisiones'),
+  (12, 'Listado Estadistico');
+set IDENTITY_INSERT funcionalidades off;
+
+-- Funcionalidades x Rol
+create table funcionalidades_por_rol (
+  id_funcionalidad_por_rol smallint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_rol tinyint REFERENCES roles (id_rol),
+  id_funcionalidad tinyint REFERENCES funcionalidades (id_funcionalidad)
+)
+
+insert into funcionalidades_por_rol (id_rol, id_funcionalidad) values
+  (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 11), (2, 12),
+  (1, 6), (1, 7),
+  (3, 8), (3, 9), (3, 10);
+
 -- Clientes --
 create table clientes (
   id_cliente int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  -- id_usuario int REFERENCES usuarios
+  id_usuario int REFERENCES usuarios (id_usuario),
   nombre varchar(60),
   apellido varchar(60),
   id_tipo_de_documento smallint REFERENCES tipos_de_documentos,
   numero_de_documento int,
-  -- cuil
+  cuil varchar(12),
   mail varchar(60),
-  -- telefono ???
+  telefono varchar(10),
   calle varchar(60),
   numero smallint,
   piso tinyint,
@@ -145,7 +206,7 @@ create table clientes (
   codigo_postal varchar(4),
   fecha_nacimiento datetime,
   fecha_creacion datetime,
-  -- tarjeta_de_credito_asociada
+  tarjeta_de_credito_asociada varchar(16)
 );
 
 insert into clientes (
@@ -175,6 +236,14 @@ select distinct
   Cli_Fecha_Nac
 from gd_esquema.Maestra
 where Cli_Dni is not null;
+
+-- Movimientos de puntos
+create table movimientos_de_puntos (
+  id_movimiento int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_cliente int REFERENCES clientes (id_cliente),
+  variacion int,
+  fecha datetime
+)
 
 -- Medio de Pago --
 create table medios_de_pago (
