@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.lsvRoles = new System.Windows.Forms.ListView();
             this.clbFuncionalidades = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.ckbActivo = new System.Windows.Forms.CheckBox();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAplicar = new System.Windows.Forms.Button();
+            this.lsbRoles = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -47,20 +47,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Roles:";
             // 
-            // lsvRoles
-            // 
-            this.lsvRoles.Location = new System.Drawing.Point(12, 25);
-            this.lsvRoles.Name = "lsvRoles";
-            this.lsvRoles.Size = new System.Drawing.Size(203, 142);
-            this.lsvRoles.TabIndex = 2;
-            this.lsvRoles.UseCompatibleStateImageBehavior = false;
-            // 
             // clbFuncionalidades
             // 
             this.clbFuncionalidades.FormattingEnabled = true;
             this.clbFuncionalidades.Location = new System.Drawing.Point(221, 25);
             this.clbFuncionalidades.Name = "clbFuncionalidades";
-            this.clbFuncionalidades.Size = new System.Drawing.Size(203, 169);
+            this.clbFuncionalidades.Size = new System.Drawing.Size(203, 184);
             this.clbFuncionalidades.TabIndex = 3;
             // 
             // label2
@@ -75,7 +67,7 @@
             // ckbActivo
             // 
             this.ckbActivo.AutoSize = true;
-            this.ckbActivo.Location = new System.Drawing.Point(12, 200);
+            this.ckbActivo.Location = new System.Drawing.Point(15, 215);
             this.ckbActivo.Name = "ckbActivo";
             this.ckbActivo.Size = new System.Drawing.Size(90, 17);
             this.ckbActivo.TabIndex = 5;
@@ -84,12 +76,13 @@
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(12, 170);
+            this.btnSeleccionar.Location = new System.Drawing.Point(12, 185);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(203, 24);
             this.btnSeleccionar.TabIndex = 6;
             this.btnSeleccionar.Text = "SELECCIONAR";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // btnCancelar
             // 
@@ -108,19 +101,28 @@
             this.btnAplicar.TabIndex = 8;
             this.btnAplicar.Text = "APLICAR";
             this.btnAplicar.UseVisualStyleBackColor = true;
+            this.btnAplicar.Click += new System.EventHandler(this.btnAplicar_Click);
+            // 
+            // lsbRoles
+            // 
+            this.lsbRoles.FormattingEnabled = true;
+            this.lsbRoles.Location = new System.Drawing.Point(12, 25);
+            this.lsbRoles.Name = "lsbRoles";
+            this.lsbRoles.Size = new System.Drawing.Size(203, 160);
+            this.lsbRoles.TabIndex = 10;
             // 
             // FormABMRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 301);
+            this.Controls.Add(this.lsbRoles);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAplicar);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.ckbActivo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.clbFuncionalidades);
-            this.Controls.Add(this.lsvRoles);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Name = "FormABMRol";
@@ -135,12 +137,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView lsvRoles;
         private System.Windows.Forms.CheckedListBox clbFuncionalidades;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox ckbActivo;
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAplicar;
+        private System.Windows.Forms.ListBox lsbRoles;
     }
 }
