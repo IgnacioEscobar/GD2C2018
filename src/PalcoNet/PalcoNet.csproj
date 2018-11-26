@@ -103,6 +103,7 @@
       <DependentUpon>FormPuntos.cs</DependentUpon>
     </Compile>
     <Compile Include="DB_Espectaculos.cs" />
+    <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
     <Compile Include="SQL_Connector.cs" />
     <Compile Include="Comprar\FormPagar.cs">
@@ -130,11 +131,11 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="funciones_utiles\GeneradorDeContrasenasAleatorias.cs" />
-    <Compile Include="Generar Publicacion\FormGenerarPub.cs">
+    <Compile Include="Generar Publicacion\FormGenerarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Publicacion\FormGenerarPub.Designer.cs">
-      <DependentUpon>FormGenerarPub.cs</DependentUpon>
+    <Compile Include="Generar Publicacion\FormGenerarPublicacion.Designer.cs">
+      <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Generar Rendicion Comisiones\FormRendicion.cs">
       <SubType>Form</SubType>
@@ -210,8 +211,8 @@
     <EmbeddedResource Include="Editar Publicacion\FormEditar.resx">
       <DependentUpon>FormEditar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Generar Publicacion\FormGenerarPub.resx">
-      <DependentUpon>FormGenerarPub.cs</DependentUpon>
+    <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
+      <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listado Estadistico\FormListado.resx">
       <DependentUpon>FormListado.cs</DependentUpon>

@@ -103,6 +103,8 @@ namespace PalcoNet.Registro_de_Usuario
         private void FormRegistroCliente_Load(object sender, EventArgs e)
         {
             cargarListaTiposDocumento();
+            GeneradorDeFechas generador = new GeneradorDeFechas();
+            generador.completar(cmbDia, cmbMes, cmbAno);
 
             if (modif)
             {
@@ -127,15 +129,6 @@ namespace PalcoNet.Registro_de_Usuario
                     cargarFecha(lector, "fecha_nacimiento");
                 }
                 gestor.desconectar();
-            }
-
-            for (int i = 1; i <= 31; i++)
-            {
-                cmbDia.Items.Add(i);
-            }
-            for (int i = DateTime.Today.Year; i >= 1900; i--)
-            {
-                cmbAno.Items.Add(i);
             }
 
             lblError.Visible = false;

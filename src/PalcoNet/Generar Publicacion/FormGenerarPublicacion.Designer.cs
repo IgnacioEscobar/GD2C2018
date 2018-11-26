@@ -52,12 +52,12 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cmbRubros = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.btnPublicar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHora)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinuto)).BeginInit();
@@ -238,6 +238,7 @@
             // txtCodPostal
             // 
             this.txtCodPostal.Location = new System.Drawing.Point(6, 71);
+            this.txtCodPostal.MaxLength = 4;
             this.txtCodPostal.Name = "txtCodPostal";
             this.txtCodPostal.Size = new System.Drawing.Size(89, 20);
             this.txtCodPostal.TabIndex = 27;
@@ -304,6 +305,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "PRECIO";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(15, 16);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "$";
+            // 
             // txtPrecio
             // 
             this.txtPrecio.Location = new System.Drawing.Point(25, 20);
@@ -347,17 +358,7 @@
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(15, 16);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "$";
-            // 
-            // FormGenerarPub
+            // FormGenerarPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -375,8 +376,9 @@
             this.Controls.Add(this.txtStock);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescripcion);
-            this.Name = "FormGenerarPub";
+            this.Name = "FormGenerarPublicacion";
             this.Text = "PalcoNet";
+            this.Load += new System.EventHandler(this.FormGenerarPublicacion_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudHora)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinuto)).EndInit();
