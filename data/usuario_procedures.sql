@@ -61,3 +61,43 @@ BEGIN
 	WHERE cuit = @cuit
 END
 GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.modificar_cliente
+  @id_cliente int,
+  @nombre varchar(60),
+  @apellido varchar(60),
+  @tipo_de_documento varchar(10),
+  @numero_de_documento int,
+  @cuil varchar(14),
+  @mail varchar(60),
+  @telefono varchar(10),
+  @calle varchar(60),
+  @numero smallint,
+  @piso tinyint,
+  @depto char,
+  @localidad varchar(60),
+  @codigo_postal varchar(4),
+  @fecha_nacimiento datetime,
+  @tarjeta_de_credito_asociada varchar(16)
+AS
+BEGIN
+	UPDATE PEAKY_BLINDERS.clientes
+	SET nombre = @nombre,
+		apellido = @apellido,
+		id_tipo_de_documento = (SELECT id_tipo_de_documento FROM PEAKY_BLINDERS.tipos_de_documento WHERE descripcion = @tipo_de_documento),
+		numero_de_documento = @numero_de_documento,
+		cuil = @cuil,
+		mail = @mail,
+		telefono = @telefono,
+		calle = @calle,
+		numero = @numero,
+		piso = @piso,
+		depto = @depto,
+		localidad = @localidad,
+		codigo_postal = @codigo_postal,
+		fecha_nacimiento = @fecha_nacimiento,
+		tarjeta_de_credito_asociada = @tarjeta_de_credito_asociada
+	WHERE id_cliente = @id_cliente
+END
+GO
+
