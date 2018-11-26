@@ -45,9 +45,8 @@
             this.txtPiso = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtNroTelefono = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtCodTelefono = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -211,9 +210,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtNroTelefono);
+            this.groupBox2.Controls.Add(this.txtTelefono);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.txtCodTelefono);
             this.groupBox2.Controls.Add(this.txtMail);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(280, 12);
@@ -223,12 +221,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "CONTACTO";
             // 
-            // txtNroTelefono
+            // txtTelefono
             // 
-            this.txtNroTelefono.Location = new System.Drawing.Point(83, 71);
-            this.txtNroTelefono.Name = "txtNroTelefono";
-            this.txtNroTelefono.Size = new System.Drawing.Size(173, 20);
-            this.txtNroTelefono.TabIndex = 21;
+            this.txtTelefono.Location = new System.Drawing.Point(6, 71);
+            this.txtTelefono.MaxLength = 10;
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(250, 20);
+            this.txtTelefono.TabIndex = 21;
             // 
             // label6
             // 
@@ -238,13 +237,6 @@
             this.label6.Size = new System.Drawing.Size(26, 13);
             this.label6.TabIndex = 17;
             this.label6.Text = "Mail";
-            // 
-            // txtCodTelefono
-            // 
-            this.txtCodTelefono.Location = new System.Drawing.Point(6, 71);
-            this.txtCodTelefono.Name = "txtCodTelefono";
-            this.txtCodTelefono.Size = new System.Drawing.Size(71, 20);
-            this.txtCodTelefono.TabIndex = 20;
             // 
             // txtMail
             // 
@@ -350,9 +342,8 @@
         private System.Windows.Forms.TextBox txtPiso;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtNroTelefono;
+        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtCodTelefono;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;

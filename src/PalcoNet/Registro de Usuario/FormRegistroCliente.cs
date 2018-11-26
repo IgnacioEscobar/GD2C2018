@@ -16,9 +16,10 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroCliente : Form
     {
-        bool abm;
-        bool modif;
+        bool abm; // si viene del ABM
+        bool modif; // si viene por modificar o por agregar
         string query;
+        string clienteID;
 
         public FormRegistroCliente(bool abm)
         {
@@ -114,6 +115,7 @@ namespace PalcoNet.Registro_de_Usuario
                 SqlDataReader lector = gestor.obtenerRegistros();
                 if (lector.Read())
                 {
+                    clienteID = lector["id_cliente"].ToString();
                     cargarTexto(lector, txtNombre, "nombre");
                     cargarTexto(lector, txtApellido, "apellido");
                     cargarTipoDeDocumento(lector, "descripcion");
@@ -174,6 +176,7 @@ namespace PalcoNet.Registro_de_Usuario
                 else
                 {
                     gestor.generarStoredProcedure("actualizar_cliente");
+                    gestor.parametroPorValor("id_cliente", clienteID);
                 }
 
                 gestor.parametroPorValor("nombre", txtNombre.Text);
@@ -191,7 +194,7 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("codigo_postal", txtCodPostal.Text);
                 gestor.parametroPorValor("localidad", txtLocalidad.Text);
                 gestor.parametroPorValor("mail", txtMail.Text);
-                // TODO: falta definir formato de telefono
+                gestor.parametroPorValor("telefono", txtTelefono.Text);
 
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();

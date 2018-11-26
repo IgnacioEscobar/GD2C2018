@@ -19,6 +19,7 @@ namespace PalcoNet.Registro_de_Usuario
         bool abm;
         bool modif;
         string query;
+        string empresaID;
 
         public FormRegistroEmpresa(bool abm)
         {
@@ -93,6 +94,7 @@ namespace PalcoNet.Registro_de_Usuario
                 else
                 {
                     gestor.generarStoredProcedure("actualizar_empresa");
+                    gestor.parametroPorValor("id_empresa", empresaID);
                 }
 
                 gestor.parametroPorValor("razon_social", txtRazonSocial.Text);
@@ -104,7 +106,7 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
                 gestor.parametroPorValor("localidad", txtLocalidad.Text);
                 gestor.parametroPorValor("mail", txtMail.Text);
-                // TODO: falta definir formato de telefono
+                gestor.parametroPorValor("telefono", txtTelefono.Text);
 
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
@@ -151,6 +153,7 @@ namespace PalcoNet.Registro_de_Usuario
 
                 if (lector.Read())
                 {
+                    empresaID = lector["empresa_id"].ToString();
                     cargarTexto(lector, txtRazonSocial, "razon_social");
                     cargarTexto(lector, txtCUIT, "cuit");
                     cargarTexto(lector, txtCalle, "calle");

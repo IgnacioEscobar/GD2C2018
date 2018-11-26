@@ -41,13 +41,12 @@
             this.txtMail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCodTelefono = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtNumeroDoc = new System.Windows.Forms.TextBox();
             this.txtCUIL = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtNroTelefono = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtAltura = new System.Windows.Forms.TextBox();
@@ -177,13 +176,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "CUIL (sin guiones ni espacios)";
             // 
-            // txtCodTelefono
-            // 
-            this.txtCodTelefono.Location = new System.Drawing.Point(6, 71);
-            this.txtCodTelefono.Name = "txtCodTelefono";
-            this.txtCodTelefono.Size = new System.Drawing.Size(71, 20);
-            this.txtCodTelefono.TabIndex = 20;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -234,9 +226,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtNroTelefono);
+            this.groupBox2.Controls.Add(this.txtTelefono);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.txtCodTelefono);
             this.groupBox2.Controls.Add(this.txtMail);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(280, 151);
@@ -246,12 +237,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "CONTACTO";
             // 
-            // txtNroTelefono
+            // txtTelefono
             // 
-            this.txtNroTelefono.Location = new System.Drawing.Point(83, 71);
-            this.txtNroTelefono.Name = "txtNroTelefono";
-            this.txtNroTelefono.Size = new System.Drawing.Size(173, 20);
-            this.txtNroTelefono.TabIndex = 21;
+            this.txtTelefono.Location = new System.Drawing.Point(6, 71);
+            this.txtTelefono.MaxLength = 10;
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(250, 20);
+            this.txtTelefono.TabIndex = 21;
             // 
             // groupBox3
             // 
@@ -455,7 +447,6 @@
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCodTelefono;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtNumeroDoc;
@@ -472,7 +463,7 @@
         private System.Windows.Forms.TextBox txtLocalidad;
         private System.Windows.Forms.TextBox txtDepto;
         private System.Windows.Forms.TextBox txtPiso;
-        private System.Windows.Forms.TextBox txtNroTelefono;
+        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Button btnAsociarTarjeta;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
