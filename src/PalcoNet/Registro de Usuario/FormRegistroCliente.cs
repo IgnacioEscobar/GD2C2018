@@ -175,7 +175,7 @@ namespace PalcoNet.Registro_de_Usuario
                 }
                 else
                 {
-                    gestor.generarStoredProcedure("actualizar_cliente");
+                    gestor.generarStoredProcedure("modificar_cliente");
                     gestor.parametroPorValor("id_cliente", clienteID);
                 }
 
@@ -187,14 +187,18 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("dia", cmbDia.Text);
                 gestor.parametroPorValor("mes", cmbMes.Text);
                 gestor.parametroPorValor("ano", cmbAno.Text);
+                DateTime fecha_nacimiento = DateTime.ParseExact(cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text, "yyyy/mm/dd", null);
+                gestor.parametroPorValor("fecha_nacimiento", fecha_nacimiento);
                 gestor.parametroPorValor("calle", txtCalle.Text);
-                gestor.parametroPorValor("altura", txtAltura.Text);
+                gestor.parametroPorValor("numero", txtAltura.Text);
                 gestor.parametroPorValor("piso", txtPiso.Text);
                 gestor.parametroPorValor("depto", txtDepto.Text);
                 gestor.parametroPorValor("codigo_postal", txtCodPostal.Text);
                 gestor.parametroPorValor("localidad", txtLocalidad.Text);
                 gestor.parametroPorValor("mail", txtMail.Text);
                 gestor.parametroPorValor("telefono", txtTelefono.Text);
+                gestor.parametroPorValor("tarjeta_de_credito_asociada", "123456789");
+                // TODO: interfaz de tarjeta de credito
 
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
