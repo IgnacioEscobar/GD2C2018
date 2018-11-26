@@ -72,7 +72,7 @@
             this.Controls.Add(this.dgvHistorial);
             this.Name = "FormHistorial";
             this.Text = "PalcoNet";
-            this.Load += new System.EventHandler(this.FormHistorial_Load);
+            //this.Load += new System.EventHandler(this.FormHistorial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

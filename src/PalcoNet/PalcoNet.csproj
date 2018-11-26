@@ -214,6 +214,9 @@
     <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
       <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Historial Cliente\FormHistorial.resx">
+      <DependentUpon>FormHistorial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Listado Estadistico\FormListado.resx">
       <DependentUpon>FormListado.cs</DependentUpon>
     </EmbeddedResource>
