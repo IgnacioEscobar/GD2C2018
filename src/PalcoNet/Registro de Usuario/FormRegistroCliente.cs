@@ -20,6 +20,7 @@ namespace PalcoNet.Registro_de_Usuario
         bool modif; // si viene por modificar o por agregar
         string query;
         string clienteID;
+        string numeroTarjeta;
 
         public FormRegistroCliente(bool abm)
         {
@@ -129,6 +130,7 @@ namespace PalcoNet.Registro_de_Usuario
                     cargarTexto(lector, txtCodPostal, "codigo_postal");
                     cargarTexto(lector, txtLocalidad, "localidad");
                     cargarFecha(lector, "fecha_nacimiento");
+                    numeroTarjeta = lector["tarjeta_de_credito_asociada"].ToString();
                 }
                 gestor.desconectar();
             }
@@ -151,11 +153,17 @@ namespace PalcoNet.Registro_de_Usuario
             formDestino.Show();
         }
 
+        public void cambioNumeroTarjeta(string nuevoNumero)
+        {
+            this.numeroTarjeta = nuevoNumero;
+        }
+
         private void btnAsociarTarjeta_Click(object sender, EventArgs e)
         {
             if (validarCampos())
             {
-                MessageBox.Show("Tarjeta de crédito registrada con éxito.");
+                FormTarjetaDeCredito formTarjetaDeCredito = new FormTarjetaDeCredito(this, numeroTarjeta);
+                formTarjetaDeCredito.Show();
             }            
         }
 
@@ -187,7 +195,7 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("dia", cmbDia.Text);
                 gestor.parametroPorValor("mes", cmbMes.Text);
                 gestor.parametroPorValor("ano", cmbAno.Text);
-                DateTime fecha_nacimiento = DateTime.ParseExact(cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text, "yyyy/mm/dd", null);
+                DateTime fecha_nacimiento = DateTime.Parse(cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text);
                 gestor.parametroPorValor("fecha_nacimiento", fecha_nacimiento);
                 gestor.parametroPorValor("calle", txtCalle.Text);
                 gestor.parametroPorValor("numero", txtAltura.Text);
@@ -197,7 +205,8 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("localidad", txtLocalidad.Text);
                 gestor.parametroPorValor("mail", txtMail.Text);
                 gestor.parametroPorValor("telefono", txtTelefono.Text);
-                gestor.parametroPorValor("tarjeta_de_credito_asociada", "123456789");
+                MessageBox.Show(numeroTarjeta);
+                gestor.parametroPorValor("tarjeta_de_credito_asociada", numeroTarjeta);
                 // TODO: interfaz de tarjeta de credito
 
                 gestor.ejecutarStoredProcedure();

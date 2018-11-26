@@ -105,6 +105,12 @@
     <Compile Include="DB_Espectaculos.cs" />
     <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
+    <Compile Include="Registro de Usuario\FormTarjetaDeCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de Usuario\FormTarjetaDeCredito.Designer.cs">
+      <DependentUpon>FormTarjetaDeCredito.cs</DependentUpon>
+    </Compile>
     <Compile Include="SQL_Connector.cs" />
     <Compile Include="Comprar\FormPagar.cs">
       <SubType>Form</SubType>
@@ -243,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registro de Usuario\FormRegistroComun.resx">
       <DependentUpon>FormRegistroComun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registro de Usuario\FormTarjetaDeCredito.resx">
+      <DependentUpon>FormTarjetaDeCredito.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
