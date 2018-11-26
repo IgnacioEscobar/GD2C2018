@@ -105,6 +105,24 @@
     <Compile Include="DB_Espectaculos.cs" />
     <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
+    <Compile Include="Menu Principal\FormMenuAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuAdministrador.Designer.cs">
+      <DependentUpon>FormMenuAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuCliente.Designer.cs">
+      <DependentUpon>FormMenuCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuEmpresa.Designer.cs">
+      <DependentUpon>FormMenuEmpresa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registro de Usuario\FormTarjetaDeCredito.cs">
       <SubType>Form</SubType>
     </Compile>
