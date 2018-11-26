@@ -7,10 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 using PalcoNet.Registro_de_Usuario;
 using PalcoNet.Login;
 using PalcoNet.funciones_utiles;
+using PalcoNet.Abm_Cliente;
+using PalcoNet.Abm_Empresa_Espectaculo;
+using PalcoNet.Administrador;
 
 namespace PalcoNet
 {
@@ -84,25 +88,67 @@ namespace PalcoNet
                          * Traer roles asignados
                          */
                         gestor.conectar();
-                        string query = "SELECT COUNT(*) AS cant_roles FROM PEAKY_BLINDERS.usuarios U" +
-                            "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON U.id_usuario = RU.id_usuario " +
-                            "WHERE U.id_usuario = '" + userID.ToString() + "'";
+                        string query = "SELECT COUNT(*) AS cant_roles " +
+                            "FROM PEAKY_BLINDERS.roles_por_usuario " +
+                            "WHERE id_usuario = '" + userID.ToString() + "'";
                         gestor.consulta(query);
-                        int cantRolesAsignados = Convert.ToInt32(gestor.obtenerRegistros()["cant_roles"]);
-                        MessageBox.Show("CANTIDAD DE ROLES CARGADOS EN DB: " + cantRolesAsignados.ToString());
+
+                        SqlDataReader lector = gestor.obtenerRegistros();
+                        int cantRolesAsignados = 0;
+                        if (lector.Read())
+                        {
+                            cantRolesAsignados = Convert.ToInt32(lector["cant_roles"]);
+                        }
+                        
                         gestor.desconectar();
 
-                        if (cantRolesAsignados == 1)
+                        switch (cantRolesAsignados)
                         {
-                            // Ir a otro Form
-                            MessageBox.Show("Avanza de Form");
+                            case 0:
+                                MessageBox.Show("¡Usuario sin roles asignados!");
+                                break;
+
+                            case 1:
+                                gestor.conectar();
+                                string query2 = "SELECT R.descripcion FROM PEAKY_BLINDERS.roles R " +
+                                    "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON U.id_rol = RU.id_rol " +
+                                    "WHERE RU.id_usuario = '" + userID + "'";
+                                gestor.consulta(query2);
+                                SqlDataReader lector2 = gestor.obtenerRegistros();
+                                if (lector2.Read())
+                                {
+                                    string rolCargado = lector["descripcion"].ToString();
+                                    Form formDestino;
+                                    
+                                    switch (rolCargado)
+                                    {
+                                        case "Cliente":
+                                            MessageBox.Show("IR A FORMULARIO CLIENTE!");
+                                            break;
+
+                                        case "Empresa":
+                                            MessageBox.Show("IR A FORMULARIO EMPRESA!");
+                                            break;
+
+                                        case "Administrativo":
+                                            formDestino = new FormAdministrador();
+                                            this.Hide();
+                                            formDestino.Show();
+                                            break;
+
+                                        default:
+                                            MessageBox.Show("ERROR: el rol cargado es inválido");
+                                            break;
+                                    }
+                                }
+                                break;
+
+                            default:
+                                FormElegirRol formElegirRol = new FormElegirRol(userID);
+                                this.Hide();
+                                formElegirRol.Show();
+                                break;
                         }
-                        else
-                        {
-                            FormElegirRol formElegirRol = new FormElegirRol();
-                            this.Hide();
-                            formElegirRol.Show();
-                        }                        
                     }
                     else
                     {

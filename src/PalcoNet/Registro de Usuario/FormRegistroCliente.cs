@@ -20,6 +20,7 @@ namespace PalcoNet.Registro_de_Usuario
         bool modif; // si viene por modificar o por agregar
         string query;
         string clienteID;
+        FormTarjetaDeCredito formTarjetaDeCredito;
         string numeroTarjeta;
 
         public FormRegistroCliente(bool abm)
@@ -27,6 +28,7 @@ namespace PalcoNet.Registro_de_Usuario
             InitializeComponent();
             this.abm = abm;
             this.modif = false;
+            this.numeroTarjeta = "";
         }
 
         public FormRegistroCliente(string query)
@@ -135,6 +137,7 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.desconectar();
             }
 
+            formTarjetaDeCredito = new FormTarjetaDeCredito(this, numeroTarjeta);
             lblError.Visible = false;
         }
 
@@ -150,6 +153,7 @@ namespace PalcoNet.Registro_de_Usuario
                 formDestino = new FormLogin();
             }
             this.Hide();
+            formTarjetaDeCredito.Hide();
             formDestino.Show();
         }
 
@@ -162,7 +166,7 @@ namespace PalcoNet.Registro_de_Usuario
         {
             if (validarCampos())
             {
-                FormTarjetaDeCredito formTarjetaDeCredito = new FormTarjetaDeCredito(this, numeroTarjeta);
+                formTarjetaDeCredito.Hide();
                 formTarjetaDeCredito.Show();
             }            
         }
@@ -238,6 +242,7 @@ namespace PalcoNet.Registro_de_Usuario
                 }
 
                 this.Hide();
+                formTarjetaDeCredito.Hide();
                 formDestino.Show();
             }
         }

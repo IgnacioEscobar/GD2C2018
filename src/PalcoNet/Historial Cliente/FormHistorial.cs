@@ -19,6 +19,11 @@ namespace PalcoNet.Historial_Cliente
         {
             InitializeComponent();
         }
+
+        private void FormHistorial_Load(object sender, EventArgs e)
+        {
+
+        }
         /*
                 private void mostrarRegistros(SqlDataReader lector)
                 {
