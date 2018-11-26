@@ -66,10 +66,10 @@ namespace PalcoNet
                 gestor.parametroPorReferencia("@id", SqlDbType.Int);
                 int result = gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
-                
-                int userId;                
+
+                int userID = 0;                
                 if (result == 1) {
-                    userId = Convert.ToInt32(gestor.obtenerValor("@id"));
+                    userID = Convert.ToInt32(gestor.obtenerValor("@id"));
                 }
 
                 if (result == 2)
@@ -83,7 +83,14 @@ namespace PalcoNet
                         /*
                          * Traer roles asignados
                          */
-                        int cantRolesAsignados = 3;
+                        gestor.conectar();
+                        string query = "SELECT COUNT(*) AS cant_roles FROM PEAKY_BLINDERS.usuarios U" +
+                            "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON U.id_usuario = RU.id_usuario " +
+                            "WHERE U.id_usuario = '" + userID.ToString() + "'";
+                        gestor.consulta(query);
+                        int cantRolesAsignados = Convert.ToInt32(gestor.obtenerRegistros()["cant_roles"]);
+                        MessageBox.Show("CANTIDAD DE ROLES CARGADOS EN DB: " + cantRolesAsignados.ToString());
+                        gestor.desconectar();
 
                         if (cantRolesAsignados == 1)
                         {
