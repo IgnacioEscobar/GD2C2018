@@ -41,3 +41,23 @@ AS
       return 2
   END
 GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.eliminar_empresa
+@cuit varchar(14)
+AS
+BEGIN
+	UPDATE PEAKY_BLINDERS.empresas
+	SET borrado = 1
+	WHERE cuit = @cuit
+END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.eliminar_cliente
+@cuit varchar(14)
+AS
+BEGIN
+	UPDATE PEAKY_BLINDERS.clientes
+	SET borrado = 1
+	WHERE cuit = @cuit
+END
+GO
