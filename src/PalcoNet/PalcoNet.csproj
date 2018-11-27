@@ -250,6 +250,15 @@
     <EmbeddedResource Include="Login\FormElegirRol.resx">
       <DependentUpon>FormElegirRol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\FormMenuAdministrador.resx">
+      <DependentUpon>FormMenuAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\FormMenuCliente.resx">
+      <DependentUpon>FormMenuCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\FormMenuEmpresa.resx">
+      <DependentUpon>FormMenuEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
