@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using PalcoNet.Abm_Rol;
+using PalcoNet.Menu_Principal;
 
 namespace PalcoNet
 {
@@ -18,7 +18,7 @@ namespace PalcoNet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormABMRol());
+            Application.Run(new FormMenuCliente());
         }
     }
 }

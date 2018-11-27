@@ -103,7 +103,32 @@
       <DependentUpon>FormPuntos.cs</DependentUpon>
     </Compile>
     <Compile Include="DB_Espectaculos.cs" />
+    <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
+    <Compile Include="Menu Principal\FormMenuAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuAdministrador.Designer.cs">
+      <DependentUpon>FormMenuAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuCliente.Designer.cs">
+      <DependentUpon>FormMenuCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu Principal\FormMenuEmpresa.Designer.cs">
+      <DependentUpon>FormMenuEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registro de Usuario\FormTarjetaDeCredito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de Usuario\FormTarjetaDeCredito.Designer.cs">
+      <DependentUpon>FormTarjetaDeCredito.cs</DependentUpon>
+    </Compile>
     <Compile Include="SQL_Connector.cs" />
     <Compile Include="Comprar\FormPagar.cs">
       <SubType>Form</SubType>
@@ -130,11 +155,11 @@
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="funciones_utiles\GeneradorDeContrasenasAleatorias.cs" />
-    <Compile Include="Generar Publicacion\FormGenerarPub.cs">
+    <Compile Include="Generar Publicacion\FormGenerarPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Publicacion\FormGenerarPub.Designer.cs">
-      <DependentUpon>FormGenerarPub.cs</DependentUpon>
+    <Compile Include="Generar Publicacion\FormGenerarPublicacion.Designer.cs">
+      <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Generar Rendicion Comisiones\FormRendicion.cs">
       <SubType>Form</SubType>
@@ -210,8 +235,11 @@
     <EmbeddedResource Include="Editar Publicacion\FormEditar.resx">
       <DependentUpon>FormEditar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Generar Publicacion\FormGenerarPub.resx">
-      <DependentUpon>FormGenerarPub.cs</DependentUpon>
+    <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
+      <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Historial Cliente\FormHistorial.resx">
+      <DependentUpon>FormHistorial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Listado Estadistico\FormListado.resx">
       <DependentUpon>FormListado.cs</DependentUpon>
@@ -221,6 +249,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FormElegirRol.resx">
       <DependentUpon>FormElegirRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\FormMenuAdministrador.resx">
+      <DependentUpon>FormMenuAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\FormMenuCliente.resx">
+      <DependentUpon>FormMenuCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menu Principal\FormMenuEmpresa.resx">
+      <DependentUpon>FormMenuEmpresa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -239,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registro de Usuario\FormRegistroComun.resx">
       <DependentUpon>FormRegistroComun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registro de Usuario\FormTarjetaDeCredito.resx">
+      <DependentUpon>FormTarjetaDeCredito.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

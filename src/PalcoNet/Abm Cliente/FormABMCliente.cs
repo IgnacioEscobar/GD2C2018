@@ -144,7 +144,10 @@ namespace PalcoNet.Abm_Cliente
                 i++;
             }
 
-            string query = "SELECT * FROM PEAKY_BLINDERS.clientes WHERE numero_de_documento = '" + param[2] + "'";
+            string query = "SELECT * FROM PEAKY_BLINDERS.clientes C "
+                           + "LEFT JOIN PEAKY_BLINDERS.tipos_de_documento T "
+                                + "ON C.id_tipo_de_documento = T.id_tipo_de_documento "
+                           + "WHERE C.numero_de_documento = '" + param[2] + "'";
             FormRegistroCliente formRegistroCliente = new FormRegistroCliente(query);
             this.Hide();
             formRegistroCliente.Show();
@@ -176,7 +179,7 @@ namespace PalcoNet.Abm_Cliente
                 /*
                  * FIN TRANSACCION
                  */
-                MessageBox.Show("¡Cliente eliminado exitosamente! (MENTIRA)");
+                MessageBox.Show("¡Cliente eliminado exitosamente!");
             }
         }
 

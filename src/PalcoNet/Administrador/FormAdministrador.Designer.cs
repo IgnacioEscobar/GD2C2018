@@ -29,60 +29,87 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnConfirmar = new System.Windows.Forms.Button();
+            this.btnABMRol = new System.Windows.Forms.Button();
+            this.btnABMEmpresa = new System.Windows.Forms.Button();
+            this.btnABMRubro = new System.Windows.Forms.Button();
+            this.btnABMGrado = new System.Windows.Forms.Button();
+            this.btnABMCliente = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnConfirmar);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.listBox1);
+            this.groupBox1.Controls.Add(this.btnABMRol);
+            this.groupBox1.Controls.Add(this.btnABMEmpresa);
+            this.groupBox1.Controls.Add(this.btnABMRubro);
+            this.groupBox1.Controls.Add(this.btnABMGrado);
+            this.groupBox1.Controls.Add(this.btnABMCliente);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(260, 238);
+            this.groupBox1.Size = new System.Drawing.Size(311, 157);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Administrador";
             // 
-            // listBox1
+            // btnABMRol
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 36);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 160);
-            this.listBox1.TabIndex = 0;
+            this.btnABMRol.Location = new System.Drawing.Point(208, 118);
+            this.btnABMRol.Name = "btnABMRol";
+            this.btnABMRol.Size = new System.Drawing.Size(95, 33);
+            this.btnABMRol.TabIndex = 17;
+            this.btnABMRol.Text = "ABM ROL";
+            this.btnABMRol.UseVisualStyleBackColor = true;
+            this.btnABMRol.Click += new System.EventHandler(this.btnABMRol_Click);
             // 
-            // label1
+            // btnABMEmpresa
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "ABMs disponibles";
+            this.btnABMEmpresa.Location = new System.Drawing.Point(6, 118);
+            this.btnABMEmpresa.Name = "btnABMEmpresa";
+            this.btnABMEmpresa.Size = new System.Drawing.Size(95, 33);
+            this.btnABMEmpresa.TabIndex = 16;
+            this.btnABMEmpresa.Text = "ABM EMPRESA";
+            this.btnABMEmpresa.UseVisualStyleBackColor = true;
+            this.btnABMEmpresa.Click += new System.EventHandler(this.btnABMEmpresa_Click);
             // 
-            // btnConfirmar
+            // btnABMRubro
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(150, 36);
-            this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(95, 33);
-            this.btnConfirmar.TabIndex = 2;
-            this.btnConfirmar.Text = "CONFIRMAR";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnABMRubro.Location = new System.Drawing.Point(208, 19);
+            this.btnABMRubro.Name = "btnABMRubro";
+            this.btnABMRubro.Size = new System.Drawing.Size(95, 33);
+            this.btnABMRubro.TabIndex = 4;
+            this.btnABMRubro.Text = "ABM RUBRO";
+            this.btnABMRubro.UseVisualStyleBackColor = true;
+            this.btnABMRubro.Click += new System.EventHandler(this.btnABMRubro_Click);
+            // 
+            // btnABMGrado
+            // 
+            this.btnABMGrado.Location = new System.Drawing.Point(109, 66);
+            this.btnABMGrado.Name = "btnABMGrado";
+            this.btnABMGrado.Size = new System.Drawing.Size(95, 33);
+            this.btnABMGrado.TabIndex = 3;
+            this.btnABMGrado.Text = "ABM GRADO";
+            this.btnABMGrado.UseVisualStyleBackColor = true;
+            this.btnABMGrado.Click += new System.EventHandler(this.btnABMGrado_Click);
+            // 
+            // btnABMCliente
+            // 
+            this.btnABMCliente.Location = new System.Drawing.Point(6, 19);
+            this.btnABMCliente.Name = "btnABMCliente";
+            this.btnABMCliente.Size = new System.Drawing.Size(95, 33);
+            this.btnABMCliente.TabIndex = 2;
+            this.btnABMCliente.Text = "ABM CLIENTE";
+            this.btnABMCliente.UseVisualStyleBackColor = true;
+            this.btnABMCliente.Click += new System.EventHandler(this.btnABMCliente_Click);
             // 
             // FormAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(337, 180);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormAdministrador";
             this.Text = "PalcoNet";
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -90,8 +117,10 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnConfirmar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnABMCliente;
+        private System.Windows.Forms.Button btnABMRol;
+        private System.Windows.Forms.Button btnABMEmpresa;
+        private System.Windows.Forms.Button btnABMRubro;
+        private System.Windows.Forms.Button btnABMGrado;
     }
 }

@@ -28,47 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.rbnCliente = new System.Windows.Forms.RadioButton();
+            this.rbnEmpresa = new System.Windows.Forms.RadioButton();
+            this.rbnAdministrativo = new System.Windows.Forms.RadioButton();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // radioButton1
+            // rbnCliente
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(10, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(57, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Cliente";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbnCliente.AutoSize = true;
+            this.rbnCliente.Enabled = false;
+            this.rbnCliente.Location = new System.Drawing.Point(10, 19);
+            this.rbnCliente.Name = "rbnCliente";
+            this.rbnCliente.Size = new System.Drawing.Size(57, 17);
+            this.rbnCliente.TabIndex = 0;
+            this.rbnCliente.Text = "Cliente";
+            this.rbnCliente.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbnEmpresa
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(10, 43);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(66, 17);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Empresa";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbnEmpresa.AutoSize = true;
+            this.rbnEmpresa.Enabled = false;
+            this.rbnEmpresa.Location = new System.Drawing.Point(10, 43);
+            this.rbnEmpresa.Name = "rbnEmpresa";
+            this.rbnEmpresa.Size = new System.Drawing.Size(66, 17);
+            this.rbnEmpresa.TabIndex = 2;
+            this.rbnEmpresa.Text = "Empresa";
+            this.rbnEmpresa.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rbnAdministrativo
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(10, 67);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(90, 17);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Administrativo";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbnAdministrativo.AutoSize = true;
+            this.rbnAdministrativo.Enabled = false;
+            this.rbnAdministrativo.Location = new System.Drawing.Point(10, 67);
+            this.rbnAdministrativo.Name = "rbnAdministrativo";
+            this.rbnAdministrativo.Size = new System.Drawing.Size(90, 17);
+            this.rbnAdministrativo.TabIndex = 3;
+            this.rbnAdministrativo.Text = "Administrativo";
+            this.rbnAdministrativo.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
@@ -93,10 +93,10 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.radioButton3);
+            this.groupBox1.Controls.Add(this.rbnAdministrativo);
             this.groupBox1.Controls.Add(this.btnSiguiente);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.rbnCliente);
+            this.groupBox1.Controls.Add(this.rbnEmpresa);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(248, 141);
@@ -114,6 +114,7 @@
             this.Name = "FormElegirRol";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
+            this.Load += new System.EventHandler(this.FormElegirRol_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -122,9 +123,9 @@
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton rbnCliente;
+        private System.Windows.Forms.RadioButton rbnEmpresa;
+        private System.Windows.Forms.RadioButton rbnAdministrativo;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.GroupBox groupBox1;

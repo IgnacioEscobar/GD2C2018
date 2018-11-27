@@ -34,7 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbTipoDoc = new System.Windows.Forms.ComboBox();
-            this.txtCUIL3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbDia = new System.Windows.Forms.ComboBox();
             this.cmbMes = new System.Windows.Forms.ComboBox();
@@ -42,20 +41,20 @@
             this.txtMail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCodTelefono = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtNumeroDoc = new System.Windows.Forms.TextBox();
-            this.txtCUIL1 = new System.Windows.Forms.TextBox();
-            this.txtCUIL2 = new System.Windows.Forms.TextBox();
+            this.txtCUIL = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtNroTelefono = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtAltura = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtCodPostal = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
-            this.txtDpto = new System.Windows.Forms.TextBox();
+            this.txtDepto = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtCalle = new System.Windows.Forms.TextBox();
@@ -65,8 +64,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.lblError = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtAltura = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -121,14 +118,6 @@
             this.cmbTipoDoc.Size = new System.Drawing.Size(90, 21);
             this.cmbTipoDoc.TabIndex = 6;
             // 
-            // txtCUIL3
-            // 
-            this.txtCUIL3.Location = new System.Drawing.Point(214, 153);
-            this.txtCUIL3.MaxLength = 1;
-            this.txtCUIL3.Name = "txtCUIL3";
-            this.txtCUIL3.Size = new System.Drawing.Size(42, 20);
-            this.txtCUIL3.TabIndex = 10;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -149,19 +138,6 @@
             // cmbMes
             // 
             this.cmbMes.FormattingEnabled = true;
-            this.cmbMes.Items.AddRange(new object[] {
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Septiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre"});
             this.cmbMes.Location = new System.Drawing.Point(54, 192);
             this.cmbMes.Name = "cmbMes";
             this.cmbMes.Size = new System.Drawing.Size(112, 21);
@@ -196,16 +172,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 137);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(149, 13);
             this.label4.TabIndex = 7;
-            this.label4.Text = "CUIL";
-            // 
-            // txtCodTelefono
-            // 
-            this.txtCodTelefono.Location = new System.Drawing.Point(6, 71);
-            this.txtCodTelefono.Name = "txtCodTelefono";
-            this.txtCodTelefono.Size = new System.Drawing.Size(71, 20);
-            this.txtCodTelefono.TabIndex = 20;
+            this.label4.Text = "CUIL (sin guiones ni espacios)";
             // 
             // label7
             // 
@@ -219,8 +188,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtNumeroDoc);
-            this.groupBox1.Controls.Add(this.txtCUIL1);
-            this.groupBox1.Controls.Add(this.txtCUIL2);
+            this.groupBox1.Controls.Add(this.txtCUIL);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.label2);
@@ -232,7 +200,6 @@
             this.groupBox1.Controls.Add(this.cmbTipoDoc);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtCUIL3);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(262, 223);
@@ -249,27 +216,18 @@
             this.txtNumeroDoc.Size = new System.Drawing.Size(154, 20);
             this.txtNumeroDoc.TabIndex = 20;
             // 
-            // txtCUIL1
+            // txtCUIL
             // 
-            this.txtCUIL1.Location = new System.Drawing.Point(6, 153);
-            this.txtCUIL1.MaxLength = 2;
-            this.txtCUIL1.Name = "txtCUIL1";
-            this.txtCUIL1.Size = new System.Drawing.Size(42, 20);
-            this.txtCUIL1.TabIndex = 19;
-            // 
-            // txtCUIL2
-            // 
-            this.txtCUIL2.Location = new System.Drawing.Point(54, 153);
-            this.txtCUIL2.MaxLength = 8;
-            this.txtCUIL2.Name = "txtCUIL2";
-            this.txtCUIL2.Size = new System.Drawing.Size(154, 20);
-            this.txtCUIL2.TabIndex = 17;
+            this.txtCUIL.Location = new System.Drawing.Point(6, 153);
+            this.txtCUIL.MaxLength = 11;
+            this.txtCUIL.Name = "txtCUIL";
+            this.txtCUIL.Size = new System.Drawing.Size(250, 20);
+            this.txtCUIL.TabIndex = 19;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtNroTelefono);
+            this.groupBox2.Controls.Add(this.txtTelefono);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.txtCodTelefono);
             this.groupBox2.Controls.Add(this.txtMail);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(280, 151);
@@ -279,12 +237,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "CONTACTO";
             // 
-            // txtNroTelefono
+            // txtTelefono
             // 
-            this.txtNroTelefono.Location = new System.Drawing.Point(83, 71);
-            this.txtNroTelefono.Name = "txtNroTelefono";
-            this.txtNroTelefono.Size = new System.Drawing.Size(173, 20);
-            this.txtNroTelefono.TabIndex = 21;
+            this.txtTelefono.Location = new System.Drawing.Point(6, 71);
+            this.txtTelefono.MaxLength = 10;
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(250, 20);
+            this.txtTelefono.TabIndex = 21;
             // 
             // groupBox3
             // 
@@ -294,7 +253,7 @@
             this.groupBox3.Controls.Add(this.txtCodPostal);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.txtLocalidad);
-            this.groupBox3.Controls.Add(this.txtDpto);
+            this.groupBox3.Controls.Add(this.txtDepto);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.txtCalle);
@@ -306,6 +265,22 @@
             this.groupBox3.TabIndex = 23;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "DIRECCIÓN";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(200, 16);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(34, 13);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "Altura";
+            // 
+            // txtAltura
+            // 
+            this.txtAltura.Location = new System.Drawing.Point(200, 32);
+            this.txtAltura.Name = "txtAltura";
+            this.txtAltura.Size = new System.Drawing.Size(56, 20);
+            this.txtAltura.TabIndex = 29;
             // 
             // label12
             // 
@@ -339,12 +314,12 @@
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);
             this.txtLocalidad.TabIndex = 25;
             // 
-            // txtDpto
+            // txtDepto
             // 
-            this.txtDpto.Location = new System.Drawing.Point(200, 58);
-            this.txtDpto.Name = "txtDpto";
-            this.txtDpto.Size = new System.Drawing.Size(56, 20);
-            this.txtDpto.TabIndex = 23;
+            this.txtDepto.Location = new System.Drawing.Point(200, 58);
+            this.txtDepto.Name = "txtDepto";
+            this.txtDepto.Size = new System.Drawing.Size(56, 20);
+            this.txtDepto.TabIndex = 23;
             // 
             // label10
             // 
@@ -429,22 +404,6 @@
             this.lblError.Text = "mensajes de error";
             this.lblError.Visible = false;
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(200, 16);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(34, 13);
-            this.label13.TabIndex = 28;
-            this.label13.Text = "Altura";
-            // 
-            // txtAltura
-            // 
-            this.txtAltura.Location = new System.Drawing.Point(200, 32);
-            this.txtAltura.Name = "txtAltura";
-            this.txtAltura.Size = new System.Drawing.Size(56, 20);
-            this.txtAltura.TabIndex = 29;
-            // 
             // FormRegistroCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -481,7 +440,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbTipoDoc;
-        private System.Windows.Forms.TextBox txtCUIL3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbDia;
         private System.Windows.Forms.ComboBox cmbMes;
@@ -489,12 +447,10 @@
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCodTelefono;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtNumeroDoc;
-        private System.Windows.Forms.TextBox txtCUIL1;
-        private System.Windows.Forms.TextBox txtCUIL2;
+        private System.Windows.Forms.TextBox txtCUIL;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label10;
@@ -505,9 +461,9 @@
         private System.Windows.Forms.TextBox txtCodPostal;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtLocalidad;
-        private System.Windows.Forms.TextBox txtDpto;
+        private System.Windows.Forms.TextBox txtDepto;
         private System.Windows.Forms.TextBox txtPiso;
-        private System.Windows.Forms.TextBox txtNroTelefono;
+        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Button btnAsociarTarjeta;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;

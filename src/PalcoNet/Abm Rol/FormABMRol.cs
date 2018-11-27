@@ -7,9 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-
-using System;
 using System.Collections;
 using System.IO;
 using System.Data.SqlClient;
@@ -45,6 +42,13 @@ namespace PalcoNet.Abm_Rol
         {
             while (lector.Read())
             {
+                for (int i = 0; i < clbFuncionalidades.Items.Count; i++)
+                {
+                    if (clbFuncionalidades.Items[i].ToString() == lector["descripcion"].ToString())
+                    {
+                        clbFuncionalidades.SetItemChecked(i, true);
+                    }
+                }
                 
             }
         }
@@ -80,7 +84,7 @@ namespace PalcoNet.Abm_Rol
             this.mostrarFuncionalidades(gestor.obtenerRegistros());
             gestor.desconectar();
             gestor.conectar();
-            string query3 = "SELECT R.habilitado, F.descripcion FROM PEAKY_BLINDERS.roles R "
+            string query3 = "SELECT F.descripcion FROM PEAKY_BLINDERS.roles R "
                             + "JOIN PEAKY_BLINDERS.funcionalidades_por_rol FR ON R.id_rol = FR.id_rol "
                             + "JOIN PEAKY_BLINDERS.funcionalidades F ON FR.id_funcionalidad = F.id_funcionalidad "
                             + "WHERE R.descripcion = '" + lsbRoles.SelectedItem.ToString() + "'";

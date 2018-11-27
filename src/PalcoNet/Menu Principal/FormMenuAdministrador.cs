@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PalcoNet.Generar_Publicacion
+namespace PalcoNet.Menu_Principal
 {
-    public partial class FormGenerarPub : Form
+    public partial class FormMenuAdministrador : Form
     {
-        public FormGenerarPub()
+        public FormMenuAdministrador()
         {
             InitializeComponent();
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

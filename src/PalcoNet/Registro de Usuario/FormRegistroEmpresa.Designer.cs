@@ -40,14 +40,13 @@
             this.txtCodigoPostal = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
-            this.txtDpto = new System.Windows.Forms.TextBox();
+            this.txtDepto = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtPiso = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtNroTelefono = new System.Windows.Forms.TextBox();
+            this.txtTelefono = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtCodTelefono = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -101,7 +100,7 @@
             this.groupBox3.Controls.Add(this.txtCodigoPostal);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.txtLocalidad);
-            this.groupBox3.Controls.Add(this.txtDpto);
+            this.groupBox3.Controls.Add(this.txtDepto);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.txtPiso);
             this.groupBox3.Controls.Add(this.label9);
@@ -177,12 +176,12 @@
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);
             this.txtLocalidad.TabIndex = 25;
             // 
-            // txtDpto
+            // txtDepto
             // 
-            this.txtDpto.Location = new System.Drawing.Point(200, 58);
-            this.txtDpto.Name = "txtDpto";
-            this.txtDpto.Size = new System.Drawing.Size(56, 20);
-            this.txtDpto.TabIndex = 23;
+            this.txtDepto.Location = new System.Drawing.Point(200, 58);
+            this.txtDepto.Name = "txtDepto";
+            this.txtDepto.Size = new System.Drawing.Size(56, 20);
+            this.txtDepto.TabIndex = 23;
             // 
             // label10
             // 
@@ -211,9 +210,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtNroTelefono);
+            this.groupBox2.Controls.Add(this.txtTelefono);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.txtCodTelefono);
             this.groupBox2.Controls.Add(this.txtMail);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(280, 12);
@@ -223,12 +221,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "CONTACTO";
             // 
-            // txtNroTelefono
+            // txtTelefono
             // 
-            this.txtNroTelefono.Location = new System.Drawing.Point(83, 71);
-            this.txtNroTelefono.Name = "txtNroTelefono";
-            this.txtNroTelefono.Size = new System.Drawing.Size(173, 20);
-            this.txtNroTelefono.TabIndex = 21;
+            this.txtTelefono.Location = new System.Drawing.Point(6, 71);
+            this.txtTelefono.MaxLength = 10;
+            this.txtTelefono.Name = "txtTelefono";
+            this.txtTelefono.Size = new System.Drawing.Size(250, 20);
+            this.txtTelefono.TabIndex = 21;
             // 
             // label6
             // 
@@ -238,13 +237,6 @@
             this.label6.Size = new System.Drawing.Size(26, 13);
             this.label6.TabIndex = 17;
             this.label6.Text = "Mail";
-            // 
-            // txtCodTelefono
-            // 
-            this.txtCodTelefono.Location = new System.Drawing.Point(6, 71);
-            this.txtCodTelefono.Name = "txtCodTelefono";
-            this.txtCodTelefono.Size = new System.Drawing.Size(71, 20);
-            this.txtCodTelefono.TabIndex = 20;
             // 
             // txtMail
             // 
@@ -345,14 +337,13 @@
         private System.Windows.Forms.TextBox txtCodigoPostal;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtLocalidad;
-        private System.Windows.Forms.TextBox txtDpto;
+        private System.Windows.Forms.TextBox txtDepto;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtPiso;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtNroTelefono;
+        private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtCodTelefono;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
