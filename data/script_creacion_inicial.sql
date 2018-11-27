@@ -126,7 +126,11 @@ create table PEAKY_BLINDERS.publicaciones (
   stock smallint,
   direccion varchar(60),
   id_empresa int REFERENCES PEAKY_BLINDERS.empresas (id_empresa),
-  id_rubro tinyint REFERENCES PEAKY_BLINDERS.rubros (id_rubro)
+  id_rubro tinyint REFERENCES PEAKY_BLINDERS.rubros (id_rubro),
+  descripcion varchar(200),
+  calle varchar(50),
+  numero smallint,
+  codigo_postal varchar(4)
 );
 
 set IDENTITY_INSERT PEAKY_BLINDERS.publicaciones ON;
