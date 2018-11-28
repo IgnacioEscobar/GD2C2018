@@ -111,11 +111,15 @@ insert into PEAKY_BLINDERS.rubros values ('Vacio');
 -- Grados --
 create table PEAKY_BLINDERS.grados (
   id_grado tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  muliplicador decimal(2, 2)
+  multiplicador decimal(2, 2),
+  descripcion varchar(20)
 )
 
 set IDENTITY_INSERT PEAKY_BLINDERS.grados ON;
-insert into PEAKY_BLINDERS.grados (id_grado, muliplicador) values (1, 0.10);
+insert into PEAKY_BLINDERS.grados (id_grado, multiplicador, descripcion)values
+  (1, 0.10, 'Baja'),
+  (2, 0.20, 'Media'),
+  (3, 0.30, 'Alta');
 set IDENTITY_INSERT PEAKY_BLINDERS.grados OFF;
 
 -- Publicaciones --
