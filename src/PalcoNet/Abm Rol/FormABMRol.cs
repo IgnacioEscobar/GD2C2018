@@ -65,7 +65,7 @@ namespace PalcoNet.Abm_Rol
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT descripcion FROM roles");
+            gestor.consulta("SELECT descripcion FROM PEAKY_BLINDERS.roles");
             this.mostrarRoles(gestor.obtenerRegistros());
             gestor.desconectar();
         }

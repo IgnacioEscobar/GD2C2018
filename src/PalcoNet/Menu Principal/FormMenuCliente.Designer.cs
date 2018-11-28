@@ -58,6 +58,7 @@
             this.btnConfiguración.TabIndex = 15;
             this.btnConfiguración.Text = "CONFIGURACIÓN DE CUENTA";
             this.btnConfiguración.UseVisualStyleBackColor = true;
+            this.btnConfiguración.Click += new System.EventHandler(this.btnConfiguración_Click);
             // 
             // groupBox2
             // 
@@ -96,6 +97,7 @@
             this.lklCerrarSesion.TabIndex = 18;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
             // btnSeleccionar
             // 
@@ -227,7 +229,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lsbEspectaculos);
+            this.MaximizeBox = false;
             this.Name = "FormMenuCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
