@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-using PalcoNet.Administrador;
+using PalcoNet.Menu_Principal;
 using PalcoNet.funciones_utiles;
 
 namespace PalcoNet.Login
@@ -33,11 +33,25 @@ namespace PalcoNet.Login
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
+            Form formDestino;
+
+            if (rbnCliente.Checked)
+            {
+                formDestino = new FormMenuCliente();
+                this.Hide();
+                formDestino.Show();
+            }
+            if (rbnEmpresa.Checked)
+            {
+                formDestino = new FormMenuEmpresa();
+                this.Hide();
+                formDestino.Show();
+            }
             if (rbnAdministrativo.Checked)
             {
-                FormAdministrador formAdministrador = new FormAdministrador();
+                formDestino = new FormMenuAdministrador();
                 this.Hide();
-                formAdministrador.Show();
+                formDestino.Show();
             }
         }
 

@@ -14,7 +14,7 @@ using PalcoNet.Login;
 using PalcoNet.funciones_utiles;
 using PalcoNet.Abm_Cliente;
 using PalcoNet.Abm_Empresa_Espectaculo;
-using PalcoNet.Administrador;
+using PalcoNet.Menu_Principal;
 
 namespace PalcoNet
 {
@@ -123,15 +123,19 @@ namespace PalcoNet
                                     switch (rolCargado)
                                     {
                                         case "Cliente":
-                                            MessageBox.Show("IR A FORMULARIO CLIENTE!");
+                                            formDestino = new FormMenuCliente();
+                                            this.Hide();
+                                            formDestino.Show();
                                             break;
 
                                         case "Empresa":
-                                            MessageBox.Show("IR A FORMULARIO EMPRESA!");
+                                            formDestino = new FormMenuEmpresa();
+                                            this.Hide();
+                                            formDestino.Show();
                                             break;
 
                                         case "Administrativo":
-                                            formDestino = new FormAdministrador();
+                                            formDestino = new FormMenuAdministrador();
                                             this.Hide();
                                             formDestino.Show();
                                             break;
