@@ -111,13 +111,13 @@ namespace PalcoNet
                             case 1:
                                 gestor.conectar();
                                 string query2 = "SELECT R.descripcion FROM PEAKY_BLINDERS.roles R " +
-                                    "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON U.id_rol = RU.id_rol " +
+                                    "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON R.id_rol = RU.id_rol " +
                                     "WHERE RU.id_usuario = '" + userID + "'";
                                 gestor.consulta(query2);
                                 SqlDataReader lector2 = gestor.obtenerRegistros();
                                 if (lector2.Read())
                                 {
-                                    string rolCargado = lector["descripcion"].ToString();
+                                    string rolCargado = lector2["descripcion"].ToString();
                                     Form formDestino;
                                     
                                     switch (rolCargado)
