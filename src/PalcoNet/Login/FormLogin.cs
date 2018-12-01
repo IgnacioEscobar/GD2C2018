@@ -105,7 +105,7 @@ namespace PalcoNet
                         switch (cantRolesAsignados)
                         {
                             case 0:
-                                MessageBox.Show("¡Usuario sin roles asignados!");
+                                lblError.Text = "Usuario sin roles asignados";
                                 break;
 
                             case 1:

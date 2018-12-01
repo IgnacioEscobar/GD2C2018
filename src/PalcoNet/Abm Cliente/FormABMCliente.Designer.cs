@@ -32,7 +32,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnPanelDeControl = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -95,14 +95,15 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // btnSalir
+            // btnPanelDeControl
             // 
-            this.btnSalir.Location = new System.Drawing.Point(591, 455);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(211, 44);
-            this.btnSalir.TabIndex = 9;
-            this.btnSalir.Text = "SALIR";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnPanelDeControl.Location = new System.Drawing.Point(591, 455);
+            this.btnPanelDeControl.Name = "btnPanelDeControl";
+            this.btnPanelDeControl.Size = new System.Drawing.Size(211, 44);
+            this.btnPanelDeControl.TabIndex = 9;
+            this.btnPanelDeControl.Text = "PANEL DE CONTROL";
+            this.btnPanelDeControl.UseVisualStyleBackColor = true;
+            this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
             // 
             // groupBox1
             // 
@@ -215,7 +216,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 511);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnPanelDeControl);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
@@ -238,7 +239,7 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnPanelDeControl;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtNombre;

@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Registro_de_Usuario;
+using PalcoNet.Menu_Principal;
 
 namespace PalcoNet.Abm_Cliente
 {
@@ -181,6 +182,13 @@ namespace PalcoNet.Abm_Cliente
                  */
                 MessageBox.Show("¡Cliente eliminado exitosamente!");
             }
+        }
+
+        private void btnPanelDeControl_Click(object sender, EventArgs e)
+        {
+            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador();
+            this.Hide();
+            formAbmAdministrador.Show();
         }
 
     }
