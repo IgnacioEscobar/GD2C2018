@@ -1,6 +1,6 @@
 ﻿namespace PalcoNet.Abm_Grado
 {
-    partial class dgvPublicaciones
+    partial class FormABMGrado
     {
         /// <summary>
         /// Required designer variable.
@@ -158,7 +158,7 @@
             this.btnFiltrar.UseVisualStyleBackColor = true;
             this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
-            // dgvPublicaciones
+            // FormABMGrado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -174,7 +174,7 @@
             this.Controls.Add(this.lblPublicaciones);
             this.Controls.Add(this.lsbPublicaciones);
             this.MaximizeBox = false;
-            this.Name = "dgvPublicaciones";
+            this.Name = "FormABMGrado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormABMGrado_Load);

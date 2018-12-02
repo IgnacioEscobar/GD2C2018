@@ -13,9 +13,9 @@ using System.Data.SqlClient;
 
 namespace PalcoNet.Abm_Grado
 {
-    public partial class dgvPublicaciones : Form
+    public partial class FormABMGrado : Form
     {
-        public dgvPublicaciones()
+        public FormABMGrado()
         {
             InitializeComponent();
         }
@@ -29,19 +29,19 @@ namespace PalcoNet.Abm_Grado
 
         private void FormABMGrado_Load(object sender, EventArgs e)
         {
-
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            string query = "SELECT ISNULL(descripcion, 'Sin descripción') AS descripcion FROM PEAKY_BLINDERS.publicaciones";
+            gestor.consulta(query);
+            this.mostrarRegistros(gestor.obtenerRegistros());
+            gestor.desconectar();
         }
 
         private void mostrarRegistros(SqlDataReader lector)
         {
             while (lector.Read())
             {
-                object[] row = new string[]
-                {
-                    lector["descripcion"].ToString(),
-                
-                };
-                lsbPublicaciones.Items.Add(row);
+                lsbPublicaciones.Items.Add(lector["descripcion"]);
             }
         }
         
@@ -50,7 +50,7 @@ namespace PalcoNet.Abm_Grado
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query = " SELECT descripcion FROM PEAKY_BLINDERS.publicaciones"
+            string query = " SELECT ISNULL(descripcion, 'Sin descripción' FROM PEAKY_BLINDERS.publicaciones"
                 + " WHERE descripcion LIKE '%" + txtDescripcion.Text + "%'";
             gestor.consulta(query);
             this.mostrarRegistros(gestor.obtenerRegistros());
