@@ -1,6 +1,6 @@
 ﻿namespace PalcoNet.Abm_Grado
 {
-    partial class FormABMGrado
+    partial class dgvPublicaciones
     {
         /// <summary>
         /// Required designer variable.
@@ -38,6 +38,7 @@
             this.rbnBaja = new System.Windows.Forms.RadioButton();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -131,6 +132,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtDescripcion);
             this.groupBox1.Controls.Add(this.btnFiltrar);
             this.groupBox1.Location = new System.Drawing.Point(222, 25);
             this.groupBox1.Name = "groupBox1";
@@ -138,6 +140,13 @@
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(7, 20);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(189, 20);
+            this.txtDescripcion.TabIndex = 1;
             // 
             // btnFiltrar
             // 
@@ -147,8 +156,9 @@
             this.btnFiltrar.TabIndex = 0;
             this.btnFiltrar.Text = "FILTRAR";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
             // 
-            // FormABMGrado
+            // dgvPublicaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -164,10 +174,12 @@
             this.Controls.Add(this.lblPublicaciones);
             this.Controls.Add(this.lsbPublicaciones);
             this.MaximizeBox = false;
-            this.Name = "FormABMGrado";
+            this.Name = "dgvPublicaciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
+            this.Load += new System.EventHandler(this.FormABMGrado_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,6 +198,7 @@
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.TextBox txtDescripcion;
 
     }
 }
