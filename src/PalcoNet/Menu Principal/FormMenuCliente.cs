@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
+using PalcoNet.funciones_utiles;
 using PalcoNet.Login;
 using PalcoNet.ABM_Usuario;
 
@@ -19,6 +21,30 @@ namespace PalcoNet.Menu_Principal
         {
             InitializeComponent();
         }
+
+        // Metodos auxiliares
+
+        private void mostrarPublicaciones(SqlDataReader lector)
+        {
+            while (lector.Read())
+            {
+                ListViewItem item = new ListViewItem(lector["descripcion"].ToString());
+                lsvPublicaciones.Items.Add(item);
+            }
+        }
+
+        private void mostrarCategorias(SqlDataReader lector)
+        {
+            int i = 0;
+            while (lector.Read())
+            {
+                clbCategorias.Items.Add(lector["descripcion"]);
+                clbCategorias.SetItemChecked(i, true);
+                i++;
+            }
+        }
+
+        // -------------------
 
         private void btnConfiguración_Click(object sender, EventArgs e)
         {
@@ -32,6 +58,32 @@ namespace PalcoNet.Menu_Principal
             FormLogin formLogin = new FormLogin();
             this.Hide();
             formLogin.Show();
+        }
+
+        private void FormMenuCliente_Load(object sender, EventArgs e)
+        {
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            string query_publicaciones = "SELECT ISNULL(descripcion, '---') AS descripcion FROM PEAKY_BLINDERS.publicaciones";
+            gestor.consulta(query_publicaciones);
+            this.mostrarPublicaciones(gestor.obtenerRegistros());
+            gestor.desconectar();
+            gestor.conectar();
+            string query_categorias = "SELECT descripcion FROM PEAKY_BLINDERS.rubros";
+            gestor.consulta(query_categorias);
+            this.mostrarCategorias(gestor.obtenerRegistros());
+            gestor.desconectar();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtDescripcion.Text = "";
+            mcrDesde.SetDate(DateTime.Today);
+            mcrHasta.SetDate(DateTime.Today);
+            for (int i = 0; i < clbCategorias.Items.Count; i++)
+            {
+                clbCategorias.SetItemChecked(i, false);
+            }
         }
     }
 }

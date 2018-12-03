@@ -45,7 +45,8 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.lsbEspectaculos = new System.Windows.Forms.ListBox();
+            this.lsvPublicaciones = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -198,6 +199,7 @@
             this.btnLimpiar.TabIndex = 8;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // label1
             // 
@@ -209,30 +211,37 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "ESPECTÁCULOS DISPONIBLES";
             // 
-            // lsbEspectaculos
+            // lsvPublicaciones
             // 
-            this.lsbEspectaculos.FormattingEnabled = true;
-            this.lsbEspectaculos.Location = new System.Drawing.Point(11, 28);
-            this.lsbEspectaculos.Name = "lsbEspectaculos";
-            this.lsbEspectaculos.Size = new System.Drawing.Size(312, 329);
-            this.lsbEspectaculos.TabIndex = 13;
+            this.lsvPublicaciones.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this.lsvPublicaciones.Location = new System.Drawing.Point(12, 28);
+            this.lsvPublicaciones.Name = "lsvPublicaciones";
+            this.lsvPublicaciones.Size = new System.Drawing.Size(311, 327);
+            this.lsvPublicaciones.TabIndex = 20;
+            this.lsvPublicaciones.UseCompatibleStateImageBehavior = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "DESCRIPCIÓN";
             // 
             // FormMenuCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 492);
+            this.Controls.Add(this.lsvPublicaciones);
             this.Controls.Add(this.btnConfiguración);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lsbEspectaculos);
             this.MaximizeBox = false;
             this.Name = "FormMenuCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
+            this.Load += new System.EventHandler(this.FormMenuCliente_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -260,7 +269,8 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lsbEspectaculos;
+        private System.Windows.Forms.ListView lsvPublicaciones;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
 
     }
 }
