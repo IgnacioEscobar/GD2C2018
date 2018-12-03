@@ -31,7 +31,7 @@
             this.btnConfiguración = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnHistorial = new System.Windows.Forms.Button();
-            this.btnPuntos = new System.Windows.Forms.Button();
+            this.btnAdministracionPuntos = new System.Windows.Forms.Button();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -63,7 +63,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnHistorial);
-            this.groupBox2.Controls.Add(this.btnPuntos);
+            this.groupBox2.Controls.Add(this.btnAdministracionPuntos);
             this.groupBox2.Location = new System.Drawing.Point(12, 411);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(533, 71);
@@ -80,14 +80,15 @@
             this.btnHistorial.UseVisualStyleBackColor = true;
             this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
-            // btnPuntos
+            // btnAdministracionPuntos
             // 
-            this.btnPuntos.Location = new System.Drawing.Point(272, 19);
-            this.btnPuntos.Name = "btnPuntos";
-            this.btnPuntos.Size = new System.Drawing.Size(255, 44);
-            this.btnPuntos.TabIndex = 7;
-            this.btnPuntos.Text = "ADMINISTRACIÓN DE PUNTOS";
-            this.btnPuntos.UseVisualStyleBackColor = true;
+            this.btnAdministracionPuntos.Location = new System.Drawing.Point(272, 19);
+            this.btnAdministracionPuntos.Name = "btnAdministracionPuntos";
+            this.btnAdministracionPuntos.Size = new System.Drawing.Size(255, 44);
+            this.btnAdministracionPuntos.TabIndex = 7;
+            this.btnAdministracionPuntos.Text = "ADMINISTRACIÓN DE PUNTOS";
+            this.btnAdministracionPuntos.UseVisualStyleBackColor = true;
+            this.btnAdministracionPuntos.Click += new System.EventHandler(this.btnAdministracionPuntos_Click);
             // 
             // lklCerrarSesion
             // 
@@ -251,7 +252,7 @@
         private System.Windows.Forms.Button btnConfiguración;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnHistorial;
-        private System.Windows.Forms.Button btnPuntos;
+        private System.Windows.Forms.Button btnAdministracionPuntos;
         private System.Windows.Forms.LinkLabel lklCerrarSesion;
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.GroupBox groupBox1;

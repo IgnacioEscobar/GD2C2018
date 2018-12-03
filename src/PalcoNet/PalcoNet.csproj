@@ -108,6 +108,12 @@
     <Compile Include="Canje Puntos\FormPuntos.Designer.cs">
       <DependentUpon>FormPuntos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprar\FormAdministracionDePuntos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar\FormAdministracionDePuntos.Designer.cs">
+      <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
+    </Compile>
     <Compile Include="DB_Espectaculos.cs" />
     <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
@@ -234,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Canje Puntos\FormPuntos.resx">
       <DependentUpon>FormPuntos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar\FormAdministracionDePuntos.resx">
+      <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormPagar.resx">
       <DependentUpon>FormPagar.cs</DependentUpon>

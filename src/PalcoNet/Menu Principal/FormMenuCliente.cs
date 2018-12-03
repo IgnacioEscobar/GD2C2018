@@ -13,6 +13,7 @@ using PalcoNet.funciones_utiles;
 using PalcoNet.Login;
 using PalcoNet.ABM_Usuario;
 using PalcoNet.Historial_Cliente;
+using PalcoNet.Comprar;
 
 namespace PalcoNet.Menu_Principal
 {
@@ -110,5 +111,13 @@ namespace PalcoNet.Menu_Principal
             this.Hide();
             formHistorialCliente.Show();
         }
+
+        private void btnAdministracionPuntos_Click(object sender, EventArgs e)
+        {
+            FormAdministracionDePuntos formAdministracionDePuntos = new FormAdministracionDePuntos(userID);
+            this.Hide();
+            formAdministracionDePuntos.Show();
+        }
+
     }
 }
