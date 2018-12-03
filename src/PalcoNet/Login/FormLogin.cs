@@ -71,22 +71,20 @@ namespace PalcoNet
                 int result = gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
 
-                int userID = 0;                
-                if (result == 1) {
-                    userID = Convert.ToInt32(gestor.obtenerValor("@id"));
-                }
-
-                if (result == 2)
+                if (result == -1)
                 {
                     lblError.Text = "El usuario es inválido";
                 }
                 else
                 {
-                    if (result == 1)
+                    if (result == 0)
                     {
-                        /*
-                         * Traer roles asignados
-                         */
+                        lblError.Text = "La contraseña es inválida";
+                    }
+                    else if (result == 1)
+                    {
+                        int userID = Convert.ToInt32(gestor.obtenerValor("@id"));
+
                         gestor.conectar();
                         string query = "SELECT COUNT(*) AS cant_roles " +
                             "FROM PEAKY_BLINDERS.roles_por_usuario " +
@@ -154,9 +152,14 @@ namespace PalcoNet
                                 break;
                         }
                     }
-                    else
+                    else if (result == 2)
                     {
                         lblError.Text = "La contraseña es inválida";
+                        MessageBox.Show("Su cuenta ha sido inhabilitada por realizar 3 intentos incorrectos, comúniquese con un administrador", "ALERTA");
+                    }
+                    else
+                    {
+                        lblError.Text = "Ha realizado 3 intentos fallidos, el usuario se encuentra inhabilitado";
                     }
                 }
             }
