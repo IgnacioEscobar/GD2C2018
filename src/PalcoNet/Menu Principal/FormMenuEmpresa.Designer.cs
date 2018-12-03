@@ -45,6 +45,7 @@
             this.btnGenerarPublicacion.TabIndex = 21;
             this.btnGenerarPublicacion.Text = "GENERAR PUBLICACIÓN";
             this.btnGenerarPublicacion.UseVisualStyleBackColor = true;
+            this.btnGenerarPublicacion.Click += new System.EventHandler(this.btnGenerarPublicacion_Click);
             // 
             // groupBox1
             // 

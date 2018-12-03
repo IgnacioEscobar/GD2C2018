@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using PalcoNet.Login;
 using PalcoNet.funciones_utiles;
 using PalcoNet.ABM_Usuario;
+using PalcoNet.Generar_Publicacion;
 
 namespace PalcoNet.Menu_Principal
 {
@@ -74,6 +75,13 @@ namespace PalcoNet.Menu_Principal
             FormMiUsuario formMiUsuario = new FormMiUsuario(userID, false, true);
             this.Hide();
             formMiUsuario.Show();
+        }
+
+        private void btnGenerarPublicacion_Click(object sender, EventArgs e)
+        {
+            FormGenerarPublicacion formGenerarPublicacion = new FormGenerarPublicacion(userID);
+            this.Hide();
+            formGenerarPublicacion.Show();
         }
 
     }

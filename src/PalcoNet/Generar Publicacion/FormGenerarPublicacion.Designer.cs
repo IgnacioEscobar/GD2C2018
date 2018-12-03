@@ -58,6 +58,8 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAgregarFecha = new System.Windows.Forms.Button();
+            this.lsvFechaHora = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHora)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinuto)).BeginInit();
@@ -203,7 +205,7 @@
             this.groupBox3.Controls.Add(this.txtLocalidad);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.txtCalle);
-            this.groupBox3.Location = new System.Drawing.Point(12, 108);
+            this.groupBox3.Location = new System.Drawing.Point(12, 218);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(401, 97);
             this.groupBox3.TabIndex = 24;
@@ -279,7 +281,7 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.cmbRubros);
-            this.groupBox5.Location = new System.Drawing.Point(12, 211);
+            this.groupBox5.Location = new System.Drawing.Point(12, 321);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(262, 49);
             this.groupBox5.TabIndex = 25;
@@ -298,7 +300,7 @@
             // 
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.txtPrecio);
-            this.groupBox4.Location = new System.Drawing.Point(280, 211);
+            this.groupBox4.Location = new System.Drawing.Point(280, 321);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(133, 49);
             this.groupBox4.TabIndex = 26;
@@ -324,7 +326,7 @@
             // 
             // btnPublicar
             // 
-            this.btnPublicar.Location = new System.Drawing.Point(12, 266);
+            this.btnPublicar.Location = new System.Drawing.Point(12, 376);
             this.btnPublicar.Name = "btnPublicar";
             this.btnPublicar.Size = new System.Drawing.Size(401, 42);
             this.btnPublicar.TabIndex = 27;
@@ -333,7 +335,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(12, 314);
+            this.btnGuardar.Location = new System.Drawing.Point(12, 424);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(238, 42);
             this.btnGuardar.TabIndex = 28;
@@ -342,7 +344,7 @@
             // 
             // btnFinalizar
             // 
-            this.btnFinalizar.Location = new System.Drawing.Point(256, 314);
+            this.btnFinalizar.Location = new System.Drawing.Point(256, 424);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(157, 42);
             this.btnFinalizar.TabIndex = 29;
@@ -351,18 +353,39 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(12, 363);
+            this.btnCancelar.Location = new System.Drawing.Point(12, 473);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(401, 23);
             this.btnCancelar.TabIndex = 30;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAgregarFecha
+            // 
+            this.btnAgregarFecha.Location = new System.Drawing.Point(280, 108);
+            this.btnAgregarFecha.Name = "btnAgregarFecha";
+            this.btnAgregarFecha.Size = new System.Drawing.Size(133, 104);
+            this.btnAgregarFecha.TabIndex = 31;
+            this.btnAgregarFecha.Text = "AGREGAR FECHA";
+            this.btnAgregarFecha.UseVisualStyleBackColor = true;
+            // 
+            // lsvFechaHora
+            // 
+            this.lsvFechaHora.Location = new System.Drawing.Point(12, 108);
+            this.lsvFechaHora.Name = "lsvFechaHora";
+            this.lsvFechaHora.Size = new System.Drawing.Size(262, 104);
+            this.lsvFechaHora.TabIndex = 32;
+            this.lsvFechaHora.UseCompatibleStateImageBehavior = false;
             // 
             // FormGenerarPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 399);
+            this.CancelButton = this.btnCancelar;
+            this.ClientSize = new System.Drawing.Size(427, 508);
+            this.Controls.Add(this.lsvFechaHora);
+            this.Controls.Add(this.btnAgregarFecha);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnFinalizar);
             this.Controls.Add(this.btnGuardar);
@@ -426,6 +449,8 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnFinalizar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAgregarFecha;
+        private System.Windows.Forms.ListView lsvFechaHora;
 
 
     }

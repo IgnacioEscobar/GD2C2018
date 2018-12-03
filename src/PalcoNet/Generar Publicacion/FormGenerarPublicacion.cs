@@ -10,14 +10,18 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
+using PalcoNet.Menu_Principal;
 
 namespace PalcoNet.Generar_Publicacion
 {
     public partial class FormGenerarPublicacion : Form
     {
-        public FormGenerarPublicacion()
+        int userID;
+
+        public FormGenerarPublicacion(int userID)
         {
             InitializeComponent();
+            this.userID = userID;
         }
 
         private void mostrarRegistros(SqlDataReader lector)
@@ -33,12 +37,24 @@ namespace PalcoNet.Generar_Publicacion
             GeneradorDeFechas generador = new GeneradorDeFechas();
             generador.completar(cmbDia, cmbMes, cmbAno);
 
+            lsvFechaHora.View = View.Details;
+            lsvFechaHora.Columns.Add("FECHA");
+            lsvFechaHora.Columns.Add("HORA");
+            lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.consulta("SELECT descripcion FROM PEAKY_BLINDERS.rubros");
             gestor.ejecutarStoredProcedure();
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            FormMenuEmpresa formMenuEmpresa = new FormMenuEmpresa(userID);
+            this.Hide();
+            formMenuEmpresa.Show();
         }
 
     }
