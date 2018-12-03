@@ -46,7 +46,6 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lsvPublicaciones = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -213,17 +212,13 @@
             // 
             // lsvPublicaciones
             // 
-            this.lsvPublicaciones.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+            this.lsvPublicaciones.FullRowSelect = true;
             this.lsvPublicaciones.Location = new System.Drawing.Point(12, 28);
+            this.lsvPublicaciones.MultiSelect = false;
             this.lsvPublicaciones.Name = "lsvPublicaciones";
             this.lsvPublicaciones.Size = new System.Drawing.Size(311, 327);
             this.lsvPublicaciones.TabIndex = 20;
             this.lsvPublicaciones.UseCompatibleStateImageBehavior = false;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "DESCRIPCIÓN";
             // 
             // FormMenuCliente
             // 
@@ -270,7 +265,6 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView lsvPublicaciones;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
 
     }
 }

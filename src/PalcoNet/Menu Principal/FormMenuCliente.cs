@@ -26,11 +26,21 @@ namespace PalcoNet.Menu_Principal
 
         private void mostrarPublicaciones(SqlDataReader lector)
         {
+            lsvPublicaciones.View = View.Details;
+            lsvPublicaciones.Columns.Add("DESCRIPCIÓN");
+            lsvPublicaciones.Columns.Add("STOCK");
+            lsvPublicaciones.Columns.Add("FECHA");
+            lsvPublicaciones.Columns.Add("HORA");
             while (lector.Read())
             {
                 ListViewItem item = new ListViewItem(lector["descripcion"].ToString());
+                item.SubItems.Add(lector["stock"].ToString());
+                DateTime fecha_hora = DateTime.Parse(lector["fecha_hora"].ToString());
+                item.SubItems.Add(fecha_hora.ToShortDateString());
+                item.SubItems.Add(fecha_hora.ToShortTimeString());
                 lsvPublicaciones.Items.Add(item);
             }
+            lsvPublicaciones.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void mostrarCategorias(SqlDataReader lector)
@@ -64,7 +74,11 @@ namespace PalcoNet.Menu_Principal
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query_publicaciones = "SELECT ISNULL(descripcion, '---') AS descripcion FROM PEAKY_BLINDERS.publicaciones";
+            string query_publicaciones = "SELECT ISNULL(PU.descripcion, '---') AS descripcion, " +
+                "ISNULL(PU.stock, 0) AS stock, " +
+                "PR.fecha_hora " +
+                "FROM PEAKY_BLINDERS.publicaciones PU " +
+                    "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion";
             gestor.consulta(query_publicaciones);
             this.mostrarPublicaciones(gestor.obtenerRegistros());
             gestor.desconectar();
