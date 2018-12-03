@@ -78,6 +78,7 @@
             this.btnHistorial.TabIndex = 6;
             this.btnHistorial.Text = "HISTORIAL DE COMPRAS";
             this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
             // btnPuntos
             // 

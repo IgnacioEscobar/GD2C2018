@@ -1,6 +1,6 @@
 ﻿namespace PalcoNet.Historial_Cliente
 {
-    partial class FormHistorial
+    partial class FormHistorialCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -30,12 +30,15 @@
         {
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnMenuPrincipal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvHistorial
             // 
+            this.dgvHistorial.AllowUserToAddRows = false;
+            this.dgvHistorial.AllowUserToDeleteRows = false;
+            this.dgvHistorial.AllowUserToResizeRows = false;
             this.dgvHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHistorial.Location = new System.Drawing.Point(13, 41);
@@ -53,24 +56,29 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "HISTORIAL DE COMPRAS";
             // 
-            // button1
+            // btnMenuPrincipal
             // 
-            this.button1.Location = new System.Drawing.Point(481, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(197, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "MENÚ PRINCIPAL";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(481, 12);
+            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(197, 23);
+            this.btnMenuPrincipal.TabIndex = 2;
+            this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
+            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
             // 
-            // FormHistorial
+            // FormHistorialCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(690, 600);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvHistorial);
-            this.Name = "FormHistorial";
+            this.MaximizeBox = false;
+            this.Name = "FormHistorialCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormHistorial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).EndInit();
@@ -83,6 +91,6 @@
 
         private System.Windows.Forms.DataGridView dgvHistorial;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMenuPrincipal;
     }
 }

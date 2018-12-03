@@ -88,6 +88,9 @@
             // 
             // dgvPublicaciones
             // 
+            this.dgvPublicaciones.AllowUserToAddRows = false;
+            this.dgvPublicaciones.AllowUserToDeleteRows = false;
+            this.dgvPublicaciones.AllowUserToResizeRows = false;
             this.dgvPublicaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPublicaciones.Location = new System.Drawing.Point(12, 28);

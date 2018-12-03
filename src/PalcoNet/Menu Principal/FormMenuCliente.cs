@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using PalcoNet.funciones_utiles;
 using PalcoNet.Login;
 using PalcoNet.ABM_Usuario;
+using PalcoNet.Historial_Cliente;
 
 namespace PalcoNet.Menu_Principal
 {
@@ -101,6 +102,13 @@ namespace PalcoNet.Menu_Principal
             {
                 clbCategorias.SetItemChecked(i, false);
             }
+        }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            FormHistorialCliente formHistorialCliente = new FormHistorialCliente(userID);
+            this.Hide();
+            formHistorialCliente.Show();
         }
     }
 }
