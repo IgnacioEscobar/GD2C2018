@@ -16,23 +16,35 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroEmpresa : Form
     {
-        bool abm;
-        bool modif;
+        int userID; // si es registro desde login viene -1
+        bool abm; // si viene del ABM
+        bool modif; // si viene por modificar o por agregar
         string query;
         string empresaID;
 
         public FormRegistroEmpresa(bool abm)
         {
             InitializeComponent();
+            this.userID = -1;
             this.abm = abm;
             this.modif = false;
             this.query = "";
         }
 
-        public FormRegistroEmpresa(string query)
+        public FormRegistroEmpresa(int userID, bool abm)
+        {
+            InitializeComponent();
+            this.userID = userID;
+            this.abm = abm;
+            this.modif = false;
+            this.query = "";
+        }
+
+        public FormRegistroEmpresa(int userID, string query)
         {
 
             InitializeComponent();
+            this.userID = userID;
             this.abm = true;
             this.modif = true;
             this.query = query;
@@ -67,7 +79,7 @@ namespace PalcoNet.Registro_de_Usuario
             Form formDestino;
             if (abm)
             {
-                formDestino = new FormABMEmpresa();
+                formDestino = new FormABMEmpresa(userID);
             }
             else
             {
@@ -130,7 +142,7 @@ namespace PalcoNet.Registro_de_Usuario
                 Form formDestino;
                 if (abm)
                 {
-                    formDestino = new FormABMEmpresa();
+                    formDestino = new FormABMEmpresa(userID);
                 }
                 else
                 {

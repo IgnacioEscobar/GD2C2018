@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSalir = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.btnPanelDeControl = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -46,14 +47,16 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnSalir
+            // btnPanelDeControl
             // 
-            this.btnSalir.Location = new System.Drawing.Point(591, 455);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(211, 44);
-            this.btnSalir.TabIndex = 14;
-            this.btnSalir.Text = "SALIR";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnPanelDeControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnPanelDeControl.Location = new System.Drawing.Point(591, 455);
+            this.btnPanelDeControl.Name = "btnPanelDeControl";
+            this.btnPanelDeControl.Size = new System.Drawing.Size(211, 44);
+            this.btnPanelDeControl.TabIndex = 14;
+            this.btnPanelDeControl.Text = "PANEL DE CONTROL";
+            this.btnPanelDeControl.UseVisualStyleBackColor = true;
+            this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
             // 
             // btnEliminar
             // 
@@ -92,6 +95,14 @@
             this.dgvEmpresas.AllowUserToOrderColumns = true;
             this.dgvEmpresas.AllowUserToResizeRows = false;
             this.dgvEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmpresas.Location = new System.Drawing.Point(12, 90);
             this.dgvEmpresas.MultiSelect = false;
@@ -191,9 +202,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnPanelDeControl;
             this.ClientSize = new System.Drawing.Size(814, 511);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnPanelDeControl);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
@@ -211,7 +223,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnPanelDeControl;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnAgregar;

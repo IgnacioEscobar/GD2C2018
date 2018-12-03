@@ -56,6 +56,7 @@
             this.lklCerrarSesion.TabIndex = 13;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
             // label1
             // 
@@ -125,6 +126,7 @@
             this.btnGrados.TabIndex = 5;
             this.btnGrados.Text = "GRADOS";
             this.btnGrados.UseVisualStyleBackColor = true;
+            this.btnGrados.Click += new System.EventHandler(this.btnGrados_Click);
             // 
             // btnCategorias
             // 
@@ -134,6 +136,7 @@
             this.btnCategorias.TabIndex = 4;
             this.btnCategorias.Text = "CATEGORÍAS";
             this.btnCategorias.UseVisualStyleBackColor = true;
+            this.btnCategorias.Click += new System.EventHandler(this.btnCategorias_Click);
             // 
             // groupBox1
             // 
@@ -156,6 +159,7 @@
             this.btnEmpresas.TabIndex = 2;
             this.btnEmpresas.Text = "EMPRESAS";
             this.btnEmpresas.UseVisualStyleBackColor = true;
+            this.btnEmpresas.Click += new System.EventHandler(this.btnEmpresas_Click);
             // 
             // btnClientes
             // 
@@ -165,6 +169,7 @@
             this.btnClientes.TabIndex = 1;
             this.btnClientes.Text = "CLIENTES";
             this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // btnUsuarios
             // 
@@ -174,6 +179,7 @@
             this.btnUsuarios.TabIndex = 0;
             this.btnUsuarios.Text = "CUENTAS DE USUARIO";
             this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // btnRoles
             // 
@@ -183,6 +189,7 @@
             this.btnRoles.TabIndex = 3;
             this.btnRoles.Text = "ROLES";
             this.btnRoles.UseVisualStyleBackColor = true;
+            this.btnRoles.Click += new System.EventHandler(this.btnRoles_Click);
             // 
             // FormMenuAdministrador
             // 
@@ -194,7 +201,9 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
             this.Name = "FormMenuAdministrador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

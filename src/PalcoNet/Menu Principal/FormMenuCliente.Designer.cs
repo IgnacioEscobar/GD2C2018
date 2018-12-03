@@ -31,7 +31,7 @@
             this.btnConfiguración = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnHistorial = new System.Windows.Forms.Button();
-            this.btnPuntos = new System.Windows.Forms.Button();
+            this.btnAdministracionPuntos = new System.Windows.Forms.Button();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -45,7 +45,7 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.lsbEspectaculos = new System.Windows.Forms.ListBox();
+            this.lsvPublicaciones = new System.Windows.Forms.ListView();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -58,11 +58,12 @@
             this.btnConfiguración.TabIndex = 15;
             this.btnConfiguración.Text = "CONFIGURACIÓN DE CUENTA";
             this.btnConfiguración.UseVisualStyleBackColor = true;
+            this.btnConfiguración.Click += new System.EventHandler(this.btnConfiguración_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnHistorial);
-            this.groupBox2.Controls.Add(this.btnPuntos);
+            this.groupBox2.Controls.Add(this.btnAdministracionPuntos);
             this.groupBox2.Location = new System.Drawing.Point(12, 411);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(533, 71);
@@ -77,15 +78,17 @@
             this.btnHistorial.TabIndex = 6;
             this.btnHistorial.Text = "HISTORIAL DE COMPRAS";
             this.btnHistorial.UseVisualStyleBackColor = true;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
-            // btnPuntos
+            // btnAdministracionPuntos
             // 
-            this.btnPuntos.Location = new System.Drawing.Point(272, 19);
-            this.btnPuntos.Name = "btnPuntos";
-            this.btnPuntos.Size = new System.Drawing.Size(255, 44);
-            this.btnPuntos.TabIndex = 7;
-            this.btnPuntos.Text = "ADMINISTRACIÓN DE PUNTOS";
-            this.btnPuntos.UseVisualStyleBackColor = true;
+            this.btnAdministracionPuntos.Location = new System.Drawing.Point(272, 19);
+            this.btnAdministracionPuntos.Name = "btnAdministracionPuntos";
+            this.btnAdministracionPuntos.Size = new System.Drawing.Size(255, 44);
+            this.btnAdministracionPuntos.TabIndex = 7;
+            this.btnAdministracionPuntos.Text = "ADMINISTRACIÓN DE PUNTOS";
+            this.btnAdministracionPuntos.UseVisualStyleBackColor = true;
+            this.btnAdministracionPuntos.Click += new System.EventHandler(this.btnAdministracionPuntos_Click);
             // 
             // lklCerrarSesion
             // 
@@ -96,6 +99,7 @@
             this.lklCerrarSesion.TabIndex = 18;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
             // btnSeleccionar
             // 
@@ -196,6 +200,7 @@
             this.btnLimpiar.TabIndex = 8;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // label1
             // 
@@ -207,28 +212,33 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "ESPECTÁCULOS DISPONIBLES";
             // 
-            // lsbEspectaculos
+            // lsvPublicaciones
             // 
-            this.lsbEspectaculos.FormattingEnabled = true;
-            this.lsbEspectaculos.Location = new System.Drawing.Point(11, 28);
-            this.lsbEspectaculos.Name = "lsbEspectaculos";
-            this.lsbEspectaculos.Size = new System.Drawing.Size(312, 329);
-            this.lsbEspectaculos.TabIndex = 13;
+            this.lsvPublicaciones.FullRowSelect = true;
+            this.lsvPublicaciones.Location = new System.Drawing.Point(12, 28);
+            this.lsvPublicaciones.MultiSelect = false;
+            this.lsvPublicaciones.Name = "lsvPublicaciones";
+            this.lsvPublicaciones.Size = new System.Drawing.Size(311, 327);
+            this.lsvPublicaciones.TabIndex = 20;
+            this.lsvPublicaciones.UseCompatibleStateImageBehavior = false;
             // 
             // FormMenuCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 492);
+            this.Controls.Add(this.lsvPublicaciones);
             this.Controls.Add(this.btnConfiguración);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lsbEspectaculos);
+            this.MaximizeBox = false;
             this.Name = "FormMenuCliente";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
+            this.Load += new System.EventHandler(this.FormMenuCliente_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -242,7 +252,7 @@
         private System.Windows.Forms.Button btnConfiguración;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnHistorial;
-        private System.Windows.Forms.Button btnPuntos;
+        private System.Windows.Forms.Button btnAdministracionPuntos;
         private System.Windows.Forms.LinkLabel lklCerrarSesion;
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -256,7 +266,7 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lsbEspectaculos;
+        private System.Windows.Forms.ListView lsvPublicaciones;
 
     }
 }

@@ -31,9 +31,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.clbFuncionalidades = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.ckbActivo = new System.Windows.Forms.CheckBox();
+            this.ckbHabilitado = new System.Windows.Forms.CheckBox();
             this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnPanelDeControl = new System.Windows.Forms.Button();
             this.btnAplicar = new System.Windows.Forms.Button();
             this.lsbRoles = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
@@ -43,9 +43,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Roles:";
+            this.label1.Text = "ROLES";
             // 
             // clbFuncionalidades
             // 
@@ -54,26 +54,25 @@
             this.clbFuncionalidades.Name = "clbFuncionalidades";
             this.clbFuncionalidades.Size = new System.Drawing.Size(203, 184);
             this.clbFuncionalidades.TabIndex = 3;
-            this.clbFuncionalidades.SelectedIndexChanged += new System.EventHandler(this.clbFuncionalidades_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(221, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 13);
+            this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Funcionalidades activas:";
+            this.label2.Text = "FUNCIONALIDADES";
             // 
-            // ckbActivo
+            // ckbHabilitado
             // 
-            this.ckbActivo.AutoSize = true;
-            this.ckbActivo.Location = new System.Drawing.Point(15, 215);
-            this.ckbActivo.Name = "ckbActivo";
-            this.ckbActivo.Size = new System.Drawing.Size(90, 17);
-            this.ckbActivo.TabIndex = 5;
-            this.ckbActivo.Text = "ROL ACTIVO";
-            this.ckbActivo.UseVisualStyleBackColor = true;
+            this.ckbHabilitado.AutoSize = true;
+            this.ckbHabilitado.Location = new System.Drawing.Point(15, 215);
+            this.ckbHabilitado.Name = "ckbHabilitado";
+            this.ckbHabilitado.Size = new System.Drawing.Size(115, 17);
+            this.ckbHabilitado.TabIndex = 5;
+            this.ckbHabilitado.Text = "ROL HABILITADO";
+            this.ckbHabilitado.UseVisualStyleBackColor = true;
             // 
             // btnSeleccionar
             // 
@@ -85,14 +84,16 @@
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
-            // btnCancelar
+            // btnPanelDeControl
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(12, 245);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(203, 44);
-            this.btnCancelar.TabIndex = 9;
-            this.btnCancelar.Text = "CANCELAR";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnPanelDeControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnPanelDeControl.Location = new System.Drawing.Point(12, 245);
+            this.btnPanelDeControl.Name = "btnPanelDeControl";
+            this.btnPanelDeControl.Size = new System.Drawing.Size(203, 44);
+            this.btnPanelDeControl.TabIndex = 9;
+            this.btnPanelDeControl.Text = "PANEL DE CONTROL";
+            this.btnPanelDeControl.UseVisualStyleBackColor = true;
+            this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
             // 
             // btnAplicar
             // 
@@ -116,12 +117,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnPanelDeControl;
             this.ClientSize = new System.Drawing.Size(436, 301);
             this.Controls.Add(this.lsbRoles);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnPanelDeControl);
             this.Controls.Add(this.btnAplicar);
             this.Controls.Add(this.btnSeleccionar);
-            this.Controls.Add(this.ckbActivo);
+            this.Controls.Add(this.ckbHabilitado);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.clbFuncionalidades);
             this.Controls.Add(this.label1);
@@ -140,9 +142,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox clbFuncionalidades;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox ckbActivo;
+        private System.Windows.Forms.CheckBox ckbHabilitado;
         private System.Windows.Forms.Button btnSeleccionar;
-        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnPanelDeControl;
         private System.Windows.Forms.Button btnAplicar;
         private System.Windows.Forms.ListBox lsbRoles;
     }

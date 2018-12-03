@@ -12,14 +12,19 @@ using System.IO;
 using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
+using PalcoNet.Menu_Principal;
 
 namespace PalcoNet.Abm_Rol
 {
     public partial class FormABMRol : Form
     {
-        public FormABMRol()
+        int userID;
+        string rolSeleccionado;
+
+        public FormABMRol(int userID)
         {
             InitializeComponent();
+            this.userID = userID;
         }
 
         private void mostrarRoles(SqlDataReader lector)
@@ -57,7 +62,7 @@ namespace PalcoNet.Abm_Rol
         {
             if (lector.Read())
             {
-                ckbActivo.Checked = Convert.ToBoolean(lector["habilitado"]);
+                ckbHabilitado.Checked = Convert.ToBoolean(lector["habilitado"]);
             }
         }
 
@@ -65,7 +70,7 @@ namespace PalcoNet.Abm_Rol
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT descripcion FROM roles");
+            gestor.consulta("SELECT descripcion FROM PEAKY_BLINDERS.roles");
             this.mostrarRoles(gestor.obtenerRegistros());
             gestor.desconectar();
         }
@@ -74,7 +79,8 @@ namespace PalcoNet.Abm_Rol
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query1 = "SELECT habilitado FROM PEAKY_BLINDERS.roles WHERE descripcion = '" + lsbRoles.SelectedItem.ToString() + "'";
+            rolSeleccionado = lsbRoles.SelectedItem.ToString();
+            string query1 = "SELECT habilitado FROM PEAKY_BLINDERS.roles WHERE descripcion = '" + rolSeleccionado + "'";
             gestor.consulta(query1);
             this.mostrarRolHabilitado(gestor.obtenerRegistros());
             gestor.desconectar();
@@ -95,10 +101,50 @@ namespace PalcoNet.Abm_Rol
 
         private void btnAplicar_Click(object sender, EventArgs e)
         {
+            string mensaje = "Funcionalidades asignadas al rol " + rolSeleccionado + ":";
+            int cant_items = clbFuncionalidades.Items.Count;
+            if (cant_items > 0)
+            {
+                for (int i = 0; i < cant_items; i++)
+                {
+                    if (clbFuncionalidades.GetItemChecked(i))
+                    {
+                        mensaje += "\n - " + clbFuncionalidades.Items[i].ToString().ToUpper();
+                    }
+                }
+            }
+            else
+            {
+                mensaje += "\n SIN FUNCIONALIDADES";
+            }
+            
+            if (ckbHabilitado.Checked)
+            {
+                mensaje += "\n\n Estado del rol: HABILITADO";
+            }
+            else
+            {
+                mensaje += "\n\n Estado del rol: INHABILITADO";
+            }
+           
+            mensaje += "\n\n ¿Confirma los cambios efectuados?";
+
+            DialogResult result = MessageBox.Show(mensaje, "PalcoNet", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                /*
+                 * TRANSACCION
+                 */
+                MessageBox.Show("¡SE PERSISTIERON LOS CAMBIOS! (MENTIRA)", "PalcoNet");
+            }
         }
 
-        private void clbFuncionalidades_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnPanelDeControl_Click(object sender, EventArgs e)
         {
+            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
+            this.Hide();
+            formAbmAdministrador.Show();
         }
 
     }

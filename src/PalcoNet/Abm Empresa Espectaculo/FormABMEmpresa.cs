@@ -11,16 +11,19 @@ using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Registro_de_Usuario;
+using PalcoNet.Menu_Principal;
 
 namespace PalcoNet.Abm_Empresa_Espectaculo
 {
     public partial class FormABMEmpresa : Form
     {
+        int userID;
         string query_defecto = "SELECT razon_social, cuit, mail FROM PEAKY_BLINDERS.empresas";
 
-        public FormABMEmpresa()
+        public FormABMEmpresa(int userID)
         {
             InitializeComponent();
+            this.userID = userID;
         }
 
         // Metodos auxiliares
@@ -122,7 +125,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(true);
+            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(userID, true);
             this.Hide();
             formRegistroEmpresa.Show();
         }
@@ -138,7 +141,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             }
 
             string query = "SELECT * FROM PEAKY_BLINDERS.empresas WHERE cuit = '" + param[1] + "'";
-            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(query);
+            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(userID, query);
             this.Hide();
             formRegistroEmpresa.Show();
         }
@@ -171,6 +174,13 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
                  */
                 MessageBox.Show("¡Empresa eliminada exitosamente! (MENTIRA)");
             }
+        }
+
+        private void btnPanelDeControl_Click(object sender, EventArgs e)
+        {
+            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
+            this.Hide();
+            formAbmAdministrador.Show();
         }
 
     }

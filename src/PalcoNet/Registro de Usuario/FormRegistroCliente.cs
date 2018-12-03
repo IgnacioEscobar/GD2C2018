@@ -16,6 +16,7 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroCliente : Form
     {
+        int userID; // si es registro desde login es -1
         bool abm; // si viene del ABM
         bool modif; // si viene por modificar o por agregar
         string query;
@@ -26,15 +27,25 @@ namespace PalcoNet.Registro_de_Usuario
         public FormRegistroCliente(bool abm)
         {
             InitializeComponent();
+            this.userID = -1;
             this.abm = abm;
             this.modif = false;
             this.numeroTarjeta = "";
         }
 
-        public FormRegistroCliente(string query)
+        public FormRegistroCliente(int userID, bool abm)
         {
-
             InitializeComponent();
+            this.userID = userID;
+            this.abm = abm;
+            this.modif = false;
+            this.numeroTarjeta = "";
+        }
+
+        public FormRegistroCliente(int userID, string query)
+        {
+            InitializeComponent();
+            this.userID = userID;
             this.abm = true;
             this.modif = true;
             this.query = query;
@@ -146,7 +157,7 @@ namespace PalcoNet.Registro_de_Usuario
             Form formDestino;
             if (abm)
             {
-                formDestino = new FormABMCliente();
+                formDestino = new FormABMCliente(userID);
             }
             else
             {
@@ -234,7 +245,7 @@ namespace PalcoNet.Registro_de_Usuario
                 Form formDestino;
                 if (abm)
                 {
-                    formDestino = new FormABMCliente();
+                    formDestino = new FormABMCliente(userID);
                 }
                 else
                 {

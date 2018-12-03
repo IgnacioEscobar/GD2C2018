@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnGenerarPublicacion = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnConfiguración = new System.Windows.Forms.Button();
+            this.btnConfiguracion = new System.Windows.Forms.Button();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvPublicaciones = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicaciones)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btnGenerarPublicacion
             // 
-            this.button1.Location = new System.Drawing.Point(482, 361);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(288, 43);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "GENERAR PUBLICACIÓN";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnGenerarPublicacion.Location = new System.Drawing.Point(482, 361);
+            this.btnGenerarPublicacion.Name = "btnGenerarPublicacion";
+            this.btnGenerarPublicacion.Size = new System.Drawing.Size(288, 43);
+            this.btnGenerarPublicacion.TabIndex = 21;
+            this.btnGenerarPublicacion.Text = "GENERAR PUBLICACIÓN";
+            this.btnGenerarPublicacion.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -55,14 +55,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
             // 
-            // btnConfiguración
+            // btnConfiguracion
             // 
-            this.btnConfiguración.Location = new System.Drawing.Point(482, 410);
-            this.btnConfiguración.Name = "btnConfiguración";
-            this.btnConfiguración.Size = new System.Drawing.Size(288, 43);
-            this.btnConfiguración.TabIndex = 19;
-            this.btnConfiguración.Text = "CONFIGURACIÓN DE CUENTA";
-            this.btnConfiguración.UseVisualStyleBackColor = true;
+            this.btnConfiguracion.Location = new System.Drawing.Point(482, 410);
+            this.btnConfiguracion.Name = "btnConfiguracion";
+            this.btnConfiguracion.Size = new System.Drawing.Size(288, 43);
+            this.btnConfiguracion.TabIndex = 19;
+            this.btnConfiguracion.Text = "CONFIGURACIÓN DE CUENTA";
+            this.btnConfiguracion.UseVisualStyleBackColor = true;
+            this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
             // lklCerrarSesion
             // 
@@ -73,6 +74,7 @@
             this.lklCerrarSesion.TabIndex = 18;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
             // label1
             // 
@@ -86,6 +88,9 @@
             // 
             // dgvPublicaciones
             // 
+            this.dgvPublicaciones.AllowUserToAddRows = false;
+            this.dgvPublicaciones.AllowUserToDeleteRows = false;
+            this.dgvPublicaciones.AllowUserToResizeRows = false;
             this.dgvPublicaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPublicaciones.Location = new System.Drawing.Point(12, 28);
@@ -98,14 +103,17 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 465);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnGenerarPublicacion);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnConfiguración);
+            this.Controls.Add(this.btnConfiguracion);
             this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvPublicaciones);
+            this.MaximizeBox = false;
             this.Name = "FormMenuEmpresa";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
+            this.Load += new System.EventHandler(this.FormMenuEmpresa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -114,9 +122,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGenerarPublicacion;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnConfiguración;
+        private System.Windows.Forms.Button btnConfiguracion;
         private System.Windows.Forms.LinkLabel lklCerrarSesion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvPublicaciones;

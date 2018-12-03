@@ -71,22 +71,20 @@ namespace PalcoNet
                 int result = gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
 
-                int userID = 0;                
-                if (result == 1) {
-                    userID = Convert.ToInt32(gestor.obtenerValor("@id"));
-                }
-
-                if (result == 2)
+                if (result == -1)
                 {
                     lblError.Text = "El usuario es inválido";
                 }
                 else
                 {
-                    if (result == 1)
+                    if (result == 0)
                     {
-                        /*
-                         * Traer roles asignados
-                         */
+                        lblError.Text = "La contraseña es inválida";
+                    }
+                    else if (result == 1)
+                    {
+                        int userID = Convert.ToInt32(gestor.obtenerValor("@id"));
+
                         gestor.conectar();
                         string query = "SELECT COUNT(*) AS cant_roles " +
                             "FROM PEAKY_BLINDERS.roles_por_usuario " +
@@ -105,37 +103,37 @@ namespace PalcoNet
                         switch (cantRolesAsignados)
                         {
                             case 0:
-                                MessageBox.Show("¡Usuario sin roles asignados!");
+                                lblError.Text = "Usuario sin roles asignados";
                                 break;
 
                             case 1:
                                 gestor.conectar();
                                 string query2 = "SELECT R.descripcion FROM PEAKY_BLINDERS.roles R " +
-                                    "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON U.id_rol = RU.id_rol " +
+                                    "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON R.id_rol = RU.id_rol " +
                                     "WHERE RU.id_usuario = '" + userID + "'";
                                 gestor.consulta(query2);
                                 SqlDataReader lector2 = gestor.obtenerRegistros();
                                 if (lector2.Read())
                                 {
-                                    string rolCargado = lector["descripcion"].ToString();
+                                    string rolCargado = lector2["descripcion"].ToString();
                                     Form formDestino;
                                     
                                     switch (rolCargado)
                                     {
                                         case "Cliente":
-                                            formDestino = new FormMenuCliente();
+                                            formDestino = new FormMenuCliente(userID);
                                             this.Hide();
                                             formDestino.Show();
                                             break;
 
                                         case "Empresa":
-                                            formDestino = new FormMenuEmpresa();
+                                            formDestino = new FormMenuEmpresa(userID);
                                             this.Hide();
                                             formDestino.Show();
                                             break;
 
-                                        case "Administrativo":
-                                            formDestino = new FormMenuAdministrador();
+                                        case "Administrador":
+                                            formDestino = new FormMenuAdministrador(userID);
                                             this.Hide();
                                             formDestino.Show();
                                             break;
@@ -154,9 +152,14 @@ namespace PalcoNet
                                 break;
                         }
                     }
-                    else
+                    else if (result == 2)
                     {
                         lblError.Text = "La contraseña es inválida";
+                        MessageBox.Show("Su cuenta ha sido inhabilitada por realizar 3 intentos incorrectos, comúniquese con un administrador", "ALERTA");
+                    }
+                    else
+                    {
+                        lblError.Text = "Ha realizado 3 intentos fallidos, el usuario se encuentra\ninhabilitado";
                     }
                 }
             }

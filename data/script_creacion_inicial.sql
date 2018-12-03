@@ -189,14 +189,15 @@ SET IDENTITY_INSERT PEAKY_BLINDERS.tipos_de_documento OFF;
 -- Roles --
 create table PEAKY_BLINDERS.roles (
   id_rol tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  descripcion varchar(30)
+  descripcion varchar(30),
+  habilitado bit default 1
 );
 
 set IDENTITY_INSERT PEAKY_BLINDERS.roles on;
-insert into PEAKY_BLINDERS.roles (id_rol, descripcion) values
-  (1, 'Empresa'),
-  (2, 'Administrativo'),
-  (3, 'Cliente');
+insert into PEAKY_BLINDERS.roles (id_rol, descripcion, habilitado) values
+  (1, 'Administrativo', 1),
+  (2, 'Cliente', 1),
+  (3, 'Empresa', 1);
 set IDENTITY_INSERT PEAKY_BLINDERS.roles off;
 
 -- Roles x Usuario --

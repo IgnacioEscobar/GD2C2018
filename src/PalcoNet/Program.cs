@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using PalcoNet.Menu_Principal;
+using PalcoNet.Abm_Empresa_Espectaculo;
+using PalcoNet.ABM_Usuario;
 
 namespace PalcoNet
 {
@@ -18,7 +19,7 @@ namespace PalcoNet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMenuCliente());
+            Application.Run(new FormLogin());
         }
     }
 }
