@@ -37,19 +37,19 @@ namespace PalcoNet.Login
 
             if (rbnCliente.Checked)
             {
-                formDestino = new FormMenuCliente();
+                formDestino = new FormMenuCliente(userID);
                 this.Hide();
                 formDestino.Show();
             }
             if (rbnEmpresa.Checked)
             {
-                formDestino = new FormMenuEmpresa();
+                formDestino = new FormMenuEmpresa(userID);
                 this.Hide();
                 formDestino.Show();
             }
             if (rbnAdministrador.Checked)
             {
-                formDestino = new FormMenuAdministrador();
+                formDestino = new FormMenuAdministrador(userID);
                 this.Hide();
                 formDestino.Show();
             }

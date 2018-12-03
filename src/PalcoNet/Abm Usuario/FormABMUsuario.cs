@@ -12,14 +12,18 @@ using System.Data.SqlClient;
 using PalcoNet.funciones_utiles;
 using PalcoNet.Menu_Principal;
 using PalcoNet.Registro_de_Usuario;
+using PalcoNet.ABM_Usuario;
 
 namespace PalcoNet.Abm_Usuario
 {
     public partial class FormABMUsuario : Form
     {
-        public FormABMUsuario()
+        int userID;
+
+        public FormABMUsuario(int userID)
         {
             InitializeComponent();
+            this.userID = userID;
         }
 
         // Metodos auxiliares
@@ -47,6 +51,7 @@ namespace PalcoNet.Abm_Usuario
                 string rolAsignado = lector["descripcion"].ToString();
                 object[] row = new object[]
                 {
+                    lector["id_usuario"].ToString(),
                     lector["nombre_de_usuario"].ToString(),
                     (rolAsignado == "Administrador"),
                     (rolAsignado == "Cliente"),
@@ -61,9 +66,11 @@ namespace PalcoNet.Abm_Usuario
 
         private void FormABMUsuario_Load(object sender, EventArgs e)
         {
-            dgvUsuarios.ColumnCount = 1;
+            dgvUsuarios.ColumnCount = 2;
             dgvUsuarios.ColumnHeadersVisible = true;
-            dgvUsuarios.Columns[0].Name = "NOMBRE DE USUARIO";
+            dgvUsuarios.Columns[0].Name = "ID";
+            dgvUsuarios.Columns[0].Visible = false;
+            dgvUsuarios.Columns[1].Name = "NOMBRE DE USUARIO";
             agregarCheckBoxColumn("ADMINISTRADOR");
             agregarCheckBoxColumn("CLIENTE");
             agregarCheckBoxColumn("EMPRESA");
@@ -72,7 +79,7 @@ namespace PalcoNet.Abm_Usuario
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query = "SELECT U.nombre_de_usuario, R.descripcion, U.habilitado " +
+            string query = "SELECT U.id_usuario, U.nombre_de_usuario, R.descripcion, U.habilitado " +
                 "FROM PEAKY_BLINDERS.usuarios U " +
                     "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON U.id_usuario = RU.id_usuario " +
                     "JOIN PEAKY_BLINDERS.roles R ON RU.id_rol = R.id_rol";
@@ -83,7 +90,7 @@ namespace PalcoNet.Abm_Usuario
 
         private void btnPanelDeControl_Click(object sender, EventArgs e)
         {
-            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador();
+            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
             this.Hide();
             formAbmAdministrador.Show();
         }
@@ -102,6 +109,16 @@ namespace PalcoNet.Abm_Usuario
             FormRegistroComun formRegistroComun = new FormRegistroComun();
             this.Hide();
             formRegistroComun.Show();
+        }
+
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 6)
+            {
+                FormMiUsuario formMiUsuario = new FormMiUsuario(Convert.ToInt32(dgvUsuarios.CurrentRow.Cells[0].Value), userID);
+                this.Hide();
+                formMiUsuario.Show();
+            }
         }
     }
 }

@@ -123,19 +123,19 @@ namespace PalcoNet
                                     switch (rolCargado)
                                     {
                                         case "Cliente":
-                                            formDestino = new FormMenuCliente();
+                                            formDestino = new FormMenuCliente(userID);
                                             this.Hide();
                                             formDestino.Show();
                                             break;
 
                                         case "Empresa":
-                                            formDestino = new FormMenuEmpresa();
+                                            formDestino = new FormMenuEmpresa(userID);
                                             this.Hide();
                                             formDestino.Show();
                                             break;
 
                                         case "Administrador":
-                                            formDestino = new FormMenuAdministrador();
+                                            formDestino = new FormMenuAdministrador(userID);
                                             this.Hide();
                                             formDestino.Show();
                                             break;

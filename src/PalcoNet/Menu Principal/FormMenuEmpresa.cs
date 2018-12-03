@@ -17,9 +17,12 @@ namespace PalcoNet.Menu_Principal
 {
     public partial class FormMenuEmpresa : Form
     {
-        public FormMenuEmpresa()
+        int userID;
+
+        public FormMenuEmpresa(int userID)
         {
             InitializeComponent();
+            this.userID = userID;
         }
 
         // Metodos auxiliares
@@ -68,7 +71,7 @@ namespace PalcoNet.Menu_Principal
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            FormMiUsuario formMiUsuario = new FormMiUsuario();
+            FormMiUsuario formMiUsuario = new FormMiUsuario(userID, false, true);
             this.Hide();
             formMiUsuario.Show();
         }

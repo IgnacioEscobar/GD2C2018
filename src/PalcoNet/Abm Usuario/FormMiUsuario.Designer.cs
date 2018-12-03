@@ -32,12 +32,12 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtPassNueva = new System.Windows.Forms.TextBox();
+            this.btnConfirmar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtPassNueva2 = new System.Windows.Forms.TextBox();
-            this.btnConfirmar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPassNueva = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -85,30 +85,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MODIFICAR CONTRASEÑA";
             // 
-            // label1
+            // btnConfirmar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Contraseña actual";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 59);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Nueva contraseña";
-            // 
-            // txtPassNueva
-            // 
-            this.txtPassNueva.Location = new System.Drawing.Point(6, 75);
-            this.txtPassNueva.Name = "txtPassNueva";
-            this.txtPassNueva.Size = new System.Drawing.Size(261, 20);
-            this.txtPassNueva.TabIndex = 2;
+            this.btnConfirmar.Location = new System.Drawing.Point(6, 140);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(261, 35);
+            this.btnConfirmar.TabIndex = 21;
+            this.btnConfirmar.Text = "CONFIRMAR";
+            this.btnConfirmar.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -126,14 +110,30 @@
             this.txtPassNueva2.Size = new System.Drawing.Size(261, 20);
             this.txtPassNueva2.TabIndex = 4;
             // 
-            // btnConfirmar
+            // label2
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(6, 140);
-            this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(261, 35);
-            this.btnConfirmar.TabIndex = 21;
-            this.btnConfirmar.Text = "CONFIRMAR";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Nueva contraseña";
+            // 
+            // txtPassNueva
+            // 
+            this.txtPassNueva.Location = new System.Drawing.Point(6, 75);
+            this.txtPassNueva.Name = "txtPassNueva";
+            this.txtPassNueva.Size = new System.Drawing.Size(261, 20);
+            this.txtPassNueva.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Contraseña actual";
             // 
             // btnCancelar
             // 
@@ -143,6 +143,7 @@
             this.btnCancelar.TabIndex = 22;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FormMiUsuario
             // 
@@ -157,6 +158,7 @@
             this.Name = "FormMiUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
+            this.Load += new System.EventHandler(this.FormMiUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

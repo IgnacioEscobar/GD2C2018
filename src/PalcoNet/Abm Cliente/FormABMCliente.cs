@@ -17,11 +17,13 @@ namespace PalcoNet.Abm_Cliente
 {
     public partial class FormABMCliente : Form
     {
+        int userID;
         string query_defecto = "SELECT nombre, apellido, numero_de_documento FROM PEAKY_BLINDERS.clientes";
 
-        public FormABMCliente()
+        public FormABMCliente(int userID)
         {
             InitializeComponent();
+            this.userID = userID;
         }
 
         // Metodos auxiliares
@@ -130,7 +132,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(true);
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, true);
             this.Hide();
             formRegistroCliente.Show();
         }
@@ -149,7 +151,7 @@ namespace PalcoNet.Abm_Cliente
                            + "LEFT JOIN PEAKY_BLINDERS.tipos_de_documento T "
                                 + "ON C.id_tipo_de_documento = T.id_tipo_de_documento "
                            + "WHERE C.numero_de_documento = '" + param[2] + "'";
-            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(query);
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, query);
             this.Hide();
             formRegistroCliente.Show();
         }
@@ -186,7 +188,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnPanelDeControl_Click(object sender, EventArgs e)
         {
-            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador();
+            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
             this.Hide();
             formAbmAdministrador.Show();
         }

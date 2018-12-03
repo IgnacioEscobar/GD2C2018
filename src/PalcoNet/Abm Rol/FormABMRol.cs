@@ -18,11 +18,13 @@ namespace PalcoNet.Abm_Rol
 {
     public partial class FormABMRol : Form
     {
+        int userID;
         string rolSeleccionado;
 
-        public FormABMRol()
+        public FormABMRol(int userID)
         {
             InitializeComponent();
+            this.userID = userID;
         }
 
         private void mostrarRoles(SqlDataReader lector)
@@ -140,7 +142,7 @@ namespace PalcoNet.Abm_Rol
 
         private void btnPanelDeControl_Click(object sender, EventArgs e)
         {
-            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador();
+            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
             this.Hide();
             formAbmAdministrador.Show();
         }

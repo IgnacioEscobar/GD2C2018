@@ -19,35 +19,38 @@ namespace PalcoNet.Menu_Principal
 {
     public partial class FormMenuAdministrador : Form
     {
-        public FormMenuAdministrador()
+        int userID;
+
+        public FormMenuAdministrador(int userID)
         {
             InitializeComponent();
+            this.userID = userID;
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            FormABMCliente formABMCliente = new FormABMCliente();
+            FormABMCliente formABMCliente = new FormABMCliente(userID);
             this.Hide();
             formABMCliente.Show();
         }
 
         private void btnEmpresas_Click(object sender, EventArgs e)
         {
-            FormABMEmpresa formABMEmpresa = new FormABMEmpresa();
+            FormABMEmpresa formABMEmpresa = new FormABMEmpresa(userID);
             this.Hide();
             formABMEmpresa.Show();
         }
 
         private void btnRoles_Click(object sender, EventArgs e)
         {
-            FormABMRol formABMRol = new FormABMRol();
+            FormABMRol formABMRol = new FormABMRol(userID);
             this.Hide();
             formABMRol.Show();
         }
 
         private void btnGrados_Click(object sender, EventArgs e)
         {
-            FormABMGrado formABMGrado = new FormABMGrado();
+            FormABMGrado formABMGrado = new FormABMGrado(userID);
             this.Hide();
             formABMGrado.Show();
         }
@@ -61,7 +64,7 @@ namespace PalcoNet.Menu_Principal
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            FormABMUsuario formABMUsuario = new FormABMUsuario();
+            FormABMUsuario formABMUsuario = new FormABMUsuario(userID);
             this.Hide();
             formABMUsuario.Show();
         }
