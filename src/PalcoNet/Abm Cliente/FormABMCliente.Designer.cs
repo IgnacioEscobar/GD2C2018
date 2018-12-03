@@ -86,6 +86,7 @@
             // 
             // btnModificar
             // 
+            this.btnModificar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnModificar.Location = new System.Drawing.Point(591, 166);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(211, 44);
@@ -223,6 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnModificar;
             this.ClientSize = new System.Drawing.Size(814, 511);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnPanelDeControl);

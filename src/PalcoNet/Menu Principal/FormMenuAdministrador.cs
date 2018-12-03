@@ -14,6 +14,7 @@ using PalcoNet.Abm_Empresa_Espectaculo;
 using PalcoNet.Abm_Rol;
 using PalcoNet.Abm_Grado;
 using PalcoNet.Abm_Usuario;
+using PalcoNet.Abm_Rubro;
 
 namespace PalcoNet.Menu_Principal
 {
@@ -67,6 +68,13 @@ namespace PalcoNet.Menu_Principal
             FormABMUsuario formABMUsuario = new FormABMUsuario(userID);
             this.Hide();
             formABMUsuario.Show();
+        }
+
+        private void btnCategorias_Click(object sender, EventArgs e)
+        {
+            FormABMRubro formABMRubro = new FormABMRubro(userID);
+            this.Hide();
+            formABMRubro.Show();
         }
 
     }

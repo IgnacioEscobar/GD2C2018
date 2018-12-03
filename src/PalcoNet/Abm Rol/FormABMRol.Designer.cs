@@ -86,6 +86,7 @@
             // 
             // btnPanelDeControl
             // 
+            this.btnPanelDeControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPanelDeControl.Location = new System.Drawing.Point(12, 245);
             this.btnPanelDeControl.Name = "btnPanelDeControl";
             this.btnPanelDeControl.Size = new System.Drawing.Size(203, 44);
@@ -116,6 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnPanelDeControl;
             this.ClientSize = new System.Drawing.Size(436, 301);
             this.Controls.Add(this.lsbRoles);
             this.Controls.Add(this.btnPanelDeControl);

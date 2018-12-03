@@ -70,6 +70,7 @@
             // 
             // btnPanelDeControl
             // 
+            this.btnPanelDeControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPanelDeControl.Location = new System.Drawing.Point(12, 298);
             this.btnPanelDeControl.Name = "btnPanelDeControl";
             this.btnPanelDeControl.Size = new System.Drawing.Size(203, 44);
@@ -152,6 +153,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnPanelDeControl;
             this.ClientSize = new System.Drawing.Size(436, 354);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSeleccionar);
