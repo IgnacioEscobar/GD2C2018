@@ -55,9 +55,9 @@
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.Location = new System.Drawing.Point(13, 13);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(142, 16);
+            this.lblUsuario.Size = new System.Drawing.Size(66, 16);
             this.lblUsuario.TabIndex = 1;
-            this.lblUsuario.Text = "USUARIO: asd1234";
+            this.lblUsuario.Text = "Usuario:";
             // 
             // lklCerrarSesion
             // 

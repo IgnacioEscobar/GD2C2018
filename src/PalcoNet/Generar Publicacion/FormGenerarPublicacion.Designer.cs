@@ -369,6 +369,7 @@
             this.btnAgregarFecha.TabIndex = 31;
             this.btnAgregarFecha.Text = "AGREGAR FECHA";
             this.btnAgregarFecha.UseVisualStyleBackColor = true;
+            this.btnAgregarFecha.Click += new System.EventHandler(this.btnAgregarFecha_Click);
             // 
             // lsvFechaHora
             // 

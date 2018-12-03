@@ -57,5 +57,13 @@ namespace PalcoNet.Generar_Publicacion
             formMenuEmpresa.Show();
         }
 
+        private void btnAgregarFecha_Click(object sender, EventArgs e)
+        {
+            ListViewItem item = new ListViewItem(cmbDia.Text + "-" + cmbMes.Text + "-" + cmbAno.Text);
+            item.SubItems.Add(nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString());
+            lsvFechaHora.Items.Add(item);
+            lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
     }
 }
