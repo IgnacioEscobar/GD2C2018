@@ -30,7 +30,7 @@
         {
             this.rbnCliente = new System.Windows.Forms.RadioButton();
             this.rbnEmpresa = new System.Windows.Forms.RadioButton();
-            this.rbnAdministrativo = new System.Windows.Forms.RadioButton();
+            this.rbnAdministrador = new System.Windows.Forms.RadioButton();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,16 +59,16 @@
             this.rbnEmpresa.Text = "Empresa";
             this.rbnEmpresa.UseVisualStyleBackColor = true;
             // 
-            // rbnAdministrativo
+            // rbnAdministrador
             // 
-            this.rbnAdministrativo.AutoSize = true;
-            this.rbnAdministrativo.Enabled = false;
-            this.rbnAdministrativo.Location = new System.Drawing.Point(10, 67);
-            this.rbnAdministrativo.Name = "rbnAdministrativo";
-            this.rbnAdministrativo.Size = new System.Drawing.Size(90, 17);
-            this.rbnAdministrativo.TabIndex = 3;
-            this.rbnAdministrativo.Text = "Administrativo";
-            this.rbnAdministrativo.UseVisualStyleBackColor = true;
+            this.rbnAdministrador.AutoSize = true;
+            this.rbnAdministrador.Enabled = false;
+            this.rbnAdministrador.Location = new System.Drawing.Point(10, 67);
+            this.rbnAdministrador.Name = "rbnAdministrador";
+            this.rbnAdministrador.Size = new System.Drawing.Size(88, 17);
+            this.rbnAdministrador.TabIndex = 3;
+            this.rbnAdministrador.Text = "Administrador";
+            this.rbnAdministrador.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
@@ -93,7 +93,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.rbnAdministrativo);
+            this.groupBox1.Controls.Add(this.rbnAdministrador);
             this.groupBox1.Controls.Add(this.btnSiguiente);
             this.groupBox1.Controls.Add(this.rbnCliente);
             this.groupBox1.Controls.Add(this.rbnEmpresa);
@@ -125,7 +125,7 @@
 
         private System.Windows.Forms.RadioButton rbnCliente;
         private System.Windows.Forms.RadioButton rbnEmpresa;
-        private System.Windows.Forms.RadioButton rbnAdministrativo;
+        private System.Windows.Forms.RadioButton rbnAdministrador;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.GroupBox groupBox1;

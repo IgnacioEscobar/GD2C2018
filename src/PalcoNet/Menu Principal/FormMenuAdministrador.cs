@@ -13,6 +13,7 @@ using PalcoNet.Abm_Cliente;
 using PalcoNet.Abm_Empresa_Espectaculo;
 using PalcoNet.Abm_Rol;
 using PalcoNet.Abm_Grado;
+using PalcoNet.Abm_Usuario;
 
 namespace PalcoNet.Menu_Principal
 {
@@ -56,6 +57,13 @@ namespace PalcoNet.Menu_Principal
             FormLogin formLogin = new FormLogin();
             this.Hide();
             formLogin.Show();
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            FormABMUsuario formABMUsuario = new FormABMUsuario();
+            this.Hide();
+            formABMUsuario.Show();
         }
 
     }

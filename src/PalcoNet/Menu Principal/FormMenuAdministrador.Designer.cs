@@ -178,6 +178,7 @@
             this.btnUsuarios.TabIndex = 0;
             this.btnUsuarios.Text = "CUENTAS DE USUARIO";
             this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // btnRoles
             // 

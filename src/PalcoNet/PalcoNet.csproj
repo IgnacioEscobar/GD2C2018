@@ -90,6 +90,12 @@
     <Compile Include="Abm Rubro\FormABMRubro.Designer.cs">
       <DependentUpon>FormABMRubro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Usuario\FormABMUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Usuario\FormABMUsuario.Designer.cs">
+      <DependentUpon>FormABMUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Usuario\FormMiUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rubro\FormABMRubro.resx">
       <DependentUpon>FormABMRubro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Usuario\FormABMUsuario.resx">
+      <DependentUpon>FormABMUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Usuario\FormMiUsuario.resx">
       <DependentUpon>FormMiUsuario.cs</DependentUpon>

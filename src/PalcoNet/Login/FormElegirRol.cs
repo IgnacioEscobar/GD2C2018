@@ -47,7 +47,7 @@ namespace PalcoNet.Login
                 this.Hide();
                 formDestino.Show();
             }
-            if (rbnAdministrativo.Checked)
+            if (rbnAdministrador.Checked)
             {
                 formDestino = new FormMenuAdministrador();
                 this.Hide();
@@ -77,8 +77,8 @@ namespace PalcoNet.Login
                         rbnEmpresa.Enabled = true;
                         break;
 
-                    case "Administrativo":
-                        rbnAdministrativo.Enabled = true;
+                    case "Administrador":
+                        rbnAdministrador.Enabled = true;
                         break;
                 }
             }

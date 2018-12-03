@@ -134,7 +134,7 @@ namespace PalcoNet
                                             formDestino.Show();
                                             break;
 
-                                        case "Administrativo":
+                                        case "Administrador":
                                             formDestino = new FormMenuAdministrador();
                                             this.Hide();
                                             formDestino.Show();
