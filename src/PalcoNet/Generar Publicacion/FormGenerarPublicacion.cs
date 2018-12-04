@@ -40,6 +40,7 @@ namespace PalcoNet.Generar_Publicacion
             lsvFechaHora.View = View.Details;
             lsvFechaHora.Columns.Add("FECHA");
             lsvFechaHora.Columns.Add("HORA");
+            lsvFechaHora.Columns.Add("");
             lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
             GestorDB gestor = new GestorDB();
@@ -59,8 +60,28 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnAgregarFecha_Click(object sender, EventArgs e)
         {
-            ListViewItem item = new ListViewItem(cmbDia.Text + "-" + cmbMes.Text + "-" + cmbAno.Text);
-            item.SubItems.Add(nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString());
+            string fecha_ingresada = cmbDia.Text + "/" + cmbMes.Text + "/" + cmbAno.Text + " " + nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString();
+
+            int cant_items = lsvFechaHora.Items.Count;
+            if (cant_items > 0)
+            {
+                DateTime ultima_cargada = DateTime.Parse(lsvFechaHora.Items[cant_items - 1].Text + " " + lsvFechaHora.Items[cant_items - 1].SubItems[1].Text);
+                DateTime ingresada = DateTime.Parse(fecha_ingresada);
+
+                if (ultima_cargada > ingresada)
+                {
+                    MessageBox.Show("La fecha de presentación ingresada no puede ser anterior a una que ya esté cargada, intente con otra fecha.", "ALERTA");
+                    return;
+                }
+            }
+
+            ListViewItem item = new ListViewItem(cmbDia.Text + "/" + cmbMes.Text + "/" + cmbAno.Text);
+            string hora = nudHora.Value.ToString();
+            string minuto = nudMinuto.Value.ToString();
+            if (hora.Length == 1) hora = "0" + hora;
+            if (minuto.Length == 1) minuto = "0" + minuto;
+            item.SubItems.Add(hora + ":" + minuto);
+            item.SubItems.Add("NUEVO");
             lsvFechaHora.Items.Add(item);
             lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }

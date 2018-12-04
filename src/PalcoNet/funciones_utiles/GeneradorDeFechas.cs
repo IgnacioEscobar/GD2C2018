@@ -19,7 +19,7 @@ namespace PalcoNet.funciones_utiles
             {
                 cmbDia.Items.Add(i);
             }
-
+            /*
             cmbMes.Items.Add("Enero");
             cmbMes.Items.Add("Febrero");
             cmbMes.Items.Add("Marzo");
@@ -32,6 +32,12 @@ namespace PalcoNet.funciones_utiles
             cmbMes.Items.Add("Octubre");
             cmbMes.Items.Add("Noviembre");
             cmbMes.Items.Add("Diciembre");
+            */
+
+            for (int i = 1; i <= 12; i++)
+            {
+                cmbMes.Items.Add(i);
+            }
 
             for (int i = DateTime.Today.Year; i >= 1900; i--)
             {
