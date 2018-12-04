@@ -105,7 +105,6 @@
             this.btnFecha.TabIndex = 13;
             this.btnFecha.Text = "Confirmar fecha";
             this.btnFecha.UseVisualStyleBackColor = true;
-            this.btnFecha.Click += new System.EventHandler(this.button1_Click);
             // 
             // lblMontoTotal
             // 
@@ -115,7 +114,6 @@
             this.lblMontoTotal.Size = new System.Drawing.Size(60, 13);
             this.lblMontoTotal.TabIndex = 12;
             this.lblMontoTotal.Text = "Monto total";
-            this.lblMontoTotal.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnPagar
             // 
@@ -142,14 +140,12 @@
             this.lblFecha.Size = new System.Drawing.Size(116, 13);
             this.lblFecha.TabIndex = 9;
             this.lblFecha.Text = "Fecha del Espectaculo";
-            this.lblFecha.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // monthCalendar
             // 
             this.monthCalendar.Location = new System.Drawing.Point(9, 46);
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 8;
-            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // comboBoxUbicacion
             // 
@@ -183,7 +179,6 @@
             this.lblCantidad.Size = new System.Drawing.Size(109, 13);
             this.lblCantidad.TabIndex = 2;
             this.lblCantidad.Text = "Cantidad de Entradas";
-            this.lblCantidad.Click += new System.EventHandler(this.label2_Click);
             // 
             // lblEspectaculo
             // 
