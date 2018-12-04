@@ -19,6 +19,7 @@ namespace PalcoNet.Abm_Cliente
     {
         int userID;
         string query_defecto = "SELECT nombre, apellido, numero_de_documento FROM PEAKY_BLINDERS.clientes";
+        ValidadorDeDatos validador;
 
         public FormABMCliente(int userID)
         {
@@ -57,6 +58,8 @@ namespace PalcoNet.Abm_Cliente
             gestor.consulta(query_defecto);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            validador = new ValidadorDeDatos();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -191,6 +194,26 @@ namespace PalcoNet.Abm_Cliente
             FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
             this.Hide();
             formAbmAdministrador.Show();
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.texto(e);
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.texto(e);
+        }
+
+        private void txtMail_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.mail(e);
         }
 
     }

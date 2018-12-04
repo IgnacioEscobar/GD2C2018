@@ -20,7 +20,7 @@ namespace PalcoNet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormListadoEstadistico());
+            Application.Run(new FormLogin());
         }
     }
 }

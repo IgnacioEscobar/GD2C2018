@@ -117,6 +117,7 @@
     <Compile Include="DB_Espectaculos.cs" />
     <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
+    <Compile Include="funciones_utiles\ValidadorDeDatos.cs" />
     <Compile Include="Menu Principal\FormMenuAdministrador.cs">
       <SubType>Form</SubType>
     </Compile>
