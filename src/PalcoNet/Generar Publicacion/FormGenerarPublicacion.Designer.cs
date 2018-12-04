@@ -50,7 +50,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtCalle = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cmbRubros = new System.Windows.Forms.ComboBox();
+            this.cmbRubro = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
@@ -120,6 +120,7 @@
             this.cmbAno.Name = "cmbAno";
             this.cmbAno.Size = new System.Drawing.Size(93, 21);
             this.cmbAno.TabIndex = 19;
+            this.cmbAno.Text = "Año";
             // 
             // cmbMes
             // 
@@ -128,6 +129,7 @@
             this.cmbMes.Name = "cmbMes";
             this.cmbMes.Size = new System.Drawing.Size(49, 21);
             this.cmbMes.TabIndex = 18;
+            this.cmbMes.Text = "Mes";
             // 
             // cmbDia
             // 
@@ -136,6 +138,7 @@
             this.cmbDia.Name = "cmbDia";
             this.cmbDia.Size = new System.Drawing.Size(49, 21);
             this.cmbDia.TabIndex = 17;
+            this.cmbDia.Text = "Día";
             // 
             // nudHora
             // 
@@ -267,7 +270,7 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.cmbRubros);
+            this.groupBox5.Controls.Add(this.cmbRubro);
             this.groupBox5.Location = new System.Drawing.Point(12, 264);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(262, 49);
@@ -275,13 +278,13 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "RUBRO";
             // 
-            // cmbRubros
+            // cmbRubro
             // 
-            this.cmbRubros.FormattingEnabled = true;
-            this.cmbRubros.Location = new System.Drawing.Point(7, 19);
-            this.cmbRubros.Name = "cmbRubros";
-            this.cmbRubros.Size = new System.Drawing.Size(249, 21);
-            this.cmbRubros.TabIndex = 0;
+            this.cmbRubro.FormattingEnabled = true;
+            this.cmbRubro.Location = new System.Drawing.Point(7, 19);
+            this.cmbRubro.Name = "cmbRubro";
+            this.cmbRubro.Size = new System.Drawing.Size(249, 21);
+            this.cmbRubro.TabIndex = 0;
             // 
             // groupBox4
             // 
@@ -319,6 +322,7 @@
             this.btnPublicar.TabIndex = 27;
             this.btnPublicar.Text = "PUBLICAR";
             this.btnPublicar.UseVisualStyleBackColor = true;
+            this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
             // 
             // btnGuardar
             // 
@@ -328,6 +332,7 @@
             this.btnGuardar.TabIndex = 28;
             this.btnGuardar.Text = "GUARDAR BORRADOR";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnFinalizar
             // 
@@ -388,7 +393,9 @@
             this.Controls.Add(this.txtStock);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescripcion);
+            this.MaximizeBox = false;
             this.Name = "FormGenerarPublicacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormGenerarPublicacion_Load);
             this.groupBox1.ResumeLayout(false);
@@ -430,7 +437,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCalle;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.ComboBox cmbRubros;
+        private System.Windows.Forms.ComboBox cmbRubro;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPrecio;

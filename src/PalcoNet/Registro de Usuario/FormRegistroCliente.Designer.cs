@@ -134,6 +134,7 @@
             this.cmbDia.Name = "cmbDia";
             this.cmbDia.Size = new System.Drawing.Size(42, 21);
             this.cmbDia.TabIndex = 14;
+            this.cmbDia.Text = "Día";
             // 
             // cmbMes
             // 
@@ -142,6 +143,7 @@
             this.cmbMes.Name = "cmbMes";
             this.cmbMes.Size = new System.Drawing.Size(112, 21);
             this.cmbMes.TabIndex = 15;
+            this.cmbMes.Text = "Mes";
             // 
             // cmbAno
             // 
@@ -150,6 +152,7 @@
             this.cmbAno.Name = "cmbAno";
             this.cmbAno.Size = new System.Drawing.Size(84, 21);
             this.cmbAno.TabIndex = 16;
+            this.cmbAno.Text = "Año";
             // 
             // txtMail
             // 

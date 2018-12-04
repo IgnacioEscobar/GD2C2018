@@ -119,7 +119,7 @@ namespace PalcoNet.Registro_de_Usuario
         {
             cargarListaTiposDocumento();
             GeneradorDeFechas generador = new GeneradorDeFechas();
-            generador.completar(cmbDia, cmbMes, cmbAno);
+            generador.completar(cmbDia, cmbMes, cmbAno, true);
 
             if (modif)
             {
@@ -220,9 +220,7 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("localidad", txtLocalidad.Text);
                 gestor.parametroPorValor("mail", txtMail.Text);
                 gestor.parametroPorValor("telefono", txtTelefono.Text);
-                MessageBox.Show(numeroTarjeta);
                 gestor.parametroPorValor("tarjeta_de_credito_asociada", numeroTarjeta);
-                // TODO: interfaz de tarjeta de credito
 
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();

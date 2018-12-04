@@ -24,18 +24,57 @@ namespace PalcoNet.Generar_Publicacion
             this.userID = userID;
         }
 
+        // Metodos auxiliares
+
         private void mostrarRegistros(SqlDataReader lector)
         {
             while (lector.Read())
             {
-                cmbRubros.Items.Add(lector["descripcion"].ToString());
+                cmbRubro.Items.Add(lector["descripcion"].ToString());
             }
         }
+
+        private void enviarPublicacionPorFecha(GestorDB gestor, char estado, DateTime fecha_presentacion)
+        {
+            gestor.parametroPorValor("id_estado", estado);
+            gestor.parametroPorValor("descripcion", txtDescripcion.Text);
+            gestor.parametroPorValor("stock", txtStock.Text);
+            gestor.parametroPorValor("fecha_nacimiento", fecha_presentacion);
+            gestor.parametroPorValor("calle", txtCalle.Text);
+            gestor.parametroPorValor("numero", txtAltura.Text);
+            gestor.parametroPorValor("codigo_postal", txtCodPostal.Text);
+            gestor.parametroPorValor("localidad", txtLocalidad.Text);
+            gestor.parametroPorValor("rubro", cmbRubro.Text);
+            gestor.parametroPorValor("precio", txtPrecio.Text);
+        }
+
+        private void persistirPublicacion(string procedure, char estado)
+        {
+            /*
+             * INICIO TRANSACCION
+             */
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            gestor.generarStoredProcedure(procedure);
+
+            foreach (ListViewItem item in lsvFechaHora.Items)
+            {
+                enviarPublicacionPorFecha(gestor, estado, DateTime.Parse(item.Text + " " + item.SubItems[1].Text));
+            }
+
+            gestor.ejecutarStoredProcedure();
+            gestor.desconectar();
+            /*
+             * FIN TRANSACCION
+             */
+        }
+
+        // -------------------
 
         private void FormGenerarPublicacion_Load(object sender, EventArgs e)
         {
             GeneradorDeFechas generador = new GeneradorDeFechas();
-            generador.completar(cmbDia, cmbMes, cmbAno);
+            generador.completar(cmbDia, cmbMes, cmbAno, false);
 
             lsvFechaHora.View = View.Details;
             lsvFechaHora.Columns.Add("FECHA");
@@ -60,22 +99,22 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnAgregarFecha_Click(object sender, EventArgs e)
         {
-            string fecha_ingresada = cmbDia.Text + "/" + cmbMes.Text + "/" + cmbAno.Text + " " + nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString();
+            string campos_fecha = cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text + " " + nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString();
+            DateTime fecha_ingresada = DateTime.Parse(campos_fecha);
 
             int cant_items = lsvFechaHora.Items.Count;
             if (cant_items > 0)
             {
                 DateTime ultima_cargada = DateTime.Parse(lsvFechaHora.Items[cant_items - 1].Text + " " + lsvFechaHora.Items[cant_items - 1].SubItems[1].Text);
-                DateTime ingresada = DateTime.Parse(fecha_ingresada);
 
-                if (ultima_cargada > ingresada)
+                if (ultima_cargada > fecha_ingresada)
                 {
                     MessageBox.Show("La fecha de presentación ingresada no puede ser anterior a una que ya esté cargada, intente con otra fecha.", "ALERTA");
                     return;
                 }
             }
 
-            ListViewItem item = new ListViewItem(cmbDia.Text + "/" + cmbMes.Text + "/" + cmbAno.Text);
+            ListViewItem item = new ListViewItem(cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text);
             string hora = nudHora.Value.ToString();
             string minuto = nudMinuto.Value.ToString();
             if (hora.Length == 1) hora = "0" + hora;
@@ -84,6 +123,16 @@ namespace PalcoNet.Generar_Publicacion
             item.SubItems.Add("NUEVO");
             lsvFechaHora.Items.Add(item);
             lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void btnPublicar_Click(object sender, EventArgs e)
+        {
+            this.persistirPublicacion("crear_publicacion", '2');
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            this.persistirPublicacion("crear_publicacion", '1');
         }
 
     }

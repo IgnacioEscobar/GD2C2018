@@ -13,7 +13,7 @@ namespace PalcoNet.funciones_utiles
         {
         }
 
-        public void completar (ComboBox cmbDia, ComboBox cmbMes, ComboBox cmbAno)
+        public void completar (ComboBox cmbDia, ComboBox cmbMes, ComboBox cmbAno, bool pasado)
         {
             for (int i = 1; i <= 31; i++)
             {
@@ -39,10 +39,22 @@ namespace PalcoNet.funciones_utiles
                 cmbMes.Items.Add(i);
             }
 
-            for (int i = DateTime.Today.Year; i >= 1900; i--)
+            int ano_actual = DateTime.Today.Year;
+            if (pasado)
             {
-                cmbAno.Items.Add(i);
+                for (int i = ano_actual; i >= 1900; i--)
+                {
+                    cmbAno.Items.Add(i);
+                }
             }
+            else
+            {
+                for (int i = ano_actual; i <= ano_actual + 50; i++)
+                {
+                    cmbAno.Items.Add(i);
+                }
+            }
+            
         }
 
     }

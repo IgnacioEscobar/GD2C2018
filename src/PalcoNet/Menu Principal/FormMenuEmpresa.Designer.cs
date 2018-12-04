@@ -34,14 +34,29 @@
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvPublicaciones = new System.Windows.Forms.DataGridView();
+            this.ckbBorrador = new System.Windows.Forms.CheckBox();
+            this.ckbPublicada = new System.Windows.Forms.CheckBox();
+            this.ckbFinalizada = new System.Windows.Forms.CheckBox();
+            this.ckbBajo = new System.Windows.Forms.CheckBox();
+            this.ckbMedio = new System.Windows.Forms.CheckBox();
+            this.ckbAlto = new System.Windows.Forms.CheckBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnFiltrar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicaciones)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGenerarPublicacion
             // 
-            this.btnGenerarPublicacion.Location = new System.Drawing.Point(482, 361);
+            this.btnGenerarPublicacion.Location = new System.Drawing.Point(482, 28);
             this.btnGenerarPublicacion.Name = "btnGenerarPublicacion";
-            this.btnGenerarPublicacion.Size = new System.Drawing.Size(288, 43);
+            this.btnGenerarPublicacion.Size = new System.Drawing.Size(216, 43);
             this.btnGenerarPublicacion.TabIndex = 21;
             this.btnGenerarPublicacion.Text = "GENERAR PUBLICACIÓN";
             this.btnGenerarPublicacion.UseVisualStyleBackColor = true;
@@ -49,9 +64,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(482, 25);
+            this.groupBox1.Controls.Add(this.txtDescripcion);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.btnLimpiar);
+            this.groupBox1.Controls.Add(this.btnFiltrar);
+            this.groupBox1.Location = new System.Drawing.Point(482, 77);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(288, 330);
+            this.groupBox1.Size = new System.Drawing.Size(216, 219);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
@@ -60,7 +81,7 @@
             // 
             this.btnConfiguracion.Location = new System.Drawing.Point(482, 410);
             this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(288, 43);
+            this.btnConfiguracion.Size = new System.Drawing.Size(216, 43);
             this.btnConfiguracion.TabIndex = 19;
             this.btnConfiguracion.Text = "CONFIGURACIÓN DE CUENTA";
             this.btnConfiguracion.UseVisualStyleBackColor = true;
@@ -69,7 +90,7 @@
             // lklCerrarSesion
             // 
             this.lklCerrarSesion.AutoSize = true;
-            this.lklCerrarSesion.Location = new System.Drawing.Point(675, 9);
+            this.lklCerrarSesion.Location = new System.Drawing.Point(603, 9);
             this.lklCerrarSesion.Name = "lklCerrarSesion";
             this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
             this.lklCerrarSesion.TabIndex = 18;
@@ -99,11 +120,141 @@
             this.dgvPublicaciones.Size = new System.Drawing.Size(464, 425);
             this.dgvPublicaciones.TabIndex = 16;
             // 
+            // ckbBorrador
+            // 
+            this.ckbBorrador.AutoSize = true;
+            this.ckbBorrador.Checked = true;
+            this.ckbBorrador.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbBorrador.Location = new System.Drawing.Point(6, 19);
+            this.ckbBorrador.Name = "ckbBorrador";
+            this.ckbBorrador.Size = new System.Drawing.Size(66, 17);
+            this.ckbBorrador.TabIndex = 1;
+            this.ckbBorrador.Text = "Borrador";
+            this.ckbBorrador.UseVisualStyleBackColor = true;
+            // 
+            // ckbPublicada
+            // 
+            this.ckbPublicada.AutoSize = true;
+            this.ckbPublicada.Checked = true;
+            this.ckbPublicada.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbPublicada.Location = new System.Drawing.Point(6, 43);
+            this.ckbPublicada.Name = "ckbPublicada";
+            this.ckbPublicada.Size = new System.Drawing.Size(73, 17);
+            this.ckbPublicada.TabIndex = 2;
+            this.ckbPublicada.Text = "Publicada";
+            this.ckbPublicada.UseVisualStyleBackColor = true;
+            // 
+            // ckbFinalizada
+            // 
+            this.ckbFinalizada.AutoSize = true;
+            this.ckbFinalizada.Checked = true;
+            this.ckbFinalizada.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbFinalizada.Location = new System.Drawing.Point(6, 67);
+            this.ckbFinalizada.Name = "ckbFinalizada";
+            this.ckbFinalizada.Size = new System.Drawing.Size(73, 17);
+            this.ckbFinalizada.TabIndex = 3;
+            this.ckbFinalizada.Text = "Finalizada";
+            this.ckbFinalizada.UseVisualStyleBackColor = true;
+            // 
+            // ckbBajo
+            // 
+            this.ckbBajo.AutoSize = true;
+            this.ckbBajo.Checked = true;
+            this.ckbBajo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbBajo.Location = new System.Drawing.Point(6, 67);
+            this.ckbBajo.Name = "ckbBajo";
+            this.ckbBajo.Size = new System.Drawing.Size(47, 17);
+            this.ckbBajo.TabIndex = 7;
+            this.ckbBajo.Text = "Bajo";
+            this.ckbBajo.UseVisualStyleBackColor = true;
+            // 
+            // ckbMedio
+            // 
+            this.ckbMedio.AutoSize = true;
+            this.ckbMedio.Checked = true;
+            this.ckbMedio.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbMedio.Location = new System.Drawing.Point(6, 43);
+            this.ckbMedio.Name = "ckbMedio";
+            this.ckbMedio.Size = new System.Drawing.Size(55, 17);
+            this.ckbMedio.TabIndex = 6;
+            this.ckbMedio.Text = "Medio";
+            this.ckbMedio.UseVisualStyleBackColor = true;
+            // 
+            // ckbAlto
+            // 
+            this.ckbAlto.AutoSize = true;
+            this.ckbAlto.Checked = true;
+            this.ckbAlto.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbAlto.Location = new System.Drawing.Point(6, 19);
+            this.ckbAlto.Name = "ckbAlto";
+            this.ckbAlto.Size = new System.Drawing.Size(44, 17);
+            this.ckbAlto.TabIndex = 5;
+            this.ckbAlto.Text = "Alto";
+            this.ckbAlto.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(6, 188);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(204, 24);
+            this.btnLimpiar.TabIndex = 9;
+            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Location = new System.Drawing.Point(6, 158);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(204, 24);
+            this.btnFiltrar.TabIndex = 8;
+            this.btnFiltrar.Text = "FILTRAR";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ckbPublicada);
+            this.groupBox2.Controls.Add(this.ckbBorrador);
+            this.groupBox2.Controls.Add(this.ckbFinalizada);
+            this.groupBox2.Location = new System.Drawing.Point(6, 63);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(99, 89);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Estado";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.ckbAlto);
+            this.groupBox3.Controls.Add(this.ckbMedio);
+            this.groupBox3.Controls.Add(this.ckbBajo);
+            this.groupBox3.Location = new System.Drawing.Point(111, 63);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(99, 89);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Grado";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Descripción";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(7, 37);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(203, 20);
+            this.txtDescripcion.TabIndex = 13;
+            // 
             // FormMenuEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 465);
+            this.ClientSize = new System.Drawing.Size(710, 465);
             this.Controls.Add(this.btnGenerarPublicacion);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnConfiguracion);
@@ -115,7 +266,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormMenuEmpresa_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicaciones)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,5 +286,17 @@
         private System.Windows.Forms.LinkLabel lklCerrarSesion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvPublicaciones;
+        private System.Windows.Forms.CheckBox ckbBajo;
+        private System.Windows.Forms.CheckBox ckbMedio;
+        private System.Windows.Forms.CheckBox ckbAlto;
+        private System.Windows.Forms.CheckBox ckbFinalizada;
+        private System.Windows.Forms.CheckBox ckbPublicada;
+        private System.Windows.Forms.CheckBox ckbBorrador;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnFiltrar;
     }
 }
