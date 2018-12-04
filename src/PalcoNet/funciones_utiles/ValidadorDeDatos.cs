@@ -33,6 +33,18 @@ namespace PalcoNet.funciones_utiles
             }
         }
 
+        public void alfanumerico(KeyPressEventArgs e)
+        {
+            if (Char.IsLetterOrDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
         public void mail(KeyPressEventArgs e)
         {
             if (Char.IsSeparator(e.KeyChar))

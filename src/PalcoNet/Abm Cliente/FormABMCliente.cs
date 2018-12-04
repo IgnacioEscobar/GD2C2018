@@ -60,6 +60,7 @@ namespace PalcoNet.Abm_Cliente
             gestor.desconectar();
 
             validador = new ValidadorDeDatos();
+            txtNombre.Select();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

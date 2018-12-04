@@ -48,6 +48,7 @@ namespace PalcoNet
                 txtContrasena.Focus();
             }
             lblError.Visible = false;
+            txtUsuario.Select();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)

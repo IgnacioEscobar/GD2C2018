@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnPanelDeControl = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -53,7 +53,7 @@
             this.btnPanelDeControl.Location = new System.Drawing.Point(591, 455);
             this.btnPanelDeControl.Name = "btnPanelDeControl";
             this.btnPanelDeControl.Size = new System.Drawing.Size(211, 44);
-            this.btnPanelDeControl.TabIndex = 14;
+            this.btnPanelDeControl.TabIndex = 8;
             this.btnPanelDeControl.Text = "PANEL DE CONTROL";
             this.btnPanelDeControl.UseVisualStyleBackColor = true;
             this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
@@ -63,7 +63,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(591, 190);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(211, 44);
-            this.btnEliminar.TabIndex = 13;
+            this.btnEliminar.TabIndex = 7;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -73,7 +73,7 @@
             this.btnModificar.Location = new System.Drawing.Point(591, 140);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(211, 44);
-            this.btnModificar.TabIndex = 12;
+            this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "MODIFICAR";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
@@ -83,7 +83,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(591, 90);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(211, 44);
-            this.btnAgregar.TabIndex = 11;
+            this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "AGREGAR";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -95,14 +95,14 @@
             this.dgvEmpresas.AllowUserToOrderColumns = true;
             this.dgvEmpresas.AllowUserToResizeRows = false;
             this.dgvEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmpresas.Location = new System.Drawing.Point(12, 90);
             this.dgvEmpresas.MultiSelect = false;
@@ -110,7 +110,7 @@
             this.dgvEmpresas.ReadOnly = true;
             this.dgvEmpresas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmpresas.Size = new System.Drawing.Size(573, 409);
-            this.dgvEmpresas.TabIndex = 10;
+            this.dgvEmpresas.TabIndex = 9;
             // 
             // groupBox1
             // 
@@ -143,7 +143,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(420, 45);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(147, 20);
-            this.btnBuscar.TabIndex = 7;
+            this.btnBuscar.TabIndex = 4;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -153,7 +153,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(267, 45);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(147, 20);
-            this.btnLimpiar.TabIndex = 6;
+            this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -183,13 +183,16 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(268, 20);
             this.txtMail.TabIndex = 2;
+            this.txtMail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMail_KeyPress);
             // 
             // txtCUIT
             // 
             this.txtCUIT.Location = new System.Drawing.Point(84, 45);
+            this.txtCUIT.MaxLength = 11;
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(151, 20);
             this.txtCUIT.TabIndex = 1;
+            this.txtCUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCUIT_KeyPress);
             // 
             // txtRazonSocial
             // 
@@ -197,6 +200,7 @@
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(151, 20);
             this.txtRazonSocial.TabIndex = 0;
+            this.txtRazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRazonSocial_KeyPress);
             // 
             // FormABMEmpresa
             // 
