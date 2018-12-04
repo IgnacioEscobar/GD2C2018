@@ -119,7 +119,9 @@ namespace PalcoNet.Registro_de_Usuario
         {
             cargarListaTiposDocumento();
             GeneradorDeFechas generador = new GeneradorDeFechas();
-            generador.completar(cmbDia, cmbMes, cmbAno, true);
+            generador.completarDia(cmbDia);
+            generador.completarMes(cmbMes);
+            generador.completarAno(cmbAno, true);
 
             if (modif)
             {
