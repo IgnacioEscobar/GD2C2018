@@ -75,17 +75,18 @@
             this.btnConfirmar.Location = new System.Drawing.Point(280, 155);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(262, 59);
-            this.btnConfirmar.TabIndex = 32;
+            this.btnConfirmar.TabIndex = 10;
             this.btnConfirmar.Text = "CONFIRMAR";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(280, 220);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(262, 32);
-            this.btnCancelar.TabIndex = 31;
+            this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -125,7 +126,8 @@
             this.txtAltura.Location = new System.Drawing.Point(200, 32);
             this.txtAltura.Name = "txtAltura";
             this.txtAltura.Size = new System.Drawing.Size(56, 20);
-            this.txtAltura.TabIndex = 33;
+            this.txtAltura.TabIndex = 3;
+            this.txtAltura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAltura_KeyPress);
             // 
             // label8
             // 
@@ -142,7 +144,7 @@
             this.txtCalle.Location = new System.Drawing.Point(6, 32);
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(188, 20);
-            this.txtCalle.TabIndex = 31;
+            this.txtCalle.TabIndex = 2;
             // 
             // label12
             // 
@@ -158,7 +160,8 @@
             this.txtCodigoPostal.Location = new System.Drawing.Point(6, 104);
             this.txtCodigoPostal.Name = "txtCodigoPostal";
             this.txtCodigoPostal.Size = new System.Drawing.Size(89, 20);
-            this.txtCodigoPostal.TabIndex = 27;
+            this.txtCodigoPostal.TabIndex = 6;
+            this.txtCodigoPostal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoPostal_KeyPress);
             // 
             // label11
             // 
@@ -174,14 +177,14 @@
             this.txtLocalidad.Location = new System.Drawing.Point(120, 104);
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);
-            this.txtLocalidad.TabIndex = 25;
+            this.txtLocalidad.TabIndex = 7;
             // 
             // txtDepto
             // 
             this.txtDepto.Location = new System.Drawing.Point(200, 58);
             this.txtDepto.Name = "txtDepto";
             this.txtDepto.Size = new System.Drawing.Size(56, 20);
-            this.txtDepto.TabIndex = 23;
+            this.txtDepto.TabIndex = 5;
             // 
             // label10
             // 
@@ -197,7 +200,8 @@
             this.txtPiso.Location = new System.Drawing.Point(39, 58);
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(56, 20);
-            this.txtPiso.TabIndex = 20;
+            this.txtPiso.TabIndex = 4;
+            this.txtPiso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPiso_KeyPress);
             // 
             // label9
             // 
@@ -227,7 +231,8 @@
             this.txtTelefono.MaxLength = 10;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(250, 20);
-            this.txtTelefono.TabIndex = 21;
+            this.txtTelefono.TabIndex = 9;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // label6
             // 
@@ -243,7 +248,7 @@
             this.txtMail.Location = new System.Drawing.Point(6, 32);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(250, 20);
-            this.txtMail.TabIndex = 18;
+            this.txtMail.TabIndex = 8;
             // 
             // label7
             // 
@@ -273,7 +278,8 @@
             this.txtCUIT.MaxLength = 11;
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(250, 20);
-            this.txtCUIT.TabIndex = 19;
+            this.txtCUIT.TabIndex = 1;
+            this.txtCUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCUIT_KeyPress);
             // 
             // label1
             // 
@@ -289,7 +295,7 @@
             this.txtRazonSocial.Location = new System.Drawing.Point(6, 32);
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(250, 20);
-            this.txtRazonSocial.TabIndex = 1;
+            this.txtRazonSocial.TabIndex = 0;
             // 
             // label4
             // 
@@ -302,8 +308,10 @@
             // 
             // FormRegistroEmpresa
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(553, 264);
             this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnConfirmar);

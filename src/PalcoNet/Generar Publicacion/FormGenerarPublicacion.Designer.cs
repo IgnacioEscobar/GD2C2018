@@ -99,7 +99,8 @@
             this.txtStock.Location = new System.Drawing.Point(348, 29);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(67, 20);
-            this.txtStock.TabIndex = 2;
+            this.txtStock.TabIndex = 1;
+            this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
             // 
             // groupBox1
             // 
@@ -117,28 +118,34 @@
             // 
             this.cmbAno.FormattingEnabled = true;
             this.cmbAno.Location = new System.Drawing.Point(116, 19);
+            this.cmbAno.MaxLength = 4;
             this.cmbAno.Name = "cmbAno";
             this.cmbAno.Size = new System.Drawing.Size(93, 21);
-            this.cmbAno.TabIndex = 19;
+            this.cmbAno.TabIndex = 4;
             this.cmbAno.Text = "Año";
+            this.cmbAno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbAno_KeyPress);
             // 
             // cmbMes
             // 
             this.cmbMes.FormattingEnabled = true;
             this.cmbMes.Location = new System.Drawing.Point(61, 19);
+            this.cmbMes.MaxLength = 2;
             this.cmbMes.Name = "cmbMes";
             this.cmbMes.Size = new System.Drawing.Size(49, 21);
-            this.cmbMes.TabIndex = 18;
+            this.cmbMes.TabIndex = 3;
             this.cmbMes.Text = "Mes";
+            this.cmbMes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMes_KeyPress);
             // 
             // cmbDia
             // 
             this.cmbDia.FormattingEnabled = true;
             this.cmbDia.Location = new System.Drawing.Point(6, 19);
+            this.cmbDia.MaxLength = 2;
             this.cmbDia.Name = "cmbDia";
             this.cmbDia.Size = new System.Drawing.Size(49, 21);
-            this.cmbDia.TabIndex = 17;
+            this.cmbDia.TabIndex = 2;
             this.cmbDia.Text = "Día";
+            this.cmbDia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDia_KeyPress);
             // 
             // nudHora
             // 
@@ -150,7 +157,8 @@
             0});
             this.nudHora.Name = "nudHora";
             this.nudHora.Size = new System.Drawing.Size(49, 20);
-            this.nudHora.TabIndex = 20;
+            this.nudHora.TabIndex = 5;
+            this.nudHora.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudHora_KeyPress);
             // 
             // nudMinuto
             // 
@@ -162,7 +170,8 @@
             0});
             this.nudMinuto.Name = "nudMinuto";
             this.nudMinuto.Size = new System.Drawing.Size(49, 20);
-            this.nudMinuto.TabIndex = 21;
+            this.nudMinuto.TabIndex = 6;
+            this.nudMinuto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudMinuto_KeyPress);
             // 
             // groupBox2
             // 
@@ -216,7 +225,8 @@
             this.txtAltura.Location = new System.Drawing.Point(339, 32);
             this.txtAltura.Name = "txtAltura";
             this.txtAltura.Size = new System.Drawing.Size(58, 20);
-            this.txtAltura.TabIndex = 29;
+            this.txtAltura.TabIndex = 9;
+            this.txtAltura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAltura_KeyPress);
             // 
             // label12
             // 
@@ -233,7 +243,8 @@
             this.txtCodPostal.MaxLength = 4;
             this.txtCodPostal.Name = "txtCodPostal";
             this.txtCodPostal.Size = new System.Drawing.Size(89, 20);
-            this.txtCodPostal.TabIndex = 27;
+            this.txtCodPostal.TabIndex = 10;
+            this.txtCodPostal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodPostal_KeyPress);
             // 
             // label11
             // 
@@ -249,7 +260,8 @@
             this.txtLocalidad.Location = new System.Drawing.Point(101, 71);
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(296, 20);
-            this.txtLocalidad.TabIndex = 25;
+            this.txtLocalidad.TabIndex = 11;
+            this.txtLocalidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLocalidad_KeyPress);
             // 
             // label8
             // 
@@ -266,7 +278,8 @@
             this.txtCalle.Location = new System.Drawing.Point(6, 32);
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(327, 20);
-            this.txtCalle.TabIndex = 18;
+            this.txtCalle.TabIndex = 8;
+            this.txtCalle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCalle_KeyPress);
             // 
             // groupBox5
             // 
@@ -284,7 +297,7 @@
             this.cmbRubro.Location = new System.Drawing.Point(7, 19);
             this.cmbRubro.Name = "cmbRubro";
             this.cmbRubro.Size = new System.Drawing.Size(249, 21);
-            this.cmbRubro.TabIndex = 0;
+            this.cmbRubro.TabIndex = 12;
             // 
             // groupBox4
             // 
@@ -312,14 +325,15 @@
             this.txtPrecio.Location = new System.Drawing.Point(25, 20);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(104, 20);
-            this.txtPrecio.TabIndex = 0;
+            this.txtPrecio.TabIndex = 13;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // btnPublicar
             // 
             this.btnPublicar.Location = new System.Drawing.Point(12, 319);
             this.btnPublicar.Name = "btnPublicar";
             this.btnPublicar.Size = new System.Drawing.Size(403, 42);
-            this.btnPublicar.TabIndex = 27;
+            this.btnPublicar.TabIndex = 14;
             this.btnPublicar.Text = "PUBLICAR";
             this.btnPublicar.UseVisualStyleBackColor = true;
             this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
@@ -329,7 +343,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(12, 367);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(238, 42);
-            this.btnGuardar.TabIndex = 28;
+            this.btnGuardar.TabIndex = 15;
             this.btnGuardar.Text = "GUARDAR BORRADOR";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
@@ -339,7 +353,7 @@
             this.btnFinalizar.Location = new System.Drawing.Point(256, 367);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(159, 42);
-            this.btnFinalizar.TabIndex = 29;
+            this.btnFinalizar.TabIndex = 16;
             this.btnFinalizar.Text = "FINALIZAR";
             this.btnFinalizar.UseVisualStyleBackColor = true;
             // 
@@ -349,7 +363,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(12, 416);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(403, 23);
-            this.btnCancelar.TabIndex = 30;
+            this.btnCancelar.TabIndex = 17;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -359,7 +373,7 @@
             this.btnAgregarFecha.Location = new System.Drawing.Point(341, 108);
             this.btnAgregarFecha.Name = "btnAgregarFecha";
             this.btnAgregarFecha.Size = new System.Drawing.Size(74, 47);
-            this.btnAgregarFecha.TabIndex = 31;
+            this.btnAgregarFecha.TabIndex = 7;
             this.btnAgregarFecha.Text = "AGREGAR FECHA";
             this.btnAgregarFecha.UseVisualStyleBackColor = true;
             this.btnAgregarFecha.Click += new System.EventHandler(this.btnAgregarFecha_Click);
@@ -369,7 +383,7 @@
             this.lsvFechaHora.Location = new System.Drawing.Point(12, 55);
             this.lsvFechaHora.Name = "lsvFechaHora";
             this.lsvFechaHora.Size = new System.Drawing.Size(182, 100);
-            this.lsvFechaHora.TabIndex = 32;
+            this.lsvFechaHora.TabIndex = 18;
             this.lsvFechaHora.UseCompatibleStateImageBehavior = false;
             // 
             // FormGenerarPublicacion

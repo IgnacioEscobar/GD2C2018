@@ -23,6 +23,7 @@ namespace PalcoNet.Registro_de_Usuario
         string clienteID;
         FormTarjetaDeCredito formTarjetaDeCredito;
         string numeroTarjeta;
+        ValidadorDeDatos validador;
 
         public FormRegistroCliente(bool abm)
         {
@@ -152,6 +153,8 @@ namespace PalcoNet.Registro_de_Usuario
 
             formTarjetaDeCredito = new FormTarjetaDeCredito(this, numeroTarjeta);
             lblError.Visible = false;
+
+            validador = new ValidadorDeDatos();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -256,6 +259,61 @@ namespace PalcoNet.Registro_de_Usuario
                 formTarjetaDeCredito.Hide();
                 formDestino.Show();
             }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.texto(e);
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.texto(e);
+        }
+
+        private void txtNumeroDoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtCUIL_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void cmbDia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void cmbMes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void cmbAno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtAltura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtPiso_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtCodPostal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
         }
 
     }

@@ -50,7 +50,9 @@ namespace PalcoNet.ABM_Usuario
             {
                 lblUsuario.Text = "Usuario: " + lector["nombre_de_usuario"].ToString();
             }
-            gestor.desconectar();            
+            gestor.desconectar();
+
+            txtPassActual.Select();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

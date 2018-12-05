@@ -183,7 +183,6 @@
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(268, 20);
             this.txtMail.TabIndex = 2;
-            this.txtMail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMail_KeyPress);
             // 
             // txtCUIT
             // 
@@ -200,7 +199,6 @@
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(151, 20);
             this.txtRazonSocial.TabIndex = 0;
-            this.txtRazonSocial.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRazonSocial_KeyPress);
             // 
             // FormABMEmpresa
             // 

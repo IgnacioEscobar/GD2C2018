@@ -55,7 +55,7 @@
             this.btnConfiguración.Location = new System.Drawing.Point(551, 431);
             this.btnConfiguración.Name = "btnConfiguración";
             this.btnConfiguración.Size = new System.Drawing.Size(197, 43);
-            this.btnConfiguración.TabIndex = 15;
+            this.btnConfiguración.TabIndex = 9;
             this.btnConfiguración.Text = "CONFIGURACIÓN DE CUENTA";
             this.btnConfiguración.UseVisualStyleBackColor = true;
             this.btnConfiguración.Click += new System.EventHandler(this.btnConfiguración_Click);
@@ -75,7 +75,7 @@
             this.btnHistorial.Location = new System.Drawing.Point(6, 19);
             this.btnHistorial.Name = "btnHistorial";
             this.btnHistorial.Size = new System.Drawing.Size(255, 44);
-            this.btnHistorial.TabIndex = 6;
+            this.btnHistorial.TabIndex = 7;
             this.btnHistorial.Text = "HISTORIAL DE COMPRAS";
             this.btnHistorial.UseVisualStyleBackColor = true;
             this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
@@ -85,7 +85,7 @@
             this.btnAdministracionPuntos.Location = new System.Drawing.Point(272, 19);
             this.btnAdministracionPuntos.Name = "btnAdministracionPuntos";
             this.btnAdministracionPuntos.Size = new System.Drawing.Size(255, 44);
-            this.btnAdministracionPuntos.TabIndex = 7;
+            this.btnAdministracionPuntos.TabIndex = 8;
             this.btnAdministracionPuntos.Text = "ADMINISTRACIÓN DE PUNTOS";
             this.btnAdministracionPuntos.UseVisualStyleBackColor = true;
             this.btnAdministracionPuntos.Click += new System.EventHandler(this.btnAdministracionPuntos_Click);
@@ -106,7 +106,7 @@
             this.btnSeleccionar.Location = new System.Drawing.Point(11, 361);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(312, 44);
-            this.btnSeleccionar.TabIndex = 17;
+            this.btnSeleccionar.TabIndex = 6;
             this.btnSeleccionar.Text = "SELECCIONAR";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             // 
@@ -160,7 +160,7 @@
             this.mcrHasta.Location = new System.Drawing.Point(222, 90);
             this.mcrHasta.MaxSelectionCount = 1;
             this.mcrHasta.Name = "mcrHasta";
-            this.mcrHasta.TabIndex = 13;
+            this.mcrHasta.TabIndex = 2;
             // 
             // clbCategorias
             // 
@@ -168,27 +168,27 @@
             this.clbCategorias.Location = new System.Drawing.Point(6, 277);
             this.clbCategorias.Name = "clbCategorias";
             this.clbCategorias.Size = new System.Drawing.Size(209, 94);
-            this.clbCategorias.TabIndex = 10;
+            this.clbCategorias.TabIndex = 3;
             // 
             // mcrDesde
             // 
             this.mcrDesde.Location = new System.Drawing.Point(12, 90);
             this.mcrDesde.Name = "mcrDesde";
-            this.mcrDesde.TabIndex = 12;
+            this.mcrDesde.TabIndex = 1;
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(6, 36);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(413, 20);
-            this.txtDescripcion.TabIndex = 11;
+            this.txtDescripcion.TabIndex = 0;
             // 
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(221, 277);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(198, 44);
-            this.btnBuscar.TabIndex = 9;
+            this.btnBuscar.TabIndex = 4;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
@@ -197,7 +197,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(221, 327);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(198, 44);
-            this.btnLimpiar.TabIndex = 8;
+            this.btnLimpiar.TabIndex = 5;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);

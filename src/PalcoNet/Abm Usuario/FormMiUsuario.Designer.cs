@@ -65,7 +65,7 @@
             this.lklCerrarSesion.Location = new System.Drawing.Point(191, 9);
             this.lklCerrarSesion.Name = "lklCerrarSesion";
             this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
-            this.lklCerrarSesion.TabIndex = 19;
+            this.lklCerrarSesion.TabIndex = 5;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             // 
@@ -90,7 +90,7 @@
             this.btnConfirmar.Location = new System.Drawing.Point(6, 140);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(261, 35);
-            this.btnConfirmar.TabIndex = 21;
+            this.btnConfirmar.TabIndex = 3;
             this.btnConfirmar.Text = "CONFIRMAR";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             // 
@@ -108,7 +108,7 @@
             this.txtPassNueva2.Location = new System.Drawing.Point(6, 114);
             this.txtPassNueva2.Name = "txtPassNueva2";
             this.txtPassNueva2.Size = new System.Drawing.Size(261, 20);
-            this.txtPassNueva2.TabIndex = 4;
+            this.txtPassNueva2.TabIndex = 2;
             // 
             // label2
             // 
@@ -124,7 +124,7 @@
             this.txtPassNueva.Location = new System.Drawing.Point(6, 75);
             this.txtPassNueva.Name = "txtPassNueva";
             this.txtPassNueva.Size = new System.Drawing.Size(261, 20);
-            this.txtPassNueva.TabIndex = 2;
+            this.txtPassNueva.TabIndex = 1;
             // 
             // label1
             // 
@@ -141,7 +141,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(19, 220);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(261, 35);
-            this.btnCancelar.TabIndex = 22;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);

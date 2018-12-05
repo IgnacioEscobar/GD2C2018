@@ -187,19 +187,9 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             formAbmAdministrador.Show();
         }
 
-        private void txtRazonSocial_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            validador.alfanumerico(e);
-        }
-
         private void txtCUIT_KeyPress(object sender, KeyPressEventArgs e)
         {
             validador.numero(e);
-        }
-
-        private void txtMail_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            validador.mail(e);
         }
 
     }

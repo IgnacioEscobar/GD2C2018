@@ -61,6 +61,8 @@ namespace PalcoNet.Menu_Principal
             gestor.consulta(query);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            txtDescripcion.Select();
         }
 
         private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

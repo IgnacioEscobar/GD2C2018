@@ -53,7 +53,7 @@
             this.lklCerrarSesion.Location = new System.Drawing.Point(527, 5);
             this.lklCerrarSesion.Name = "lklCerrarSesion";
             this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
-            this.lklCerrarSesion.TabIndex = 13;
+            this.lklCerrarSesion.TabIndex = 9;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
@@ -84,7 +84,7 @@
             this.btnResumen.Location = new System.Drawing.Point(314, 19);
             this.btnResumen.Name = "btnResumen";
             this.btnResumen.Size = new System.Drawing.Size(290, 43);
-            this.btnResumen.TabIndex = 4;
+            this.btnResumen.TabIndex = 8;
             this.btnResumen.Text = "RESUMEN DE FACTURACIÓN";
             this.btnResumen.UseVisualStyleBackColor = true;
             // 
@@ -93,7 +93,7 @@
             this.btnRendicion.Location = new System.Drawing.Point(6, 19);
             this.btnRendicion.Name = "btnRendicion";
             this.btnRendicion.Size = new System.Drawing.Size(290, 43);
-            this.btnRendicion.TabIndex = 3;
+            this.btnRendicion.TabIndex = 7;
             this.btnRendicion.Text = "GENERAR RENDICIÓN";
             this.btnRendicion.UseVisualStyleBackColor = true;
             // 
@@ -114,7 +114,7 @@
             this.btnPublicaciones.Location = new System.Drawing.Point(6, 19);
             this.btnPublicaciones.Name = "btnPublicaciones";
             this.btnPublicaciones.Size = new System.Drawing.Size(290, 43);
-            this.btnPublicaciones.TabIndex = 6;
+            this.btnPublicaciones.TabIndex = 4;
             this.btnPublicaciones.Text = "PUBLICACIONES";
             this.btnPublicaciones.UseVisualStyleBackColor = true;
             // 
@@ -123,7 +123,7 @@
             this.btnGrados.Location = new System.Drawing.Point(6, 117);
             this.btnGrados.Name = "btnGrados";
             this.btnGrados.Size = new System.Drawing.Size(290, 43);
-            this.btnGrados.TabIndex = 5;
+            this.btnGrados.TabIndex = 6;
             this.btnGrados.Text = "GRADOS";
             this.btnGrados.UseVisualStyleBackColor = true;
             this.btnGrados.Click += new System.EventHandler(this.btnGrados_Click);
@@ -133,7 +133,7 @@
             this.btnCategorias.Location = new System.Drawing.Point(6, 68);
             this.btnCategorias.Name = "btnCategorias";
             this.btnCategorias.Size = new System.Drawing.Size(290, 43);
-            this.btnCategorias.TabIndex = 4;
+            this.btnCategorias.TabIndex = 5;
             this.btnCategorias.Text = "CATEGORÍAS";
             this.btnCategorias.UseVisualStyleBackColor = true;
             this.btnCategorias.Click += new System.EventHandler(this.btnCategorias_Click);

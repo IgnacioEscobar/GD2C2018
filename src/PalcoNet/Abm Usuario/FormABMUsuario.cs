@@ -86,6 +86,8 @@ namespace PalcoNet.Abm_Usuario
             gestor.consulta(query);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            txtUsuario.Select();
         }
 
         private void btnPanelDeControl_Click(object sender, EventArgs e)

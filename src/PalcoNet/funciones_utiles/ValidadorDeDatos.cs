@@ -11,7 +11,7 @@ namespace PalcoNet.funciones_utiles
     {
         public void texto(KeyPressEventArgs e)
         {
-            if (Char.IsLetter(e.KeyChar) || Char.IsControl(e.KeyChar))
+            if (Char.IsLetter(e.KeyChar) || Char.IsSeparator(e.KeyChar) || Char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }
@@ -35,25 +35,13 @@ namespace PalcoNet.funciones_utiles
 
         public void alfanumerico(KeyPressEventArgs e)
         {
-            if (Char.IsLetterOrDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
+            if (Char.IsLetterOrDigit(e.KeyChar) || char.IsSeparator(e.KeyChar) || Char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }
             else
             {
                 e.Handled = true;
-            }
-        }
-
-        public void mail(KeyPressEventArgs e)
-        {
-            if (Char.IsSeparator(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-            else
-            {
-                e.Handled = false;
             }
         }
 

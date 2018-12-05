@@ -70,7 +70,7 @@
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsuarios.Size = new System.Drawing.Size(649, 455);
-            this.dgvUsuarios.TabIndex = 1;
+            this.dgvUsuarios.TabIndex = 10;
             this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
             // 
             // groupBox1
@@ -96,7 +96,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(6, 200);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(199, 20);
-            this.btnLimpiar.TabIndex = 14;
+            this.btnLimpiar.TabIndex = 6;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -106,7 +106,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(6, 174);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(199, 20);
-            this.btnBuscar.TabIndex = 15;
+            this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
@@ -118,7 +118,7 @@
             this.ckbEmpresa.Location = new System.Drawing.Point(7, 151);
             this.ckbEmpresa.Name = "ckbEmpresa";
             this.ckbEmpresa.Size = new System.Drawing.Size(67, 17);
-            this.ckbEmpresa.TabIndex = 6;
+            this.ckbEmpresa.TabIndex = 4;
             this.ckbEmpresa.Text = "Empresa";
             this.ckbEmpresa.UseVisualStyleBackColor = true;
             // 
@@ -130,7 +130,7 @@
             this.ckbCliente.Location = new System.Drawing.Point(7, 128);
             this.ckbCliente.Name = "ckbCliente";
             this.ckbCliente.Size = new System.Drawing.Size(58, 17);
-            this.ckbCliente.TabIndex = 5;
+            this.ckbCliente.TabIndex = 3;
             this.ckbCliente.Text = "Cliente";
             this.ckbCliente.UseVisualStyleBackColor = true;
             // 
@@ -142,7 +142,7 @@
             this.ckbAdministrador.Location = new System.Drawing.Point(7, 105);
             this.ckbAdministrador.Name = "ckbAdministrador";
             this.ckbAdministrador.Size = new System.Drawing.Size(89, 17);
-            this.ckbAdministrador.TabIndex = 4;
+            this.ckbAdministrador.TabIndex = 2;
             this.ckbAdministrador.Text = "Administrador";
             this.ckbAdministrador.UseVisualStyleBackColor = true;
             // 
@@ -163,7 +163,7 @@
             this.ckbHabilitado.Location = new System.Drawing.Point(7, 64);
             this.ckbHabilitado.Name = "ckbHabilitado";
             this.ckbHabilitado.Size = new System.Drawing.Size(73, 17);
-            this.ckbHabilitado.TabIndex = 2;
+            this.ckbHabilitado.TabIndex = 1;
             this.ckbHabilitado.Text = "Habilitado";
             this.ckbHabilitado.UseVisualStyleBackColor = true;
             // 
@@ -172,7 +172,7 @@
             this.txtUsuario.Location = new System.Drawing.Point(7, 37);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(198, 20);
-            this.txtUsuario.TabIndex = 1;
+            this.txtUsuario.TabIndex = 0;
             // 
             // label1
             // 
@@ -189,7 +189,7 @@
             this.btnPanelDeControl.Location = new System.Drawing.Point(667, 423);
             this.btnPanelDeControl.Name = "btnPanelDeControl";
             this.btnPanelDeControl.Size = new System.Drawing.Size(211, 44);
-            this.btnPanelDeControl.TabIndex = 10;
+            this.btnPanelDeControl.TabIndex = 9;
             this.btnPanelDeControl.Text = "PANEL DE CONTROL";
             this.btnPanelDeControl.UseVisualStyleBackColor = true;
             this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
@@ -199,7 +199,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(667, 244);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(211, 44);
-            this.btnAgregar.TabIndex = 11;
+            this.btnAgregar.TabIndex = 7;
             this.btnAgregar.Text = "AGREGAR USUARIO";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -209,7 +209,7 @@
             this.btnAdministrador.Location = new System.Drawing.Point(667, 294);
             this.btnAdministrador.Name = "btnAdministrador";
             this.btnAdministrador.Size = new System.Drawing.Size(211, 44);
-            this.btnAdministrador.TabIndex = 12;
+            this.btnAdministrador.TabIndex = 8;
             this.btnAdministrador.Text = "NUEVO ADMINISTRADOR";
             this.btnAdministrador.UseVisualStyleBackColor = true;
             // 

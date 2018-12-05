@@ -21,6 +21,7 @@ namespace PalcoNet.Registro_de_Usuario
         bool modif; // si viene por modificar o por agregar
         string query;
         string empresaID;
+        ValidadorDeDatos validador;
 
         public FormRegistroEmpresa(bool abm)
         {
@@ -180,6 +181,32 @@ namespace PalcoNet.Registro_de_Usuario
             }
 
             lblError.Visible = false;
+            validador = new ValidadorDeDatos();
+        }
+
+        private void txtCUIT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtAltura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtPiso_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtCodigoPostal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
         }
 
     }

@@ -212,10 +212,5 @@ namespace PalcoNet.Abm_Cliente
             validador.texto(e);
         }
 
-        private void txtMail_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            validador.mail(e);
-        }
-
     }
 }

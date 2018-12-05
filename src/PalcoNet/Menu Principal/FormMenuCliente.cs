@@ -92,6 +92,8 @@ namespace PalcoNet.Menu_Principal
             gestor.consulta(query_categorias);
             this.mostrarCategorias(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            txtDescripcion.Select();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

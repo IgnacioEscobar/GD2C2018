@@ -30,26 +30,26 @@
         {
             this.btnGenerarPublicacion = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ckbAlto = new System.Windows.Forms.CheckBox();
+            this.ckbMedio = new System.Windows.Forms.CheckBox();
+            this.ckbBajo = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ckbPublicada = new System.Windows.Forms.CheckBox();
+            this.ckbBorrador = new System.Windows.Forms.CheckBox();
+            this.ckbFinalizada = new System.Windows.Forms.CheckBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvPublicaciones = new System.Windows.Forms.DataGridView();
-            this.ckbBorrador = new System.Windows.Forms.CheckBox();
-            this.ckbPublicada = new System.Windows.Forms.CheckBox();
-            this.ckbFinalizada = new System.Windows.Forms.CheckBox();
-            this.ckbBajo = new System.Windows.Forms.CheckBox();
-            this.ckbMedio = new System.Windows.Forms.CheckBox();
-            this.ckbAlto = new System.Windows.Forms.CheckBox();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnFiltrar = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPublicaciones)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPublicaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGenerarPublicacion
@@ -57,7 +57,7 @@
             this.btnGenerarPublicacion.Location = new System.Drawing.Point(482, 28);
             this.btnGenerarPublicacion.Name = "btnGenerarPublicacion";
             this.btnGenerarPublicacion.Size = new System.Drawing.Size(216, 43);
-            this.btnGenerarPublicacion.TabIndex = 21;
+            this.btnGenerarPublicacion.TabIndex = 0;
             this.btnGenerarPublicacion.Text = "GENERAR PUBLICACIÓN";
             this.btnGenerarPublicacion.UseVisualStyleBackColor = true;
             this.btnGenerarPublicacion.Click += new System.EventHandler(this.btnGenerarPublicacion_Click);
@@ -77,12 +77,142 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
             // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(7, 37);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(203, 20);
+            this.txtDescripcion.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Descripción";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.ckbAlto);
+            this.groupBox3.Controls.Add(this.ckbMedio);
+            this.groupBox3.Controls.Add(this.ckbBajo);
+            this.groupBox3.Location = new System.Drawing.Point(111, 63);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(99, 89);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Grado";
+            // 
+            // ckbAlto
+            // 
+            this.ckbAlto.AutoSize = true;
+            this.ckbAlto.Checked = true;
+            this.ckbAlto.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbAlto.Location = new System.Drawing.Point(6, 19);
+            this.ckbAlto.Name = "ckbAlto";
+            this.ckbAlto.Size = new System.Drawing.Size(44, 17);
+            this.ckbAlto.TabIndex = 5;
+            this.ckbAlto.Text = "Alto";
+            this.ckbAlto.UseVisualStyleBackColor = true;
+            // 
+            // ckbMedio
+            // 
+            this.ckbMedio.AutoSize = true;
+            this.ckbMedio.Checked = true;
+            this.ckbMedio.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbMedio.Location = new System.Drawing.Point(6, 43);
+            this.ckbMedio.Name = "ckbMedio";
+            this.ckbMedio.Size = new System.Drawing.Size(55, 17);
+            this.ckbMedio.TabIndex = 6;
+            this.ckbMedio.Text = "Medio";
+            this.ckbMedio.UseVisualStyleBackColor = true;
+            // 
+            // ckbBajo
+            // 
+            this.ckbBajo.AutoSize = true;
+            this.ckbBajo.Checked = true;
+            this.ckbBajo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbBajo.Location = new System.Drawing.Point(6, 67);
+            this.ckbBajo.Name = "ckbBajo";
+            this.ckbBajo.Size = new System.Drawing.Size(47, 17);
+            this.ckbBajo.TabIndex = 7;
+            this.ckbBajo.Text = "Bajo";
+            this.ckbBajo.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ckbPublicada);
+            this.groupBox2.Controls.Add(this.ckbBorrador);
+            this.groupBox2.Controls.Add(this.ckbFinalizada);
+            this.groupBox2.Location = new System.Drawing.Point(6, 63);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(99, 89);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Estado";
+            // 
+            // ckbPublicada
+            // 
+            this.ckbPublicada.AutoSize = true;
+            this.ckbPublicada.Checked = true;
+            this.ckbPublicada.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbPublicada.Location = new System.Drawing.Point(6, 43);
+            this.ckbPublicada.Name = "ckbPublicada";
+            this.ckbPublicada.Size = new System.Drawing.Size(73, 17);
+            this.ckbPublicada.TabIndex = 3;
+            this.ckbPublicada.Text = "Publicada";
+            this.ckbPublicada.UseVisualStyleBackColor = true;
+            // 
+            // ckbBorrador
+            // 
+            this.ckbBorrador.AutoSize = true;
+            this.ckbBorrador.Checked = true;
+            this.ckbBorrador.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbBorrador.Location = new System.Drawing.Point(6, 19);
+            this.ckbBorrador.Name = "ckbBorrador";
+            this.ckbBorrador.Size = new System.Drawing.Size(66, 17);
+            this.ckbBorrador.TabIndex = 2;
+            this.ckbBorrador.Text = "Borrador";
+            this.ckbBorrador.UseVisualStyleBackColor = true;
+            // 
+            // ckbFinalizada
+            // 
+            this.ckbFinalizada.AutoSize = true;
+            this.ckbFinalizada.Checked = true;
+            this.ckbFinalizada.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbFinalizada.Location = new System.Drawing.Point(6, 67);
+            this.ckbFinalizada.Name = "ckbFinalizada";
+            this.ckbFinalizada.Size = new System.Drawing.Size(73, 17);
+            this.ckbFinalizada.TabIndex = 4;
+            this.ckbFinalizada.Text = "Finalizada";
+            this.ckbFinalizada.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(6, 188);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(204, 24);
+            this.btnLimpiar.TabIndex = 9;
+            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Location = new System.Drawing.Point(6, 158);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(204, 24);
+            this.btnFiltrar.TabIndex = 8;
+            this.btnFiltrar.Text = "FILTRAR";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            // 
             // btnConfiguracion
             // 
             this.btnConfiguracion.Location = new System.Drawing.Point(482, 410);
             this.btnConfiguracion.Name = "btnConfiguracion";
             this.btnConfiguracion.Size = new System.Drawing.Size(216, 43);
-            this.btnConfiguracion.TabIndex = 19;
+            this.btnConfiguracion.TabIndex = 10;
             this.btnConfiguracion.Text = "CONFIGURACIÓN DE CUENTA";
             this.btnConfiguracion.UseVisualStyleBackColor = true;
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
@@ -93,7 +223,7 @@
             this.lklCerrarSesion.Location = new System.Drawing.Point(603, 9);
             this.lklCerrarSesion.Name = "lklCerrarSesion";
             this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
-            this.lklCerrarSesion.TabIndex = 18;
+            this.lklCerrarSesion.TabIndex = 12;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
@@ -118,137 +248,7 @@
             this.dgvPublicaciones.Location = new System.Drawing.Point(12, 28);
             this.dgvPublicaciones.Name = "dgvPublicaciones";
             this.dgvPublicaciones.Size = new System.Drawing.Size(464, 425);
-            this.dgvPublicaciones.TabIndex = 16;
-            // 
-            // ckbBorrador
-            // 
-            this.ckbBorrador.AutoSize = true;
-            this.ckbBorrador.Checked = true;
-            this.ckbBorrador.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbBorrador.Location = new System.Drawing.Point(6, 19);
-            this.ckbBorrador.Name = "ckbBorrador";
-            this.ckbBorrador.Size = new System.Drawing.Size(66, 17);
-            this.ckbBorrador.TabIndex = 1;
-            this.ckbBorrador.Text = "Borrador";
-            this.ckbBorrador.UseVisualStyleBackColor = true;
-            // 
-            // ckbPublicada
-            // 
-            this.ckbPublicada.AutoSize = true;
-            this.ckbPublicada.Checked = true;
-            this.ckbPublicada.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbPublicada.Location = new System.Drawing.Point(6, 43);
-            this.ckbPublicada.Name = "ckbPublicada";
-            this.ckbPublicada.Size = new System.Drawing.Size(73, 17);
-            this.ckbPublicada.TabIndex = 2;
-            this.ckbPublicada.Text = "Publicada";
-            this.ckbPublicada.UseVisualStyleBackColor = true;
-            // 
-            // ckbFinalizada
-            // 
-            this.ckbFinalizada.AutoSize = true;
-            this.ckbFinalizada.Checked = true;
-            this.ckbFinalizada.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbFinalizada.Location = new System.Drawing.Point(6, 67);
-            this.ckbFinalizada.Name = "ckbFinalizada";
-            this.ckbFinalizada.Size = new System.Drawing.Size(73, 17);
-            this.ckbFinalizada.TabIndex = 3;
-            this.ckbFinalizada.Text = "Finalizada";
-            this.ckbFinalizada.UseVisualStyleBackColor = true;
-            // 
-            // ckbBajo
-            // 
-            this.ckbBajo.AutoSize = true;
-            this.ckbBajo.Checked = true;
-            this.ckbBajo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbBajo.Location = new System.Drawing.Point(6, 67);
-            this.ckbBajo.Name = "ckbBajo";
-            this.ckbBajo.Size = new System.Drawing.Size(47, 17);
-            this.ckbBajo.TabIndex = 7;
-            this.ckbBajo.Text = "Bajo";
-            this.ckbBajo.UseVisualStyleBackColor = true;
-            // 
-            // ckbMedio
-            // 
-            this.ckbMedio.AutoSize = true;
-            this.ckbMedio.Checked = true;
-            this.ckbMedio.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbMedio.Location = new System.Drawing.Point(6, 43);
-            this.ckbMedio.Name = "ckbMedio";
-            this.ckbMedio.Size = new System.Drawing.Size(55, 17);
-            this.ckbMedio.TabIndex = 6;
-            this.ckbMedio.Text = "Medio";
-            this.ckbMedio.UseVisualStyleBackColor = true;
-            // 
-            // ckbAlto
-            // 
-            this.ckbAlto.AutoSize = true;
-            this.ckbAlto.Checked = true;
-            this.ckbAlto.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbAlto.Location = new System.Drawing.Point(6, 19);
-            this.ckbAlto.Name = "ckbAlto";
-            this.ckbAlto.Size = new System.Drawing.Size(44, 17);
-            this.ckbAlto.TabIndex = 5;
-            this.ckbAlto.Text = "Alto";
-            this.ckbAlto.UseVisualStyleBackColor = true;
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Location = new System.Drawing.Point(6, 188);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(204, 24);
-            this.btnLimpiar.TabIndex = 9;
-            this.btnLimpiar.Text = "LIMPIAR";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            // 
-            // btnFiltrar
-            // 
-            this.btnFiltrar.Location = new System.Drawing.Point(6, 158);
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(204, 24);
-            this.btnFiltrar.TabIndex = 8;
-            this.btnFiltrar.Text = "FILTRAR";
-            this.btnFiltrar.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.ckbPublicada);
-            this.groupBox2.Controls.Add(this.ckbBorrador);
-            this.groupBox2.Controls.Add(this.ckbFinalizada);
-            this.groupBox2.Location = new System.Drawing.Point(6, 63);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(99, 89);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Estado";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.ckbAlto);
-            this.groupBox3.Controls.Add(this.ckbMedio);
-            this.groupBox3.Controls.Add(this.ckbBajo);
-            this.groupBox3.Location = new System.Drawing.Point(111, 63);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(99, 89);
-            this.groupBox3.TabIndex = 11;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Grado";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Descripción";
-            // 
-            // txtDescripcion
-            // 
-            this.txtDescripcion.Location = new System.Drawing.Point(7, 37);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(203, 20);
-            this.txtDescripcion.TabIndex = 13;
+            this.dgvPublicaciones.TabIndex = 11;
             // 
             // FormMenuEmpresa
             // 
@@ -268,11 +268,11 @@
             this.Load += new System.EventHandler(this.FormMenuEmpresa_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPublicaciones)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPublicaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

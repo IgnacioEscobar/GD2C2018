@@ -17,6 +17,7 @@ namespace PalcoNet.Abm_Rubro
     public partial class FormABMRubro : Form
     {
         int userID;
+        ValidadorDeDatos validador;
 
         public FormABMRubro(int userID)
         {
@@ -44,6 +45,9 @@ namespace PalcoNet.Abm_Rubro
             }
             lsvPublicaciones.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             gestor.desconectar();
+
+            validador = new ValidadorDeDatos();
+            txtIDPublicacion.Select();
         }
 
         private void btnPanelDeControl_Click(object sender, EventArgs e)
@@ -51,6 +55,11 @@ namespace PalcoNet.Abm_Rubro
             FormMenuAdministrador formMenuAdministrador = new FormMenuAdministrador(userID);
             this.Hide();
             formMenuAdministrador.Show();
+        }
+
+        private void txtIDPublicacion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
         }
     }
 }

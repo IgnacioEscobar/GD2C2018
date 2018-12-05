@@ -49,7 +49,7 @@
             this.btnConfirmar.Location = new System.Drawing.Point(428, 146);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(100, 26);
-            this.btnConfirmar.TabIndex = 4;
+            this.btnConfirmar.TabIndex = 5;
             this.btnConfirmar.Text = "CONFIRMAR";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             // 
@@ -68,7 +68,7 @@
             this.cmbCategoria.Location = new System.Drawing.Point(325, 119);
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(203, 21);
-            this.cmbCategoria.TabIndex = 2;
+            this.cmbCategoria.TabIndex = 4;
             // 
             // label1
             // 
@@ -81,10 +81,11 @@
             // 
             // btnPanelDeControl
             // 
+            this.btnPanelDeControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPanelDeControl.Location = new System.Drawing.Point(325, 447);
             this.btnPanelDeControl.Name = "btnPanelDeControl";
             this.btnPanelDeControl.Size = new System.Drawing.Size(203, 49);
-            this.btnPanelDeControl.TabIndex = 11;
+            this.btnPanelDeControl.TabIndex = 6;
             this.btnPanelDeControl.Text = "PANEL DE CONTROL";
             this.btnPanelDeControl.UseVisualStyleBackColor = true;
             this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
@@ -109,7 +110,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(360, 43);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(147, 20);
-            this.btnBuscar.TabIndex = 15;
+            this.btnBuscar.TabIndex = 3;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
@@ -118,7 +119,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(207, 43);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(147, 20);
-            this.btnLimpiar.TabIndex = 14;
+            this.btnLimpiar.TabIndex = 2;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             // 
@@ -127,7 +128,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(276, 17);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(231, 20);
-            this.txtDescripcion.TabIndex = 3;
+            this.txtDescripcion.TabIndex = 1;
             // 
             // label4
             // 
@@ -143,7 +144,8 @@
             this.txtIDPublicacion.Location = new System.Drawing.Point(106, 17);
             this.txtIDPublicacion.Name = "txtIDPublicacion";
             this.txtIDPublicacion.Size = new System.Drawing.Size(72, 20);
-            this.txtIDPublicacion.TabIndex = 1;
+            this.txtIDPublicacion.TabIndex = 0;
+            this.txtIDPublicacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIDPublicacion_KeyPress);
             // 
             // label3
             // 
@@ -159,7 +161,7 @@
             this.lsvPublicaciones.Location = new System.Drawing.Point(12, 101);
             this.lsvPublicaciones.Name = "lsvPublicaciones";
             this.lsvPublicaciones.Size = new System.Drawing.Size(307, 395);
-            this.lsvPublicaciones.TabIndex = 13;
+            this.lsvPublicaciones.TabIndex = 7;
             this.lsvPublicaciones.UseCompatibleStateImageBehavior = false;
             // 
             // FormABMRubro

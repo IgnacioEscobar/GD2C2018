@@ -45,7 +45,7 @@
             this.btnConsultar.Location = new System.Drawing.Point(250, 65);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(156, 21);
-            this.btnConsultar.TabIndex = 4;
+            this.btnConsultar.TabIndex = 3;
             this.btnConsultar.Text = "CONSULTAR";
             this.btnConsultar.UseVisualStyleBackColor = true;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
@@ -57,7 +57,7 @@
             this.cmbConsulta.Location = new System.Drawing.Point(12, 25);
             this.cmbConsulta.Name = "cmbConsulta";
             this.cmbConsulta.Size = new System.Drawing.Size(394, 21);
-            this.cmbConsulta.TabIndex = 2;
+            this.cmbConsulta.TabIndex = 0;
             // 
             // cmbTrimestre
             // 
@@ -66,7 +66,7 @@
             this.cmbTrimestre.Location = new System.Drawing.Point(131, 65);
             this.cmbTrimestre.Name = "cmbTrimestre";
             this.cmbTrimestre.Size = new System.Drawing.Size(113, 21);
-            this.cmbTrimestre.TabIndex = 1;
+            this.cmbTrimestre.TabIndex = 2;
             // 
             // cmbAno
             // 
@@ -75,7 +75,7 @@
             this.cmbAno.Location = new System.Drawing.Point(12, 65);
             this.cmbAno.Name = "cmbAno";
             this.cmbAno.Size = new System.Drawing.Size(113, 21);
-            this.cmbAno.TabIndex = 0;
+            this.cmbAno.TabIndex = 1;
             // 
             // lsvConsulta
             // 
@@ -101,7 +101,7 @@
             this.btnSalir.Location = new System.Drawing.Point(12, 302);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(394, 21);
-            this.btnSalir.TabIndex = 10;
+            this.btnSalir.TabIndex = 4;
             this.btnSalir.Text = "SALIR";
             this.btnSalir.UseVisualStyleBackColor = true;
             // 
@@ -134,6 +134,7 @@
             // 
             // FormListadoEstadistico
             // 
+            this.AcceptButton = this.btnConsultar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSalir;

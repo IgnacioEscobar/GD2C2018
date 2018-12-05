@@ -17,6 +17,7 @@ namespace PalcoNet.Generar_Publicacion
     public partial class FormGenerarPublicacion : Form
     {
         int userID;
+        ValidadorDeDatos validador;
 
         public FormGenerarPublicacion(int userID)
         {
@@ -90,6 +91,9 @@ namespace PalcoNet.Generar_Publicacion
             gestor.ejecutarStoredProcedure();
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            validador = new ValidadorDeDatos();
+            txtDescripcion.Select();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -135,6 +139,61 @@ namespace PalcoNet.Generar_Publicacion
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             this.persistirPublicacion("crear_publicacion", '1');
+        }
+
+        private void txtStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void cmbDia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void cmbMes_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void cmbAno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void nudHora_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void nudMinuto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtCalle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.alfanumerico(e);
+        }
+
+        private void txtAltura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtCodPostal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtLocalidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.alfanumerico(e);
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
         }
 
     }
