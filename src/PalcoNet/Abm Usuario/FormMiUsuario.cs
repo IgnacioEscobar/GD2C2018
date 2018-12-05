@@ -78,5 +78,13 @@ namespace PalcoNet.ABM_Usuario
 
             
         }
+
+        private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormLogin formLogin = new FormLogin();
+            this.Hide();
+            formLogin.Show();
+        }
+
     }
 }

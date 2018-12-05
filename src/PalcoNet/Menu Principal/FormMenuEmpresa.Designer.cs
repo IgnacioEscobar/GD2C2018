@@ -54,10 +54,10 @@
             // 
             // btnGenerarPublicacion
             // 
-            this.btnGenerarPublicacion.Location = new System.Drawing.Point(482, 28);
+            this.btnGenerarPublicacion.Location = new System.Drawing.Point(482, 253);
             this.btnGenerarPublicacion.Name = "btnGenerarPublicacion";
             this.btnGenerarPublicacion.Size = new System.Drawing.Size(216, 43);
-            this.btnGenerarPublicacion.TabIndex = 0;
+            this.btnGenerarPublicacion.TabIndex = 12;
             this.btnGenerarPublicacion.Text = "GENERAR PUBLICACIÓN";
             this.btnGenerarPublicacion.UseVisualStyleBackColor = true;
             this.btnGenerarPublicacion.Click += new System.EventHandler(this.btnGenerarPublicacion_Click);
@@ -70,10 +70,10 @@
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.btnLimpiar);
             this.groupBox1.Controls.Add(this.btnFiltrar);
-            this.groupBox1.Location = new System.Drawing.Point(482, 77);
+            this.groupBox1.Location = new System.Drawing.Point(482, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(216, 219);
-            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
             // 
@@ -101,7 +101,7 @@
             this.groupBox3.Location = new System.Drawing.Point(111, 63);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(99, 89);
-            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Grado";
             // 
@@ -113,7 +113,7 @@
             this.ckbAlto.Location = new System.Drawing.Point(6, 19);
             this.ckbAlto.Name = "ckbAlto";
             this.ckbAlto.Size = new System.Drawing.Size(44, 17);
-            this.ckbAlto.TabIndex = 5;
+            this.ckbAlto.TabIndex = 7;
             this.ckbAlto.Text = "Alto";
             this.ckbAlto.UseVisualStyleBackColor = true;
             // 
@@ -125,7 +125,7 @@
             this.ckbMedio.Location = new System.Drawing.Point(6, 43);
             this.ckbMedio.Name = "ckbMedio";
             this.ckbMedio.Size = new System.Drawing.Size(55, 17);
-            this.ckbMedio.TabIndex = 6;
+            this.ckbMedio.TabIndex = 8;
             this.ckbMedio.Text = "Medio";
             this.ckbMedio.UseVisualStyleBackColor = true;
             // 
@@ -137,7 +137,7 @@
             this.ckbBajo.Location = new System.Drawing.Point(6, 67);
             this.ckbBajo.Name = "ckbBajo";
             this.ckbBajo.Size = new System.Drawing.Size(47, 17);
-            this.ckbBajo.TabIndex = 7;
+            this.ckbBajo.TabIndex = 9;
             this.ckbBajo.Text = "Bajo";
             this.ckbBajo.UseVisualStyleBackColor = true;
             // 
@@ -149,7 +149,7 @@
             this.groupBox2.Location = new System.Drawing.Point(6, 63);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(99, 89);
-            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Estado";
             // 
@@ -161,7 +161,7 @@
             this.ckbPublicada.Location = new System.Drawing.Point(6, 43);
             this.ckbPublicada.Name = "ckbPublicada";
             this.ckbPublicada.Size = new System.Drawing.Size(73, 17);
-            this.ckbPublicada.TabIndex = 3;
+            this.ckbPublicada.TabIndex = 4;
             this.ckbPublicada.Text = "Publicada";
             this.ckbPublicada.UseVisualStyleBackColor = true;
             // 
@@ -173,7 +173,7 @@
             this.ckbBorrador.Location = new System.Drawing.Point(6, 19);
             this.ckbBorrador.Name = "ckbBorrador";
             this.ckbBorrador.Size = new System.Drawing.Size(66, 17);
-            this.ckbBorrador.TabIndex = 2;
+            this.ckbBorrador.TabIndex = 3;
             this.ckbBorrador.Text = "Borrador";
             this.ckbBorrador.UseVisualStyleBackColor = true;
             // 
@@ -185,7 +185,7 @@
             this.ckbFinalizada.Location = new System.Drawing.Point(6, 67);
             this.ckbFinalizada.Name = "ckbFinalizada";
             this.ckbFinalizada.Size = new System.Drawing.Size(73, 17);
-            this.ckbFinalizada.TabIndex = 4;
+            this.ckbFinalizada.TabIndex = 5;
             this.ckbFinalizada.Text = "Finalizada";
             this.ckbFinalizada.UseVisualStyleBackColor = true;
             // 
@@ -194,7 +194,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(6, 188);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(204, 24);
-            this.btnLimpiar.TabIndex = 9;
+            this.btnLimpiar.TabIndex = 11;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             // 
@@ -203,7 +203,7 @@
             this.btnFiltrar.Location = new System.Drawing.Point(6, 158);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(204, 24);
-            this.btnFiltrar.TabIndex = 8;
+            this.btnFiltrar.TabIndex = 10;
             this.btnFiltrar.Text = "FILTRAR";
             this.btnFiltrar.UseVisualStyleBackColor = true;
             // 
@@ -212,7 +212,7 @@
             this.btnConfiguracion.Location = new System.Drawing.Point(482, 410);
             this.btnConfiguracion.Name = "btnConfiguracion";
             this.btnConfiguracion.Size = new System.Drawing.Size(216, 43);
-            this.btnConfiguracion.TabIndex = 10;
+            this.btnConfiguracion.TabIndex = 13;
             this.btnConfiguracion.Text = "CONFIGURACIÓN DE CUENTA";
             this.btnConfiguracion.UseVisualStyleBackColor = true;
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
@@ -223,7 +223,7 @@
             this.lklCerrarSesion.Location = new System.Drawing.Point(603, 9);
             this.lklCerrarSesion.Name = "lklCerrarSesion";
             this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
-            this.lklCerrarSesion.TabIndex = 12;
+            this.lklCerrarSesion.TabIndex = 14;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
@@ -248,7 +248,7 @@
             this.dgvPublicaciones.Location = new System.Drawing.Point(12, 28);
             this.dgvPublicaciones.Name = "dgvPublicaciones";
             this.dgvPublicaciones.Size = new System.Drawing.Size(464, 425);
-            this.dgvPublicaciones.TabIndex = 11;
+            this.dgvPublicaciones.TabIndex = 15;
             // 
             // FormMenuEmpresa
             // 
