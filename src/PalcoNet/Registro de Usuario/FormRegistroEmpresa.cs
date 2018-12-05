@@ -54,9 +54,9 @@ namespace PalcoNet.Registro_de_Usuario
         private bool validarCampos()
         {
             // TODO: chequear que campos son obligatorios
-            if (txtCUIT.Text == "")
+            if (!validador.validar_CUIL_CUIT(txtCUIT.Text))
             {
-                lblError.Text = "Complete el CUIT";
+                lblError.Text = "El CUIT es incorrecto";
                 lblError.Visible = true;
                 return false;
             }
@@ -92,7 +92,7 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (validarCampos())
+            if (this.validarCampos())
             {
                 /*
                  * INICIO TRANSACCION

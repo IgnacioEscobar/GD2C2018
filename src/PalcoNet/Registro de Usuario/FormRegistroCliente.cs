@@ -55,9 +55,9 @@ namespace PalcoNet.Registro_de_Usuario
         private bool validarCampos()
         {
             // TODO: chequear que campos son obligatorios
-            if (txtCUIL.Text == "")
+            if (!validador.validar_CUIL_CUIT(txtCUIL.Text))
             {
-                lblError.Text = "Complete su CUIL";
+                lblError.Text = "El CUIL es incorrecto";
                 lblError.Visible = true;
                 return false;
             }
@@ -121,7 +121,7 @@ namespace PalcoNet.Registro_de_Usuario
             cargarListaTiposDocumento();
             GeneradorDeFechas generador = new GeneradorDeFechas();
             generador.completarDia(cmbDia);
-            generador.completarMes(cmbMes);
+            generador.completarMes(cmbMes, true);
             generador.completarAno(cmbAno, true);
 
             if (modif)
@@ -180,7 +180,7 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnAsociarTarjeta_Click(object sender, EventArgs e)
         {
-            if (validarCampos())
+            if (this.validarCampos())
             {
                 formTarjetaDeCredito.Hide();
                 formTarjetaDeCredito.Show();
@@ -189,7 +189,7 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (validarCampos())
+            if (this.validarCampos())
             {
                 /*
                  * INICIO TRANSACCION

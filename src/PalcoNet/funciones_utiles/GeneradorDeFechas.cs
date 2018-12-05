@@ -21,26 +21,29 @@ namespace PalcoNet.funciones_utiles
             }            
         }
 
-        public void completarMes (ComboBox cmbMes)
+        public void completarMes (ComboBox cmbMes, bool texto)
         {
-            /*
-            cmbMes.Items.Add("Enero");
-            cmbMes.Items.Add("Febrero");
-            cmbMes.Items.Add("Marzo");
-            cmbMes.Items.Add("Abril");
-            cmbMes.Items.Add("Mayo");
-            cmbMes.Items.Add("Junio");
-            cmbMes.Items.Add("Julio");
-            cmbMes.Items.Add("Agosto");
-            cmbMes.Items.Add("Septiembre");
-            cmbMes.Items.Add("Octubre");
-            cmbMes.Items.Add("Noviembre");
-            cmbMes.Items.Add("Diciembre");
-            */
-
-            for (int i = 1; i <= 12; i++)
+            if (texto)
             {
-                cmbMes.Items.Add(i);
+                cmbMes.Items.Add("Enero");
+                cmbMes.Items.Add("Febrero");
+                cmbMes.Items.Add("Marzo");
+                cmbMes.Items.Add("Abril");
+                cmbMes.Items.Add("Mayo");
+                cmbMes.Items.Add("Junio");
+                cmbMes.Items.Add("Julio");
+                cmbMes.Items.Add("Agosto");
+                cmbMes.Items.Add("Septiembre");
+                cmbMes.Items.Add("Octubre");
+                cmbMes.Items.Add("Noviembre");
+                cmbMes.Items.Add("Diciembre");
+            }
+            else
+            {
+                for (int i = 1; i <= 12; i++)
+                {
+                    cmbMes.Items.Add(i);
+                }
             }
         }
 

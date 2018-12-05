@@ -76,7 +76,7 @@ namespace PalcoNet.Generar_Publicacion
         {
             GeneradorDeFechas generador = new GeneradorDeFechas();
             generador.completarDia(cmbDia);
-            generador.completarMes(cmbMes);
+            generador.completarMes(cmbMes, false);
             generador.completarAno(cmbAno, false);
 
             lsvFechaHora.View = View.Details;
