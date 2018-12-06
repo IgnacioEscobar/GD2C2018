@@ -1,4 +1,4 @@
-ALTER PROCEDURE PEAKY_BLINDERS.crear_usuario
+CREATE PROCEDURE PEAKY_BLINDERS.crear_usuario
 @usuario     varchar(30),
 @contrasenna varchar(30)
 AS
@@ -7,7 +7,7 @@ AS
   )
 GO
 	
-ALTER PROCEDURE PEAKY_BLINDERS.autenticar_usuario
+CREATE PROCEDURE PEAKY_BLINDERS.autenticar_usuario
 @usuario     varchar(30),
 @contrasenna varchar(30),
 @id int output
@@ -90,7 +90,7 @@ CREATE PROCEDURE PEAKY_BLINDERS.crear_empresa
 @codigo_postal varchar(4),
 @localidad varchar(60),
 @mail varchar(60),
-@telefono varchar(10),
+@telefono varchar(10)
 AS
 	INSERT INTO PEAKY_BLINDERS.empresas (razon_social, cuit, calle, numero, piso, depto, codigo_postal, localidad,
 		mail, telefono)

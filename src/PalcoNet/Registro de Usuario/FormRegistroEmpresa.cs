@@ -53,14 +53,30 @@ namespace PalcoNet.Registro_de_Usuario
 
         private bool validarCampos()
         {
-            // TODO: chequear que campos son obligatorios
-            if (!validador.validar_CUIL_CUIT(txtCUIT.Text))
+            List<string[]> lista = new List<string[]>();
+            lista.Add(new string[] { txtRazonSocial.Text, "razon social" });
+            lista.Add(new string[] { txtCUIT.Text, "CUIT" });
+            lista.Add(new string[] { txtCalle.Text, "calle" });
+            lista.Add(new string[] { txtAltura.Text, "altura" });
+            lista.Add(new string[] { txtCodigoPostal.Text, "código postal" });
+            lista.Add(new string[] { txtMail.Text, "mail" });
+            lista.Add(new string[] { txtTelefono.Text, "teléfono" });
+
+            string mensaje = "";
+            bool retorno = validador.validar_campos_obligatorios(lista, ref mensaje);
+
+            if (txtCUIT.Text.Length > 0 && !validador.validar_CUIL_CUIT(txtCUIT.Text))
             {
-                lblError.Text = "El CUIT es incorrecto";
-                lblError.Visible = true;
-                return false;
+                mensaje += "\n\nEl CUIT es incorrecto";
+                retorno = false;
             }
-            return true;
+
+            if (!retorno)
+            {
+                MessageBox.Show(mensaje, "Alerta");
+            }
+
+            return retorno;
         }
 
         private void cargarTexto(SqlDataReader lector, TextBox txtCampo, string campo)
@@ -131,7 +147,7 @@ namespace PalcoNet.Registro_de_Usuario
                 {
                     string usuario = txtCUIT.Text;
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                    string contrasena = generadorDeContrasenas.generar(10);
+                    string contrasena = generadorDeContrasenas.generar(4);
 
                     gestor.conectar();
                     gestor.generarStoredProcedure("crear_usuario");
@@ -191,6 +207,7 @@ namespace PalcoNet.Registro_de_Usuario
 
             lblError.Visible = false;
             validador = new ValidadorDeDatos();
+            txtRazonSocial.Select();
         }
 
         private void txtCUIT_KeyPress(object sender, KeyPressEventArgs e)

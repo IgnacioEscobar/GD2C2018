@@ -52,25 +52,53 @@ namespace PalcoNet.Registro_de_Usuario
             this.query = query;
         }
 
+        private string atraparValorFecha(ComboBox cmb)
+        {
+            try
+            {
+                return cmb.SelectedItem.ToString();
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
         private bool validarCampos()
         {
-            /*
             List<string[]> lista = new List<string[]>();
             lista.Add(new string[] { txtNombre.Text, "nombre" });
             lista.Add(new string[] { txtApellido.Text, "apellido" });
             lista.Add(new string[] { cmbTipoDoc.Text, "tipo de documento" });
-            lista.Add(new string[] { txtNumeroDoc.Text, "numero de documento" });
+            lista.Add(new string[] { txtNumeroDoc.Text, "número de documento" });
+            lista.Add(new string[] { txtCUIL.Text, "CUIL" });
+            string dia = this.atraparValorFecha(cmbDia);
+            lista.Add(new string[] { dia, "día (fecha de nacimiento)" });
+            string mes = this.atraparValorFecha(cmbMes);
+            lista.Add(new string[] { mes, "mes (fecha de nacimiento)" });
+            string ano = this.atraparValorFecha(cmbAno);
+            lista.Add(new string[] { ano, "año (fecha de nacimiento)" });
+            lista.Add(new string[] { txtCalle.Text, "calle" });
+            lista.Add(new string[] { txtAltura.Text, "altura" });
+            lista.Add(new string[] { txtCodigoPostal.Text, "código postal" });
+            lista.Add(new string[] { txtMail.Text, "mail" });
+            lista.Add(new string[] { txtTelefono.Text, "teléfono" });
 
-            validador.validar_campos_obligatorios(lista);
-            */
+            string mensaje = "";
+            bool retorno = validador.validar_campos_obligatorios(lista, ref mensaje);
 
-            if (!validador.validar_CUIL_CUIT(txtCUIL.Text))
+            if (txtCUIL.Text.Length > 0 && !validador.validar_CUIL_CUIT(txtCUIL.Text))
             {
-                lblError.Text = "El CUIL es incorrecto";
-                lblError.Visible = true;
-                return false;
+                mensaje += "\n\nEl CUIL es incorrecto";
+                retorno = false;
             }
-            return true;
+
+            if (!retorno)
+            {
+                MessageBox.Show(mensaje, "Alerta");
+            }
+
+            return retorno;
         }
 
         private void cargarTexto(SqlDataReader lector, TextBox txtCampo, string campo)
@@ -152,7 +180,7 @@ namespace PalcoNet.Registro_de_Usuario
                     cargarTexto(lector, txtAltura, "numero");
                     cargarTexto(lector, txtPiso, "piso");
                     cargarTexto(lector, txtDepto, "depto");
-                    cargarTexto(lector, txtCodPostal, "codigo_postal");
+                    cargarTexto(lector, txtCodigoPostal, "codigo_postal");
                     cargarTexto(lector, txtLocalidad, "localidad");
                     cargarFecha(lector, "fecha_nacimiento");
                     numeroTarjeta = lector["tarjeta_de_credito_asociada"].ToString();
@@ -227,7 +255,7 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("numero", txtAltura.Text);
                 gestor.parametroPorValor("piso", txtPiso.Text);
                 gestor.parametroPorValor("depto", txtDepto.Text);
-                gestor.parametroPorValor("codigo_postal", txtCodPostal.Text);
+                gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
                 gestor.parametroPorValor("localidad", txtLocalidad.Text);
                 gestor.parametroPorValor("mail", txtMail.Text);
                 gestor.parametroPorValor("telefono", txtTelefono.Text);
@@ -244,7 +272,7 @@ namespace PalcoNet.Registro_de_Usuario
                 {
                     string usuario = txtCUIL.Text;
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                    string contrasena = generadorDeContrasenas.generar(10);
+                    string contrasena = generadorDeContrasenas.generar(4);
 
                     gestor.conectar();
                     gestor.generarStoredProcedure("crear_usuario");

@@ -74,10 +74,10 @@ namespace PalcoNet.funciones_utiles
             return (Convert.ToInt32(numero_ingresado[10].ToString()) == aux);
         }
 
-        public bool validar_campos_obligatorios(List<string[]> lista)
+        public bool validar_campos_obligatorios(List<string[]> lista, ref string mensaje)
         {
             bool completo = true;
-            string mensaje = "Faltaron completar los siguientes campos:";
+            mensaje = "Faltaron completar los siguientes campos:";
             foreach (string[] item in lista)
             {
                 if (item[0] == "")
@@ -86,9 +86,9 @@ namespace PalcoNet.funciones_utiles
                     mensaje += "\n - " + item[1];
                 }
             }
-            if (!completo)
+            if (completo)
             {
-                MessageBox.Show(mensaje, "ALERTA");
+                mensaje = "";
             }
             return completo;
         }
