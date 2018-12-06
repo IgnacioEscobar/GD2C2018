@@ -113,7 +113,7 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("razon_social", txtRazonSocial.Text);
                 gestor.parametroPorValor("cuit", txtCUIT.Text);
                 gestor.parametroPorValor("calle", txtCalle.Text);
-                gestor.parametroPorValor("altura", txtAltura.Text);
+                gestor.parametroPorValor("numero", txtAltura.Text);
                 gestor.parametroPorValor("piso", txtPiso.Text);
                 gestor.parametroPorValor("depto", txtDepto.Text);
                 gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
@@ -131,9 +131,18 @@ namespace PalcoNet.Registro_de_Usuario
                 {
                     string usuario = txtCUIT.Text;
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
+                    string contrasena = generadorDeContrasenas.generar(10);
+
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("crear_usuario");
+                    gestor.parametroPorValor("usuario", usuario);
+                    gestor.parametroPorValor("contrasenna", contrasena);
+                    gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+
                     MessageBox.Show("Usuario: " + usuario
-                        + "\nContraseña: " + generadorDeContrasenas.generar(10)
-                        + "\n\n Por favor recuerde su contraseña e inicie sesión para actualizarla.");
+                        + "\nContraseña: " + contrasena
+                        + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
                 }
                 else
                 {

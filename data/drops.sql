@@ -42,3 +42,4 @@ if OBJECT_ID('PEAKY_BLINDERS.empresas', 'U') is not null
   drop table PEAKY_BLINDERS.empresas;
 if OBJECT_ID('PEAKY_BLINDERS.usuarios', 'U') is not null
   drop table PEAKY_BLINDERS.usuarios;
+drop schema PEAKY_BLINDERS;

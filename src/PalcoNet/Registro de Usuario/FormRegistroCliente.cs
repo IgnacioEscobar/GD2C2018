@@ -54,7 +54,16 @@ namespace PalcoNet.Registro_de_Usuario
 
         private bool validarCampos()
         {
-            // TODO: chequear que campos son obligatorios
+            /*
+            List<string[]> lista = new List<string[]>();
+            lista.Add(new string[] { txtNombre.Text, "nombre" });
+            lista.Add(new string[] { txtApellido.Text, "apellido" });
+            lista.Add(new string[] { cmbTipoDoc.Text, "tipo de documento" });
+            lista.Add(new string[] { txtNumeroDoc.Text, "numero de documento" });
+
+            validador.validar_campos_obligatorios(lista);
+            */
+
             if (!validador.validar_CUIL_CUIT(txtCUIL.Text))
             {
                 lblError.Text = "El CUIL es incorrecto";
@@ -209,12 +218,9 @@ namespace PalcoNet.Registro_de_Usuario
 
                 gestor.parametroPorValor("nombre", txtNombre.Text);
                 gestor.parametroPorValor("apellido", txtApellido.Text);
-                gestor.parametroPorValor("tipo_de_documento", cmbTipoDoc.Text);
+                gestor.parametroPorValor("descripcion_tipo_de_documento", cmbTipoDoc.Text);
                 gestor.parametroPorValor("numero_de_documento", txtNumeroDoc.Text);
                 gestor.parametroPorValor("cuil", txtCUIL.Text);
-                gestor.parametroPorValor("dia", cmbDia.Text);
-                gestor.parametroPorValor("mes", cmbMes.Text);
-                gestor.parametroPorValor("ano", cmbAno.Text);
                 DateTime fecha_nacimiento = DateTime.Parse(cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text);
                 gestor.parametroPorValor("fecha_nacimiento", fecha_nacimiento);
                 gestor.parametroPorValor("calle", txtCalle.Text);
@@ -226,6 +232,7 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("mail", txtMail.Text);
                 gestor.parametroPorValor("telefono", txtTelefono.Text);
                 gestor.parametroPorValor("tarjeta_de_credito_asociada", numeroTarjeta);
+                gestor.parametroPorValor("fecha_creacion", DateTime.Today);
 
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
@@ -235,9 +242,19 @@ namespace PalcoNet.Registro_de_Usuario
 
                 if (!modif)
                 {
+                    string usuario = txtCUIL.Text;
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                    MessageBox.Show("Usuario: " + txtCUIL.Text
-                        + "\nContraseña: " + generadorDeContrasenas.generar(10)
+                    string contrasena = generadorDeContrasenas.generar(10);
+
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("crear_usuario");
+                    gestor.parametroPorValor("usuario", usuario);
+                    gestor.parametroPorValor("contrasenna", contrasena);
+                    gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+
+                    MessageBox.Show("Usuario: " + usuario
+                        + "\nContraseña: " + contrasena
                         + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
                 }
                 else
