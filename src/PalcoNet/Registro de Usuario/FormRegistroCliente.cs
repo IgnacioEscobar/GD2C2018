@@ -54,14 +54,14 @@ namespace PalcoNet.Registro_de_Usuario
 
         private string atraparValorFecha(ComboBox cmb)
         {
-            try
+            foreach (object item in cmb.Items)
             {
-                return cmb.SelectedItem.ToString();
+                if (item.ToString() == cmb.Text)
+                {
+                    return cmb.Text;
+                }
             }
-            catch
-            {
-                return "";
-            }
+            return "";
         }
 
         private bool validarCampos()
@@ -226,19 +226,23 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            bool creacion = false;
-
             if (this.validarCampos())
             {
-                /*
-                 * INICIO TRANSACCION
-                 */
                 GestorDB gestor = new GestorDB();
-                gestor.conectar();
+                bool creacion = false;
+                string usuario = "";
+                string contrasena = "";
 
                 if (!modif)
                 {
+                    usuario = txtCUIL.Text;
+                    GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
+                    contrasena = generadorDeContrasenas.generar(4);
+
+                    gestor.conectar();
                     gestor.generarStoredProcedure("crear_cliente");
+                    gestor.parametroPorValor("usuario", usuario);
+                    gestor.parametroPorValor("contrasenna", contrasena);
                 }
                 else
                 {
@@ -266,24 +270,9 @@ namespace PalcoNet.Registro_de_Usuario
 
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
-                /*
-                 * FIN TRANSACCION
-                 */
 
-                string usuario = "";
                 if (!modif)
                 {
-                    usuario = txtCUIL.Text;
-                    GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                    string contrasena = generadorDeContrasenas.generar(4);
-
-                    gestor.conectar();
-                    gestor.generarStoredProcedure("crear_usuario");
-                    gestor.parametroPorValor("usuario", usuario);
-                    gestor.parametroPorValor("contrasenna", contrasena);
-                    gestor.ejecutarStoredProcedure();
-                    gestor.desconectar();
-
                     MessageBox.Show("Usuario: " + usuario
                         + "\nContraseña: " + contrasena
                         + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");

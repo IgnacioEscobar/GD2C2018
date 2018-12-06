@@ -1,13 +1,4 @@
-CREATE PROCEDURE PEAKY_BLINDERS.crear_usuario
-@usuario     varchar(30),
-@contrasenna varchar(30)
-AS
-  insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash) values (
-    @usuario, HASHBYTES('SHA2_256', @contrasenna)
-  )
-GO
-	
-CREATE PROCEDURE PEAKY_BLINDERS.autenticar_usuario
+ALTER PROCEDURE PEAKY_BLINDERS.autenticar_usuario
 @usuario     varchar(30),
 @contrasenna varchar(30),
 @id int output
@@ -49,7 +40,9 @@ AS
   END
 GO
 
-CREATE PROCEDURE PEAKY_BLINDERS.crear_cliente
+ALTER PROCEDURE PEAKY_BLINDERS.crear_cliente
+@usuario varchar(30),
+@contrasenna varchar(30),
 @nombre varchar(60),
 @apellido varchar(60),
 @descripcion_tipo_de_documento varchar(10),
@@ -68,19 +61,32 @@ CREATE PROCEDURE PEAKY_BLINDERS.crear_cliente
 @fecha_creacion datetime
 AS
 BEGIN
+	INSERT INTO PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
+	VALUES (@usuario, HASHBYTES('SHA2_256', @contrasenna))
+	
+	DECLARE @id_usuario int
+	SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.usuarios WHERE nombre_de_usuario = @usuario
+
 	DECLARE @id_tipo_de_documento tinyint
 	SELECT @id_tipo_de_documento = id_tipo_de_documento
 	FROM PEAKY_BLINDERS.tipos_de_documento
 	WHERE descripcion = @descripcion_tipo_de_documento
 
-	INSERT INTO PEAKY_BLINDERS.clientes (nombre, apellido, id_tipo_de_documento, numero_de_documento, cuil, fecha_nacimiento,
+	INSERT INTO PEAKY_BLINDERS.clientes (id_usuario, nombre, apellido, id_tipo_de_documento, numero_de_documento, cuil, fecha_nacimiento,
 		calle, numero, piso, depto, codigo_postal, localidad, mail, telefono, tarjeta_de_credito_asociada, fecha_creacion)
-	VALUES (@nombre, @apellido, @id_tipo_de_documento, @numero_de_documento, @cuil, @fecha_nacimiento, @calle, @numero,
+	VALUES (@id_usuario, @nombre, @apellido, @id_tipo_de_documento, @numero_de_documento, @cuil, @fecha_nacimiento, @calle, @numero,
 		@piso, @depto, @codigo_postal, @localidad, @mail, @telefono, @tarjeta_de_credito_asociada, @fecha_creacion)
+
+	DECLARE @id_rol int
+	SELECT @id_rol = id_rol FROM PEAKY_BLINDERS.roles WHERE descripcion = 'Cliente'
+
+	INSERT INTO PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
+	VALUES (@id_usuario, @id_rol)
+
 END
 GO
 
-CREATE PROCEDURE PEAKY_BLINDERS.crear_empresa
+ALTER PROCEDURE PEAKY_BLINDERS.crear_empresa
 @razon_social varchar(60),
 @cuit varchar(11),
 @calle varchar(60),
