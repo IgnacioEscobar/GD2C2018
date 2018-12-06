@@ -20,11 +20,12 @@ namespace PalcoNet
 {
     public partial class FormLogin : Form
     {
-        string usuario = "";
+        string usuario;
 
         public FormLogin()
         {
             InitializeComponent();
+            this.usuario = "";
         }
 
         public FormLogin(string usuario)
@@ -43,12 +44,15 @@ namespace PalcoNet
         private void FormLogin_Load(object sender, EventArgs e)
         {
             txtUsuario.Text = usuario;
-            if (usuario != "")
+            if (usuario == "")
             {
-                txtContrasena.Focus();
+                txtUsuario.Select();
+            }
+            else
+            {
+                txtContrasena.Select();
             }
             lblError.Visible = false;
-            txtUsuario.Select();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)

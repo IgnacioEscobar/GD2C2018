@@ -226,6 +226,8 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            bool creacion = false;
+
             if (this.validarCampos())
             {
                 /*
@@ -268,9 +270,10 @@ namespace PalcoNet.Registro_de_Usuario
                  * FIN TRANSACCION
                  */
 
+                string usuario = "";
                 if (!modif)
                 {
-                    string usuario = txtCUIL.Text;
+                    usuario = txtCUIL.Text;
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                     string contrasena = generadorDeContrasenas.generar(4);
 
@@ -284,6 +287,8 @@ namespace PalcoNet.Registro_de_Usuario
                     MessageBox.Show("Usuario: " + usuario
                         + "\nContraseña: " + contrasena
                         + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
+
+                    creacion = true;
                 }
                 else
                 {
@@ -294,6 +299,10 @@ namespace PalcoNet.Registro_de_Usuario
                 if (abm)
                 {
                     formDestino = new FormABMCliente(userID);
+                }
+                else if (creacion)
+                {
+                    formDestino = new FormLogin(usuario);
                 }
                 else
                 {
