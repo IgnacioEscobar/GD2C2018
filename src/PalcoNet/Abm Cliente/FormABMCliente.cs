@@ -132,6 +132,7 @@ namespace PalcoNet.Abm_Cliente
             txtApellido.Text = "";
             txtDocumento.Text = "";
             txtMail.Text = "";
+            txtNombre.Select();
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

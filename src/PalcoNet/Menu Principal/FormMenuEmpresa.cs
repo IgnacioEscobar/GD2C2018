@@ -86,5 +86,17 @@ namespace PalcoNet.Menu_Principal
             formGenerarPublicacion.Show();
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtDescripcion.Text = "";
+            ckbBorrador.Checked = false;
+            ckbPublicada.Checked = false;
+            ckbFinalizada.Checked = false;
+            ckbAlto.Checked = false;
+            ckbMedio.Checked = false;
+            ckbBajo.Checked = false;
+            txtDescripcion.Select();
+        }
+
     }
 }

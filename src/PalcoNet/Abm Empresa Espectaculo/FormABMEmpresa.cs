@@ -68,6 +68,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             txtRazonSocial.Text = "";
             txtCUIT.Text = "";
             txtMail.Text = "";
+            txtRazonSocial.Select();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

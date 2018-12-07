@@ -105,6 +105,7 @@ namespace PalcoNet.Menu_Principal
             {
                 clbCategorias.SetItemChecked(i, false);
             }
+            txtDescripcion.Select();
         }
 
         private void btnHistorial_Click(object sender, EventArgs e)

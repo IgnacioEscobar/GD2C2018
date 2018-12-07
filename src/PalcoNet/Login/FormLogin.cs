@@ -176,7 +176,7 @@ namespace PalcoNet
                                             break;
 
                                         default:
-                                            MessageBox.Show("ERROR: el rol cargado es inválido");
+                                            lblError.Text = "ERROR: el rol cargado es inválido";
                                             break;
                                     }
                                 }
@@ -201,6 +201,16 @@ namespace PalcoNet
                 }
             }
             lblError.Visible = true;
+        }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+            lblError.Visible = false;
+        }
+
+        private void txtContrasena_TextChanged(object sender, EventArgs e)
+        {
+            lblError.Visible = false;
         }
 
     }
