@@ -310,6 +310,7 @@
             // txtCodigoPostal
             // 
             this.txtCodigoPostal.Location = new System.Drawing.Point(6, 104);
+            this.txtCodigoPostal.MaxLength = 4;
             this.txtCodigoPostal.Name = "txtCodigoPostal";
             this.txtCodigoPostal.Size = new System.Drawing.Size(89, 20);
             this.txtCodigoPostal.TabIndex = 14;

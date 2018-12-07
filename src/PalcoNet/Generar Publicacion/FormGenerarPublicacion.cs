@@ -35,18 +35,13 @@ namespace PalcoNet.Generar_Publicacion
             }
         }
 
-        private void enviarPublicacionPorFecha(GestorDB gestor, char estado, DateTime fecha_presentacion)
+        private void enviarPresentancion(GestorDB gestor, int id_publicacion, DateTime fecha_presentacion)
         {
-            gestor.parametroPorValor("id_estado", estado);
-            gestor.parametroPorValor("descripcion", txtDescripcion.Text);
-            gestor.parametroPorValor("stock", txtStock.Text);
-            gestor.parametroPorValor("fecha_nacimiento", fecha_presentacion);
-            gestor.parametroPorValor("calle", txtCalle.Text);
-            gestor.parametroPorValor("numero", txtAltura.Text);
-            gestor.parametroPorValor("codigo_postal", txtCodPostal.Text);
-            gestor.parametroPorValor("localidad", txtLocalidad.Text);
-            gestor.parametroPorValor("rubro", cmbRubro.Text);
-            gestor.parametroPorValor("precio", txtPrecio.Text);
+            gestor.conectar();
+            gestor.generarStoredProcedure("");
+            gestor.parametroPorValor("id_publicacion", id_publicacion);
+            gestor.parametroPorValor("fecha_presentacion", fecha_presentacion);
+            gestor.desconectar();
         }
 
         private void persistirPublicacion(string procedure, char estado)
@@ -54,17 +49,28 @@ namespace PalcoNet.Generar_Publicacion
             /*
              * INICIO TRANSACCION
              */
+
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.generarStoredProcedure(procedure);
+            gestor.parametroPorValor("id_estado", estado);
+            gestor.parametroPorValor("descripcion", txtDescripcion.Text);
+            gestor.parametroPorValor("stock", txtStock.Text);
+            gestor.parametroPorValor("calle", txtCalle.Text);
+            gestor.parametroPorValor("numero", txtAltura.Text);
+            gestor.parametroPorValor("codigo_postal", txtCodPostal.Text);
+            gestor.parametroPorValor("localidad", txtLocalidad.Text);
+            gestor.parametroPorValor("rubro", cmbRubro.Text);
+            gestor.parametroPorValor("precio", txtPrecio.Text);
+            int id_publicacion = gestor.ejecutarStoredProcedure();
+            gestor.desconectar();
 
             foreach (ListViewItem item in lsvFechaHora.Items)
             {
-                enviarPublicacionPorFecha(gestor, estado, DateTime.Parse(item.Text + " " + item.SubItems[1].Text));
+                enviarPresentancion(gestor, id_publicacion, DateTime.Parse(item.Text + " " + item.SubItems[1].Text));
             }
 
-            gestor.ejecutarStoredProcedure();
-            gestor.desconectar();
+            
             /*
              * FIN TRANSACCION
              */
@@ -133,12 +139,12 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnPublicar_Click(object sender, EventArgs e)
         {
-            this.persistirPublicacion("crear_publicacion", '2');
+            this.persistirPublicacion("generar_publicacion", '2');
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            this.persistirPublicacion("crear_publicacion", '1');
+            this.persistirPublicacion("generar_publicacion", '1');
         }
 
         private void txtStock_KeyPress(object sender, KeyPressEventArgs e)
