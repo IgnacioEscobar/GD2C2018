@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 using PalcoNet.Login;
 using PalcoNet.funciones_utiles;
-using PalcoNet.ABM_Usuario;
+using PalcoNet.Abm_Usuario;
 using PalcoNet.Generar_Publicacion;
 
 namespace PalcoNet.Menu_Principal

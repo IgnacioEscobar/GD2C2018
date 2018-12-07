@@ -8,7 +8,8 @@ create table PEAKY_BLINDERS.usuarios (
   nombre_de_usuario varchar(40),
   password_hash binary(32),
   habilitado bit default 1,
-  intentos_fallidos tinyint default 0
+  intentos_fallidos tinyint default 0,
+  nuevo bit default 0,
 );
 
 -- Empresas --

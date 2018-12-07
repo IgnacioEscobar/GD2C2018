@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 using PalcoNet.Login;
 
@@ -65,9 +66,9 @@ namespace PalcoNet.funciones_utiles
                 return Convert.ToInt32(query.Parameters["@ReturnVal"].Value);
 
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show("ERROR EN DB: " + e.ToString());
                 return -1;
             }
         }

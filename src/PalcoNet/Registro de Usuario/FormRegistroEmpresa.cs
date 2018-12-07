@@ -108,19 +108,23 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            bool creacion = false;
-
             if (this.validarCampos())
             {
-                /*
-                 * INICIO TRANSACCION
-                 */
                 GestorDB gestor = new GestorDB();
                 gestor.conectar();
+                bool creacion = false;
+                string usuario = "";
+                string contrasena = "";
 
                 if (!modif)
                 {
+                    usuario = txtCUIT.Text;
+                    GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
+                    contrasena = generadorDeContrasenas.generar(4);
+
                     gestor.generarStoredProcedure("crear_empresa");
+                    gestor.parametroPorValor("usuario", usuario);
+                    gestor.parametroPorValor("contrasenna", contrasena);
                 }
                 else
                 {
@@ -139,53 +143,45 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("mail", txtMail.Text);
                 gestor.parametroPorValor("telefono", txtTelefono.Text);
 
-                gestor.ejecutarStoredProcedure();
+                int resultado = gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
-                /*
-                 * FIN TRANSACCION
-                 */
 
-                string usuario = "";
-                if (!modif)
+                if (resultado == 0)
                 {
-                    usuario = txtCUIT.Text;
-                    GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                    string contrasena = generadorDeContrasenas.generar(4);
-
-                    gestor.conectar();
-                    gestor.generarStoredProcedure("crear_usuario");
-                    gestor.parametroPorValor("usuario", usuario);
-                    gestor.parametroPorValor("contrasenna", contrasena);
-                    gestor.ejecutarStoredProcedure();
-                    gestor.desconectar();
-
-                    MessageBox.Show("Usuario: " + usuario
-                        + "\nContraseña: " + contrasena
-                        + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
-
-                    creacion = true;
+                    MessageBox.Show("Ya existe un usuario con ese número de CUIT.", "Alerta");
                 }
                 else
                 {
-                    MessageBox.Show("¡Datos actualizados!");
-                }
+                    if (!modif)
+                    {
+                        MessageBox.Show("Usuario: " + usuario
+                            + "\nContraseña: " + contrasena
+                            + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
 
-                Form formDestino;
-                if (abm)
-                {
-                    formDestino = new FormABMEmpresa(userID);
-                }
-                else if (creacion)
-                {
-                    formDestino = new FormLogin(usuario);
-                }
-                else
-                {
-                    formDestino = new FormLogin();
-                }
+                        creacion = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("¡Datos actualizados!");
+                    }
 
-                this.Hide();
-                formDestino.Show();
+                    Form formDestino;
+                    if (abm)
+                    {
+                        formDestino = new FormABMEmpresa(userID);
+                    }
+                    else if (creacion)
+                    {
+                        formDestino = new FormLogin(usuario);
+                    }
+                    else
+                    {
+                        formDestino = new FormLogin();
+                    }
+
+                    this.Hide();
+                    formDestino.Show();
+                }
             }
         }
 

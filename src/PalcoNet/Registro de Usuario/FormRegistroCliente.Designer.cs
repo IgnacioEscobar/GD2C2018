@@ -119,6 +119,7 @@
             this.cmbTipoDoc.Name = "cmbTipoDoc";
             this.cmbTipoDoc.Size = new System.Drawing.Size(90, 21);
             this.cmbTipoDoc.TabIndex = 3;
+            this.cmbTipoDoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbTipoDoc_KeyPress);
             // 
             // label5
             // 
