@@ -28,6 +28,7 @@ namespace PalcoNet
         {
             InitializeComponent();
             this.usuario = "";
+            this.userID = -1;
         }
 
         public FormLogin(string usuario)
