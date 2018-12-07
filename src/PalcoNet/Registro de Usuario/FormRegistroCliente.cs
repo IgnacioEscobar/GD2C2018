@@ -69,7 +69,8 @@ namespace PalcoNet.Registro_de_Usuario
             List<string[]> lista = new List<string[]>();
             lista.Add(new string[] { txtNombre.Text, "nombre" });
             lista.Add(new string[] { txtApellido.Text, "apellido" });
-            lista.Add(new string[] { cmbTipoDoc.Text, "tipo de documento" });
+            string tipoDoc = this.atraparValorFecha(cmbTipoDoc);
+            lista.Add(new string[] { tipoDoc, "tipo de documento" });
             lista.Add(new string[] { txtNumeroDoc.Text, "número de documento" });
             lista.Add(new string[] { txtCUIL.Text, "CUIL" });
             string dia = this.atraparValorFecha(cmbDia);
@@ -229,6 +230,7 @@ namespace PalcoNet.Registro_de_Usuario
             if (this.validarCampos())
             {
                 GestorDB gestor = new GestorDB();
+                gestor.conectar();
                 bool creacion = false;
                 string usuario = "";
                 string contrasena = "";
@@ -239,7 +241,6 @@ namespace PalcoNet.Registro_de_Usuario
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                     contrasena = generadorDeContrasenas.generar(4);
 
-                    gestor.conectar();
                     gestor.generarStoredProcedure("crear_cliente");
                     gestor.parametroPorValor("usuario", usuario);
                     gestor.parametroPorValor("contrasenna", contrasena);
@@ -268,39 +269,47 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("tarjeta_de_credito_asociada", numeroTarjeta);
                 gestor.parametroPorValor("fecha_creacion", DateTime.Today);
 
-                gestor.ejecutarStoredProcedure();
+                int resultado = gestor.ejecutarStoredProcedure();
+                MessageBox.Show(resultado.ToString());
                 gestor.desconectar();
 
-                if (!modif)
+                if (resultado == 0)
                 {
-                    MessageBox.Show("Usuario: " + usuario
-                        + "\nContraseña: " + contrasena
-                        + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
-
-                    creacion = true;
+                    MessageBox.Show("Ya existe un usuario con ese número de CUIL.", "Alerta");
                 }
                 else
                 {
-                    MessageBox.Show("¡Datos actualizados!");
-                }
+                    if (!modif)
+                    {
+                        MessageBox.Show("Usuario: " + usuario
+                            + "\nContraseña: " + contrasena
+                            + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
 
-                Form formDestino;
-                if (abm)
-                {
-                    formDestino = new FormABMCliente(userID);
-                }
-                else if (creacion)
-                {
-                    formDestino = new FormLogin(usuario);
-                }
-                else
-                {
-                    formDestino = new FormLogin();
-                }
+                        creacion = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("¡Datos actualizados!");
+                    }
 
-                this.Hide();
-                formTarjetaDeCredito.Hide();
-                formDestino.Show();
+                    Form formDestino;
+                    if (abm)
+                    {
+                        formDestino = new FormABMCliente(userID);
+                    }
+                    else if (creacion)
+                    {
+                        formDestino = new FormLogin(usuario);
+                    }
+                    else
+                    {
+                        formDestino = new FormLogin();
+                    }
+
+                    this.Hide();
+                    formTarjetaDeCredito.Hide();
+                    formDestino.Show();
+                }
             }
         }
 
@@ -357,6 +366,11 @@ namespace PalcoNet.Registro_de_Usuario
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             validador.numero(e);
+        }
+
+        private void cmbTipoDoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.texto(e);
         }
 
     }

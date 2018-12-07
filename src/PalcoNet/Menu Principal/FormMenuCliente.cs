@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Login;
-using PalcoNet.ABM_Usuario;
+using PalcoNet.Abm_Usuario;
 using PalcoNet.Historial_Cliente;
 using PalcoNet.Comprar;
 

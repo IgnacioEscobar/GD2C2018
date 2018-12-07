@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.ABM_Usuario
+﻿namespace PalcoNet.Abm_Usuario
 {
     partial class FormMiUsuario
     {
@@ -46,6 +46,7 @@
             // 
             this.txtPassActual.Location = new System.Drawing.Point(6, 36);
             this.txtPassActual.Name = "txtPassActual";
+            this.txtPassActual.PasswordChar = '*';
             this.txtPassActual.Size = new System.Drawing.Size(261, 20);
             this.txtPassActual.TabIndex = 0;
             // 
@@ -94,6 +95,7 @@
             this.btnConfirmar.TabIndex = 3;
             this.btnConfirmar.Text = "CONFIRMAR";
             this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // label3
             // 
@@ -108,6 +110,7 @@
             // 
             this.txtPassNueva2.Location = new System.Drawing.Point(6, 114);
             this.txtPassNueva2.Name = "txtPassNueva2";
+            this.txtPassNueva2.PasswordChar = '*';
             this.txtPassNueva2.Size = new System.Drawing.Size(261, 20);
             this.txtPassNueva2.TabIndex = 2;
             // 
@@ -124,6 +127,7 @@
             // 
             this.txtPassNueva.Location = new System.Drawing.Point(6, 75);
             this.txtPassNueva.Name = "txtPassNueva";
+            this.txtPassNueva.PasswordChar = '*';
             this.txtPassNueva.Size = new System.Drawing.Size(261, 20);
             this.txtPassNueva.TabIndex = 1;
             // 

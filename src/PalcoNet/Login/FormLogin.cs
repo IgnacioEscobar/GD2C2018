@@ -15,12 +15,14 @@ using PalcoNet.funciones_utiles;
 using PalcoNet.Abm_Cliente;
 using PalcoNet.Abm_Empresa_Espectaculo;
 using PalcoNet.Menu_Principal;
+using PalcoNet.Abm_Usuario;
 
 namespace PalcoNet
 {
     public partial class FormLogin : Form
     {
         string usuario;
+        int userID;
 
         public FormLogin()
         {
@@ -32,6 +34,14 @@ namespace PalcoNet
         {
             InitializeComponent();
             this.usuario = usuario;
+            this.userID = -1;
+        }
+
+        public FormLogin(int userID)
+        {
+            InitializeComponent();
+            this.usuario = "";
+            this.userID = userID;
         }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
@@ -43,14 +53,28 @@ namespace PalcoNet
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
-            txtUsuario.Text = usuario;
-            if (usuario == "")
+            if (usuario != "")
             {
-                txtUsuario.Select();
+                txtUsuario.Text = usuario;
+                txtContrasena.Select();                
+            }
+            else if (userID > -1)
+            {
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                string query = "SELECT nombre_de_usuario FROM PEAKY_BLINDERS.usuarios WHERE id_usuario = '" + userID + "'";
+                gestor.consulta(query);
+                SqlDataReader lector = gestor.obtenerRegistros();
+                if (lector.Read())
+                {
+                    txtUsuario.Text = lector["nombre_de_usuario"].ToString();
+                }
+                gestor.desconectar();
+                txtContrasena.Select();
             }
             else
             {
-                txtContrasena.Select();
+                txtUsuario.Select();
             }
             lblError.Visible = false;
         }
@@ -86,6 +110,13 @@ namespace PalcoNet
                     {
                         lblError.Text = "La contraseña es inválida";
                     }
+                    else if (result == 2)
+                    {
+                        int userID = Convert.ToInt32(gestor.obtenerValor("@id"));
+                        FormMiUsuario formMiUsuario = new FormMiUsuario(userID);
+                        this.Hide();
+                        formMiUsuario.Show();
+                    }
                     else if (result == 1)
                     {
                         int userID = Convert.ToInt32(gestor.obtenerValor("@id"));
@@ -102,7 +133,7 @@ namespace PalcoNet
                         {
                             cantRolesAsignados = Convert.ToInt32(lector["cant_roles"]);
                         }
-                        
+
                         gestor.desconectar();
 
                         switch (cantRolesAsignados)
@@ -122,7 +153,7 @@ namespace PalcoNet
                                 {
                                     string rolCargado = lector2["descripcion"].ToString();
                                     Form formDestino;
-                                    
+
                                     switch (rolCargado)
                                     {
                                         case "Cliente":
@@ -157,7 +188,7 @@ namespace PalcoNet
                                 break;
                         }
                     }
-                    else if (result == 2)
+                    else if (result == 3)
                     {
                         lblError.Text = "La contraseña es inválida";
                         MessageBox.Show("Su cuenta ha sido inhabilitada por realizar 3 intentos incorrectos, comúniquese con un administrador", "ALERTA");

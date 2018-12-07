@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 using PalcoNet.funciones_utiles;
 using PalcoNet.Menu_Principal;
 using PalcoNet.Registro_de_Usuario;
-using PalcoNet.ABM_Usuario;
+using PalcoNet.Abm_Usuario;
 
 namespace PalcoNet.Abm_Usuario
 {

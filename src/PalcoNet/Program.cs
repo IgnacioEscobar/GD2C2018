@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using PalcoNet.Abm_Empresa_Espectaculo;
-using PalcoNet.ABM_Usuario;
+using PalcoNet.Abm_Usuario;
 using PalcoNet.Listado_Estadistico;
 
 namespace PalcoNet
