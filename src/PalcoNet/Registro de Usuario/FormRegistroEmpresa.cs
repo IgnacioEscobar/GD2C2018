@@ -128,7 +128,7 @@ namespace PalcoNet.Registro_de_Usuario
                 }
                 else
                 {
-                    gestor.generarStoredProcedure("actualizar_empresa");
+                    gestor.generarStoredProcedure("modificar_empresa");
                     gestor.parametroPorValor("id_empresa", empresaID);
                 }
 
@@ -196,23 +196,27 @@ namespace PalcoNet.Registro_de_Usuario
 
                 if (lector.Read())
                 {
-                    empresaID = lector["empresa_id"].ToString();
+                    empresaID = lector["id_empresa"].ToString();
                     cargarTexto(lector, txtRazonSocial, "razon_social");
                     cargarTexto(lector, txtCUIT, "cuit");
                     cargarTexto(lector, txtCalle, "calle");
                     cargarTexto(lector, txtAltura, "numero");
                     cargarTexto(lector, txtPiso, "piso");
-                    cargarTexto(lector, txtDepto, "departamento");
+                    cargarTexto(lector, txtDepto, "depto");
                     cargarTexto(lector, txtCodigoPostal, "codigo_postal");
                     cargarTexto(lector, txtLocalidad, "localidad");
                     cargarTexto(lector, txtMail, "mail");
+                    cargarTexto(lector, txtTelefono, "telefono");
                 }
                 gestor.desconectar();
+            }
+            else
+            {
+                txtRazonSocial.Select();
             }
 
             lblError.Visible = false;
             validador = new ValidadorDeDatos();
-            txtRazonSocial.Select();
         }
 
         private void txtCUIT_KeyPress(object sender, KeyPressEventArgs e)

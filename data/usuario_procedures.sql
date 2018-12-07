@@ -174,29 +174,35 @@ ALTER PROCEDURE PEAKY_BLINDERS.modificar_cliente
 @telefono varchar(10),
 @tarjeta_de_credito_asociada varchar(16)
 AS
-  BEGIN	
-	DECLARE @id_tipo_de_documento tinyint
-	SELECT @id_tipo_de_documento = id_tipo_de_documento
-	FROM PEAKY_BLINDERS.tipos_de_documento
-	WHERE descripcion = @descripcion_tipo_de_documento
+  BEGIN
+	(SELECT COUNT(*) FROM PEAKY_BLINDERS.empresas WHERE cuil = @cuil) > 1
+		RETURN 0
+	ELSE
+	  BEGIN	
+		DECLARE @id_tipo_de_documento tinyint
+		SELECT @id_tipo_de_documento = id_tipo_de_documento
+		FROM PEAKY_BLINDERS.tipos_de_documento
+		WHERE descripcion = @descripcion_tipo_de_documento
 
-	UPDATE PEAKY_BLINDERS.clientes SET
-		nombre = @nombre,
-		apellido = @apellido,
-		id_tipo_de_documento = @id_tipo_de_documento,
-		numero_de_documento = @numero_de_documento,
-		cuil = @cuil,
-		fecha_nacimiento = @fecha_nacimiento,
-		calle = @calle,
-		numero = @numero,
-		piso = @piso,
-		depto = @depto,
-		codigo_postal = @codigo_postal,
-		localidad = @localidad,
-		mail = @mail,
-		telefono = @telefono,
-		tarjeta_de_credito_asociada = @tarjeta_de_credito_asociada
-	WHERE id_cliente = @id_cliente
+		UPDATE PEAKY_BLINDERS.clientes SET
+			nombre = @nombre,
+			apellido = @apellido,
+			id_tipo_de_documento = @id_tipo_de_documento,
+			numero_de_documento = @numero_de_documento,
+			cuil = @cuil,
+			fecha_nacimiento = @fecha_nacimiento,
+			calle = @calle,
+			numero = @numero,
+			piso = @piso,
+			depto = @depto,
+			codigo_postal = @codigo_postal,
+			localidad = @localidad,
+			mail = @mail,
+			telefono = @telefono,
+			tarjeta_de_credito_asociada = @tarjeta_de_credito_asociada
+		WHERE id_cliente = @id_cliente
+		RETURN 1
+	  END
   END
 GO
 
@@ -274,18 +280,24 @@ ALTER PROCEDURE PEAKY_BLINDERS.modificar_empresa
 @mail varchar(60),
 @telefono varchar(10)
 AS
-  BEGIN	
-	UPDATE PEAKY_BLINDERS.empresas SET
-		razon_social = @razon_social,
-		cuit = @cuit,
-		calle = @calle,
-		numero = @numero,
-		piso = @piso,
-		depto = @depto,
-		codigo_postal = @codigo_postal,
-		localidad = @localidad,
-		mail = @mail,
-		telefono = @telefono
-	WHERE id_empresa = @id_empresa
+  BEGIN
+	IF (SELECT COUNT(*) FROM PEAKY_BLINDERS.empresas WHERE cuit = @cuit) > 1
+		RETURN 0
+	ELSE
+	  BEGIN	
+		UPDATE PEAKY_BLINDERS.empresas SET
+			razon_social = @razon_social,
+			cuit = @cuit,
+			calle = @calle,
+			numero = @numero,
+			piso = @piso,
+			depto = @depto,
+			codigo_postal = @codigo_postal,
+			localidad = @localidad,
+			mail = @mail,
+			telefono = @telefono
+		WHERE id_empresa = @id_empresa
+		RETURN 1
+	  END
   END
 GO

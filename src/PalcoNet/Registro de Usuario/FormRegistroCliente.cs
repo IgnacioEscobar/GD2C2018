@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Globalization;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Abm_Cliente;
@@ -119,7 +120,7 @@ namespace PalcoNet.Registro_de_Usuario
             try
             {
                 cmbDia.Text = Convert.ToDateTime(lector[campo]).Day.ToString();
-                cmbMes.Text = Convert.ToDateTime(lector[campo]).Month.ToString();
+                cmbMes.Text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Convert.ToDateTime(lector[campo]).Month);
                 cmbAno.Text = Convert.ToDateTime(lector[campo]).Year.ToString();
             }
             catch
@@ -176,17 +177,22 @@ namespace PalcoNet.Registro_de_Usuario
                     cargarTipoDeDocumento(lector, "descripcion");
                     cargarTexto(lector, txtNumeroDoc, "numero_de_documento");
                     cargarTexto(lector, txtCUIL, "cuil");
-                    cargarTexto(lector, txtMail, "mail");
+                    cargarFecha(lector, "fecha_nacimiento");
                     cargarTexto(lector, txtCalle, "calle");
                     cargarTexto(lector, txtAltura, "numero");
                     cargarTexto(lector, txtPiso, "piso");
                     cargarTexto(lector, txtDepto, "depto");
                     cargarTexto(lector, txtCodigoPostal, "codigo_postal");
                     cargarTexto(lector, txtLocalidad, "localidad");
-                    cargarFecha(lector, "fecha_nacimiento");
+                    cargarTexto(lector, txtMail, "mail");
+                    cargarTexto(lector, txtTelefono, "telefono");
                     numeroTarjeta = lector["tarjeta_de_credito_asociada"].ToString();
                 }
                 gestor.desconectar();
+            }
+            else
+            {
+                txtNombre.Select();
             }
 
             formTarjetaDeCredito = new FormTarjetaDeCredito(this, numeroTarjeta);
@@ -267,10 +273,12 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("mail", txtMail.Text);
                 gestor.parametroPorValor("telefono", txtTelefono.Text);
                 gestor.parametroPorValor("tarjeta_de_credito_asociada", numeroTarjeta);
-                gestor.parametroPorValor("fecha_creacion", DateTime.Today);
+                if (!modif)
+                {
+                    gestor.parametroPorValor("fecha_creacion", DateTime.Today);
+                }
 
                 int resultado = gestor.ejecutarStoredProcedure();
-                MessageBox.Show(resultado.ToString());
                 gestor.desconectar();
 
                 if (resultado == 0)
