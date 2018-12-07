@@ -149,7 +149,7 @@ create table PEAKY_BLINDERS.roles (
 
 set IDENTITY_INSERT PEAKY_BLINDERS.roles on;
 insert into PEAKY_BLINDERS.roles (id_rol, descripcion, habilitado) values
-  (1, 'Administrativo', 1),
+  (1, 'Administrador', 1),
   (2, 'Cliente', 1),
   (3, 'Empresa', 1);
 set IDENTITY_INSERT PEAKY_BLINDERS.roles off;
