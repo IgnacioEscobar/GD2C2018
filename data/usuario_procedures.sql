@@ -1,20 +1,3 @@
-/*
-CREATE PROCEDURE PEAKY_BLINDERS.generar_publicacion
-@descripcion_estado varchar(25),
-@descripcion_rubro varchar(15),
-@descripcion varchar(200),
-@stock smallint,
-@calle varchar(50),
-@numero smallint,
-@codigo_postal varchar(4),
-@localidad varchar(60)
-AS
-  BEGIN
-	DECLARE @no_hago_nada
-  END
-GO
-*/
-
 ALTER PROCEDURE PEAKY_BLINDERS.autenticar_usuario
 @usuario     varchar(30),
 @contrasenna varchar(30),

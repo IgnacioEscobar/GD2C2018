@@ -79,22 +79,25 @@ set IDENTITY_INSERT PEAKY_BLINDERS.grados OFF;
 -- Publicaciones --
 create table PEAKY_BLINDERS.publicaciones (
   id_publicacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  id_estado int REFERENCES PEAKY_BLINDERS.estados (id_estado),
-  id_grado tinyint REFERENCES PEAKY_BLINDERS.grados (id_grado),
-  stock smallint,
-  direccion varchar(60),
-  id_empresa int REFERENCES PEAKY_BLINDERS.empresas (id_empresa),
-  id_rubro tinyint REFERENCES PEAKY_BLINDERS.rubros (id_rubro),
   descripcion varchar(200),
+  stock smallint,
+  fecha_publicacion datetime,
+  id_rubro tinyint REFERENCES PEAKY_BLINDERS.rubros (id_rubro),
   calle varchar(50),
   numero smallint,
-  codigo_postal varchar(4)
+  codigo_postal varchar(4),
+  localidad varchar(60),
+  id_grado tinyint REFERENCES PEAKY_BLINDERS.grados (id_grado),
+  id_empresa int REFERENCES PEAKY_BLINDERS.empresas (id_empresa),
+  id_estado int REFERENCES PEAKY_BLINDERS.estados (id_estado)
 );
 
 set IDENTITY_INSERT PEAKY_BLINDERS.publicaciones ON;
 
 insert into PEAKY_BLINDERS.publicaciones (
   id_publicacion,
+  descripcion,
+  fecha_publicacion,
   id_estado,
   id_grado,
   id_empresa,
@@ -102,6 +105,8 @@ insert into PEAKY_BLINDERS.publicaciones (
 )
 select distinct
   Espectaculo_Cod,
+  Espectaculo_Descripcion,
+  Espectaculo_Fecha,
   2, -- estado "Publicada"
   1, -- grado de 0.1
   EM.id_empresa,
@@ -115,18 +120,15 @@ SET IDENTITY_INSERT PEAKY_BLINDERS.publicaciones OFF;
 create table PEAKY_BLINDERS.presentaciones (
   id_presentacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_publicacion int REFERENCES PEAKY_BLINDERS.publicaciones (id_publicacion),
-  fecha_hora datetime,
-  fecha_venc datetime
+  fecha_presentacion datetime,
 )
 
 insert into PEAKY_BLINDERS.presentaciones (
   id_publicacion,
-  fecha_hora,
-  fecha_venc
+  fecha_presentacion
 )
 select distinct
   Espectaculo_Cod,
-  Espectaculo_Fecha,
   Espectaculo_Fecha_Venc
 from gd_esquema.Maestra
 

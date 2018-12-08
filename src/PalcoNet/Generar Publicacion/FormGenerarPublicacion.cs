@@ -53,15 +53,16 @@ namespace PalcoNet.Generar_Publicacion
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.generarStoredProcedure(procedure);
-            gestor.parametroPorValor("id_estado", estado);
             gestor.parametroPorValor("descripcion", txtDescripcion.Text);
             gestor.parametroPorValor("stock", txtStock.Text);
+            gestor.parametroPorValor("fecha_´publicacion", DateTime.Today);
+            gestor.parametroPorValor("descripcion_rubro", cmbRubro.Text);
             gestor.parametroPorValor("calle", txtCalle.Text);
             gestor.parametroPorValor("numero", txtAltura.Text);
             gestor.parametroPorValor("codigo_postal", txtCodPostal.Text);
             gestor.parametroPorValor("localidad", txtLocalidad.Text);
-            gestor.parametroPorValor("rubro", cmbRubro.Text);
-            gestor.parametroPorValor("precio", txtPrecio.Text);
+            gestor.parametroPorValor("id_empresa", null); // empresaID
+            gestor.parametroPorValor("descripcion_estado", estado);
             int id_publicacion = gestor.ejecutarStoredProcedure();
             gestor.desconectar();
 
