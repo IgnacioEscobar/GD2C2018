@@ -84,7 +84,8 @@ namespace PalcoNet.Menu_Principal
                 "PR.fecha_presentacion " +
                 "FROM PEAKY_BLINDERS.publicaciones PU " +
                     "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
-                "WHERE PR.fecha_presentacion > GETDATE() " +
+                    "JOIN PEAKY_BLINDERS.estados E ON PU.id_estado = E.id_estado " +
+                "WHERE PR.fecha_presentacion > GETDATE() AND E.descripcion = 'Publicada'" +
                 "ORDER BY PR.fecha_presentacion ASC";
             gestor.consulta(query_publicaciones);
             this.mostrarPublicaciones(gestor.obtenerRegistros());

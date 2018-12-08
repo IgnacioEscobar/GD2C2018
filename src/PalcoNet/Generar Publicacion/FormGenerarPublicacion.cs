@@ -17,12 +17,14 @@ namespace PalcoNet.Generar_Publicacion
     public partial class FormGenerarPublicacion : Form
     {
         int userID;
+        int empresaID;
         ValidadorDeDatos validador;
 
-        public FormGenerarPublicacion(int userID)
+        public FormGenerarPublicacion(int userID, int empresaID)
         {
             InitializeComponent();
             this.userID = userID;
+            this.empresaID = empresaID;
         }
 
         // Metodos auxiliares
@@ -92,7 +94,7 @@ namespace PalcoNet.Generar_Publicacion
             gestor.parametroPorValor("numero", txtAltura.Text);
             gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
             gestor.parametroPorValor("localidad", txtLocalidad.Text);
-            gestor.parametroPorValor("id_empresa", 1);
+            gestor.parametroPorValor("id_empresa", empresaID);
             gestor.parametroPorValor("descripcion_estado", estado);
             int id_publicacion = gestor.ejecutarStoredProcedure();
             gestor.desconectar();
@@ -101,7 +103,6 @@ namespace PalcoNet.Generar_Publicacion
             {
                 enviarPresentancion(gestor, id_publicacion, DateTime.Parse(item.Text + " " + item.SubItems[1].Text));
             }
-
             
             /*
              * FIN TRANSACCION

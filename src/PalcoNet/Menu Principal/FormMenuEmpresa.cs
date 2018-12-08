@@ -19,6 +19,7 @@ namespace PalcoNet.Menu_Principal
     public partial class FormMenuEmpresa : Form
     {
         int userID;
+        int empresaID;
 
         public FormMenuEmpresa(int userID)
         {
@@ -46,19 +47,30 @@ namespace PalcoNet.Menu_Principal
 
         private void FormMenuEmpresa_Load(object sender, EventArgs e)
         {
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            string query = "SELECT id_empresa FROM PEAKY_BLINDERS.empresas WHERE id_usuario = '" + userID + "'";
+            gestor.consulta(query);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            if (lector.Read())
+            {
+                this.empresaID = Convert.ToInt32(lector["id_empresa"]);
+            }
+            gestor.desconectar();
+
             dgvPublicaciones.ColumnCount = 3;
             dgvPublicaciones.ColumnHeadersVisible = true;
             dgvPublicaciones.Columns[0].Name = "DESCRIPCIÓN";
             dgvPublicaciones.Columns[1].Name = "ESTADO";
             dgvPublicaciones.Columns[2].Name = "GRADO";
 
-            GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query = "SELECT P.descripcion AS descripcionP, E.descripcion AS descripcionE, G.muliplicador " +
+            string query2 = "SELECT P.descripcion AS descripcionP, E.descripcion AS descripcionE, G.muliplicador " +
                 "FROM PEAKY_BLINDERS.publicaciones P " +
                     "JOIN PEAKY_BLINDERS.estados E ON P.id_estado = E.id_estado " +
-                    "JOIN PEAKY_BLINDERS.grados G ON P.id_grado = G.id_grado";
-            gestor.consulta(query);
+                    "JOIN PEAKY_BLINDERS.grados G ON P.id_grado = G.id_grado " +
+                "WHERE P.id_empresa = '" + empresaID.ToString() + "'";
+            gestor.consulta(query2);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
 
@@ -81,7 +93,7 @@ namespace PalcoNet.Menu_Principal
 
         private void btnGenerarPublicacion_Click(object sender, EventArgs e)
         {
-            FormGenerarPublicacion formGenerarPublicacion = new FormGenerarPublicacion(userID);
+            FormGenerarPublicacion formGenerarPublicacion = new FormGenerarPublicacion(userID, empresaID);
             this.Hide();
             formGenerarPublicacion.Show();
         }
