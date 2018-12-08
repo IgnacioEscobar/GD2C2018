@@ -68,7 +68,7 @@ namespace PalcoNet.Generar_Publicacion
         private void enviarPresentancion(GestorDB gestor, int id_publicacion, DateTime fecha_presentacion)
         {
             gestor.conectar();
-            gestor.generarStoredProcedure("");
+            gestor.generarStoredProcedure("generar_presentacion");
             gestor.parametroPorValor("id_publicacion", id_publicacion);
             gestor.parametroPorValor("fecha_presentacion", fecha_presentacion);
             gestor.ejecutarStoredProcedure();

@@ -52,9 +52,9 @@
             // 
             // btnConfiguración
             // 
-            this.btnConfiguración.Location = new System.Drawing.Point(551, 431);
+            this.btnConfiguración.Location = new System.Drawing.Point(649, 431);
             this.btnConfiguración.Name = "btnConfiguración";
-            this.btnConfiguración.Size = new System.Drawing.Size(197, 43);
+            this.btnConfiguración.Size = new System.Drawing.Size(215, 43);
             this.btnConfiguración.TabIndex = 12;
             this.btnConfiguración.Text = "CONFIGURACIÓN DE CUENTA";
             this.btnConfiguración.UseVisualStyleBackColor = true;
@@ -66,7 +66,7 @@
             this.groupBox2.Controls.Add(this.btnAdministracionPuntos);
             this.groupBox2.Location = new System.Drawing.Point(12, 411);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(533, 71);
+            this.groupBox2.Size = new System.Drawing.Size(631, 71);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             // 
@@ -74,7 +74,7 @@
             // 
             this.btnHistorial.Location = new System.Drawing.Point(6, 19);
             this.btnHistorial.Name = "btnHistorial";
-            this.btnHistorial.Size = new System.Drawing.Size(255, 44);
+            this.btnHistorial.Size = new System.Drawing.Size(305, 44);
             this.btnHistorial.TabIndex = 10;
             this.btnHistorial.Text = "HISTORIAL DE COMPRAS";
             this.btnHistorial.UseVisualStyleBackColor = true;
@@ -82,9 +82,9 @@
             // 
             // btnAdministracionPuntos
             // 
-            this.btnAdministracionPuntos.Location = new System.Drawing.Point(272, 19);
+            this.btnAdministracionPuntos.Location = new System.Drawing.Point(320, 19);
             this.btnAdministracionPuntos.Name = "btnAdministracionPuntos";
-            this.btnAdministracionPuntos.Size = new System.Drawing.Size(255, 44);
+            this.btnAdministracionPuntos.Size = new System.Drawing.Size(305, 44);
             this.btnAdministracionPuntos.TabIndex = 11;
             this.btnAdministracionPuntos.Text = "ADMINISTRACIÓN DE PUNTOS";
             this.btnAdministracionPuntos.UseVisualStyleBackColor = true;
@@ -93,7 +93,7 @@
             // lklCerrarSesion
             // 
             this.lklCerrarSesion.AutoSize = true;
-            this.lklCerrarSesion.Location = new System.Drawing.Point(659, 9);
+            this.lklCerrarSesion.Location = new System.Drawing.Point(769, 9);
             this.lklCerrarSesion.Name = "lklCerrarSesion";
             this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
             this.lklCerrarSesion.TabIndex = 13;
@@ -105,7 +105,7 @@
             // 
             this.btnSeleccionar.Location = new System.Drawing.Point(11, 361);
             this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(312, 44);
+            this.btnSeleccionar.Size = new System.Drawing.Size(422, 44);
             this.btnSeleccionar.TabIndex = 8;
             this.btnSeleccionar.Text = "SELECCIONAR";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@
             this.groupBox1.Controls.Add(this.txtDescripcion);
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.btnLimpiar);
-            this.groupBox1.Location = new System.Drawing.Point(329, 28);
+            this.groupBox1.Location = new System.Drawing.Point(439, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(425, 377);
             this.groupBox1.TabIndex = 0;
@@ -218,7 +218,7 @@
             this.lsvPublicaciones.Location = new System.Drawing.Point(12, 28);
             this.lsvPublicaciones.MultiSelect = false;
             this.lsvPublicaciones.Name = "lsvPublicaciones";
-            this.lsvPublicaciones.Size = new System.Drawing.Size(311, 327);
+            this.lsvPublicaciones.Size = new System.Drawing.Size(421, 327);
             this.lsvPublicaciones.TabIndex = 7;
             this.lsvPublicaciones.UseCompatibleStateImageBehavior = false;
             // 
@@ -227,7 +227,7 @@
             this.AcceptButton = this.btnSeleccionar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 492);
+            this.ClientSize = new System.Drawing.Size(876, 492);
             this.Controls.Add(this.lsvPublicaciones);
             this.Controls.Add(this.btnConfiguración);
             this.Controls.Add(this.groupBox2);

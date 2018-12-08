@@ -40,7 +40,7 @@ namespace PalcoNet.Menu_Principal
             {
                 ListViewItem item = new ListViewItem(lector["descripcion"].ToString());
                 item.SubItems.Add(lector["stock"].ToString());
-                DateTime fecha_hora = DateTime.Parse(lector["fecha_hora"].ToString());
+                DateTime fecha_hora = DateTime.Parse(lector["fecha_presentacion"].ToString());
                 item.SubItems.Add(fecha_hora.ToShortDateString());
                 item.SubItems.Add(fecha_hora.ToShortTimeString());
                 lsvPublicaciones.Items.Add(item);
@@ -81,9 +81,11 @@ namespace PalcoNet.Menu_Principal
             gestor.conectar();
             string query_publicaciones = "SELECT ISNULL(PU.descripcion, '---') AS descripcion, " +
                 "ISNULL(PU.stock, 0) AS stock, " +
-                "PR.fecha_hora " +
+                "PR.fecha_presentacion " +
                 "FROM PEAKY_BLINDERS.publicaciones PU " +
-                    "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion";
+                    "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
+                "WHERE PR.fecha_presentacion > GETDATE() " +
+                "ORDER BY PR.fecha_presentacion ASC";
             gestor.consulta(query_publicaciones);
             this.mostrarPublicaciones(gestor.obtenerRegistros());
             gestor.desconectar();

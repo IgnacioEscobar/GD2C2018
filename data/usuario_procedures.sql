@@ -201,6 +201,7 @@ AS
 			telefono = @telefono,
 			tarjeta_de_credito_asociada = @tarjeta_de_credito_asociada
 		WHERE id_cliente = @id_cliente
+
 		RETURN 1
 	  END
   END
