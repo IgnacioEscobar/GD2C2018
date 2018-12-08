@@ -53,32 +53,20 @@ namespace PalcoNet.Registro_de_Usuario
             this.query = query;
         }
 
-        private string atraparValorFecha(ComboBox cmb)
-        {
-            foreach (object item in cmb.Items)
-            {
-                if (item.ToString() == cmb.Text)
-                {
-                    return cmb.Text;
-                }
-            }
-            return "";
-        }
-
         private bool validarCampos()
         {
             List<string[]> lista = new List<string[]>();
             lista.Add(new string[] { txtNombre.Text, "nombre" });
             lista.Add(new string[] { txtApellido.Text, "apellido" });
-            string tipoDoc = this.atraparValorFecha(cmbTipoDoc);
+            string tipoDoc = validador.atraparValorCombo(cmbTipoDoc);
             lista.Add(new string[] { tipoDoc, "tipo de documento" });
             lista.Add(new string[] { txtNumeroDoc.Text, "número de documento" });
             lista.Add(new string[] { txtCUIL.Text, "CUIL" });
-            string dia = this.atraparValorFecha(cmbDia);
+            string dia = validador.atraparValorCombo(cmbDia);
             lista.Add(new string[] { dia, "día (fecha de nacimiento)" });
-            string mes = this.atraparValorFecha(cmbMes);
+            string mes = validador.atraparValorCombo(cmbMes);
             lista.Add(new string[] { mes, "mes (fecha de nacimiento)" });
-            string ano = this.atraparValorFecha(cmbAno);
+            string ano = validador.atraparValorCombo(cmbAno);
             lista.Add(new string[] { ano, "año (fecha de nacimiento)" });
             lista.Add(new string[] { txtCalle.Text, "calle" });
             lista.Add(new string[] { txtAltura.Text, "altura" });

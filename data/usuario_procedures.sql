@@ -16,7 +16,7 @@ AS
     IF @esperada IS NOT NULL
       BEGIN
 		IF @cant_intentos_fallidos >= 3
-			return 4 -- USUARIO INHABILITADO
+			return 5 -- USUARIO INHABILITADO
         IF HASHBYTES ('SHA2_256', @contrasenna) = @esperada
           BEGIN
             update PEAKY_BLINDERS.usuarios
@@ -24,9 +24,9 @@ AS
             where nombre_de_usuario = @usuario
 
 			IF @nuevo = 1
-				return 2 -- USUARIO NUEVO (CAMBIO DE PASS)
+				return 3 -- USUARIO NUEVO (CAMBIO DE PASS)
 			ELSE
-				return 1 -- TODO OK
+				return 2 -- TODO OK
           END
         ELSE
           BEGIN
@@ -35,13 +35,13 @@ AS
             where nombre_de_usuario = @usuario
 
 			IF @cant_intentos_fallidos + 1 = 3
-				return 3 -- FALLA NRO 3
+				return 4 -- FALLA NRO 3
 			ELSE
-				return 0 -- CONTRASEÑA INVALIDA
+				return 1 -- CONTRASEÑA INVALIDA
           END
       END
     ELSE
-      return -1 -- USUARIO INVALIDO
+      return 0 -- USUARIO INVALIDO
   END
 GO
 

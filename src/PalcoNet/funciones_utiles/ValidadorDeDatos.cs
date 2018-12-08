@@ -93,5 +93,17 @@ namespace PalcoNet.funciones_utiles
             return completo;
         }
 
+        public string atraparValorCombo(ComboBox cmb)
+        {
+            foreach (object item in cmb.Items)
+            {
+                if (item.ToString() == cmb.Text)
+                {
+                    return cmb.Text;
+                }
+            }
+            return "";
+        }
+
     }
 }

@@ -93,32 +93,40 @@ namespace PalcoNet
             else
             {
                 GestorDB gestor = new GestorDB();
-                gestor.conectar();
-                gestor.generarStoredProcedure("autenticar_usuario");
-                gestor.parametroPorValor("@usuario", txtUsuario.Text);
-                gestor.parametroPorValor("@contrasenna", txtContrasena.Text);
-                gestor.parametroPorReferencia("@id", SqlDbType.Int);
-                int result = gestor.ejecutarStoredProcedure();
-                gestor.desconectar();
+                int result;
+                try
+                {                    
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("autenticar_usuario");
+                    gestor.parametroPorValor("@usuario", txtUsuario.Text);
+                    gestor.parametroPorValor("@contrasenna", txtContrasena.Text);
+                    gestor.parametroPorReferencia("@id", SqlDbType.Int);
+                    result = gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+                }
+                catch (Exception)
+                {
+                    result = -1;
+                }
 
-                if (result == -1)
+                if (result == 0)
                 {
                     lblError.Text = "El usuario es inválido";
                 }
                 else
                 {
-                    if (result == 0)
+                    if (result == 1)
                     {
                         lblError.Text = "La contraseña es inválida";
                     }
-                    else if (result == 2)
+                    else if (result == 3)
                     {
                         int userID = Convert.ToInt32(gestor.obtenerValor("@id"));
                         FormMiUsuario formMiUsuario = new FormMiUsuario(userID);
                         this.Hide();
                         formMiUsuario.Show();
                     }
-                    else if (result == 1)
+                    else if (result == 2)
                     {
                         int userID = Convert.ToInt32(gestor.obtenerValor("@id"));
 
@@ -189,14 +197,18 @@ namespace PalcoNet
                                 break;
                         }
                     }
-                    else if (result == 3)
+                    else if (result == 4)
                     {
                         lblError.Text = "La contraseña es inválida";
                         MessageBox.Show("Su cuenta ha sido inhabilitada por realizar 3 intentos incorrectos, comúniquese con un administrador", "ALERTA");
                     }
-                    else
+                    else if (result == 5)
                     {
                         lblError.Text = "Ha realizado 3 intentos fallidos, el usuario se encuentra\ninhabilitado";
+                    }
+                    else
+                    {
+                        lblError.Text = "Error de conexión a la base de datos";
                     }
                 }
             }

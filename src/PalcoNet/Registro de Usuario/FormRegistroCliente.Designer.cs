@@ -327,6 +327,7 @@
             // 
             // txtLocalidad
             // 
+            this.txtLocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLocalidad.Location = new System.Drawing.Point(120, 104);
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);

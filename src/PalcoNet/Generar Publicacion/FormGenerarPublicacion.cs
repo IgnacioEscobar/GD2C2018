@@ -35,16 +35,47 @@ namespace PalcoNet.Generar_Publicacion
             }
         }
 
+        private bool validarCampos()
+        {
+            List<string[]> lista = new List<string[]>();
+            lista.Add(new string[] { txtDescripcion.Text, "descripción" });
+            lista.Add(new string[] { txtStock.Text, "stock" });
+            lista.Add(new string[] { txtCalle.Text, "calle" });
+            lista.Add(new string[] { txtAltura.Text, "altura" });
+            lista.Add(new string[] { txtCodigoPostal.Text, "calle" });
+            lista.Add(new string[] { txtAltura.Text, "altura" });
+            lista.Add(new string[] { txtCodigoPostal.Text, "código postal" });
+            lista.Add(new string[] { txtLocalidad.Text, "localidad" });
+            lista.Add(new string[] { cmbRubro.Text, "rubro" });
+
+            string mensaje = "";
+            bool retorno = validador.validar_campos_obligatorios(lista, ref mensaje);
+
+            if (lsvFechaHora.Items.Count < 1)
+            {
+                mensaje += "\n\nTiene que ingresar al menos una fecha.";
+                retorno = false;
+            }
+
+            if (!retorno)
+            {
+                MessageBox.Show(mensaje, "Alerta");
+            }
+
+            return retorno;
+        }
+
         private void enviarPresentancion(GestorDB gestor, int id_publicacion, DateTime fecha_presentacion)
         {
             gestor.conectar();
             gestor.generarStoredProcedure("");
             gestor.parametroPorValor("id_publicacion", id_publicacion);
             gestor.parametroPorValor("fecha_presentacion", fecha_presentacion);
+            gestor.ejecutarStoredProcedure();
             gestor.desconectar();
         }
 
-        private void persistirPublicacion(string procedure, char estado)
+        private void persistirPublicacion(string procedure, string estado)
         {
             /*
              * INICIO TRANSACCION
@@ -55,13 +86,13 @@ namespace PalcoNet.Generar_Publicacion
             gestor.generarStoredProcedure(procedure);
             gestor.parametroPorValor("descripcion", txtDescripcion.Text);
             gestor.parametroPorValor("stock", txtStock.Text);
-            gestor.parametroPorValor("fecha_´publicacion", DateTime.Today);
+            gestor.parametroPorValor("fecha_publicacion", DateTime.Today);
             gestor.parametroPorValor("descripcion_rubro", cmbRubro.Text);
             gestor.parametroPorValor("calle", txtCalle.Text);
             gestor.parametroPorValor("numero", txtAltura.Text);
-            gestor.parametroPorValor("codigo_postal", txtCodPostal.Text);
+            gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
             gestor.parametroPorValor("localidad", txtLocalidad.Text);
-            gestor.parametroPorValor("id_empresa", null); // empresaID
+            gestor.parametroPorValor("id_empresa", 1);
             gestor.parametroPorValor("descripcion_estado", estado);
             int id_publicacion = gestor.ejecutarStoredProcedure();
             gestor.desconectar();
@@ -95,7 +126,6 @@ namespace PalcoNet.Generar_Publicacion
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.consulta("SELECT descripcion FROM PEAKY_BLINDERS.rubros");
-            gestor.ejecutarStoredProcedure();
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
 
@@ -140,12 +170,23 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnPublicar_Click(object sender, EventArgs e)
         {
-            this.persistirPublicacion("generar_publicacion", '2');
+            if (this.validarCampos())
+            {
+                this.persistirPublicacion("generar_publicacion", "Publicada");
+                MessageBox.Show("Publicación registrada existosamente. Ya se encuentra publicada.");
+                FormMenuEmpresa formMenuEmpresa = new FormMenuEmpresa(userID);
+                this.Hide();
+                formMenuEmpresa.Show();
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            this.persistirPublicacion("generar_publicacion", '1');
+            if (this.validarCampos())
+            {
+                this.persistirPublicacion("generar_publicacion", "Borrador");
+                MessageBox.Show("Publicación guardada como borrador.");
+            }
         }
 
         private void txtStock_KeyPress(object sender, KeyPressEventArgs e)

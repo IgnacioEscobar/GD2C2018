@@ -175,6 +175,7 @@
             // 
             // txtLocalidad
             // 
+            this.txtLocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLocalidad.Location = new System.Drawing.Point(120, 104);
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);
@@ -182,6 +183,7 @@
             // 
             // txtDepto
             // 
+            this.txtDepto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDepto.Location = new System.Drawing.Point(200, 58);
             this.txtDepto.Name = "txtDepto";
             this.txtDepto.Size = new System.Drawing.Size(56, 20);
