@@ -116,15 +116,15 @@ namespace PalcoNet.Menu_Principal
                         break;
                     case "COMPRAR":
                         break;
-                    case "HISTORIAL DE CLIENTE":
-                        formDestino = new FormHistorialCliente(userID);
+                    case "HISTORIAL DEL CLIENTE":
+                        formDestino = new FormHistorialCliente(userID, rolID);
                         break;
                     case "CANJE Y ADMINISTRACIÓN DE PUNTOS":
                         break;
                     case "GENERAR PAGO DE COMISIONES":
                         break;
                     case "LISTADO ESTADÍSTICO":
-                        formDestino = new FormListadoEstadistico();
+                        formDestino = new FormListadoEstadistico(userID, rolID);
                         break;
                 }
 

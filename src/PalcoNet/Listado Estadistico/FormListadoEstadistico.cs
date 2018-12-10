@@ -15,9 +15,14 @@ namespace PalcoNet.Listado_Estadistico
 {
     public partial class FormListadoEstadistico : Form
     {
-        public FormListadoEstadistico()
+        int userID;
+        int rolID;
+
+        public FormListadoEstadistico(int userID, int rolID)
         {
             InitializeComponent();
+            this.userID = userID;
+            this.rolID = rolID;
         }
 
         private void FormListado_Load(object sender, EventArgs e)
