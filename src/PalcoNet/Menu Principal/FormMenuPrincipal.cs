@@ -63,7 +63,7 @@ namespace PalcoNet.Menu_Principal
                     "FROM PEAKY_BLINDERS.roles R " +
                     "JOIN PEAKY_BLINDERS.funcionalidades_por_rol FR ON R.id_rol = FR.id_rol " +
                     "JOIN PEAKY_BLINDERS.funcionalidades F ON FR.id_funcionalidad = F.id_funcionalidad " +
-                "WHERE R.id_rol = '" + rolID + "'";
+                "WHERE R.id_rol = '" + rolID + "' ORDER BY F.descripcion ASC";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
 
@@ -85,24 +85,26 @@ namespace PalcoNet.Menu_Principal
                 switch (dgvFuncionalidades.CurrentRow.Cells[0].Value.ToString())
                 {
                     case "ABM DE ROL":
-                        formDestino = new FormABMRol(userID);
+                        formDestino = new FormABMRol(userID, rolID);
                         break;
                     case "ABM DE CLIENTE":
-                        formDestino = new FormABMCliente(userID);
+                        formDestino = new FormABMCliente(userID, rolID);
                         break;
                     case "ABM DE EMPRESA DE ESPECTÁCULOS":
-                        formDestino = new FormABMEmpresa(userID);
+                        formDestino = new FormABMEmpresa(userID, rolID);
                         break;
                     case "ABM DE CATEGORÍA":
-                        formDestino = new FormABMRubro(userID);
+                        formDestino = new FormABMRubro(userID, rolID);
                         break;
                     case "ABM GRADO DE PUBLICACIÓN":
-                        formDestino = new FormABMGrado(userID);
+                        formDestino = new FormABMGrado(userID, rolID);
                         break;
                     case "GENERAR PUBLICACIÓN":
                         //formDestino = new FormGenerarPublicacion(userID);
                         break;
                     case "EDITAR PUBLICACIÓN":
+                        break;
+                    case "COMPRAR":
                         break;
                     case "HISTORIAL DE CLIENTE":
                         formDestino = new FormHistorialCliente(userID);

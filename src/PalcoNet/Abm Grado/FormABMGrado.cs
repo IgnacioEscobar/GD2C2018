@@ -15,18 +15,25 @@ namespace PalcoNet.Abm_Grado
     public partial class FormABMGrado : Form
     {       
         int userID;
+        int rolID;
 
-        public FormABMGrado(int userID)
+        public FormABMGrado(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
         }
 
-        private void btnPanelDeControl_Click(object sender, EventArgs e)
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
         {
-            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
             this.Hide();
-            formAbmAdministrador.Show();
+            formMenuPrincipal.Show();
+        }
+
+        private void FormABMGrado_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

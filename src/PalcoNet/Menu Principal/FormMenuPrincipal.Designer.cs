@@ -40,7 +40,7 @@
             this.groupBox1.Controls.Add(this.dgvFuncionalidades);
             this.groupBox1.Location = new System.Drawing.Point(12, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(555, 343);
+            this.groupBox1.Size = new System.Drawing.Size(555, 237);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FUNCIONALIDADES ACTIVAS";
@@ -54,7 +54,7 @@
             this.dgvFuncionalidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFuncionalidades.Location = new System.Drawing.Point(6, 19);
             this.dgvFuncionalidades.Name = "dgvFuncionalidades";
-            this.dgvFuncionalidades.Size = new System.Drawing.Size(543, 318);
+            this.dgvFuncionalidades.Size = new System.Drawing.Size(543, 212);
             this.dgvFuncionalidades.TabIndex = 16;
             this.dgvFuncionalidades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFuncionalidades_CellContentClick);
             // 
@@ -73,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 380);
+            this.ClientSize = new System.Drawing.Size(579, 274);
             this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;

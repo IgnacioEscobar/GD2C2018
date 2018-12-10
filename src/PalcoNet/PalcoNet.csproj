@@ -84,6 +84,12 @@
     <Compile Include="Abm Rol\FormABMRol.Designer.cs">
       <DependentUpon>FormABMRol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Rol\FormNombreRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Rol\FormNombreRol.Designer.cs">
+      <DependentUpon>FormNombreRol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Rubro\FormABMRubro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\FormABMRol.resx">
       <DependentUpon>FormABMRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rol\FormNombreRol.resx">
+      <DependentUpon>FormNombreRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rubro\FormABMRubro.resx">
       <DependentUpon>FormABMRubro.cs</DependentUpon>

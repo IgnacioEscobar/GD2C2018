@@ -1,4 +1,4 @@
-ALTER PROCEDURE PEAKY_BLINDERS.autenticar_usuario
+CREATE PROCEDURE PEAKY_BLINDERS.autenticar_usuario
 @usuario     varchar(30),
 @contrasenna varchar(30),
 @id int output
@@ -45,7 +45,7 @@ AS
   END
 GO
 
-ALTER FUNCTION PEAKY_BLINDERS.verificar_contrasenna (
+CREATE FUNCTION PEAKY_BLINDERS.verificar_contrasenna (
 @id_usuario int,
 @contrasenna varchar(30)
 ) RETURNS bit
@@ -62,7 +62,7 @@ AS
   END
 GO
 
-ALTER PROCEDURE PEAKY_BLINDERS.actualizar_contrasenna
+CREATE PROCEDURE PEAKY_BLINDERS.actualizar_contrasenna
 @id_usuario int,
 @contrasenna varchar(30)
 AS
@@ -72,7 +72,7 @@ AS
 	WHERE id_usuario = @id_usuario
 GO
 
-ALTER PROCEDURE PEAKY_BLINDERS.crear_cliente
+CREATE PROCEDURE PEAKY_BLINDERS.crear_cliente
 @usuario varchar(30),
 @contrasenna varchar(30),
 @nombre varchar(60),
@@ -156,7 +156,7 @@ AS
   END
 GO
 
-ALTER PROCEDURE PEAKY_BLINDERS.modificar_cliente
+CREATE PROCEDURE PEAKY_BLINDERS.modificar_cliente
 @id_cliente int,
 @nombre varchar(60),
 @apellido varchar(60),
@@ -207,7 +207,7 @@ AS
   END
 GO
 
-ALTER PROCEDURE PEAKY_BLINDERS.crear_empresa
+CREATE PROCEDURE PEAKY_BLINDERS.crear_empresa
 @usuario varchar(30),
 @contrasenna varchar(30),
 @razon_social varchar(60),
@@ -268,7 +268,7 @@ AS
   END
 GO
 
-ALTER PROCEDURE PEAKY_BLINDERS.modificar_empresa
+CREATE PROCEDURE PEAKY_BLINDERS.modificar_empresa
 @id_empresa int,
 @razon_social varchar(60),
 @cuit varchar(11),

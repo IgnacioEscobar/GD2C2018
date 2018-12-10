@@ -31,15 +31,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblPublicaciones = new System.Windows.Forms.Label();
             this.lsbPublicaciones = new System.Windows.Forms.ListBox();
-            this.btnPanelDeControl = new System.Windows.Forms.Button();
+            this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.btnAplicar = new System.Windows.Forms.Button();
             this.rbnAlta = new System.Windows.Forms.RadioButton();
             this.rbnMedia = new System.Windows.Forms.RadioButton();
             this.rbnBaja = new System.Windows.Forms.RadioButton();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnFiltrar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,16 +69,16 @@
             this.lsbPublicaciones.Size = new System.Drawing.Size(203, 225);
             this.lsbPublicaciones.TabIndex = 4;
             // 
-            // btnPanelDeControl
+            // btnMenuPrincipal
             // 
-            this.btnPanelDeControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPanelDeControl.Location = new System.Drawing.Point(12, 298);
-            this.btnPanelDeControl.Name = "btnPanelDeControl";
-            this.btnPanelDeControl.Size = new System.Drawing.Size(203, 44);
-            this.btnPanelDeControl.TabIndex = 11;
-            this.btnPanelDeControl.Text = "PANEL DE CONTROL";
-            this.btnPanelDeControl.UseVisualStyleBackColor = true;
-            this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 298);
+            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(203, 44);
+            this.btnMenuPrincipal.TabIndex = 11;
+            this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
+            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
             // 
             // btnAplicar
             // 
@@ -142,15 +142,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
             // 
-            // btnFiltrar
-            // 
-            this.btnFiltrar.Location = new System.Drawing.Point(6, 126);
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Size = new System.Drawing.Size(190, 24);
-            this.btnFiltrar.TabIndex = 0;
-            this.btnFiltrar.Text = "FILTRAR";
-            this.btnFiltrar.UseVisualStyleBackColor = true;
-            // 
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(6, 156);
@@ -160,18 +151,27 @@
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.Location = new System.Drawing.Point(6, 126);
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Size = new System.Drawing.Size(190, 24);
+            this.btnFiltrar.TabIndex = 0;
+            this.btnFiltrar.Text = "FILTRAR";
+            this.btnFiltrar.UseVisualStyleBackColor = true;
+            // 
             // FormABMGrado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnPanelDeControl;
+            this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(436, 354);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.rbnBaja);
             this.Controls.Add(this.rbnMedia);
             this.Controls.Add(this.rbnAlta);
-            this.Controls.Add(this.btnPanelDeControl);
+            this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.btnAplicar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblPublicaciones);
@@ -180,6 +180,7 @@
             this.Name = "FormABMGrado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
+            this.Load += new System.EventHandler(this.FormABMGrado_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -191,7 +192,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblPublicaciones;
         private System.Windows.Forms.ListBox lsbPublicaciones;
-        private System.Windows.Forms.Button btnPanelDeControl;
+        private System.Windows.Forms.Button btnMenuPrincipal;
         private System.Windows.Forms.Button btnAplicar;
         private System.Windows.Forms.RadioButton rbnAlta;
         private System.Windows.Forms.RadioButton rbnMedia;

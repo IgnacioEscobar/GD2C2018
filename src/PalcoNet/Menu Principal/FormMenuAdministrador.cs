@@ -30,28 +30,28 @@ namespace PalcoNet.Menu_Principal
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            FormABMCliente formABMCliente = new FormABMCliente(userID);
+            FormABMCliente formABMCliente = new FormABMCliente(userID, 1);
             this.Hide();
             formABMCliente.Show();
         }
 
         private void btnEmpresas_Click(object sender, EventArgs e)
         {
-            FormABMEmpresa formABMEmpresa = new FormABMEmpresa(userID);
+            FormABMEmpresa formABMEmpresa = new FormABMEmpresa(userID, 1);
             this.Hide();
             formABMEmpresa.Show();
         }
 
         private void btnRoles_Click(object sender, EventArgs e)
         {
-            FormABMRol formABMRol = new FormABMRol(userID);
+            FormABMRol formABMRol = new FormABMRol(userID, 1);
             this.Hide();
             formABMRol.Show();
         }
 
         private void btnGrados_Click(object sender, EventArgs e)
         {
-            FormABMGrado formABMGrado = new FormABMGrado(userID);
+            FormABMGrado formABMGrado = new FormABMGrado(userID, 1);
             this.Hide();
             formABMGrado.Show();
         }
@@ -72,7 +72,7 @@ namespace PalcoNet.Menu_Principal
 
         private void btnCategorias_Click(object sender, EventArgs e)
         {
-            FormABMRubro formABMRubro = new FormABMRubro(userID);
+            FormABMRubro formABMRubro = new FormABMRubro(userID, 1);
             this.Hide();
             formABMRubro.Show();
         }
