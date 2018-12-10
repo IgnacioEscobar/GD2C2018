@@ -154,11 +154,14 @@ namespace PalcoNet.Generar_Publicacion
 
             if (publicacionID > -1)
             {
+                string estado = "";
+
                 gestor.conectar();
-                string query = "SELECT P.descripcion AS descripcionP, P.stock, P.calle, P.numero, " +
-                        "P.codigo_postal, P.localidad, R.descripcion AS descripcionR " +
+                string query = "SELECT P.descripcion AS descripcionP, P.stock, P.calle, P.numero, P.codigo_postal, " +
+                        "P.localidad, R.descripcion AS descripcionR, E.descripcion AS descripcionE " +
                     "FROM PEAKY_BLINDERS.publicaciones P " +
                         "JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
+                        "JOIN PEAKY_BLINDERS.estados E ON P.id_estado = E.id_estado " +
                     "WHERE id_publicacion = '" + publicacionID + "'";
                 gestor.consulta(query);
                 SqlDataReader lector = gestor.obtenerRegistros();
@@ -171,6 +174,7 @@ namespace PalcoNet.Generar_Publicacion
                     txtCodigoPostal.Text = lector["codigo_postal"].ToString();
                     txtLocalidad.Text = lector["localidad"].ToString();
                     cmbRubro.Text = lector["descripcionR"].ToString();
+                    estado = lector["descripcionE"].ToString();
                 }
                 gestor.desconectar();
 
@@ -190,7 +194,16 @@ namespace PalcoNet.Generar_Publicacion
                 gestor.desconectar();
                 lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-                btnFinalizarPublicacion.Enabled = true;
+                if (estado == "Finalizada")
+                {
+                    btnPublicar.Enabled = false;
+                    btnGuardarBorrador.Enabled = false;
+                    btnFinalizarPublicacion.Enabled = false;
+                }
+                else
+                {
+                    btnFinalizarPublicacion.Enabled = true;
+                }
             }
             else
             {
@@ -261,7 +274,7 @@ namespace PalcoNet.Generar_Publicacion
             }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnGuardarBorrador_Click(object sender, EventArgs e)
         {
             if (this.validarCampos())
             {
