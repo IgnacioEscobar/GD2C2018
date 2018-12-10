@@ -176,13 +176,13 @@ insert into PEAKY_BLINDERS.funcionalidades (id_funcionalidad, descripcion) value
   (3, 'ABM de Empresa de espectáculos'),
   (4, 'ABM de Categoría'),
   (5, 'ABM de grado de publicación'),
-  (6, 'Generar Publicacion'),
+  (6, 'Generar Publicación'),
   (7, 'Editar Publicacion'),
   (8, 'Comprar'),
-  (9, 'Historial de Cliente'),
-  (10, 'Canje y Administración de puntos'),
-  (11, 'Generar rendición de comisiones'),
-  (12, 'Listado Estadistico');
+  (9, 'Historial del cliente'),
+  (10, 'Canje y administración de puntos'),
+  (11, 'Generar Pago de comisiones'),
+  (12, 'Listado Estadístico');
 set IDENTITY_INSERT PEAKY_BLINDERS.funcionalidades off;
 
 -- Funcionalidades x Rol
