@@ -127,6 +127,12 @@
       <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
     </Compile>
     <Compile Include="DB_Espectaculos.cs" />
+    <Compile Include="Editar Publicacion\FormEditarPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editar Publicacion\FormEditarPublicacion.Designer.cs">
+      <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
     <Compile Include="funciones_utiles\ValidadorDeDatos.cs" />
@@ -172,12 +178,6 @@
     </Compile>
     <Compile Include="Comprar\FormComprarEntrada.Designer.cs">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Editar Publicacion\FormEditar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editar Publicacion\FormEditar.Designer.cs">
-      <DependentUpon>FormEditar.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\FormLogin.cs">
       <SubType>Form</SubType>
@@ -275,8 +275,8 @@
     <EmbeddedResource Include="Comprar\FormComprarEntrada.resx">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editar Publicacion\FormEditar.resx">
-      <DependentUpon>FormEditar.cs</DependentUpon>
+    <EmbeddedResource Include="Editar Publicacion\FormEditarPublicacion.resx">
+      <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
       <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>

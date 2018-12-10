@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using PalcoNet.funciones_utiles;
+using PalcoNet.Menu_Principal;
 
 namespace PalcoNet.Listado_Estadistico
 {
@@ -68,6 +69,13 @@ namespace PalcoNet.Listado_Estadistico
                         break;
                 }
             }            
+        }
+
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
+            this.Hide();
+            formMenuPrincipal.Show();
         }
 
     }

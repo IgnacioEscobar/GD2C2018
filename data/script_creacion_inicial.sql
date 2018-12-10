@@ -181,7 +181,7 @@ insert into PEAKY_BLINDERS.funcionalidades (id_funcionalidad, descripcion) value
   (4, 'ABM de Categoría'),
   (5, 'ABM grado de publicación'),
   (6, 'Generar Publicación'),
-  (7, 'Editar Publicacion'),
+  (7, 'Editar Publicación'),
   (8, 'Comprar'),
   (9, 'Historial del cliente'),
   (10, 'Canje y administración de puntos'),

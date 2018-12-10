@@ -81,6 +81,7 @@ namespace PalcoNet.Menu_Principal
             if (e.ColumnIndex == 1)
             {
                 Form formDestino = new FormLogin();
+                bool error = false;
 
                 switch (dgvFuncionalidades.CurrentRow.Cells[0].Value.ToString())
                 {
@@ -100,9 +101,18 @@ namespace PalcoNet.Menu_Principal
                         formDestino = new FormABMGrado(userID, rolID);
                         break;
                     case "GENERAR PUBLICACIÓN":
-                        //formDestino = new FormGenerarPublicacion(userID);
+                        if (rolID == 1) // Administrador
+                        {
+                            MessageBox.Show("El Administrador no puede generar nuevas publicaciones.", "Alerta");
+                            error = true;
+                        }
+                        else
+                        {
+                            formDestino = new FormGenerarPublicacion(userID, rolID);
+                        }
                         break;
                     case "EDITAR PUBLICACIÓN":
+                        formDestino = new FormEditarPublicacion(userID, rolID);
                         break;
                     case "COMPRAR":
                         break;
@@ -118,8 +128,11 @@ namespace PalcoNet.Menu_Principal
                         break;
                 }
 
-                this.Hide();
-                formDestino.Show();
+                if (!error)
+                {
+                    this.Hide();
+                    formDestino.Show();
+                }
             }
         }
 
