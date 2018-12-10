@@ -55,8 +55,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.btnPublicar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnFinalizar = new System.Windows.Forms.Button();
+            this.btnGuardarBorrador = new System.Windows.Forms.Button();
+            this.btnFinalizarPublicacion = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAgregarFecha = new System.Windows.Forms.Button();
             this.lsvFechaHora = new System.Windows.Forms.ListView();
@@ -339,24 +339,25 @@
             this.btnPublicar.UseVisualStyleBackColor = true;
             this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
             // 
-            // btnGuardar
+            // btnGuardarBorrador
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(12, 367);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(238, 42);
-            this.btnGuardar.TabIndex = 20;
-            this.btnGuardar.Text = "GUARDAR BORRADOR";
-            this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.btnGuardarBorrador.Location = new System.Drawing.Point(12, 367);
+            this.btnGuardarBorrador.Name = "btnGuardarBorrador";
+            this.btnGuardarBorrador.Size = new System.Drawing.Size(238, 42);
+            this.btnGuardarBorrador.TabIndex = 20;
+            this.btnGuardarBorrador.Text = "GUARDAR BORRADOR";
+            this.btnGuardarBorrador.UseVisualStyleBackColor = true;
+            this.btnGuardarBorrador.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // btnFinalizar
+            // btnFinalizarPublicacion
             // 
-            this.btnFinalizar.Location = new System.Drawing.Point(256, 367);
-            this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(159, 42);
-            this.btnFinalizar.TabIndex = 21;
-            this.btnFinalizar.Text = "FINALIZAR";
-            this.btnFinalizar.UseVisualStyleBackColor = true;
+            this.btnFinalizarPublicacion.Location = new System.Drawing.Point(256, 367);
+            this.btnFinalizarPublicacion.Name = "btnFinalizarPublicacion";
+            this.btnFinalizarPublicacion.Size = new System.Drawing.Size(159, 42);
+            this.btnFinalizarPublicacion.TabIndex = 21;
+            this.btnFinalizarPublicacion.Text = "FINALIZAR PUBLICACIÓN";
+            this.btnFinalizarPublicacion.UseVisualStyleBackColor = true;
+            this.btnFinalizarPublicacion.Click += new System.EventHandler(this.btnFinalizarPublicacion_Click);
             // 
             // btnCancelar
             // 
@@ -396,8 +397,8 @@
             this.Controls.Add(this.lsvFechaHora);
             this.Controls.Add(this.btnAgregarFecha);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnFinalizar);
-            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.btnFinalizarPublicacion);
+            this.Controls.Add(this.btnGuardarBorrador);
             this.Controls.Add(this.btnPublicar);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
@@ -457,8 +458,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Button btnPublicar;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button btnFinalizar;
+        private System.Windows.Forms.Button btnGuardarBorrador;
+        private System.Windows.Forms.Button btnFinalizarPublicacion;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAgregarFecha;
         private System.Windows.Forms.ListView lsvFechaHora;

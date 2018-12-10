@@ -18,6 +18,7 @@ namespace PalcoNet.Generar_Publicacion
     {
         int userID;
         int empresaID;
+        int publicacionID;
         ValidadorDeDatos validador;
 
         public FormGenerarPublicacion(int userID, int empresaID)
@@ -25,11 +26,20 @@ namespace PalcoNet.Generar_Publicacion
             InitializeComponent();
             this.userID = userID;
             this.empresaID = empresaID;
+            this.publicacionID = -1;
+        }
+
+        public FormGenerarPublicacion(int userID, int empresaID, int publicacionID)
+        {
+            InitializeComponent();
+            this.userID = userID;
+            this.empresaID = empresaID;
+            this.publicacionID = publicacionID;
         }
 
         // Metodos auxiliares
 
-        private void mostrarRegistros(SqlDataReader lector)
+        private void mostrarRubros(SqlDataReader lector)
         {
             while (lector.Read())
             {
@@ -86,6 +96,10 @@ namespace PalcoNet.Generar_Publicacion
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.generarStoredProcedure(procedure);
+            if (publicacionID > -1)
+            {
+                gestor.parametroPorValor("id_publicacion", publicacionID);
+            }
             gestor.parametroPorValor("descripcion", txtDescripcion.Text);
             gestor.parametroPorValor("stock", txtStock.Text);
             gestor.parametroPorValor("fecha_publicacion", DateTime.Today);
@@ -97,11 +111,19 @@ namespace PalcoNet.Generar_Publicacion
             gestor.parametroPorValor("id_empresa", empresaID);
             gestor.parametroPorValor("descripcion_estado", estado);
             int id_publicacion = gestor.ejecutarStoredProcedure();
+            if (publicacionID > -1)
+            {
+                id_publicacion = publicacionID; // Agarra la ID original
+            }
+            
             gestor.desconectar();
 
             foreach (ListViewItem item in lsvFechaHora.Items)
             {
-                enviarPresentancion(gestor, id_publicacion, DateTime.Parse(item.Text + " " + item.SubItems[1].Text));
+                if (item.SubItems[2].Text == "NUEVO")
+                {
+                    enviarPresentancion(gestor, id_publicacion, DateTime.Parse(item.Text + " " + item.SubItems[1].Text));
+                }
             }
             
             /*
@@ -127,11 +149,56 @@ namespace PalcoNet.Generar_Publicacion
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.consulta("SELECT descripcion FROM PEAKY_BLINDERS.rubros");
-            this.mostrarRegistros(gestor.obtenerRegistros());
+            this.mostrarRubros(gestor.obtenerRegistros());
             gestor.desconectar();
 
+            if (publicacionID > -1)
+            {
+                gestor.conectar();
+                string query = "SELECT P.descripcion AS descripcionP, P.stock, P.calle, P.numero, " +
+                        "P.codigo_postal, P.localidad, R.descripcion AS descripcionR " +
+                    "FROM PEAKY_BLINDERS.publicaciones P " +
+                        "JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
+                    "WHERE id_publicacion = '" + publicacionID + "'";
+                gestor.consulta(query);
+                SqlDataReader lector = gestor.obtenerRegistros();
+                if (lector.Read())
+                {
+                    txtDescripcion.Text = lector["descripcionP"].ToString();
+                    txtStock.Text = lector["stock"].ToString();
+                    txtCalle.Text = lector["calle"].ToString();
+                    txtAltura.Text = lector["numero"].ToString();
+                    txtCodigoPostal.Text = lector["codigo_postal"].ToString();
+                    txtLocalidad.Text = lector["localidad"].ToString();
+                    cmbRubro.Text = lector["descripcionR"].ToString();
+                }
+                gestor.desconectar();
+
+                gestor.conectar();
+                string query2 = "SELECT fecha_presentacion FROM PEAKY_BLINDERS.presentaciones " +
+                    "WHERE id_publicacion = '" + publicacionID + "'";
+                gestor.consulta(query2);
+                SqlDataReader lector2 = gestor.obtenerRegistros();
+                while (lector2.Read())
+                {
+                    DateTime fecha_presentacion = DateTime.Parse(lector2["fecha_presentacion"].ToString());
+                    ListViewItem item = new ListViewItem(fecha_presentacion.ToShortDateString());
+                    item.SubItems.Add(fecha_presentacion.ToShortTimeString());
+                    item.SubItems.Add("");
+                    lsvFechaHora.Items.Add(item);
+                }
+                gestor.desconectar();
+                lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+                btnFinalizarPublicacion.Enabled = true;
+            }
+            else
+            {
+                btnFinalizarPublicacion.Enabled = false;
+                txtDescripcion.Select();
+            }
+
             validador = new ValidadorDeDatos();
-            txtDescripcion.Select();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -143,7 +210,12 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnAgregarFecha_Click(object sender, EventArgs e)
         {
-            string campos_fecha = cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text + " " + nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString();
+            string dia = cmbDia.Text;
+            string mes = cmbMes.Text;
+            if (dia.Length == 1) dia = "0" + dia;
+            if (mes.Length == 1) mes = "0" + mes;
+            string campos_fecha = dia + "/" + mes + "/" + cmbAno.Text;
+            string fecha = campos_fecha + " " + nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString();
             DateTime fecha_ingresada = DateTime.Parse(campos_fecha);
 
             int cant_items = lsvFechaHora.Items.Count;
@@ -158,10 +230,9 @@ namespace PalcoNet.Generar_Publicacion
                 }
             }
 
-            ListViewItem item = new ListViewItem(cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text);
+            ListViewItem item = new ListViewItem(campos_fecha);
             string hora = nudHora.Value.ToString();
             string minuto = nudMinuto.Value.ToString();
-            if (hora.Length == 1) hora = "0" + hora;
             if (minuto.Length == 1) minuto = "0" + minuto;
             item.SubItems.Add(hora + ":" + minuto);
             item.SubItems.Add("NUEVO");
@@ -173,8 +244,17 @@ namespace PalcoNet.Generar_Publicacion
         {
             if (this.validarCampos())
             {
-                this.persistirPublicacion("generar_publicacion", "Publicada");
-                MessageBox.Show("Publicación registrada existosamente. Ya se encuentra publicada.");
+                if (publicacionID == -1)
+                {
+                    this.persistirPublicacion("generar_publicacion", "Publicada");
+                    MessageBox.Show("Publicación registrada existosamente. Ya se encuentra publicada.");
+                }
+                else
+                {
+                    this.persistirPublicacion("modificar_publicacion", "Publicada");
+                    MessageBox.Show("Publicación actualizada exitosamente. Ya se encuentra publicada.");
+                }
+                
                 FormMenuEmpresa formMenuEmpresa = new FormMenuEmpresa(userID);
                 this.Hide();
                 formMenuEmpresa.Show();
@@ -185,9 +265,38 @@ namespace PalcoNet.Generar_Publicacion
         {
             if (this.validarCampos())
             {
-                this.persistirPublicacion("generar_publicacion", "Borrador");
-                MessageBox.Show("Publicación guardada como borrador.");
+                if (publicacionID == -1)
+                {
+                    this.persistirPublicacion("generar_publicacion", "Borrador");
+                    MessageBox.Show("Publicación guardada como borrador.");
+                }
+                else
+                {
+                    this.persistirPublicacion("modificar_publicacion", "Borrador");
+                    MessageBox.Show("Publicación actualizada exitosamente. Se encuentra como borrador.");
+                }
             }
+        }
+
+        private void btnFinalizarPublicacion_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Seguro que desea finalizar la publicación? Este cambio es irreversible.", "Confirmar finalización", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.generarStoredProcedure("finalizar_publicacion");
+                gestor.parametroPorValor("id_publicacion", publicacionID);
+                gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
+
+                MessageBox.Show("La publicación ha sido finalizada correctamente.");
+
+                FormMenuEmpresa formMenuEmpresa = new FormMenuEmpresa(userID);
+                this.Hide();
+                formMenuEmpresa.Show();
+            }            
         }
 
         private void txtStock_KeyPress(object sender, KeyPressEventArgs e)

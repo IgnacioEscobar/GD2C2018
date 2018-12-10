@@ -75,7 +75,7 @@ namespace PalcoNet.Abm_Usuario
             agregarCheckBoxColumn("CLIENTE");
             agregarCheckBoxColumn("EMPRESA");
             agregarCheckBoxColumn("HABILITADO");
-            agregarButtonColumn("CONFIGURACIÓN");
+            agregarButtonColumn("SELECCIONAR");
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();

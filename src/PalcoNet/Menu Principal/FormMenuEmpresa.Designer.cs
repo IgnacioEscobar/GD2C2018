@@ -250,6 +250,7 @@
             this.dgvPublicaciones.Name = "dgvPublicaciones";
             this.dgvPublicaciones.Size = new System.Drawing.Size(464, 425);
             this.dgvPublicaciones.TabIndex = 15;
+            this.dgvPublicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPublicaciones_CellContentClick);
             // 
             // FormMenuEmpresa
             // 

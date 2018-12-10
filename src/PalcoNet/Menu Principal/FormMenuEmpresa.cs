@@ -29,12 +29,22 @@ namespace PalcoNet.Menu_Principal
 
         // Metodos auxiliares
 
+        private void agregarButtonColumn(string header)
+        {
+            DataGridViewButtonColumn column = new DataGridViewButtonColumn();
+            column.HeaderText = header;
+            column.Text = "-->";
+            column.UseColumnTextForButtonValue = true;
+            dgvPublicaciones.Columns.Add(column);
+        }
+
         private void mostrarRegistros(SqlDataReader lector)
         {
             while (lector.Read())
             {
                 object[] row = new string[]
                 {
+                    lector["id_publicacion"].ToString(),
                     lector["descripcionP"].ToString(),
                     lector["descripcionE"].ToString(),
                     lector["muliplicador"].ToString(),
@@ -58,14 +68,18 @@ namespace PalcoNet.Menu_Principal
             }
             gestor.desconectar();
 
-            dgvPublicaciones.ColumnCount = 3;
+            dgvPublicaciones.ColumnCount = 4;
             dgvPublicaciones.ColumnHeadersVisible = true;
-            dgvPublicaciones.Columns[0].Name = "DESCRIPCIÓN";
-            dgvPublicaciones.Columns[1].Name = "ESTADO";
-            dgvPublicaciones.Columns[2].Name = "GRADO";
+            dgvPublicaciones.Columns[0].Name = "ID";
+            dgvPublicaciones.Columns[0].Visible = false;
+            dgvPublicaciones.Columns[1].Name = "DESCRIPCIÓN";
+            dgvPublicaciones.Columns[2].Name = "ESTADO";
+            dgvPublicaciones.Columns[3].Name = "GRADO";
+            agregarButtonColumn("SELECCIONAR");
 
             gestor.conectar();
-            string query2 = "SELECT P.descripcion AS descripcionP, E.descripcion AS descripcionE, G.muliplicador " +
+            string query2 = "SELECT P.id_publicacion, P.descripcion AS descripcionP, " +
+                    "E.descripcion AS descripcionE, G.muliplicador " +
                 "FROM PEAKY_BLINDERS.publicaciones P " +
                     "JOIN PEAKY_BLINDERS.estados E ON P.id_estado = E.id_estado " +
                     "JOIN PEAKY_BLINDERS.grados G ON P.id_grado = G.id_grado " +
@@ -74,6 +88,7 @@ namespace PalcoNet.Menu_Principal
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
 
+            dgvPublicaciones.AutoResizeColumns();
             txtDescripcion.Select();
         }
 
@@ -108,6 +123,16 @@ namespace PalcoNet.Menu_Principal
             ckbMedio.Checked = false;
             ckbBajo.Checked = false;
             txtDescripcion.Select();
+        }
+
+        private void dgvPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
+            {
+                FormGenerarPublicacion formGenerarPublicacion = new FormGenerarPublicacion(userID, empresaID, Convert.ToInt32(dgvPublicaciones.CurrentRow.Cells[0].Value));
+                this.Hide();
+                formGenerarPublicacion.Show();
+            }
         }
 
     }

@@ -45,6 +45,48 @@ AS
 		@id_empresa,
 		@id_estado
 	)
+	RETURN @@IDENTITY
+  END
+GO
+
+ALTER PROCEDURE PEAKY_BLINDERS.modificar_publicacion
+@id_publicacion int,
+@descripcion varchar(200),
+@stock smallint,
+@fecha_publicacion datetime,
+@descripcion_rubro varchar(15),
+@calle varchar(50),
+@numero smallint,
+@codigo_postal varchar(4),
+@localidad varchar(60),
+@id_empresa int,
+@descripcion_estado varchar(25)
+AS
+  BEGIN
+	DECLARE @id_estado int
+	SELECT @id_estado = id_estado FROM PEAKY_BLINDERS.estados WHERE descripcion = @descripcion_estado
+
+	DECLARE @id_rubro int
+	SELECT @id_rubro = id_rubro FROM PEAKY_BLINDERS.rubros WHERE descripcion = @descripcion_rubro
+
+	DECLARE @id_grado int -- siempre asigna el mínimo grado -?-
+	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY muliplicador DESC
+
+	UPDATE PEAKY_BLINDERS.publicaciones SET
+		descripcion = @descripcion,
+		stock = @stock,
+		fecha_publicacion = @fecha_publicacion,
+		id_rubro = @id_rubro,
+		calle = @calle,
+		numero = @numero,
+		codigo_postal = @codigo_postal,
+		localidad = @localidad,
+		id_grado = @id_grado,
+		id_empresa = @id_empresa,
+		id_estado = @id_estado
+	WHERE id_publicacion = @id_publicacion
+
+	RETURN @id_estado
   END
 GO
 
