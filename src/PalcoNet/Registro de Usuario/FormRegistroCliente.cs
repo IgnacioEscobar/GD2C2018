@@ -194,7 +194,7 @@ namespace PalcoNet.Registro_de_Usuario
             Form formDestino;
             if (abm)
             {
-                formDestino = new FormABMCliente(userID);
+                formDestino = new FormABMCliente(userID, 1);
             }
             else
             {
@@ -291,7 +291,7 @@ namespace PalcoNet.Registro_de_Usuario
                     Form formDestino;
                     if (abm)
                     {
-                        formDestino = new FormABMCliente(userID);
+                        formDestino = new FormABMCliente(userID, 1);
                     }
                     else if (creacion)
                     {

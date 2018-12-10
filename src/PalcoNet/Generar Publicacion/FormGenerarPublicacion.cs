@@ -11,30 +11,34 @@ using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Menu_Principal;
+using PalcoNet.Editar_Publicacion;
 
 namespace PalcoNet.Generar_Publicacion
 {
     public partial class FormGenerarPublicacion : Form
     {
         int userID;
+        int rolID;
         int empresaID;
         int publicacionID;
+        bool modif;
         ValidadorDeDatos validador;
 
-        public FormGenerarPublicacion(int userID, int empresaID)
+        public FormGenerarPublicacion(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
-            this.empresaID = empresaID;
-            this.publicacionID = -1;
+            this.rolID = rolID;
+            this.modif = false;
         }
 
-        public FormGenerarPublicacion(int userID, int empresaID, int publicacionID)
+        public FormGenerarPublicacion(int userID, int rolID, int publicacionID)
         {
             InitializeComponent();
             this.userID = userID;
-            this.empresaID = empresaID;
+            this.rolID = rolID;
             this.publicacionID = publicacionID;
+            this.modif = true;
         }
 
         // Metodos auxiliares
@@ -89,14 +93,19 @@ namespace PalcoNet.Generar_Publicacion
 
         private void persistirPublicacion(string procedure, string estado)
         {
-            /*
-             * INICIO TRANSACCION
-             */
-
             GestorDB gestor = new GestorDB();
             gestor.conectar();
+            gestor.consulta("SELECT id_empresa FROM PEAKY_BLINDERS.empresas WHERE id_usuario = '" + userID + "'");
+            SqlDataReader lector = gestor.obtenerRegistros();
+            if (lector.Read())
+            {
+                empresaID = Convert.ToInt32(lector["id_empresa"].ToString());
+            }
+            gestor.desconectar();
+
+            gestor.conectar();
             gestor.generarStoredProcedure(procedure);
-            if (publicacionID > -1)
+            if (modif)
             {
                 gestor.parametroPorValor("id_publicacion", publicacionID);
             }
@@ -108,10 +117,13 @@ namespace PalcoNet.Generar_Publicacion
             gestor.parametroPorValor("numero", txtAltura.Text);
             gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
             gestor.parametroPorValor("localidad", txtLocalidad.Text);
-            gestor.parametroPorValor("id_empresa", empresaID);
+            if (!modif)
+            {
+                gestor.parametroPorValor("id_empresa", empresaID);
+            }
             gestor.parametroPorValor("descripcion_estado", estado);
             int id_publicacion = gestor.ejecutarStoredProcedure();
-            if (publicacionID > -1)
+            if (modif)
             {
                 id_publicacion = publicacionID; // Agarra la ID original
             }
@@ -152,7 +164,7 @@ namespace PalcoNet.Generar_Publicacion
             this.mostrarRubros(gestor.obtenerRegistros());
             gestor.desconectar();
 
-            if (publicacionID > -1)
+            if (modif)
             {
                 string estado = "";
 
@@ -214,13 +226,6 @@ namespace PalcoNet.Generar_Publicacion
             validador = new ValidadorDeDatos();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            FormMenuEmpresa formMenuEmpresa = new FormMenuEmpresa(userID);
-            this.Hide();
-            formMenuEmpresa.Show();
-        }
-
         private void btnAgregarFecha_Click(object sender, EventArgs e)
         {
             string dia = cmbDia.Text;
@@ -257,7 +262,7 @@ namespace PalcoNet.Generar_Publicacion
         {
             if (this.validarCampos())
             {
-                if (publicacionID == -1)
+                if (!modif)
                 {
                     this.persistirPublicacion("generar_publicacion", "Publicada");
                     MessageBox.Show("Publicación registrada existosamente. Ya se encuentra publicada.");
@@ -278,7 +283,7 @@ namespace PalcoNet.Generar_Publicacion
         {
             if (this.validarCampos())
             {
-                if (publicacionID == -1)
+                if (!modif)
                 {
                     this.persistirPublicacion("generar_publicacion", "Borrador");
                     MessageBox.Show("Publicación guardada como borrador.");
@@ -310,6 +315,21 @@ namespace PalcoNet.Generar_Publicacion
                 this.Hide();
                 formMenuEmpresa.Show();
             }            
+        }
+
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            Form formDestino;
+            if (modif)
+            {
+                formDestino = new FormEditarPublicacion(userID, rolID);
+            }
+            else
+            {
+                formDestino = new FormMenuPrincipal(userID, rolID);
+            }
+            this.Hide();
+            formDestino.Show();
         }
 
         private void txtStock_KeyPress(object sender, KeyPressEventArgs e)

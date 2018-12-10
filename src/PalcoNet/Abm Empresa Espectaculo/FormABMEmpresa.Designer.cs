@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnPanelDeControl = new System.Windows.Forms.Button();
+            this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -47,16 +47,16 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnPanelDeControl
+            // btnMenuPrincipal
             // 
-            this.btnPanelDeControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPanelDeControl.Location = new System.Drawing.Point(591, 455);
-            this.btnPanelDeControl.Name = "btnPanelDeControl";
-            this.btnPanelDeControl.Size = new System.Drawing.Size(211, 44);
-            this.btnPanelDeControl.TabIndex = 8;
-            this.btnPanelDeControl.Text = "PANEL DE CONTROL";
-            this.btnPanelDeControl.UseVisualStyleBackColor = true;
-            this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(591, 455);
+            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(211, 44);
+            this.btnMenuPrincipal.TabIndex = 8;
+            this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
+            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
             // 
             // btnEliminar
             // 
@@ -205,10 +205,10 @@
             this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnPanelDeControl;
+            this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(814, 511);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnPanelDeControl);
+            this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
@@ -227,7 +227,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnPanelDeControl;
+        private System.Windows.Forms.Button btnMenuPrincipal;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnAgregar;

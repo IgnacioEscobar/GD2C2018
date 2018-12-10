@@ -34,7 +34,7 @@
             this.cmbAno = new System.Windows.Forms.ComboBox();
             this.lsvConsulta = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -95,15 +95,16 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "LISTADO";
             // 
-            // btnSalir
+            // btnMenuPrincipal
             // 
-            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(12, 302);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(394, 21);
-            this.btnSalir.TabIndex = 4;
-            this.btnSalir.Text = "SALIR";
-            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 302);
+            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(394, 21);
+            this.btnMenuPrincipal.TabIndex = 4;
+            this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
+            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
             // 
             // label2
             // 
@@ -137,12 +138,12 @@
             this.AcceptButton = this.btnConsultar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnSalir;
+            this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(419, 335);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lsvConsulta);
             this.Controls.Add(this.btnConsultar);
@@ -167,7 +168,7 @@
         private System.Windows.Forms.ComboBox cmbAno;
         private System.Windows.Forms.ListView lsvConsulta;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnMenuPrincipal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

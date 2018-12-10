@@ -78,11 +78,23 @@
     <Compile Include="Abm Grado\FormABMGrado.Designer.cs">
       <DependentUpon>FormABMGrado.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abm Grado\FormModificarGrado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Grado\FormModificarGrado.Designer.cs">
+      <DependentUpon>FormModificarGrado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm Rol\FormABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Abm Rol\FormABMRol.Designer.cs">
       <DependentUpon>FormABMRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm Rol\FormNombreRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm Rol\FormNombreRol.Designer.cs">
+      <DependentUpon>FormNombreRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm Rubro\FormABMRubro.cs">
       <SubType>Form</SubType>
@@ -121,6 +133,12 @@
       <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
     </Compile>
     <Compile Include="DB_Espectaculos.cs" />
+    <Compile Include="Editar Publicacion\FormEditarPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editar Publicacion\FormEditarPublicacion.Designer.cs">
+      <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
     <Compile Include="funciones_utiles\ValidadorDeDatos.cs" />
@@ -166,12 +184,6 @@
     </Compile>
     <Compile Include="Comprar\FormComprarEntrada.Designer.cs">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Editar Publicacion\FormEditar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Editar Publicacion\FormEditar.Designer.cs">
-      <DependentUpon>FormEditar.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\FormLogin.cs">
       <SubType>Form</SubType>
@@ -239,8 +251,14 @@
     <EmbeddedResource Include="Abm Grado\FormABMGrado.resx">
       <DependentUpon>FormABMGrado.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Abm Grado\FormModificarGrado.resx">
+      <DependentUpon>FormModificarGrado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm Rol\FormABMRol.resx">
       <DependentUpon>FormABMRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm Rol\FormNombreRol.resx">
+      <DependentUpon>FormNombreRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm Rubro\FormABMRubro.resx">
       <DependentUpon>FormABMRubro.cs</DependentUpon>
@@ -266,8 +284,8 @@
     <EmbeddedResource Include="Comprar\FormComprarEntrada.resx">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Editar Publicacion\FormEditar.resx">
-      <DependentUpon>FormEditar.cs</DependentUpon>
+    <EmbeddedResource Include="Editar Publicacion\FormEditarPublicacion.resx">
+      <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
       <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>

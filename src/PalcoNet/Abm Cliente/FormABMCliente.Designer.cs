@@ -33,7 +33,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnPanelDeControl = new System.Windows.Forms.Button();
+            this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -105,16 +105,16 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // btnPanelDeControl
+            // btnMenuPrincipal
             // 
-            this.btnPanelDeControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnPanelDeControl.Location = new System.Drawing.Point(591, 455);
-            this.btnPanelDeControl.Name = "btnPanelDeControl";
-            this.btnPanelDeControl.Size = new System.Drawing.Size(211, 44);
-            this.btnPanelDeControl.TabIndex = 9;
-            this.btnPanelDeControl.Text = "PANEL DE CONTROL";
-            this.btnPanelDeControl.UseVisualStyleBackColor = true;
-            this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(591, 455);
+            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(211, 44);
+            this.btnMenuPrincipal.TabIndex = 9;
+            this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
+            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
             // 
             // groupBox1
             // 
@@ -228,10 +228,10 @@
             this.AcceptButton = this.btnAgregar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnPanelDeControl;
+            this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(814, 511);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnPanelDeControl);
+            this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
@@ -254,7 +254,7 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnPanelDeControl;
+        private System.Windows.Forms.Button btnMenuPrincipal;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtNombre;

@@ -17,11 +17,13 @@ namespace PalcoNet.Historial_Cliente
     public partial class FormHistorialCliente : Form
     {
         int userID;
+        int rolID;
 
-        public FormHistorialCliente(int userID)
+        public FormHistorialCliente(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
         }
 
         private void mostrarRegistros(SqlDataReader lector)
@@ -52,7 +54,21 @@ namespace PalcoNet.Historial_Cliente
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
+            gestor.consulta("SELECT id_cliente FROM PEAKY_BLINDERS.clientes WHERE id_usuario = '" + userID + "'");
+            SqlDataReader lector = gestor.obtenerRegistros();
+            int clienteID;
+            if (lector.Read())
+            {
+                clienteID = Convert.ToInt32(lector["id_cliente"].ToString());
+            }
+            else
+            {
+                clienteID = -1;
+                MessageBox.Show("No hay compras en el historial.", "Alerta");
+            }
+            gestor.desconectar();
 
+            gestor.conectar();
             string query = "SELECT ISNULL(P.descripcion, '---') AS descripcion, " +
                     "CO.fecha, " +
                     "CO.cantidad, " +
@@ -62,7 +78,7 @@ namespace PalcoNet.Historial_Cliente
                     "JOIN PEAKY_BLINDERS.clientes CL ON CO.id_cliente = CL.id_cliente " +
                     "JOIN PEAKY_BLINDERS.publicaciones P ON CO.id_publicacion = P.id_publicacion " +
                     "JOIN PEAKY_BLINDERS.medios_de_pago MP ON CO.id_medio_de_pago = MP.id_medio_de_pago " +
-                "WHERE Cl.id_cliente = '" + userID + "' " +
+                "WHERE Cl.id_cliente = '" + clienteID + "' " +
                 "ORDER BY CO.fecha DESC";
             gestor.consulta(query);
             this.mostrarRegistros(gestor.obtenerRegistros());
@@ -71,9 +87,9 @@ namespace PalcoNet.Historial_Cliente
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
         {
-            FormMenuCliente formMenuCliente = new FormMenuCliente(userID);
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
             this.Hide();
-            formMenuCliente.Show();
+            formMenuPrincipal.Show();
         }
 
     }

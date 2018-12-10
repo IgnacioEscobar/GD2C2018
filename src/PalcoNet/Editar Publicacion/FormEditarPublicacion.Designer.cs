@@ -1,6 +1,6 @@
-﻿namespace PalcoNet.Abm_Grado
+﻿namespace PalcoNet.Editar_Publicacion
 {
-    partial class FormABMGrado
+    partial class FormEditarPublicacion
     {
         /// <summary>
         /// Required designer variable.
@@ -184,7 +184,7 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click_1);
             // 
-            // FormABMGrado
+            // FormEditarPublicacion
             // 
             this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,7 +196,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvPublicaciones);
             this.MaximizeBox = false;
-            this.Name = "FormABMGrado";
+            this.Name = "FormEditarPublicacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormMenuEmpresa_Load);
