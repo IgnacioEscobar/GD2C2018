@@ -56,7 +56,7 @@ namespace PalcoNet.Editar_Publicacion
                 dgvPublicaciones.Rows.Add(row);
             }
         }
-
+        /* METODO PARA MANTENER FILTROS CUANDO VUELVE DE OTRO FORM
         public void actualizar()
         {
             dgvPublicaciones.Rows.Clear();
@@ -67,7 +67,7 @@ namespace PalcoNet.Editar_Publicacion
             this.mostrarPublicaciones(gestor.obtenerRegistros());
             gestor.desconectar();
         }
-
+        */
         private void mostrarCategorias(SqlDataReader lector)
         {
             int i = 0;
