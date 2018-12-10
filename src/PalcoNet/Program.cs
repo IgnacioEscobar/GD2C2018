@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using PalcoNet.Menu_Principal;
-
 namespace PalcoNet
 {
     static class Program
@@ -18,7 +16,7 @@ namespace PalcoNet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMenuPrincipal(1));
+            Application.Run(new FormLogin());
         }
     }
 }

@@ -9,14 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using PalcoNet.funciones_utiles;
+using PalcoNet.Menu_Principal;
 
 namespace PalcoNet.Listado_Estadistico
 {
     public partial class FormListadoEstadistico : Form
     {
-        public FormListadoEstadistico()
+        int userID;
+        int rolID;
+
+        public FormListadoEstadistico(int userID, int rolID)
         {
             InitializeComponent();
+            this.userID = userID;
+            this.rolID = rolID;
         }
 
         private void FormListado_Load(object sender, EventArgs e)
@@ -68,6 +74,13 @@ namespace PalcoNet.Listado_Estadistico
                         break;
                 }
             }            
+        }
+
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
+            this.Hide();
+            formMenuPrincipal.Show();
         }
 
     }

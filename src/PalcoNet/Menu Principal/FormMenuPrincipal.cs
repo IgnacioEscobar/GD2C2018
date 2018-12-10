@@ -28,11 +28,13 @@ namespace PalcoNet.Menu_Principal
     public partial class FormMenuPrincipal : Form
     {
         int userID;
+        int rolID;
 
-        public FormMenuPrincipal(int userID)
+        public FormMenuPrincipal(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
         }
 
         // Metodos auxiliares
@@ -58,11 +60,10 @@ namespace PalcoNet.Menu_Principal
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             string query = "SELECT DISTINCT F.descripcion " +
-                "FROM PEAKY_BLINDERS.roles_por_usuario RU " +
-                    "JOIN PEAKY_BLINDERS.roles R ON RU.id_rol = R.id_rol " +
+                    "FROM PEAKY_BLINDERS.roles R " +
                     "JOIN PEAKY_BLINDERS.funcionalidades_por_rol FR ON R.id_rol = FR.id_rol " +
-                    "JOIN PEAKY_BLINDERS.funcionalidades F ON FR.id_funcionalidad = F.id_funcionalidad ";/* +
-                "WHERE RU.id_usuario = '" + userID + "'";*/
+                    "JOIN PEAKY_BLINDERS.funcionalidades F ON FR.id_funcionalidad = F.id_funcionalidad " +
+                "WHERE R.id_rol = '" + rolID + "' ORDER BY F.descripcion ASC";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
 
@@ -80,43 +81,58 @@ namespace PalcoNet.Menu_Principal
             if (e.ColumnIndex == 1)
             {
                 Form formDestino = new FormLogin();
+                bool error = false;
 
                 switch (dgvFuncionalidades.CurrentRow.Cells[0].Value.ToString())
                 {
                     case "ABM DE ROL":
-                        formDestino = new FormABMRol(userID);
+                        formDestino = new FormABMRol(userID, rolID);
                         break;
                     case "ABM DE CLIENTE":
-                        formDestino = new FormABMCliente(userID);
+                        formDestino = new FormABMCliente(userID, rolID);
                         break;
                     case "ABM DE EMPRESA DE ESPECTÁCULOS":
-                        formDestino = new FormABMEmpresa(userID);
+                        formDestino = new FormABMEmpresa(userID, rolID);
                         break;
                     case "ABM DE CATEGORÍA":
-                        formDestino = new FormABMRubro(userID);
+                        formDestino = new FormABMRubro(userID, rolID);
                         break;
                     case "ABM GRADO DE PUBLICACIÓN":
-                        formDestino = new FormABMGrado(userID);
+                        formDestino = new FormABMGrado(userID, rolID);
                         break;
                     case "GENERAR PUBLICACIÓN":
-                        //formDestino = new FormGenerarPublicacion(userID);
+                        if (rolID == 1) // Administrador
+                        {
+                            MessageBox.Show("El Administrador no puede generar nuevas publicaciones.", "Alerta");
+                            error = true;
+                        }
+                        else
+                        {
+                            formDestino = new FormGenerarPublicacion(userID, rolID);
+                        }
                         break;
                     case "EDITAR PUBLICACIÓN":
+                        formDestino = new FormEditarPublicacion(userID, rolID);
                         break;
-                    case "HISTORIAL DE CLIENTE":
-                        formDestino = new FormHistorialCliente(userID);
+                    case "COMPRAR":
+                        break;
+                    case "HISTORIAL DEL CLIENTE":
+                        formDestino = new FormHistorialCliente(userID, rolID);
                         break;
                     case "CANJE Y ADMINISTRACIÓN DE PUNTOS":
                         break;
                     case "GENERAR PAGO DE COMISIONES":
                         break;
                     case "LISTADO ESTADÍSTICO":
-                        formDestino = new FormListadoEstadistico();
+                        formDestino = new FormListadoEstadistico(userID, rolID);
                         break;
                 }
 
-                this.Hide();
-                formDestino.Show();
+                if (!error)
+                {
+                    this.Hide();
+                    formDestino.Show();
+                }
             }
         }
 

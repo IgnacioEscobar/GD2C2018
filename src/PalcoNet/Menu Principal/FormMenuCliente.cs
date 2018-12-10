@@ -116,7 +116,7 @@ namespace PalcoNet.Menu_Principal
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            FormHistorialCliente formHistorialCliente = new FormHistorialCliente(userID);
+            FormHistorialCliente formHistorialCliente = new FormHistorialCliente(userID, 2);
             this.Hide();
             formHistorialCliente.Show();
         }

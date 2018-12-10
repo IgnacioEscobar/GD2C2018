@@ -13,17 +13,18 @@ using PalcoNet.Login;
 using PalcoNet.funciones_utiles;
 using PalcoNet.Abm_Usuario;
 using PalcoNet.Generar_Publicacion;
+using PalcoNet.Menu_Principal;
 
-namespace PalcoNet.Abm_Grado
+namespace PalcoNet.Editar_Publicacion
 {
-    public partial class FormABMGrado : Form
+    public partial class FormEditarPublicacion : Form
     {
         int userID;
         int rolID;
         string query_defecto;
         string query_actual;
 
-        public FormABMGrado(int userID, int rolID)
+        public FormEditarPublicacion(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
@@ -55,7 +56,7 @@ namespace PalcoNet.Abm_Grado
                 dgvPublicaciones.Rows.Add(row);
             }
         }
-
+        /* METODO PARA MANTENER FILTROS CUANDO VUELVE DE OTRO FORM
         public void actualizar()
         {
             dgvPublicaciones.Rows.Clear();
@@ -66,7 +67,7 @@ namespace PalcoNet.Abm_Grado
             this.mostrarPublicaciones(gestor.obtenerRegistros());
             gestor.desconectar();
         }
-
+        */
         private void mostrarCategorias(SqlDataReader lector)
         {
             int i = 0;
@@ -136,8 +137,9 @@ namespace PalcoNet.Abm_Grado
         {
             if (e.ColumnIndex == 4)
             {
-                FormModificarGrado formModificarGrado = new FormModificarGrado(this, Convert.ToInt32(dgvPublicaciones.CurrentRow.Cells[0].Value), dgvPublicaciones.CurrentRow.Cells[3].Value.ToString());
-                formModificarGrado.Show();
+                FormGenerarPublicacion formGenerarPublicacion = new FormGenerarPublicacion(userID, rolID, Convert.ToInt32(dgvPublicaciones.CurrentRow.Cells[0].Value));
+                this.Hide();
+                formGenerarPublicacion.Show();
             }
         }
 
@@ -203,9 +205,9 @@ namespace PalcoNet.Abm_Grado
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
         {
-            FormMiUsuario formMiUsuario = new FormMiUsuario(userID, false, true);
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
             this.Hide();
-            formMiUsuario.Show();
+            formMenuPrincipal.Show();
         }
 
         private void btnLimpiar_Click_1(object sender, EventArgs e)

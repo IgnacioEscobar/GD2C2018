@@ -59,7 +59,6 @@ ALTER PROCEDURE PEAKY_BLINDERS.modificar_publicacion
 @numero smallint,
 @codigo_postal varchar(4),
 @localidad varchar(60),
-@id_empresa int,
 @descripcion_estado varchar(25)
 AS
   BEGIN
@@ -82,7 +81,6 @@ AS
 		codigo_postal = @codigo_postal,
 		localidad = @localidad,
 		id_grado = @id_grado,
-		id_empresa = @id_empresa,
 		id_estado = @id_estado
 	WHERE id_publicacion = @id_publicacion
 
