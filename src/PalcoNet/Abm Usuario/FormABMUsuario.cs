@@ -182,5 +182,6 @@ namespace PalcoNet.Abm_Usuario
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
         }
+
     }
 }

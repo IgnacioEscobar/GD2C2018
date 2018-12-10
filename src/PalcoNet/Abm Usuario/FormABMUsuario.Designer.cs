@@ -42,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnPanelDeControl = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnAdministrador = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -205,15 +204,6 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnAdministrador
-            // 
-            this.btnAdministrador.Location = new System.Drawing.Point(667, 294);
-            this.btnAdministrador.Name = "btnAdministrador";
-            this.btnAdministrador.Size = new System.Drawing.Size(211, 44);
-            this.btnAdministrador.TabIndex = 8;
-            this.btnAdministrador.Text = "NUEVO ADMINISTRADOR";
-            this.btnAdministrador.UseVisualStyleBackColor = true;
-            // 
             // FormABMUsuario
             // 
             this.AcceptButton = this.btnBuscar;
@@ -221,7 +211,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnPanelDeControl;
             this.ClientSize = new System.Drawing.Size(890, 479);
-            this.Controls.Add(this.btnAdministrador);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnPanelDeControl);
             this.Controls.Add(this.groupBox1);
@@ -253,6 +242,5 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnPanelDeControl;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnAdministrador;
     }
 }
