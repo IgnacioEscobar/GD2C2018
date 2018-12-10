@@ -19,6 +19,7 @@ namespace PalcoNet.Abm_Usuario
     public partial class FormABMUsuario : Form
     {
         int userID;
+        string query_defecto;
 
         public FormABMUsuario(int userID)
         {
@@ -79,11 +80,11 @@ namespace PalcoNet.Abm_Usuario
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query = "SELECT U.id_usuario, U.nombre_de_usuario, R.descripcion, U.habilitado " +
+            query_defecto = "SELECT U.id_usuario, U.nombre_de_usuario, R.descripcion, U.habilitado " +
                 "FROM PEAKY_BLINDERS.usuarios U " +
                     "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON U.id_usuario = RU.id_usuario " +
                     "JOIN PEAKY_BLINDERS.roles R ON RU.id_rol = R.id_rol";
-            gestor.consulta(query);
+            gestor.consulta(query_defecto);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
 
@@ -121,6 +122,66 @@ namespace PalcoNet.Abm_Usuario
                 this.Hide();
                 formMiUsuario.Show();
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string usuario = txtUsuario.Text;
+
+            List<object[]> listaCampos = new List<object[]>();
+
+            if (usuario != "")
+            {
+                object[] tuplaUsuario = { "U.nombre_de_usuario", usuario, false };
+                listaCampos.Add(tuplaUsuario);
+            }
+
+            object[] tuplaHabilitado = { "U.habilitado", Convert.ToInt32(ckbHabilitado.Checked), true };
+            listaCampos.Add(tuplaHabilitado);
+
+            /*
+            object[] tuplaAdministrador = { "administrador", Convert.ToInt32(ckbAdministrador.Checked), true };
+            listaCampos.Add(tuplaAdministrador);
+
+            object[] tuplaCliente = { "cliente", Convert.ToInt32(ckbCliente.Checked), true };
+            listaCampos.Add(tuplaCliente);
+
+            object[] tuplaEmpresa = { "empresa", Convert.ToInt32(ckbEmpresa.Checked), true };
+            listaCampos.Add(tuplaEmpresa);
+            */
+ 
+            int cant_filtros = listaCampos.Count();
+            dgvUsuarios.Rows.Clear();
+
+            string filtro = "";
+            for (int i = 0; i < cant_filtros; i++)
+            {
+                object[] tuplaCampos = listaCampos[i];
+                string comparacion, cierre;
+                bool busqueda_exacta = Convert.ToBoolean(tuplaCampos[2]);
+                if (busqueda_exacta) // busqueda exacta
+                {
+                    comparacion = " = '";
+                    cierre = "'";
+                }
+                else // busqueda aproximada
+                {
+                    comparacion = " LIKE '%";
+                    cierre = "%'";
+                }
+                filtro += tuplaCampos[0] + comparacion + tuplaCampos[1] + cierre;
+                if (i != listaCampos.Count() - 1) filtro += " AND ";
+            }
+
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+
+            string query = query_defecto;
+            query += " WHERE " + filtro;
+            Console.WriteLine(query);
+            gestor.consulta(query);
+            this.mostrarRegistros(gestor.obtenerRegistros());
+            gestor.desconectar();
         }
     }
 }
