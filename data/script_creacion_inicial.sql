@@ -69,11 +69,15 @@ insert into PEAKY_BLINDERS.rubros values ('Vacio');
 -- Grados --
 create table PEAKY_BLINDERS.grados (
   id_grado tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(15),
   muliplicador decimal(2, 2)
 )
 
 set IDENTITY_INSERT PEAKY_BLINDERS.grados ON;
-insert into PEAKY_BLINDERS.grados (id_grado, muliplicador) values (1, 0.10);
+insert into PEAKY_BLINDERS.grados (id_grado, descripcion, muliplicador) values
+	(1, 'BAJO', 0.10),
+	(2, 'MEDIO', 0.20),
+	(3, 'ALTO', 0.30);
 set IDENTITY_INSERT PEAKY_BLINDERS.grados OFF;
 
 -- Publicaciones --
@@ -175,9 +179,9 @@ insert into PEAKY_BLINDERS.funcionalidades (id_funcionalidad, descripcion) value
   (2, 'ABM de Cliente'),
   (3, 'ABM de Empresa de espectáculos'),
   (4, 'ABM de Categoría'),
-  (5, 'ABM de grado de publicación'),
+  (5, 'ABM grado de publicación'),
   (6, 'Generar Publicación'),
-  (7, 'Editar Publicacion'),
+  (7, 'Editar Publicación'),
   (8, 'Comprar'),
   (9, 'Historial del cliente'),
   (10, 'Canje y administración de puntos'),
@@ -193,9 +197,9 @@ create table PEAKY_BLINDERS.funcionalidades_por_rol (
 )
 
 insert into PEAKY_BLINDERS.funcionalidades_por_rol (id_rol, id_funcionalidad) values
-  (2, 1), (2, 2), (2, 3), (2, 4), (2, 5), (2, 11), (2, 12),
-  (1, 6), (1, 7),
-  (3, 8), (3, 9), (3, 10);
+  (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 11), (1, 12),
+  (2, 8), (2, 9), (2, 10),
+  (3, 6), (3, 7);
 
 -- Clientes --
 create table PEAKY_BLINDERS.clientes (

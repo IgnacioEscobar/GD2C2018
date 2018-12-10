@@ -18,13 +18,15 @@ namespace PalcoNet.Abm_Cliente
     public partial class FormABMCliente : Form
     {
         int userID;
+        int rolID;
         string query_defecto = "SELECT nombre, apellido, numero_de_documento FROM PEAKY_BLINDERS.clientes";
         ValidadorDeDatos validador;
 
-        public FormABMCliente(int userID)
+        public FormABMCliente(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
         }
 
         // Metodos auxiliares
@@ -190,11 +192,11 @@ namespace PalcoNet.Abm_Cliente
             }
         }
 
-        private void btnPanelDeControl_Click(object sender, EventArgs e)
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
         {
-            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
             this.Hide();
-            formAbmAdministrador.Show();
+            formMenuPrincipal.Show();
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)

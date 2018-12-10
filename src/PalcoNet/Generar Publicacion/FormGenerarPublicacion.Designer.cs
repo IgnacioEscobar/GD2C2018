@@ -57,7 +57,7 @@
             this.btnPublicar = new System.Windows.Forms.Button();
             this.btnGuardarBorrador = new System.Windows.Forms.Button();
             this.btnFinalizarPublicacion = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.btnAgregarFecha = new System.Windows.Forms.Button();
             this.lsvFechaHora = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
@@ -359,16 +359,16 @@
             this.btnFinalizarPublicacion.UseVisualStyleBackColor = true;
             this.btnFinalizarPublicacion.Click += new System.EventHandler(this.btnFinalizarPublicacion_Click);
             // 
-            // btnCancelar
+            // btnMenuPrincipal
             // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(12, 416);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(403, 23);
-            this.btnCancelar.TabIndex = 22;
-            this.btnCancelar.Text = "CANCELAR";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 416);
+            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(403, 23);
+            this.btnMenuPrincipal.TabIndex = 22;
+            this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
+            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
             // 
             // btnAgregarFecha
             // 
@@ -392,11 +392,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancelar;
+            this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(427, 451);
             this.Controls.Add(this.lsvFechaHora);
             this.Controls.Add(this.btnAgregarFecha);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.btnFinalizarPublicacion);
             this.Controls.Add(this.btnGuardarBorrador);
             this.Controls.Add(this.btnPublicar);
@@ -460,7 +460,7 @@
         private System.Windows.Forms.Button btnPublicar;
         private System.Windows.Forms.Button btnGuardarBorrador;
         private System.Windows.Forms.Button btnFinalizarPublicacion;
-        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnMenuPrincipal;
         private System.Windows.Forms.Button btnAgregarFecha;
         private System.Windows.Forms.ListView lsvFechaHora;
 

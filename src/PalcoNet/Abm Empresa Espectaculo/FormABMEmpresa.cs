@@ -18,13 +18,15 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
     public partial class FormABMEmpresa : Form
     {
         int userID;
+        int rolID;
         string query_defecto = "SELECT razon_social, cuit, mail FROM PEAKY_BLINDERS.empresas";
         ValidadorDeDatos validador;
 
-        public FormABMEmpresa(int userID)
+        public FormABMEmpresa(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
         }
 
         // Metodos auxiliares
@@ -180,11 +182,11 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             }
         }
 
-        private void btnPanelDeControl_Click(object sender, EventArgs e)
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
         {
-            FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
             this.Hide();
-            formAbmAdministrador.Show();
+            formMenuPrincipal.Show();
         }
 
         private void txtCUIT_KeyPress(object sender, KeyPressEventArgs e)
