@@ -108,6 +108,12 @@
     <Compile Include="Canje Puntos\FormPuntos.Designer.cs">
       <DependentUpon>FormPuntos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Comprar\FormFiltrarEspectaculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprar\FormFiltrarEspectaculos.Designer.cs">
+      <DependentUpon>FormFiltrarEspectaculos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Comprar\FormAdministracionDePuntos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormAdministracionDePuntos.resx">
       <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprar\FormFiltrarEspectaculos.resx">
+      <DependentUpon>FormFiltrarEspectaculos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormPagar.resx">
       <DependentUpon>FormPagar.cs</DependentUpon>
