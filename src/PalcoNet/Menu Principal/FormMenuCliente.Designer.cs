@@ -35,6 +35,7 @@
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ckbRangoFechas = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mcrHasta = new System.Windows.Forms.MonthCalendar();
@@ -45,7 +46,6 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lsvPublicaciones = new System.Windows.Forms.ListView();
-            this.ckbRangoFechas = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +127,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
+            // 
+            // ckbRangoFechas
+            // 
+            this.ckbRangoFechas.AutoSize = true;
+            this.ckbRangoFechas.Location = new System.Drawing.Point(6, 67);
+            this.ckbRangoFechas.Name = "ckbRangoFechas";
+            this.ckbRangoFechas.Size = new System.Drawing.Size(149, 17);
+            this.ckbRangoFechas.TabIndex = 17;
+            this.ckbRangoFechas.Text = "Filtrar por rango de fechas";
+            this.ckbRangoFechas.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -213,16 +223,6 @@
             this.lsvPublicaciones.Size = new System.Drawing.Size(421, 327);
             this.lsvPublicaciones.TabIndex = 7;
             this.lsvPublicaciones.UseCompatibleStateImageBehavior = false;
-            // 
-            // ckbRangoFechas
-            // 
-            this.ckbRangoFechas.AutoSize = true;
-            this.ckbRangoFechas.Location = new System.Drawing.Point(6, 67);
-            this.ckbRangoFechas.Name = "ckbRangoFechas";
-            this.ckbRangoFechas.Size = new System.Drawing.Size(149, 17);
-            this.ckbRangoFechas.TabIndex = 17;
-            this.ckbRangoFechas.Text = "Filtrar por rango de fechas";
-            this.ckbRangoFechas.UseVisualStyleBackColor = true;
             // 
             // FormMenuCliente
             // 

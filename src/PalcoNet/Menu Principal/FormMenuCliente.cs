@@ -175,7 +175,6 @@ namespace PalcoNet.Menu_Principal
             gestor.conectar();
 
             string query = query_defecto + condicion;
-            MessageBox.Show(query);
             gestor.consulta(query);
             this.mostrarPublicaciones(gestor.obtenerRegistros());
             gestor.desconectar();

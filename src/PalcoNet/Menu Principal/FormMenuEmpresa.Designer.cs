@@ -34,12 +34,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvPublicaciones = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ckbRangoFechas = new System.Windows.Forms.CheckBox();
             this.mcrHasta = new System.Windows.Forms.MonthCalendar();
-            this.clbCategorias = new System.Windows.Forms.CheckedListBox();
             this.mcrDesde = new System.Windows.Forms.MonthCalendar();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.clbCategorias = new System.Windows.Forms.CheckedListBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -103,12 +103,12 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.ckbRangoFechas);
             this.groupBox1.Controls.Add(this.mcrHasta);
-            this.groupBox1.Controls.Add(this.clbCategorias);
             this.groupBox1.Controls.Add(this.mcrDesde);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.clbCategorias);
             this.groupBox1.Controls.Add(this.txtDescripcion);
             this.groupBox1.Controls.Add(this.btnBuscar);
             this.groupBox1.Controls.Add(this.btnLimpiar);
@@ -119,6 +119,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
             // 
+            // ckbRangoFechas
+            // 
+            this.ckbRangoFechas.AutoSize = true;
+            this.ckbRangoFechas.Location = new System.Drawing.Point(6, 67);
+            this.ckbRangoFechas.Name = "ckbRangoFechas";
+            this.ckbRangoFechas.Size = new System.Drawing.Size(149, 17);
+            this.ckbRangoFechas.TabIndex = 20;
+            this.ckbRangoFechas.Text = "Filtrar por rango de fechas";
+            this.ckbRangoFechas.UseVisualStyleBackColor = true;
+            // 
+            // mcrHasta
+            // 
+            this.mcrHasta.Location = new System.Drawing.Point(222, 90);
+            this.mcrHasta.MaxSelectionCount = 1;
+            this.mcrHasta.Name = "mcrHasta";
+            this.mcrHasta.TabIndex = 19;
+            // 
+            // mcrDesde
+            // 
+            this.mcrDesde.Location = new System.Drawing.Point(12, 90);
+            this.mcrDesde.Name = "mcrDesde";
+            this.mcrDesde.TabIndex = 18;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -127,15 +150,6 @@
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 16;
             this.label4.Text = "Categorías";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Rango de fechas";
             // 
             // label2
             // 
@@ -146,13 +160,6 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Descripción";
             // 
-            // mcrHasta
-            // 
-            this.mcrHasta.Location = new System.Drawing.Point(222, 90);
-            this.mcrHasta.MaxSelectionCount = 1;
-            this.mcrHasta.Name = "mcrHasta";
-            this.mcrHasta.TabIndex = 3;
-            // 
             // clbCategorias
             // 
             this.clbCategorias.FormattingEnabled = true;
@@ -160,12 +167,6 @@
             this.clbCategorias.Name = "clbCategorias";
             this.clbCategorias.Size = new System.Drawing.Size(209, 94);
             this.clbCategorias.TabIndex = 4;
-            // 
-            // mcrDesde
-            // 
-            this.mcrDesde.Location = new System.Drawing.Point(12, 90);
-            this.mcrDesde.Name = "mcrDesde";
-            this.mcrDesde.TabIndex = 2;
             // 
             // txtDescripcion
             // 
@@ -192,9 +193,11 @@
             this.btnLimpiar.TabIndex = 6;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click_1);
             // 
             // FormMenuEmpresa
             // 
+            this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 465);
@@ -226,13 +229,13 @@
         private System.Windows.Forms.DataGridView dgvPublicaciones;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MonthCalendar mcrHasta;
         private System.Windows.Forms.CheckedListBox clbCategorias;
-        private System.Windows.Forms.MonthCalendar mcrDesde;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.CheckBox ckbRangoFechas;
+        private System.Windows.Forms.MonthCalendar mcrHasta;
+        private System.Windows.Forms.MonthCalendar mcrDesde;
     }
 }
