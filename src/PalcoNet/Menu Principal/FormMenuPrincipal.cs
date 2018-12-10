@@ -28,11 +28,13 @@ namespace PalcoNet.Menu_Principal
     public partial class FormMenuPrincipal : Form
     {
         int userID;
+        int rolID;
 
-        public FormMenuPrincipal(int userID)
+        public FormMenuPrincipal(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
         }
 
         // Metodos auxiliares
@@ -58,11 +60,10 @@ namespace PalcoNet.Menu_Principal
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             string query = "SELECT DISTINCT F.descripcion " +
-                "FROM PEAKY_BLINDERS.roles_por_usuario RU " +
-                    "JOIN PEAKY_BLINDERS.roles R ON RU.id_rol = R.id_rol " +
+                    "FROM PEAKY_BLINDERS.roles R " +
                     "JOIN PEAKY_BLINDERS.funcionalidades_por_rol FR ON R.id_rol = FR.id_rol " +
-                    "JOIN PEAKY_BLINDERS.funcionalidades F ON FR.id_funcionalidad = F.id_funcionalidad ";/* +
-                "WHERE RU.id_usuario = '" + userID + "'";*/
+                    "JOIN PEAKY_BLINDERS.funcionalidades F ON FR.id_funcionalidad = F.id_funcionalidad " +
+                "WHERE R.id_rol = '" + rolID + "'";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
 

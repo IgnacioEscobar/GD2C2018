@@ -33,26 +33,36 @@ namespace PalcoNet.Login
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-            Form formDestino;
-
+            string rol_seleccionado = "";
             if (rbnCliente.Checked)
             {
-                formDestino = new FormMenuCliente(userID);
-                this.Hide();
-                formDestino.Show();
+                rol_seleccionado = rbnCliente.Text;
             }
             if (rbnEmpresa.Checked)
             {
-                formDestino = new FormMenuEmpresa(userID);
-                this.Hide();
-                formDestino.Show();
+                rol_seleccionado = rbnEmpresa.Text;
             }
             if (rbnAdministrador.Checked)
             {
-                formDestino = new FormMenuAdministrador(userID);
-                this.Hide();
-                formDestino.Show();
+                rol_seleccionado = rbnAdministrador.Text;
             }
+
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            string query = "SELECT id_rol " +
+                "FROM PEAKY_BLINDERS.roles " +
+                "WHERE descripcion = '" + rol_seleccionado + "'";
+            gestor.consulta(query);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            int rolID = -1;
+            if (lector.Read())
+            {
+                rolID = Convert.ToInt32(lector["id_rol"].ToString());
+            }
+
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
+            this.Hide();
+            formMenuPrincipal.Show();
         }
 
         private void FormElegirRol_Load(object sender, EventArgs e)

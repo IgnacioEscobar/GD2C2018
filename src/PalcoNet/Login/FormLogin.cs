@@ -153,40 +153,17 @@ namespace PalcoNet
 
                             case 1:
                                 gestor.conectar();
-                                string query2 = "SELECT R.descripcion FROM PEAKY_BLINDERS.roles R " +
-                                    "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON R.id_rol = RU.id_rol " +
-                                    "WHERE RU.id_usuario = '" + userID + "'";
+                                string query2 = "SELECT id_rol " +
+                                    "FROM PEAKY_BLINDERS.roles_por_usuario " +
+                                    "WHERE id_usuario = '" + userID + "'";
                                 gestor.consulta(query2);
                                 SqlDataReader lector2 = gestor.obtenerRegistros();
                                 if (lector2.Read())
                                 {
-                                    string rolCargado = lector2["descripcion"].ToString();
-                                    Form formDestino;
-
-                                    switch (rolCargado)
-                                    {
-                                        case "Cliente":
-                                            formDestino = new FormMenuCliente(userID);
-                                            this.Hide();
-                                            formDestino.Show();
-                                            break;
-
-                                        case "Empresa":
-                                            formDestino = new FormMenuEmpresa(userID);
-                                            this.Hide();
-                                            formDestino.Show();
-                                            break;
-
-                                        case "Administrador":
-                                            formDestino = new FormMenuAdministrador(userID);
-                                            this.Hide();
-                                            formDestino.Show();
-                                            break;
-
-                                        default:
-                                            lblError.Text = "ERROR: el rol cargado es inválido";
-                                            break;
-                                    }
+                                    int rolID = Convert.ToInt32(lector2["id_rol"].ToString());
+                                    FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
+                                    this.Hide();
+                                    formMenuPrincipal.Show();
                                 }
                                 break;
 
