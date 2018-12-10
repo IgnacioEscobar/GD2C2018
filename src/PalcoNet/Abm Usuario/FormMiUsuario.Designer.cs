@@ -1,4 +1,4 @@
-﻿namespace PalcoNet.ABM_Usuario
+﻿namespace PalcoNet.Abm_Usuario
 {
     partial class FormMiUsuario
     {
@@ -46,6 +46,7 @@
             // 
             this.txtPassActual.Location = new System.Drawing.Point(6, 36);
             this.txtPassActual.Name = "txtPassActual";
+            this.txtPassActual.PasswordChar = '*';
             this.txtPassActual.Size = new System.Drawing.Size(261, 20);
             this.txtPassActual.TabIndex = 0;
             // 
@@ -55,9 +56,9 @@
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.Location = new System.Drawing.Point(13, 13);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(142, 16);
+            this.lblUsuario.Size = new System.Drawing.Size(66, 16);
             this.lblUsuario.TabIndex = 1;
-            this.lblUsuario.Text = "USUARIO: asd1234";
+            this.lblUsuario.Text = "Usuario:";
             // 
             // lklCerrarSesion
             // 
@@ -65,9 +66,10 @@
             this.lklCerrarSesion.Location = new System.Drawing.Point(191, 9);
             this.lklCerrarSesion.Name = "lklCerrarSesion";
             this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
-            this.lklCerrarSesion.TabIndex = 19;
+            this.lklCerrarSesion.TabIndex = 5;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
             // groupBox1
             // 
@@ -90,9 +92,10 @@
             this.btnConfirmar.Location = new System.Drawing.Point(6, 140);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(261, 35);
-            this.btnConfirmar.TabIndex = 21;
+            this.btnConfirmar.TabIndex = 3;
             this.btnConfirmar.Text = "CONFIRMAR";
             this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // label3
             // 
@@ -107,8 +110,9 @@
             // 
             this.txtPassNueva2.Location = new System.Drawing.Point(6, 114);
             this.txtPassNueva2.Name = "txtPassNueva2";
+            this.txtPassNueva2.PasswordChar = '*';
             this.txtPassNueva2.Size = new System.Drawing.Size(261, 20);
-            this.txtPassNueva2.TabIndex = 4;
+            this.txtPassNueva2.TabIndex = 2;
             // 
             // label2
             // 
@@ -123,8 +127,9 @@
             // 
             this.txtPassNueva.Location = new System.Drawing.Point(6, 75);
             this.txtPassNueva.Name = "txtPassNueva";
+            this.txtPassNueva.PasswordChar = '*';
             this.txtPassNueva.Size = new System.Drawing.Size(261, 20);
-            this.txtPassNueva.TabIndex = 2;
+            this.txtPassNueva.TabIndex = 1;
             // 
             // label1
             // 
@@ -137,18 +142,21 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(19, 220);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(261, 35);
-            this.btnCancelar.TabIndex = 22;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FormMiUsuario
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(299, 272);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox1);

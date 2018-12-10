@@ -107,6 +107,7 @@
             this.txtContrasena.PasswordChar = '*';
             this.txtContrasena.Size = new System.Drawing.Size(168, 20);
             this.txtContrasena.TabIndex = 1;
+            this.txtContrasena.TextChanged += new System.EventHandler(this.txtContrasena_TextChanged);
             // 
             // label2
             // 
@@ -123,6 +124,7 @@
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(169, 20);
             this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
             // label1
             // 

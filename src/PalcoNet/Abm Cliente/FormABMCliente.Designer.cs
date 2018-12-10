@@ -72,7 +72,7 @@
             this.dgvClientes.ReadOnly = true;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClientes.Size = new System.Drawing.Size(573, 383);
-            this.dgvClientes.TabIndex = 0;
+            this.dgvClientes.TabIndex = 9;
             // 
             // btnAgregar
             // 
@@ -139,7 +139,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(420, 71);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(147, 20);
-            this.btnBuscar.TabIndex = 13;
+            this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -156,10 +156,9 @@
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(299, 45);
-            this.txtMail.MaxLength = 8;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(268, 20);
-            this.txtMail.TabIndex = 11;
+            this.txtMail.TabIndex = 3;
             // 
             // label4
             // 
@@ -175,7 +174,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(267, 71);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(147, 20);
-            this.btnLimpiar.TabIndex = 8;
+            this.btnLimpiar.TabIndex = 4;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -205,6 +204,7 @@
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(151, 20);
             this.txtDocumento.TabIndex = 2;
+            this.txtDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDocumento_KeyPress);
             // 
             // txtApellido
             // 
@@ -212,6 +212,7 @@
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(151, 20);
             this.txtApellido.TabIndex = 1;
+            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
             // 
             // txtNombre
             // 
@@ -219,6 +220,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(151, 20);
             this.txtNombre.TabIndex = 0;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // FormABMCliente
             // 

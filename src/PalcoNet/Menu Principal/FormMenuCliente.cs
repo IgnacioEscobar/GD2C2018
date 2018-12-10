@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Login;
-using PalcoNet.ABM_Usuario;
+using PalcoNet.Abm_Usuario;
 using PalcoNet.Historial_Cliente;
 using PalcoNet.Comprar;
 
@@ -40,7 +40,7 @@ namespace PalcoNet.Menu_Principal
             {
                 ListViewItem item = new ListViewItem(lector["descripcion"].ToString());
                 item.SubItems.Add(lector["stock"].ToString());
-                DateTime fecha_hora = DateTime.Parse(lector["fecha_hora"].ToString());
+                DateTime fecha_hora = DateTime.Parse(lector["fecha_presentacion"].ToString());
                 item.SubItems.Add(fecha_hora.ToShortDateString());
                 item.SubItems.Add(fecha_hora.ToShortTimeString());
                 lsvPublicaciones.Items.Add(item);
@@ -81,9 +81,12 @@ namespace PalcoNet.Menu_Principal
             gestor.conectar();
             string query_publicaciones = "SELECT ISNULL(PU.descripcion, '---') AS descripcion, " +
                 "ISNULL(PU.stock, 0) AS stock, " +
-                "PR.fecha_hora " +
+                "PR.fecha_presentacion " +
                 "FROM PEAKY_BLINDERS.publicaciones PU " +
-                    "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion";
+                    "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
+                    "JOIN PEAKY_BLINDERS.estados E ON PU.id_estado = E.id_estado " +
+                "WHERE PR.fecha_presentacion > GETDATE() AND E.descripcion = 'Publicada'" +
+                "ORDER BY PR.fecha_presentacion ASC";
             gestor.consulta(query_publicaciones);
             this.mostrarPublicaciones(gestor.obtenerRegistros());
             gestor.desconectar();
@@ -92,6 +95,8 @@ namespace PalcoNet.Menu_Principal
             gestor.consulta(query_categorias);
             this.mostrarCategorias(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            txtDescripcion.Select();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -103,6 +108,7 @@ namespace PalcoNet.Menu_Principal
             {
                 clbCategorias.SetItemChecked(i, false);
             }
+            txtDescripcion.Select();
         }
 
         private void btnHistorial_Click(object sender, EventArgs e)

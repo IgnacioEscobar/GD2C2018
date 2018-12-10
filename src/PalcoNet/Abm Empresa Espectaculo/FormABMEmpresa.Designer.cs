@@ -53,7 +53,7 @@
             this.btnPanelDeControl.Location = new System.Drawing.Point(591, 455);
             this.btnPanelDeControl.Name = "btnPanelDeControl";
             this.btnPanelDeControl.Size = new System.Drawing.Size(211, 44);
-            this.btnPanelDeControl.TabIndex = 14;
+            this.btnPanelDeControl.TabIndex = 8;
             this.btnPanelDeControl.Text = "PANEL DE CONTROL";
             this.btnPanelDeControl.UseVisualStyleBackColor = true;
             this.btnPanelDeControl.Click += new System.EventHandler(this.btnPanelDeControl_Click);
@@ -63,7 +63,7 @@
             this.btnEliminar.Location = new System.Drawing.Point(591, 190);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(211, 44);
-            this.btnEliminar.TabIndex = 13;
+            this.btnEliminar.TabIndex = 7;
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -73,7 +73,7 @@
             this.btnModificar.Location = new System.Drawing.Point(591, 140);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(211, 44);
-            this.btnModificar.TabIndex = 12;
+            this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "MODIFICAR";
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
@@ -83,7 +83,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(591, 90);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(211, 44);
-            this.btnAgregar.TabIndex = 11;
+            this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "AGREGAR";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -110,7 +110,7 @@
             this.dgvEmpresas.ReadOnly = true;
             this.dgvEmpresas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEmpresas.Size = new System.Drawing.Size(573, 409);
-            this.dgvEmpresas.TabIndex = 10;
+            this.dgvEmpresas.TabIndex = 9;
             // 
             // groupBox1
             // 
@@ -143,7 +143,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(420, 45);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(147, 20);
-            this.btnBuscar.TabIndex = 7;
+            this.btnBuscar.TabIndex = 4;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -153,7 +153,7 @@
             this.btnLimpiar.Location = new System.Drawing.Point(267, 45);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(147, 20);
-            this.btnLimpiar.TabIndex = 6;
+            this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -187,9 +187,11 @@
             // txtCUIT
             // 
             this.txtCUIT.Location = new System.Drawing.Point(84, 45);
+            this.txtCUIT.MaxLength = 11;
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(151, 20);
             this.txtCUIT.TabIndex = 1;
+            this.txtCUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCUIT_KeyPress);
             // 
             // txtRazonSocial
             // 
@@ -210,6 +212,7 @@
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dgvEmpresas);
+            this.MaximizeBox = false;
             this.Name = "FormABMEmpresa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";

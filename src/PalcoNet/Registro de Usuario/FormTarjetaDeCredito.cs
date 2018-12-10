@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using PalcoNet.Registro_de_Usuario;
+using PalcoNet.funciones_utiles;
 
 namespace PalcoNet.Registro_de_Usuario
 {
@@ -16,6 +17,7 @@ namespace PalcoNet.Registro_de_Usuario
     {
         string numeroTarjeta;
         FormRegistroCliente formRegistroCliente;
+        ValidadorDeDatos validador;
 
         public FormTarjetaDeCredito(FormRegistroCliente formRegistroCliente, string numeroTarjeta)
         {
@@ -27,6 +29,7 @@ namespace PalcoNet.Registro_de_Usuario
         private void FormTarjetaDeCredito_Load(object sender, EventArgs e)
         {
             txtNumeroTarjeta.Text = numeroTarjeta;
+            validador = new ValidadorDeDatos();
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -39,6 +42,11 @@ namespace PalcoNet.Registro_de_Usuario
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void txtNumeroTarjeta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
         }
     }
 }

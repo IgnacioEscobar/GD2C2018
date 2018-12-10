@@ -39,6 +39,7 @@
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnFiltrar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,10 +94,10 @@
             this.rbnAlta.AutoSize = true;
             this.rbnAlta.Location = new System.Drawing.Point(343, 221);
             this.rbnAlta.Name = "rbnAlta";
-            this.rbnAlta.Size = new System.Drawing.Size(52, 17);
+            this.rbnAlta.Size = new System.Drawing.Size(53, 17);
             this.rbnAlta.TabIndex = 12;
             this.rbnAlta.TabStop = true;
-            this.rbnAlta.Text = "ALTA";
+            this.rbnAlta.Text = "ALTO";
             this.rbnAlta.UseVisualStyleBackColor = true;
             // 
             // rbnMedia
@@ -104,10 +105,10 @@
             this.rbnMedia.AutoSize = true;
             this.rbnMedia.Location = new System.Drawing.Point(343, 244);
             this.rbnMedia.Name = "rbnMedia";
-            this.rbnMedia.Size = new System.Drawing.Size(59, 17);
+            this.rbnMedia.Size = new System.Drawing.Size(60, 17);
             this.rbnMedia.TabIndex = 13;
             this.rbnMedia.TabStop = true;
-            this.rbnMedia.Text = "MEDIA";
+            this.rbnMedia.Text = "MEDIO";
             this.rbnMedia.UseVisualStyleBackColor = true;
             // 
             // rbnBaja
@@ -115,10 +116,10 @@
             this.rbnBaja.AutoSize = true;
             this.rbnBaja.Location = new System.Drawing.Point(343, 267);
             this.rbnBaja.Name = "rbnBaja";
-            this.rbnBaja.Size = new System.Drawing.Size(51, 17);
+            this.rbnBaja.Size = new System.Drawing.Size(52, 17);
             this.rbnBaja.TabIndex = 14;
             this.rbnBaja.TabStop = true;
-            this.rbnBaja.Text = "BAJA";
+            this.rbnBaja.Text = "BAJO";
             this.rbnBaja.UseVisualStyleBackColor = true;
             // 
             // btnSeleccionar
@@ -132,6 +133,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnLimpiar);
             this.groupBox1.Controls.Add(this.btnFiltrar);
             this.groupBox1.Location = new System.Drawing.Point(222, 25);
             this.groupBox1.Name = "groupBox1";
@@ -142,12 +144,21 @@
             // 
             // btnFiltrar
             // 
-            this.btnFiltrar.Location = new System.Drawing.Point(6, 156);
+            this.btnFiltrar.Location = new System.Drawing.Point(6, 126);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(190, 24);
             this.btnFiltrar.TabIndex = 0;
             this.btnFiltrar.Text = "FILTRAR";
             this.btnFiltrar.UseVisualStyleBackColor = true;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(6, 156);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(190, 24);
+            this.btnLimpiar.TabIndex = 1;
+            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
             // 
             // FormABMGrado
             // 
@@ -188,6 +199,7 @@
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnFiltrar;
+        private System.Windows.Forms.Button btnLimpiar;
 
     }
 }

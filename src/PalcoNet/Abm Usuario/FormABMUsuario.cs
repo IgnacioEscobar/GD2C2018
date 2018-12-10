@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 using PalcoNet.funciones_utiles;
 using PalcoNet.Menu_Principal;
 using PalcoNet.Registro_de_Usuario;
-using PalcoNet.ABM_Usuario;
+using PalcoNet.Abm_Usuario;
 
 namespace PalcoNet.Abm_Usuario
 {
@@ -75,7 +75,7 @@ namespace PalcoNet.Abm_Usuario
             agregarCheckBoxColumn("CLIENTE");
             agregarCheckBoxColumn("EMPRESA");
             agregarCheckBoxColumn("HABILITADO");
-            agregarButtonColumn("CONFIGURACIÓN");
+            agregarButtonColumn("SELECCIONAR");
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
@@ -86,6 +86,8 @@ namespace PalcoNet.Abm_Usuario
             gestor.consulta(query);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            txtUsuario.Select();
         }
 
         private void btnPanelDeControl_Click(object sender, EventArgs e)

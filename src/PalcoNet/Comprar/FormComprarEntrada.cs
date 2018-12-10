@@ -17,29 +17,10 @@ namespace PalcoNet.Comprar
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
+        /*
+         * Para armar DataGridView paginada (paginando la query para no llenar la memoria):
+         * https://www.codeproject.com/Articles/211551/A-Simple-way-for-Paging-in-DataGridView-in-WinForm
+         */
 
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

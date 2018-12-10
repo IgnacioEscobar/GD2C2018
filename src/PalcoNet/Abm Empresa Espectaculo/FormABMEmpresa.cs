@@ -19,6 +19,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
     {
         int userID;
         string query_defecto = "SELECT razon_social, cuit, mail FROM PEAKY_BLINDERS.empresas";
+        ValidadorDeDatos validador;
 
         public FormABMEmpresa(int userID)
         {
@@ -57,6 +58,9 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             gestor.consulta(query_defecto);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            validador = new ValidadorDeDatos();
+            txtRazonSocial.Select();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -64,6 +68,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             txtRazonSocial.Text = "";
             txtCUIT.Text = "";
             txtMail.Text = "";
+            txtRazonSocial.Select();
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -181,6 +186,11 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             FormMenuAdministrador formAbmAdministrador = new FormMenuAdministrador(userID);
             this.Hide();
             formAbmAdministrador.Show();
+        }
+
+        private void txtCUIT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
         }
 
     }

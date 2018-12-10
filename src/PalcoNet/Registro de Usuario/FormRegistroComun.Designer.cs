@@ -53,10 +53,11 @@
             // 
             // btnRegresar
             // 
+            this.btnRegresar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnRegresar.Location = new System.Drawing.Point(6, 128);
             this.btnRegresar.Name = "btnRegresar";
             this.btnRegresar.Size = new System.Drawing.Size(247, 29);
-            this.btnRegresar.TabIndex = 10;
+            this.btnRegresar.TabIndex = 3;
             this.btnRegresar.Text = "REGRESAR";
             this.btnRegresar.UseVisualStyleBackColor = true;
             this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
@@ -66,7 +67,7 @@
             this.btnSiguiente.Location = new System.Drawing.Point(6, 78);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(247, 44);
-            this.btnSiguiente.TabIndex = 9;
+            this.btnSiguiente.TabIndex = 2;
             this.btnSiguiente.Text = "SIGUIENTE";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
@@ -87,7 +88,7 @@
             this.rbnEmpresa.Location = new System.Drawing.Point(9, 55);
             this.rbnEmpresa.Name = "rbnEmpresa";
             this.rbnEmpresa.Size = new System.Drawing.Size(66, 17);
-            this.rbnEmpresa.TabIndex = 7;
+            this.rbnEmpresa.TabIndex = 1;
             this.rbnEmpresa.TabStop = true;
             this.rbnEmpresa.Text = "Empresa";
             this.rbnEmpresa.UseVisualStyleBackColor = true;
@@ -98,15 +99,17 @@
             this.rbnCliente.Location = new System.Drawing.Point(9, 32);
             this.rbnCliente.Name = "rbnCliente";
             this.rbnCliente.Size = new System.Drawing.Size(57, 17);
-            this.rbnCliente.TabIndex = 6;
+            this.rbnCliente.TabIndex = 0;
             this.rbnCliente.TabStop = true;
             this.rbnCliente.Text = "Cliente";
             this.rbnCliente.UseVisualStyleBackColor = true;
             // 
             // FormRegistroComun
             // 
+            this.AcceptButton = this.btnSiguiente;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnRegresar;
             this.ClientSize = new System.Drawing.Size(284, 188);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;

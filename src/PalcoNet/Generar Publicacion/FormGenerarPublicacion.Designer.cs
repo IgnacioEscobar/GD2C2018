@@ -44,20 +44,22 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtAltura = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtCodPostal = new System.Windows.Forms.TextBox();
+            this.txtCodigoPostal = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtCalle = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cmbRubros = new System.Windows.Forms.ComboBox();
+            this.cmbRubro = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.btnPublicar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnFinalizar = new System.Windows.Forms.Button();
+            this.btnGuardarBorrador = new System.Windows.Forms.Button();
+            this.btnFinalizarPublicacion = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAgregarFecha = new System.Windows.Forms.Button();
+            this.lsvFechaHora = new System.Windows.Forms.ListView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHora)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinuto)).BeginInit();
@@ -96,61 +98,58 @@
             // 
             this.txtStock.Location = new System.Drawing.Point(348, 29);
             this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(65, 20);
-            this.txtStock.TabIndex = 2;
+            this.txtStock.Size = new System.Drawing.Size(67, 20);
+            this.txtStock.TabIndex = 1;
+            this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cmbAno);
             this.groupBox1.Controls.Add(this.cmbMes);
             this.groupBox1.Controls.Add(this.cmbDia);
-            this.groupBox1.Location = new System.Drawing.Point(12, 55);
+            this.groupBox1.Location = new System.Drawing.Point(200, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(262, 47);
-            this.groupBox1.TabIndex = 4;
+            this.groupBox1.Size = new System.Drawing.Size(215, 47);
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FECHA";
             // 
             // cmbAno
             // 
             this.cmbAno.FormattingEnabled = true;
-            this.cmbAno.Location = new System.Drawing.Point(172, 19);
+            this.cmbAno.Location = new System.Drawing.Point(116, 19);
+            this.cmbAno.MaxLength = 4;
             this.cmbAno.Name = "cmbAno";
-            this.cmbAno.Size = new System.Drawing.Size(84, 21);
-            this.cmbAno.TabIndex = 19;
+            this.cmbAno.Size = new System.Drawing.Size(93, 21);
+            this.cmbAno.TabIndex = 5;
+            this.cmbAno.Text = "Año";
+            this.cmbAno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbAno_KeyPress);
             // 
             // cmbMes
             // 
             this.cmbMes.FormattingEnabled = true;
-            this.cmbMes.Items.AddRange(new object[] {
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Septiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre"});
-            this.cmbMes.Location = new System.Drawing.Point(54, 19);
+            this.cmbMes.Location = new System.Drawing.Point(61, 19);
+            this.cmbMes.MaxLength = 2;
             this.cmbMes.Name = "cmbMes";
-            this.cmbMes.Size = new System.Drawing.Size(112, 21);
-            this.cmbMes.TabIndex = 18;
+            this.cmbMes.Size = new System.Drawing.Size(49, 21);
+            this.cmbMes.TabIndex = 4;
+            this.cmbMes.Text = "Mes";
+            this.cmbMes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbMes_KeyPress);
             // 
             // cmbDia
             // 
             this.cmbDia.FormattingEnabled = true;
             this.cmbDia.Location = new System.Drawing.Point(6, 19);
+            this.cmbDia.MaxLength = 2;
             this.cmbDia.Name = "cmbDia";
-            this.cmbDia.Size = new System.Drawing.Size(42, 21);
-            this.cmbDia.TabIndex = 17;
+            this.cmbDia.Size = new System.Drawing.Size(49, 21);
+            this.cmbDia.TabIndex = 3;
+            this.cmbDia.Text = "Día";
+            this.cmbDia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbDia_KeyPress);
             // 
             // nudHora
             // 
-            this.nudHora.Location = new System.Drawing.Point(6, 20);
+            this.nudHora.Location = new System.Drawing.Point(7, 20);
             this.nudHora.Maximum = new decimal(new int[] {
             23,
             0,
@@ -158,11 +157,12 @@
             0});
             this.nudHora.Name = "nudHora";
             this.nudHora.Size = new System.Drawing.Size(49, 20);
-            this.nudHora.TabIndex = 20;
+            this.nudHora.TabIndex = 7;
+            this.nudHora.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudHora_KeyPress);
             // 
             // nudMinuto
             // 
-            this.nudMinuto.Location = new System.Drawing.Point(77, 20);
+            this.nudMinuto.Location = new System.Drawing.Point(78, 20);
             this.nudMinuto.Maximum = new decimal(new int[] {
             59,
             0,
@@ -170,24 +170,25 @@
             0});
             this.nudMinuto.Name = "nudMinuto";
             this.nudMinuto.Size = new System.Drawing.Size(49, 20);
-            this.nudMinuto.TabIndex = 21;
+            this.nudMinuto.TabIndex = 8;
+            this.nudMinuto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.nudMinuto_KeyPress);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.nudHora);
             this.groupBox2.Controls.Add(this.nudMinuto);
-            this.groupBox2.Location = new System.Drawing.Point(280, 55);
+            this.groupBox2.Location = new System.Drawing.Point(200, 108);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(133, 47);
-            this.groupBox2.TabIndex = 20;
+            this.groupBox2.Size = new System.Drawing.Size(135, 47);
+            this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "HORA";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 22);
+            this.label3.Location = new System.Drawing.Point(62, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(10, 13);
             this.label3.TabIndex = 21;
@@ -198,15 +199,15 @@
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.txtAltura);
             this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.txtCodPostal);
+            this.groupBox3.Controls.Add(this.txtCodigoPostal);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.txtLocalidad);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.txtCalle);
-            this.groupBox3.Location = new System.Drawing.Point(12, 108);
+            this.groupBox3.Location = new System.Drawing.Point(12, 161);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(401, 97);
-            this.groupBox3.TabIndex = 24;
+            this.groupBox3.Size = new System.Drawing.Size(403, 97);
+            this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "DIRECCIÓN";
             // 
@@ -223,8 +224,9 @@
             // 
             this.txtAltura.Location = new System.Drawing.Point(339, 32);
             this.txtAltura.Name = "txtAltura";
-            this.txtAltura.Size = new System.Drawing.Size(56, 20);
-            this.txtAltura.TabIndex = 29;
+            this.txtAltura.Size = new System.Drawing.Size(58, 20);
+            this.txtAltura.TabIndex = 12;
+            this.txtAltura.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAltura_KeyPress);
             // 
             // label12
             // 
@@ -235,18 +237,19 @@
             this.label12.TabIndex = 26;
             this.label12.Text = "Código postal";
             // 
-            // txtCodPostal
+            // txtCodigoPostal
             // 
-            this.txtCodPostal.Location = new System.Drawing.Point(6, 71);
-            this.txtCodPostal.MaxLength = 4;
-            this.txtCodPostal.Name = "txtCodPostal";
-            this.txtCodPostal.Size = new System.Drawing.Size(89, 20);
-            this.txtCodPostal.TabIndex = 27;
+            this.txtCodigoPostal.Location = new System.Drawing.Point(6, 71);
+            this.txtCodigoPostal.MaxLength = 4;
+            this.txtCodigoPostal.Name = "txtCodigoPostal";
+            this.txtCodigoPostal.Size = new System.Drawing.Size(89, 20);
+            this.txtCodigoPostal.TabIndex = 13;
+            this.txtCodigoPostal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodPostal_KeyPress);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(120, 55);
+            this.label11.Location = new System.Drawing.Point(101, 55);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(53, 13);
             this.label11.TabIndex = 24;
@@ -254,10 +257,12 @@
             // 
             // txtLocalidad
             // 
-            this.txtLocalidad.Location = new System.Drawing.Point(120, 71);
+            this.txtLocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtLocalidad.Location = new System.Drawing.Point(101, 71);
             this.txtLocalidad.Name = "txtLocalidad";
-            this.txtLocalidad.Size = new System.Drawing.Size(275, 20);
-            this.txtLocalidad.TabIndex = 25;
+            this.txtLocalidad.Size = new System.Drawing.Size(296, 20);
+            this.txtLocalidad.TabIndex = 14;
+            this.txtLocalidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLocalidad_KeyPress);
             // 
             // label8
             // 
@@ -274,34 +279,35 @@
             this.txtCalle.Location = new System.Drawing.Point(6, 32);
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(327, 20);
-            this.txtCalle.TabIndex = 18;
+            this.txtCalle.TabIndex = 11;
+            this.txtCalle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCalle_KeyPress);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.cmbRubros);
-            this.groupBox5.Location = new System.Drawing.Point(12, 211);
+            this.groupBox5.Controls.Add(this.cmbRubro);
+            this.groupBox5.Location = new System.Drawing.Point(12, 264);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(262, 49);
-            this.groupBox5.TabIndex = 25;
+            this.groupBox5.TabIndex = 15;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "RUBRO";
             // 
-            // cmbRubros
+            // cmbRubro
             // 
-            this.cmbRubros.FormattingEnabled = true;
-            this.cmbRubros.Location = new System.Drawing.Point(7, 19);
-            this.cmbRubros.Name = "cmbRubros";
-            this.cmbRubros.Size = new System.Drawing.Size(249, 21);
-            this.cmbRubros.TabIndex = 0;
+            this.cmbRubro.FormattingEnabled = true;
+            this.cmbRubro.Location = new System.Drawing.Point(7, 19);
+            this.cmbRubro.Name = "cmbRubro";
+            this.cmbRubro.Size = new System.Drawing.Size(249, 21);
+            this.cmbRubro.TabIndex = 16;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.txtPrecio);
-            this.groupBox4.Location = new System.Drawing.Point(280, 211);
+            this.groupBox4.Location = new System.Drawing.Point(280, 264);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(133, 49);
-            this.groupBox4.TabIndex = 26;
+            this.groupBox4.Size = new System.Drawing.Size(135, 49);
+            this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "PRECIO";
             // 
@@ -319,53 +325,80 @@
             // 
             this.txtPrecio.Location = new System.Drawing.Point(25, 20);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(102, 20);
-            this.txtPrecio.TabIndex = 0;
+            this.txtPrecio.Size = new System.Drawing.Size(104, 20);
+            this.txtPrecio.TabIndex = 18;
+            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // btnPublicar
             // 
-            this.btnPublicar.Location = new System.Drawing.Point(12, 266);
+            this.btnPublicar.Location = new System.Drawing.Point(12, 319);
             this.btnPublicar.Name = "btnPublicar";
-            this.btnPublicar.Size = new System.Drawing.Size(401, 42);
-            this.btnPublicar.TabIndex = 27;
+            this.btnPublicar.Size = new System.Drawing.Size(403, 42);
+            this.btnPublicar.TabIndex = 19;
             this.btnPublicar.Text = "PUBLICAR";
             this.btnPublicar.UseVisualStyleBackColor = true;
+            this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
             // 
-            // btnGuardar
+            // btnGuardarBorrador
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(12, 314);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(238, 42);
-            this.btnGuardar.TabIndex = 28;
-            this.btnGuardar.Text = "GUARDAR BORRADOR";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardarBorrador.Location = new System.Drawing.Point(12, 367);
+            this.btnGuardarBorrador.Name = "btnGuardarBorrador";
+            this.btnGuardarBorrador.Size = new System.Drawing.Size(238, 42);
+            this.btnGuardarBorrador.TabIndex = 20;
+            this.btnGuardarBorrador.Text = "GUARDAR BORRADOR";
+            this.btnGuardarBorrador.UseVisualStyleBackColor = true;
+            this.btnGuardarBorrador.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // btnFinalizar
+            // btnFinalizarPublicacion
             // 
-            this.btnFinalizar.Location = new System.Drawing.Point(256, 314);
-            this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(157, 42);
-            this.btnFinalizar.TabIndex = 29;
-            this.btnFinalizar.Text = "FINALIZAR";
-            this.btnFinalizar.UseVisualStyleBackColor = true;
+            this.btnFinalizarPublicacion.Location = new System.Drawing.Point(256, 367);
+            this.btnFinalizarPublicacion.Name = "btnFinalizarPublicacion";
+            this.btnFinalizarPublicacion.Size = new System.Drawing.Size(159, 42);
+            this.btnFinalizarPublicacion.TabIndex = 21;
+            this.btnFinalizarPublicacion.Text = "FINALIZAR PUBLICACIÓN";
+            this.btnFinalizarPublicacion.UseVisualStyleBackColor = true;
+            this.btnFinalizarPublicacion.Click += new System.EventHandler(this.btnFinalizarPublicacion_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(12, 363);
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(12, 416);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(401, 23);
-            this.btnCancelar.TabIndex = 30;
+            this.btnCancelar.Size = new System.Drawing.Size(403, 23);
+            this.btnCancelar.TabIndex = 22;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAgregarFecha
+            // 
+            this.btnAgregarFecha.Location = new System.Drawing.Point(341, 108);
+            this.btnAgregarFecha.Name = "btnAgregarFecha";
+            this.btnAgregarFecha.Size = new System.Drawing.Size(74, 47);
+            this.btnAgregarFecha.TabIndex = 9;
+            this.btnAgregarFecha.Text = "AGREGAR FECHA";
+            this.btnAgregarFecha.UseVisualStyleBackColor = true;
+            this.btnAgregarFecha.Click += new System.EventHandler(this.btnAgregarFecha_Click);
+            // 
+            // lsvFechaHora
+            // 
+            this.lsvFechaHora.Location = new System.Drawing.Point(12, 55);
+            this.lsvFechaHora.Name = "lsvFechaHora";
+            this.lsvFechaHora.Size = new System.Drawing.Size(182, 100);
+            this.lsvFechaHora.TabIndex = 18;
+            this.lsvFechaHora.UseCompatibleStateImageBehavior = false;
             // 
             // FormGenerarPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 399);
+            this.CancelButton = this.btnCancelar;
+            this.ClientSize = new System.Drawing.Size(427, 451);
+            this.Controls.Add(this.lsvFechaHora);
+            this.Controls.Add(this.btnAgregarFecha);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnFinalizar);
-            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.btnFinalizarPublicacion);
+            this.Controls.Add(this.btnGuardarBorrador);
             this.Controls.Add(this.btnPublicar);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
@@ -376,7 +409,9 @@
             this.Controls.Add(this.txtStock);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescripcion);
+            this.MaximizeBox = false;
             this.Name = "FormGenerarPublicacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormGenerarPublicacion_Load);
             this.groupBox1.ResumeLayout(false);
@@ -412,20 +447,22 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtAltura;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtCodPostal;
+        private System.Windows.Forms.TextBox txtCodigoPostal;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtLocalidad;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCalle;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.ComboBox cmbRubros;
+        private System.Windows.Forms.ComboBox cmbRubro;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Button btnPublicar;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button btnFinalizar;
+        private System.Windows.Forms.Button btnGuardarBorrador;
+        private System.Windows.Forms.Button btnFinalizarPublicacion;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnAgregarFecha;
+        private System.Windows.Forms.ListView lsvFechaHora;
 
 
     }

@@ -21,6 +21,7 @@ namespace PalcoNet.Registro_de_Usuario
         bool modif; // si viene por modificar o por agregar
         string query;
         string empresaID;
+        ValidadorDeDatos validador;
 
         public FormRegistroEmpresa(bool abm)
         {
@@ -52,14 +53,30 @@ namespace PalcoNet.Registro_de_Usuario
 
         private bool validarCampos()
         {
-            // TODO: chequear que campos son obligatorios
-            if (txtCUIT.Text == "")
+            List<string[]> lista = new List<string[]>();
+            lista.Add(new string[] { txtRazonSocial.Text, "razon social" });
+            lista.Add(new string[] { txtCUIT.Text, "CUIT" });
+            lista.Add(new string[] { txtCalle.Text, "calle" });
+            lista.Add(new string[] { txtAltura.Text, "altura" });
+            lista.Add(new string[] { txtCodigoPostal.Text, "código postal" });
+            lista.Add(new string[] { txtMail.Text, "mail" });
+            lista.Add(new string[] { txtTelefono.Text, "teléfono" });
+
+            string mensaje = "";
+            bool retorno = validador.validar_campos_obligatorios(lista, ref mensaje);
+
+            if (txtCUIT.Text.Length > 0 && !validador.validar_CUIL_CUIT(txtCUIT.Text))
             {
-                lblError.Text = "Complete el CUIT";
-                lblError.Visible = true;
-                return false;
+                mensaje += "\n\nEl CUIT es incorrecto";
+                retorno = false;
             }
-            return true;
+
+            if (!retorno)
+            {
+                MessageBox.Show(mensaje, "Alerta");
+            }
+
+            return retorno;
         }
 
         private void cargarTexto(SqlDataReader lector, TextBox txtCampo, string campo)
@@ -91,28 +108,34 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (validarCampos())
+            if (this.validarCampos())
             {
-                /*
-                 * INICIO TRANSACCION
-                 */
                 GestorDB gestor = new GestorDB();
                 gestor.conectar();
+                bool creacion = false;
+                string usuario = "";
+                string contrasena = "";
 
                 if (!modif)
                 {
+                    usuario = txtCUIT.Text;
+                    GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
+                    contrasena = generadorDeContrasenas.generar(4);
+
                     gestor.generarStoredProcedure("crear_empresa");
+                    gestor.parametroPorValor("usuario", usuario);
+                    gestor.parametroPorValor("contrasenna", contrasena);
                 }
                 else
                 {
-                    gestor.generarStoredProcedure("actualizar_empresa");
+                    gestor.generarStoredProcedure("modificar_empresa");
                     gestor.parametroPorValor("id_empresa", empresaID);
                 }
 
                 gestor.parametroPorValor("razon_social", txtRazonSocial.Text);
                 gestor.parametroPorValor("cuit", txtCUIT.Text);
                 gestor.parametroPorValor("calle", txtCalle.Text);
-                gestor.parametroPorValor("altura", txtAltura.Text);
+                gestor.parametroPorValor("numero", txtAltura.Text);
                 gestor.parametroPorValor("piso", txtPiso.Text);
                 gestor.parametroPorValor("depto", txtDepto.Text);
                 gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
@@ -120,37 +143,45 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("mail", txtMail.Text);
                 gestor.parametroPorValor("telefono", txtTelefono.Text);
 
-                gestor.ejecutarStoredProcedure();
+                int resultado = gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
-                /*
-                 * FIN TRANSACCION
-                 */
 
-                if (!modif)
+                if (resultado == 0)
                 {
-                    string usuario = txtCUIT.Text;
-                    GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                    MessageBox.Show("Usuario: " + usuario
-                        + "\nContraseña: " + generadorDeContrasenas.generar(10)
-                        + "\n\n Por favor recuerde su contraseña e inicie sesión para actualizarla.");
+                    MessageBox.Show("Ya existe un usuario con ese número de CUIT.", "Alerta");
                 }
                 else
                 {
-                    MessageBox.Show("¡Datos actualizados!");
-                }
+                    if (!modif)
+                    {
+                        MessageBox.Show("Usuario: " + usuario
+                            + "\nContraseña: " + contrasena
+                            + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
 
-                Form formDestino;
-                if (abm)
-                {
-                    formDestino = new FormABMEmpresa(userID);
-                }
-                else
-                {
-                    formDestino = new FormLogin();
-                }
+                        creacion = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("¡Datos actualizados!");
+                    }
 
-                this.Hide();
-                formDestino.Show();
+                    Form formDestino;
+                    if (abm)
+                    {
+                        formDestino = new FormABMEmpresa(userID);
+                    }
+                    else if (creacion)
+                    {
+                        formDestino = new FormLogin(usuario);
+                    }
+                    else
+                    {
+                        formDestino = new FormLogin();
+                    }
+
+                    this.Hide();
+                    formDestino.Show();
+                }
             }
         }
 
@@ -165,21 +196,52 @@ namespace PalcoNet.Registro_de_Usuario
 
                 if (lector.Read())
                 {
-                    empresaID = lector["empresa_id"].ToString();
+                    empresaID = lector["id_empresa"].ToString();
                     cargarTexto(lector, txtRazonSocial, "razon_social");
                     cargarTexto(lector, txtCUIT, "cuit");
                     cargarTexto(lector, txtCalle, "calle");
                     cargarTexto(lector, txtAltura, "numero");
                     cargarTexto(lector, txtPiso, "piso");
-                    cargarTexto(lector, txtDepto, "departamento");
+                    cargarTexto(lector, txtDepto, "depto");
                     cargarTexto(lector, txtCodigoPostal, "codigo_postal");
                     cargarTexto(lector, txtLocalidad, "localidad");
                     cargarTexto(lector, txtMail, "mail");
+                    cargarTexto(lector, txtTelefono, "telefono");
                 }
                 gestor.desconectar();
             }
+            else
+            {
+                txtRazonSocial.Select();
+            }
 
             lblError.Visible = false;
+            validador = new ValidadorDeDatos();
+        }
+
+        private void txtCUIT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtAltura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtPiso_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtCodigoPostal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.numero(e);
         }
 
     }
