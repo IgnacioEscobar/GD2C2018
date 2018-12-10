@@ -53,7 +53,9 @@
             this.dgvFuncionalidades.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvFuncionalidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFuncionalidades.Location = new System.Drawing.Point(6, 19);
+            this.dgvFuncionalidades.MultiSelect = false;
             this.dgvFuncionalidades.Name = "dgvFuncionalidades";
+            this.dgvFuncionalidades.ReadOnly = true;
             this.dgvFuncionalidades.Size = new System.Drawing.Size(543, 212);
             this.dgvFuncionalidades.TabIndex = 16;
             this.dgvFuncionalidades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFuncionalidades_CellContentClick);
