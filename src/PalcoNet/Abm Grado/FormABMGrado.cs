@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 
 using PalcoNet.Login;
 using PalcoNet.funciones_utiles;
-using PalcoNet.Abm_Usuario;
+using PalcoNet.Menu_Principal;
 using PalcoNet.Generar_Publicacion;
 
 namespace PalcoNet.Abm_Grado
@@ -203,7 +203,7 @@ namespace PalcoNet.Abm_Grado
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
         {
-            FormMiUsuario formMiUsuario = new FormMiUsuario(userID, false, true);
+            FormMenuPrincipal formMiUsuario = new FormMenuPrincipal(userID, rolID);
             this.Hide();
             formMiUsuario.Show();
         }
