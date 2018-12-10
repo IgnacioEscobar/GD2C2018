@@ -148,7 +148,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            string[] param = new string[3];
+            string[] param = new string[4];
             int i = 0;
             foreach (DataGridViewCell item in dgvClientes.CurrentRow.Cells)
             {
@@ -167,7 +167,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            string[] datos = new string[3];
+            string[] datos = new string[4];
             int i = 0;
             foreach (DataGridViewCell item in dgvClientes.CurrentRow.Cells)
             {
