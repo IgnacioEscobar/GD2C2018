@@ -107,6 +107,7 @@
             // 
             // btnPanelDeControl
             // 
+            this.btnPanelDeControl.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPanelDeControl.Location = new System.Drawing.Point(591, 455);
             this.btnPanelDeControl.Name = "btnPanelDeControl";
             this.btnPanelDeControl.Size = new System.Drawing.Size(211, 44);
@@ -224,9 +225,10 @@
             // 
             // FormABMCliente
             // 
+            this.AcceptButton = this.btnAgregar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnModificar;
+            this.CancelButton = this.btnPanelDeControl;
             this.ClientSize = new System.Drawing.Size(814, 511);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnPanelDeControl);

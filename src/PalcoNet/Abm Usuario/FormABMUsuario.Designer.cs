@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -42,7 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnPanelDeControl = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnAdministrador = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -54,14 +53,14 @@
             this.dgvUsuarios.AllowUserToOrderColumns = true;
             this.dgvUsuarios.AllowUserToResizeRows = false;
             this.dgvUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsuarios.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.dgvUsuarios.Location = new System.Drawing.Point(12, 12);
@@ -109,6 +108,7 @@
             this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // ckbEmpresa
             // 
@@ -204,22 +204,13 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnAdministrador
-            // 
-            this.btnAdministrador.Location = new System.Drawing.Point(667, 294);
-            this.btnAdministrador.Name = "btnAdministrador";
-            this.btnAdministrador.Size = new System.Drawing.Size(211, 44);
-            this.btnAdministrador.TabIndex = 8;
-            this.btnAdministrador.Text = "NUEVO ADMINISTRADOR";
-            this.btnAdministrador.UseVisualStyleBackColor = true;
-            // 
             // FormABMUsuario
             // 
+            this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnPanelDeControl;
             this.ClientSize = new System.Drawing.Size(890, 479);
-            this.Controls.Add(this.btnAdministrador);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnPanelDeControl);
             this.Controls.Add(this.groupBox1);
@@ -251,6 +242,5 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnPanelDeControl;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnAdministrador;
     }
 }

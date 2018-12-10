@@ -35,8 +35,8 @@
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ckbRangoFechas = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mcrHasta = new System.Windows.Forms.MonthCalendar();
             this.clbCategorias = new System.Windows.Forms.CheckedListBox();
@@ -112,8 +112,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ckbRangoFechas);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.mcrHasta);
             this.groupBox1.Controls.Add(this.clbCategorias);
@@ -128,6 +128,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
             // 
+            // ckbRangoFechas
+            // 
+            this.ckbRangoFechas.AutoSize = true;
+            this.ckbRangoFechas.Location = new System.Drawing.Point(6, 67);
+            this.ckbRangoFechas.Name = "ckbRangoFechas";
+            this.ckbRangoFechas.Size = new System.Drawing.Size(149, 17);
+            this.ckbRangoFechas.TabIndex = 17;
+            this.ckbRangoFechas.Text = "Filtrar por rango de fechas";
+            this.ckbRangoFechas.UseVisualStyleBackColor = true;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -136,15 +146,6 @@
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 16;
             this.label4.Text = "Categorías";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 13);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Rango de fechas";
             // 
             // label2
             // 
@@ -191,6 +192,7 @@
             this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnLimpiar
             // 
@@ -224,7 +226,7 @@
             // 
             // FormMenuCliente
             // 
-            this.AcceptButton = this.btnSeleccionar;
+            this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(876, 492);
@@ -258,7 +260,6 @@
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MonthCalendar mcrHasta;
         private System.Windows.Forms.CheckedListBox clbCategorias;
@@ -268,6 +269,7 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListView lsvPublicaciones;
+        private System.Windows.Forms.CheckBox ckbRangoFechas;
 
     }
 }

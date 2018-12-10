@@ -347,7 +347,7 @@
             this.btnGuardarBorrador.TabIndex = 20;
             this.btnGuardarBorrador.Text = "GUARDAR BORRADOR";
             this.btnGuardarBorrador.UseVisualStyleBackColor = true;
-            this.btnGuardarBorrador.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.btnGuardarBorrador.Click += new System.EventHandler(this.btnGuardarBorrador_Click);
             // 
             // btnFinalizarPublicacion
             // 

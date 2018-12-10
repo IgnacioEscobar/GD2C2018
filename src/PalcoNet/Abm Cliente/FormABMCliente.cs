@@ -121,7 +121,6 @@ namespace PalcoNet.Abm_Cliente
             string query = query_defecto;
             if (cant_filtros > 0) query += " WHERE " + filtro;
             gestor.consulta(query);
-
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
         }
