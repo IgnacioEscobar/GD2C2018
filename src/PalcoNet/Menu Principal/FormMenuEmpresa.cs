@@ -116,12 +116,12 @@ namespace PalcoNet.Menu_Principal
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtDescripcion.Text = "";
-            ckbBorrador.Checked = false;
-            ckbPublicada.Checked = false;
-            ckbFinalizada.Checked = false;
-            ckbAlto.Checked = false;
-            ckbMedio.Checked = false;
-            ckbBajo.Checked = false;
+            mcrDesde.SetDate(DateTime.Today);
+            mcrHasta.SetDate(DateTime.Today);
+            for (int i = 0; i < clbCategorias.Items.Count; i++)
+            {
+                clbCategorias.SetItemChecked(i, false);
+            }
             txtDescripcion.Select();
         }
 
@@ -133,6 +133,11 @@ namespace PalcoNet.Menu_Principal
                 this.Hide();
                 formGenerarPublicacion.Show();
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

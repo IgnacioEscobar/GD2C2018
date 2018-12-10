@@ -178,7 +178,6 @@ namespace PalcoNet.Abm_Usuario
 
             string query = query_defecto;
             query += " WHERE " + filtro;
-            Console.WriteLine(query);
             gestor.consulta(query);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
