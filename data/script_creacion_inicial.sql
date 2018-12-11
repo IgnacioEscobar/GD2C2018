@@ -318,7 +318,7 @@ create table PEAKY_BLINDERS.ubicaciones (
   id_ubicacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_publicacion int REFERENCES PEAKY_BLINDERS.publicaciones (id_publicacion),
   id_tipo_de_ubicacion smallint REFERENCES PEAKY_BLINDERS.tipos_de_ubicacion (id_tipo_de_ubicacion),
-  fila char,
+  fila varchar(3),
   asiento tinyint,
   precio int
 )
@@ -926,7 +926,7 @@ GO
 CREATE PROCEDURE PEAKY_BLINDERS.generar_ubicacion
 @id_publicacion int,
 @id_tipo_de_ubicacion int,
-@fila char(1),
+@fila varchar(3),
 @asiento tinyint,
 @precio int
 AS
