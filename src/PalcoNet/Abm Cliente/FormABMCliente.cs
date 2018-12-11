@@ -19,7 +19,7 @@ namespace PalcoNet.Abm_Cliente
     {
         int userID;
         int rolID;
-        string query_defecto = "SELECT nombre, apellido, numero_de_documento FROM PEAKY_BLINDERS.clientes";
+        string query_defecto = "SELECT nombre, apellido, numero_de_documento, mail FROM PEAKY_BLINDERS.clientes";
         ValidadorDeDatos validador;
 
         public FormABMCliente(int userID, int rolID)
@@ -39,7 +39,8 @@ namespace PalcoNet.Abm_Cliente
                 {
                     lector["nombre"].ToString(),
                     lector["apellido"].ToString(),
-                    lector["numero_de_documento"].ToString()
+                    lector["numero_de_documento"].ToString(),
+                    lector["mail"].ToString()
                 };
                 dgvClientes.Rows.Add(row);
             }
@@ -49,11 +50,12 @@ namespace PalcoNet.Abm_Cliente
 
         private void FormABMCliente_Load(object sender, EventArgs e)
         {
-            dgvClientes.ColumnCount = 3;
+            dgvClientes.ColumnCount = 4;
             dgvClientes.ColumnHeadersVisible = true;
             dgvClientes.Columns[0].Name = "NOMBRE";
             dgvClientes.Columns[1].Name = "APELLIDO";
             dgvClientes.Columns[2].Name = "DOCUMENTO";
+            dgvClientes.Columns[3].Name = "MAIL";
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
@@ -61,6 +63,7 @@ namespace PalcoNet.Abm_Cliente
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
 
+            dgvClientes.AutoResizeColumns();
             validador = new ValidadorDeDatos();
             txtNombre.Select();
         }
@@ -145,7 +148,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            string[] param = new string[3];
+            string[] param = new string[4];
             int i = 0;
             foreach (DataGridViewCell item in dgvClientes.CurrentRow.Cells)
             {
@@ -164,7 +167,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            string[] datos = new string[3];
+            string[] datos = new string[4];
             int i = 0;
             foreach (DataGridViewCell item in dgvClientes.CurrentRow.Cells)
             {
@@ -182,7 +185,7 @@ namespace PalcoNet.Abm_Cliente
                 GestorDB gestor = new GestorDB();
                 gestor.conectar();
                 gestor.generarStoredProcedure("eliminar_cliente");
-                gestor.parametroPorValor("documento", datos[2]);
+                gestor.parametroPorValor("numero_de_documento", datos[2]);
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
                 /*

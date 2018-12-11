@@ -61,6 +61,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
 
+            dgvEmpresas.AutoResizeColumns();
             validador = new ValidadorDeDatos();
             txtRazonSocial.Select();
         }
@@ -178,7 +179,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
                 /*
                  * FIN TRANSACCION
                  */
-                MessageBox.Show("¡Empresa eliminada exitosamente! (MENTIRA)");
+                MessageBox.Show("¡Empresa eliminada exitosamente!");
             }
         }
 

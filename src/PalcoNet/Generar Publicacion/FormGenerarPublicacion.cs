@@ -208,9 +208,23 @@ namespace PalcoNet.Generar_Publicacion
 
                 if (estado == "Finalizada")
                 {
+                    txtDescripcion.Enabled = false;
+                    txtStock.Enabled = false;
+                    txtCalle.Enabled = false;
+                    txtAltura.Enabled = false;
+                    txtCodigoPostal.Enabled = false;
+                    txtLocalidad.Enabled = false;
+                    cmbRubro.Enabled = false;
+                    txtPrecio.Enabled = false;
+
+                    btnAgregarFecha.Enabled = false;
                     btnPublicar.Enabled = false;
                     btnGuardarBorrador.Enabled = false;
                     btnFinalizarPublicacion.Enabled = false;
+                }
+                else if (estado == "Publicada")
+                {
+                    btnGuardarBorrador.Enabled = false;
                 }
                 else
                 {
@@ -260,22 +274,25 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnPublicar_Click(object sender, EventArgs e)
         {
+            Form formDestino;
+
             if (this.validarCampos())
             {
                 if (!modif)
                 {
                     this.persistirPublicacion("generar_publicacion", "Publicada");
                     MessageBox.Show("Publicación registrada existosamente. Ya se encuentra publicada.");
+                    formDestino = new FormMenuPrincipal(userID, rolID);
                 }
                 else
                 {
                     this.persistirPublicacion("modificar_publicacion", "Publicada");
                     MessageBox.Show("Publicación actualizada exitosamente. Ya se encuentra publicada.");
+                    formDestino = new FormEditarPublicacion(userID, rolID);
                 }
                 
-                FormMenuEmpresa formMenuEmpresa = new FormMenuEmpresa(userID);
                 this.Hide();
-                formMenuEmpresa.Show();
+                formDestino.Show();
             }
         }
 
@@ -311,9 +328,9 @@ namespace PalcoNet.Generar_Publicacion
 
                 MessageBox.Show("La publicación ha sido finalizada correctamente.");
 
-                FormMenuEmpresa formMenuEmpresa = new FormMenuEmpresa(userID);
+                FormEditarPublicacion formEditarPublicacion = new FormEditarPublicacion(userID, rolID);
                 this.Hide();
-                formMenuEmpresa.Show();
+                formEditarPublicacion.Show();
             }            
         }
 

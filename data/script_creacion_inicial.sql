@@ -47,7 +47,7 @@ select distinct
   Espec_Empresa_Piso,
   Espec_Empresa_Depto,
   Espec_Empresa_Cod_Postal,
-  Espec_Empresa_Cuit
+  (select replace(Espec_Empresa_Cuit, '-', ''))
 from gd_esquema.Maestra;
 
 -- Estados --

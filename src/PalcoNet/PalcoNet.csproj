@@ -114,11 +114,11 @@
     <Compile Include="Abm Usuario\FormMiUsuario.Designer.cs">
       <DependentUpon>FormMiUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Canje Puntos\FormPuntos.cs">
+    <Compile Include="Canje Puntos\FormCanjePuntos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Canje Puntos\FormPuntos.Designer.cs">
-      <DependentUpon>FormPuntos.cs</DependentUpon>
+    <Compile Include="Canje Puntos\FormCanjePuntos.Designer.cs">
+      <DependentUpon>FormCanjePuntos.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprar\FormAdministracionDePuntos.cs">
       <SubType>Form</SubType>
@@ -263,8 +263,8 @@
     <EmbeddedResource Include="Abm Usuario\FormMiUsuario.resx">
       <DependentUpon>FormMiUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Canje Puntos\FormPuntos.resx">
-      <DependentUpon>FormPuntos.cs</DependentUpon>
+    <EmbeddedResource Include="Canje Puntos\FormCanjePuntos.resx">
+      <DependentUpon>FormCanjePuntos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormAdministracionDePuntos.resx">
       <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
