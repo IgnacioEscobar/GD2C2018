@@ -1,11 +1,9 @@
 if OBJECT_ID('PEAKY_BLINDERS.autenticar_usuario', 'P') is not null
   drop procedure PEAKY_BLINDERS.autenticar_usuario;
-if OBJECT_ID('PEAKY_BLINDERS.verificar_contrasenna', 'P') is not null
-  drop procedure PEAKY_BLINDERS.verificar_contrasenna;
+if OBJECT_ID('PEAKY_BLINDERS.verificar_contrasenna', N'FN') is not null
+  drop function PEAKY_BLINDERS.verificar_contrasenna;
 if OBJECT_ID('PEAKY_BLINDERS.actualizar_contrasenna', 'P') is not null
   drop procedure PEAKY_BLINDERS.actualizar_contrasenna;
-if OBJECT_ID('PEAKY_BLINDERS.verificar_contrasenna', 'P') is not null
-  drop procedure PEAKY_BLINDERS.verificar_contrasenna;
 if OBJECT_ID('PEAKY_BLINDERS.crear_cliente', 'P') is not null
   drop procedure PEAKY_BLINDERS.crear_cliente;
 if OBJECT_ID('PEAKY_BLINDERS.modificar_cliente', 'P') is not null
@@ -80,3 +78,5 @@ if OBJECT_ID('PEAKY_BLINDERS.empresas', 'U') is not null
   drop table PEAKY_BLINDERS.empresas;
 if OBJECT_ID('PEAKY_BLINDERS.usuarios', 'U') is not null
   drop table PEAKY_BLINDERS.usuarios;
+-- Drops schema
+drop schema PEAKY_BLINDERS;
