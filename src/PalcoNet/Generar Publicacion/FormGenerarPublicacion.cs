@@ -23,6 +23,7 @@ namespace PalcoNet.Generar_Publicacion
         int publicacionID;
         bool modif;
         ValidadorDeDatos validador;
+        FormUbicaciones formUbicaciones;
         List<ListViewItem> listaUbicaciones;
         int cant_ubicaciones;
         bool puede_modif;
@@ -312,6 +313,15 @@ namespace PalcoNet.Generar_Publicacion
                 txtDescripcion.Select();
             }
 
+            if (modif)
+            {
+                formUbicaciones = new FormUbicaciones(this, publicacionID, puede_modif);
+            }
+            else
+            {
+                formUbicaciones = new FormUbicaciones(this);
+            }
+
             validador = new ValidadorDeDatos();
         }
 
@@ -380,7 +390,8 @@ namespace PalcoNet.Generar_Publicacion
                     MessageBox.Show("Publicación actualizada exitosamente. Ya se encuentra publicada.");
                     formDestino = new FormEditarPublicacion(userID, rolID);
                 }
-                
+
+                formUbicaciones.Hide();
                 this.Hide();
                 formDestino.Show();
             }
@@ -419,6 +430,7 @@ namespace PalcoNet.Generar_Publicacion
                 MessageBox.Show("La publicación ha sido finalizada correctamente.");
 
                 FormEditarPublicacion formEditarPublicacion = new FormEditarPublicacion(userID, rolID);
+                formUbicaciones.Hide();
                 this.Hide();
                 formEditarPublicacion.Show();
             }            
@@ -435,23 +447,16 @@ namespace PalcoNet.Generar_Publicacion
             {
                 formDestino = new FormMenuPrincipal(userID, rolID);
             }
+
+            formUbicaciones.Hide();
             this.Hide();
             formDestino.Show();
         }
 
         private void btnDefinirUbicaciones_Click(object sender, EventArgs e)
         {
-            FormUbicaciones formUbicaciones;
-            if (!modif)
-            {
-                formUbicaciones = new FormUbicaciones(this);
-            }
-            else
-            {
-                formUbicaciones = new FormUbicaciones(this, publicacionID, puede_modif);
-            }
             this.Visible = false;
-            formUbicaciones.Show();
+            formUbicaciones.Visible = true;
         }
 
         private void cmbDia_KeyPress(object sender, KeyPressEventArgs e)

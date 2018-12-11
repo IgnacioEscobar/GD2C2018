@@ -902,7 +902,7 @@ AS
   BEGIN
 	DECLARE @id_estado int
 	SELECT @id_estado = id_estado FROM PEAKY_BLINDERS.estados WHERE descripcion = 'Finalizada'
-	UPDATE PEAKY_BLINDERS.publicaciones SET id_estado = @id_estado
+	UPDATE PEAKY_BLINDERS.publicaciones SET id_estado = @id_estado WHERE id_publicacion = @id_publicacion
   END
 GO
 

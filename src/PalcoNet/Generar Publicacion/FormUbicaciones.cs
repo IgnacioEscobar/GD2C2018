@@ -181,7 +181,7 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Visible = false;
             formGenerarPublicacion.reaparecer(listaUbicaciones);
         }
 
