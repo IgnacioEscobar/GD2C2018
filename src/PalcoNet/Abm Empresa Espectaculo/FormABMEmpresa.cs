@@ -76,9 +76,9 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string razonSocial = txtRazonSocial.Text;
-            string cuit = txtCUIT.Text;
-            string mail = txtMail.Text;
+            string razonSocial = txtRazonSocial.Text.Trim();
+            string cuit = txtCUIT.Text.Trim();
+            string mail = txtMail.Text.Trim();
 
             List<object[]> listaCampos = new List<object[]>();
 

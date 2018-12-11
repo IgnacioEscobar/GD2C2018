@@ -80,7 +80,7 @@ namespace PalcoNet.funciones_utiles
             mensaje = "Faltaron completar los siguientes campos:";
             foreach (string[] item in lista)
             {
-                if (item[0] == "")
+                if (item[0].Trim() == "")
                 {
                     completo = false;
                     mensaje += "\n - " + item[1];

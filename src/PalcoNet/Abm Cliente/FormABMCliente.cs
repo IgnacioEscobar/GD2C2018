@@ -70,10 +70,10 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string nombre = txtNombre.Text;
-            string apellido = txtApellido.Text;
-            string documento = txtDocumento.Text;
-            string mail = txtMail.Text;
+            string nombre = txtNombre.Text.Trim();
+            string apellido = txtApellido.Text.Trim();
+            string documento = txtDocumento.Text.Trim();
+            string mail = txtMail.Text.Trim();
 
             List<object[]> listaCampos = new List<object[]>();
 

@@ -148,7 +148,7 @@ namespace PalcoNet.Abm_Grado
             string condicion = "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
                     "LEFT JOIN PEAKY_BLINDERS.rubros R ON PU.id_rubro = R.id_rubro " +
                 "WHERE NOT E.descripcion = 'Finalizada' ";
-            string descripcion = txtDescripcion.Text;
+            string descripcion = txtDescripcion.Text.Trim();
 
             if (descripcion != "")
             {
