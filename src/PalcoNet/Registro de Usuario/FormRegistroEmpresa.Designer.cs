@@ -53,6 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnModificarContrasena = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -60,9 +61,9 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(280, 155);
+            this.btnConfirmar.Location = new System.Drawing.Point(280, 157);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(262, 59);
+            this.btnConfirmar.Size = new System.Drawing.Size(262, 57);
             this.btnConfirmar.TabIndex = 13;
             this.btnConfirmar.Text = "CONFIRMAR";
             this.btnConfirmar.UseVisualStyleBackColor = true;
@@ -297,6 +298,17 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "CUIT";
             // 
+            // btnModificarContrasena
+            // 
+            this.btnModificarContrasena.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnModificarContrasena.Location = new System.Drawing.Point(280, 119);
+            this.btnModificarContrasena.Name = "btnModificarContrasena";
+            this.btnModificarContrasena.Size = new System.Drawing.Size(262, 32);
+            this.btnModificarContrasena.TabIndex = 23;
+            this.btnModificarContrasena.Text = "MODIFICAR CONTRASEÑA";
+            this.btnModificarContrasena.UseVisualStyleBackColor = true;
+            this.btnModificarContrasena.Visible = false;
+            // 
             // FormRegistroEmpresa
             // 
             this.AcceptButton = this.btnConfirmar;
@@ -304,6 +316,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(553, 264);
+            this.Controls.Add(this.btnModificarContrasena);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox3);
@@ -351,5 +364,6 @@
         private System.Windows.Forms.TextBox txtAltura;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCalle;
+        private System.Windows.Forms.Button btnModificarContrasena;
     }
 }

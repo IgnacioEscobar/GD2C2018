@@ -17,7 +17,8 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroCliente : Form
     {
-        int userID; // si es registro desde login es -1
+        int userID; // user encargado de abm
+        int rolID; // rol de user encargado
         bool abm; // si viene del ABM
         bool modif; // si viene por modificar o por agregar
         string query;
@@ -26,28 +27,29 @@ namespace PalcoNet.Registro_de_Usuario
         string numeroTarjeta;
         ValidadorDeDatos validador;
 
-        public FormRegistroCliente(bool abm)
+        public FormRegistroCliente()
         {
             InitializeComponent();
-            this.userID = -1;
-            this.abm = abm;
+            this.abm = false;
             this.modif = false;
             this.numeroTarjeta = "";
         }
 
-        public FormRegistroCliente(int userID, bool abm)
+        public FormRegistroCliente(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
-            this.abm = abm;
+            this.rolID = rolID;
+            this.abm = true;
             this.modif = false;
             this.numeroTarjeta = "";
         }
 
-        public FormRegistroCliente(int userID, string query)
+        public FormRegistroCliente(int userID, int rolID, string query)
         {
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
             this.abm = true;
             this.modif = true;
             this.query = query;
@@ -193,7 +195,7 @@ namespace PalcoNet.Registro_de_Usuario
             Form formDestino;
             if (abm)
             {
-                formDestino = new FormABMCliente(userID, 1);
+                formDestino = new FormABMCliente(userID, rolID);
             }
             else
             {
@@ -290,7 +292,7 @@ namespace PalcoNet.Registro_de_Usuario
                     Form formDestino;
                     if (abm)
                     {
-                        formDestino = new FormABMCliente(userID, 1);
+                        formDestino = new FormABMCliente(userID, rolID);
                     }
                     else if (creacion)
                     {

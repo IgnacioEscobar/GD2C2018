@@ -17,35 +17,35 @@ namespace PalcoNet.Registro_de_Usuario
     public partial class FormRegistroEmpresa : Form
     {
         int userID; // si es registro desde login viene -1
+        int rolID;
         bool abm; // si viene del ABM
         bool modif; // si viene por modificar o por agregar
         string query;
         string empresaID;
         ValidadorDeDatos validador;
 
-        public FormRegistroEmpresa(bool abm)
+        public FormRegistroEmpresa()
         {
             InitializeComponent();
-            this.userID = -1;
-            this.abm = abm;
+            this.abm = false;
             this.modif = false;
-            this.query = "";
         }
 
-        public FormRegistroEmpresa(int userID, bool abm)
+        public FormRegistroEmpresa(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
-            this.abm = abm;
+            this.rolID = rolID;
+            this.abm = true;
             this.modif = false;
-            this.query = "";
         }
 
-        public FormRegistroEmpresa(int userID, string query)
+        public FormRegistroEmpresa(int userID, int rolID, string query)
         {
 
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
             this.abm = true;
             this.modif = true;
             this.query = query;
@@ -96,7 +96,7 @@ namespace PalcoNet.Registro_de_Usuario
             Form formDestino;
             if (abm)
             {
-                formDestino = new FormABMEmpresa(userID, 1);
+                formDestino = new FormABMEmpresa(userID, rolID);
             }
             else
             {
@@ -168,7 +168,7 @@ namespace PalcoNet.Registro_de_Usuario
                     Form formDestino;
                     if (abm)
                     {
-                        formDestino = new FormABMEmpresa(userID, 1);
+                        formDestino = new FormABMEmpresa(userID, rolID);
                     }
                     else if (creacion)
                     {
