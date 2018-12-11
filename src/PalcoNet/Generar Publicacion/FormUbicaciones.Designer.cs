@@ -125,6 +125,11 @@
             // nudPrecio
             // 
             this.nudPrecio.Location = new System.Drawing.Point(12, 70);
+            this.nudPrecio.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
             this.nudPrecio.Name = "nudPrecio";
             this.nudPrecio.Size = new System.Drawing.Size(85, 20);
             this.nudPrecio.TabIndex = 11;
@@ -133,7 +138,7 @@
             // 
             this.lsvUbicaciones.Location = new System.Drawing.Point(210, 13);
             this.lsvUbicaciones.Name = "lsvUbicaciones";
-            this.lsvUbicaciones.Size = new System.Drawing.Size(246, 223);
+            this.lsvUbicaciones.Size = new System.Drawing.Size(280, 223);
             this.lsvUbicaciones.TabIndex = 12;
             this.lsvUbicaciones.UseCompatibleStateImageBehavior = false;
             // 
@@ -141,7 +146,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 250);
+            this.ClientSize = new System.Drawing.Size(502, 250);
             this.Controls.Add(this.lsvUbicaciones);
             this.Controls.Add(this.nudPrecio);
             this.Controls.Add(this.label4);

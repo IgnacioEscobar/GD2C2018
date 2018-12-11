@@ -23,6 +23,7 @@ namespace PalcoNet.Generar_Publicacion
         int publicacionID;
         bool modif;
         ValidadorDeDatos validador;
+        List<ListViewItem> listaUbicaciones;
 
         public FormGenerarPublicacion(int userID, int rolID)
         {
@@ -80,14 +81,50 @@ namespace PalcoNet.Generar_Publicacion
             return retorno;
         }
 
-        private void enviarPresentancion(GestorDB gestor, int id_publicacion, DateTime fecha_presentacion)
+        private void enviarPresentancion(int id_publicacion, DateTime fecha_presentacion)
         {
+            GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.generarStoredProcedure("generar_presentacion");
             gestor.parametroPorValor("id_publicacion", id_publicacion);
             gestor.parametroPorValor("fecha_presentacion", fecha_presentacion);
             gestor.ejecutarStoredProcedure();
             gestor.desconectar();
+        }
+
+        private void enviarUbicacion(int id_publicacion, ListViewItem item)
+        {
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            string query = "SELECT id_tipo_de_ubicacion FROM PEAKY_BLINDERS.tipos_de_ubicacion WHERE descripcion = '" + item.SubItems[0].Text + "'";
+            gestor.consulta(query);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            int id_tipo_de_ubicacion = -1;
+            if (lector.Read())
+            {
+                id_tipo_de_ubicacion = Convert.ToInt32(lector["id_tipo_de_ubicacion"]);
+            }
+            gestor.desconectar();
+
+            int precio = Convert.ToInt32(item.SubItems[1].Text);
+            int filas = Convert.ToInt32(item.SubItems[2].Text);
+            int asientos = Convert.ToInt32(item.SubItems[3].Text);
+
+            for (int f = 1; f <= filas; f++)
+            {
+                for (int a = 1; a <= asientos; a++)
+                {
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("generar_ubicacion");
+                    gestor.parametroPorValor("id_publicacion", id_publicacion);
+                    gestor.parametroPorValor("id_tipo_de_ubicacion", id_tipo_de_ubicacion);
+                    gestor.parametroPorValor("fila", f);
+                    gestor.parametroPorValor("asiento", a);
+                    gestor.parametroPorValor("precio", precio);
+                    gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+                }
+            }            
         }
 
         private void persistirPublicacion(string procedure, string estado)
@@ -124,27 +161,38 @@ namespace PalcoNet.Generar_Publicacion
             if (modif)
             {
                 id_publicacion = publicacionID; // Agarra la ID original
-            }
-            
+            }            
             gestor.desconectar();
 
             foreach (ListViewItem item in lsvFechaHora.Items)
             {
                 if (item.SubItems[2].Text == "NUEVO")
                 {
-                    enviarPresentancion(gestor, id_publicacion, DateTime.Parse(item.Text + " " + item.SubItems[1].Text));
+                    enviarPresentancion(id_publicacion, DateTime.Parse(item.Text + " " + item.SubItems[1].Text));
                 }
             }
-            
-            /*
-             * FIN TRANSACCION
-             */
+
+            foreach (ListViewItem item in listaUbicaciones)
+            {
+                if (item.SubItems[4].Text == "NUEVO")
+                {
+                    enviarUbicacion(id_publicacion, item);
+                }
+            }
+        }
+
+        public void reaparecer(List<ListViewItem> listaUbicaciones)
+        {
+            this.Visible = true;
+            this.listaUbicaciones = listaUbicaciones;
         }
 
         // -------------------
 
         private void FormGenerarPublicacion_Load(object sender, EventArgs e)
         {
+            listaUbicaciones = null;
+
             GeneradorDeFechas generador = new GeneradorDeFechas();
             generador.completarDia(cmbDia);
             generador.completarMes(cmbMes, false);
@@ -347,8 +395,8 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnDefinirUbicaciones_Click(object sender, EventArgs e)
         {
-            FormUbicaciones formUbicaciones = new FormUbicaciones(userID, rolID);
-            this.Hide();
+            FormUbicaciones formUbicaciones = new FormUbicaciones(this);
+            this.Visible = false;
             formUbicaciones.Show();
         }
 

@@ -15,14 +15,13 @@ namespace PalcoNet.Generar_Publicacion
 {
     public partial class FormUbicaciones : Form
     {
-        int userID;
-        int rolID;
+        FormGenerarPublicacion formGenerarPublicacion;
+        List<ListViewItem> listaUbicaciones;
 
-        public FormUbicaciones(int userID, int rolID)
+        public FormUbicaciones(FormGenerarPublicacion formGenerarPublicacion)
         {
             InitializeComponent();
-            this.userID = userID;
-            this.rolID = rolID;
+            this.formGenerarPublicacion = formGenerarPublicacion;
         }
 
         // Metodos auxiliares
@@ -41,7 +40,9 @@ namespace PalcoNet.Generar_Publicacion
             item.SubItems.Add(nudPrecio.Value.ToString());
             item.SubItems.Add(nudFilas.Value.ToString());
             item.SubItems.Add(nudAsientos.Value.ToString());
+            item.SubItems.Add("NUEVO");
             lsvUbicaciones.Items.Add(item);
+            listaUbicaciones.Add(item);
         }
 
         // -------------------
@@ -53,6 +54,9 @@ namespace PalcoNet.Generar_Publicacion
             lsvUbicaciones.Columns.Add("PRECIO");
             lsvUbicaciones.Columns.Add("FILAS");
             lsvUbicaciones.Columns.Add("ASIENTOS");
+            lsvUbicaciones.Columns.Add("");
+
+            listaUbicaciones = new List<ListViewItem>();
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
@@ -99,7 +103,8 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            formGenerarPublicacion.reaparecer(listaUbicaciones);
         }
     }
 }

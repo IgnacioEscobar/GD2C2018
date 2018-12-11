@@ -1,6 +1,5 @@
 ALTER PROCEDURE PEAKY_BLINDERS.generar_publicacion
 @descripcion varchar(200),
-@stock smallint,
 @fecha_publicacion datetime,
 @descripcion_rubro varchar(15),
 @calle varchar(50),
@@ -22,7 +21,6 @@ AS
 
 	INSERT INTO PEAKY_BLINDERS.publicaciones (
 		descripcion,
-		stock,
 		fecha_publicacion,
 		id_rubro,
 		calle,
@@ -34,7 +32,6 @@ AS
 		id_estado		
 	) VALUES (
 		@descripcion,
-		@stock,
 		@fecha_publicacion,
 		@id_rubro,
 		@calle,
@@ -52,7 +49,6 @@ GO
 ALTER PROCEDURE PEAKY_BLINDERS.modificar_publicacion
 @id_publicacion int,
 @descripcion varchar(200),
-@stock smallint,
 @fecha_publicacion datetime,
 @descripcion_rubro varchar(15),
 @calle varchar(50),
@@ -70,7 +66,6 @@ AS
 
 	UPDATE PEAKY_BLINDERS.publicaciones SET
 		descripcion = @descripcion,
-		stock = @stock,
 		fecha_publicacion = @fecha_publicacion,
 		id_rubro = @id_rubro,
 		calle = @calle,
@@ -97,3 +92,25 @@ AS
 		@fecha_presentacion
 	)
   END
+GO
+
+ALTER PROCEDURE PEAKY_BLINDERS.generar_ubicacion
+@id_publicacion int,
+@id_tipo_de_ubicacion int,
+@fila char(1),
+@asiento tinyint,
+@precio int
+AS
+	INSERT INTO PEAKY_BLINDERS.Ubicaciones (
+		id_publicacion,
+		id_tipo_de_ubicacion,
+		fila,
+		asiento,
+		precio
+	) VALUES (
+		@id_publicacion,
+		@id_tipo_de_ubicacion,
+		@fila,
+		@asiento,
+		@precio
+	)
