@@ -17,9 +17,8 @@ namespace PalcoNet.Comprar
 
         int userID;
         int rolID;
-        string query_defecto;
-        string query_actual;
         GestorDB gestor = new GestorDB();
+        List<string> categorias = new List<string>();
 
         public FormFiltrarEspectaculos(int userID, int rolID)
         {
@@ -29,7 +28,7 @@ namespace PalcoNet.Comprar
             
 
             gestor.conectar();
-            string query_categorias = "SELECT descripcion FROM PEAKY_BLINDERS.rubros";
+            string query_categorias = "SELECT id_rubro, descripcion FROM PEAKY_BLINDERS.rubros";
             gestor.consulta(query_categorias);
             this.mostrarCategorias(gestor.obtenerRegistros());
             gestor.desconectar();
@@ -44,8 +43,18 @@ namespace PalcoNet.Comprar
             {
                 checkedListBox1.Items.Add(lector["descripcion"]);
                 checkedListBox1.SetItemChecked(i, true);
+                this.categorias.Add(lector["id_rubro"].ToString());
                 i++;
             }
+        }
+
+        private void agregarButtonColumn(string header)
+        {
+            DataGridViewButtonColumn column = new DataGridViewButtonColumn();
+            column.HeaderText = header;
+            column.Text = "-->";
+            column.UseColumnTextForButtonValue = true;
+            dataGridView1.Columns.Add(column);
         }
 
         private void mostrarPublicaciones()
@@ -55,12 +64,11 @@ namespace PalcoNet.Comprar
                 + "join PEAKY_BLINDERS.publicaciones P on PP.id_publicacion = P.id_publicacion "
                 + "join PEAKY_BLINDERS.estados E on P.id_estado = E.id_estado and E.descripcion = 'Publicada' "
                 + "join PEAKY_BLINDERS.grados G on P.id_grado = G.id_grado "
-                + "where PP.fecha_vencimiento > GETDATE() "
+                + "where PP.fecha_vencimiento > GETDATE() and P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") "
                 + "order by G.muliplicador desc, PP.fecha_presentacion asc";
             gestor.consulta(query_presentaciones);
             SqlDataReader lector = gestor.obtenerRegistros();
             
-
             while (lector.Read())
             {
                 object[] row = new string[]
@@ -72,6 +80,8 @@ namespace PalcoNet.Comprar
             }
 
             gestor.desconectar();
+
+            this.agregarButtonColumn("Comprar");
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -81,7 +91,7 @@ namespace PalcoNet.Comprar
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

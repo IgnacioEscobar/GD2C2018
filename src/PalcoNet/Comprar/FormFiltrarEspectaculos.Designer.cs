@@ -44,7 +44,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Espectaculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Comprar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -185,8 +184,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Espectaculo,
-            this.Fecha,
-            this.Comprar});
+            this.Fecha});
             this.dataGridView1.Location = new System.Drawing.Point(10, 19);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -207,12 +205,6 @@
             this.Fecha.Name = "Fecha";
             this.Fecha.ReadOnly = true;
             this.Fecha.Width = 110;
-            // 
-            // Comprar
-            // 
-            this.Comprar.HeaderText = "Comprar";
-            this.Comprar.Name = "Comprar";
-            this.Comprar.ReadOnly = true;
             // 
             // FormFiltrarEspectaculos
             // 
@@ -254,7 +246,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Espectaculo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Comprar;
 
     }
 }
