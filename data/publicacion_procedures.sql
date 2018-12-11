@@ -18,7 +18,7 @@ AS
 	SELECT @id_rubro = id_rubro FROM PEAKY_BLINDERS.rubros WHERE descripcion = @descripcion_rubro
 
 	DECLARE @id_grado int -- siempre asigna el mínimo grado -?-
-	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY muliplicador DESC
+	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY muliplicador ASC
 
 	INSERT INTO PEAKY_BLINDERS.publicaciones (
 		descripcion,
@@ -68,9 +68,6 @@ AS
 	DECLARE @id_rubro int
 	SELECT @id_rubro = id_rubro FROM PEAKY_BLINDERS.rubros WHERE descripcion = @descripcion_rubro
 
-	DECLARE @id_grado int -- siempre asigna el mínimo grado -?-
-	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY muliplicador DESC
-
 	UPDATE PEAKY_BLINDERS.publicaciones SET
 		descripcion = @descripcion,
 		stock = @stock,
@@ -80,7 +77,6 @@ AS
 		numero = @numero,
 		codigo_postal = @codigo_postal,
 		localidad = @localidad,
-		id_grado = @id_grado,
 		id_estado = @id_estado
 	WHERE id_publicacion = @id_publicacion
 
