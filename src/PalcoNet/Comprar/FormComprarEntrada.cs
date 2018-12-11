@@ -21,6 +21,18 @@ namespace PalcoNet.Comprar
         public FormComprarEntrada(int userID, int rolID, int idPresentacion)
         {
             InitializeComponent();
+
+            // Traer tipos de ubicacion para determinada presentacion
+            // select distinct TU.id_tipo_de_ubicacion, TU.descripcion from PEAKY_BLINDERS.ubicaciones U
+            // join PEAKY_BLINDERS.presentaciones PP on PP.id_publicacion = U.id_publicacion
+            // join PEAKY_BLINDERS.tipos_de_ubicacion TU on TU.id_tipo_de_ubicacion = U.id_tipo_de_ubicacion
+            // where PP.id_presentacion = idPresentacion
+
+            // Traer asientos para el tipo de ubicacion que eligio para esta presentacion que no sean compradas
+            // select U.id_ubicacion, U.fila, U.asiento from PEAKY_BLINDERS.ubicaciones U
+            // join PEAKY_BLINDERS.presentaciones PP on PP.id_publicacion = U.id_publicacion
+            // where U.id_tipo_de_ubicacion = 4447 and PP.id_presentacion = 103 and U.id_ubicacion not in (select C.id_ubicacion from PEAKY_BLINDERS.compras C
+            // where C.id_presentacion = 103)
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -39,6 +51,11 @@ namespace PalcoNet.Comprar
         }
 
         private void btnCantEntradas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUbicacion_Click(object sender, EventArgs e)
         {
 
         }
