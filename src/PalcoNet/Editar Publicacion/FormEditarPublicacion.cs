@@ -21,6 +21,7 @@ namespace PalcoNet.Editar_Publicacion
     {
         int userID;
         int rolID;
+        int empresaID;
         string query_defecto;
         string query_actual;
 
@@ -94,12 +95,22 @@ namespace PalcoNet.Editar_Publicacion
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
+
+            gestor.consulta("SELECT id_empresa FROM PEAKY_BLINDERS.empresas WHERE id_usuario = '" + userID + "'");
+            SqlDataReader lector = gestor.obtenerRegistros();
+            if (lector.Read())
+            {
+                empresaID = Convert.ToInt32(lector["id_empresa"]);
+            }
+            gestor.desconectar();
+
+            gestor.conectar();
             query_defecto = "SELECT PU.id_publicacion, PU.descripcion AS descripcionP, " +
                     "E.descripcion AS descripcionE, G.descripcion AS descripcionG " +
                 "FROM PEAKY_BLINDERS.publicaciones PU " +
                     "JOIN PEAKY_BLINDERS.estados E ON PU.id_estado = E.id_estado " +
                     "JOIN PEAKY_BLINDERS.grados G ON PU.id_grado = G.id_grado ";
-            query_actual = query_defecto + "ORDER BY PU.id_publicacion ASC";
+            query_actual = query_defecto + "WHERE PU.id_empresa = '" + empresaID + "' ORDER BY PU.id_publicacion ASC";
             gestor.consulta(query_actual);
             this.mostrarPublicaciones(gestor.obtenerRegistros());
             gestor.desconectar();
@@ -149,24 +160,17 @@ namespace PalcoNet.Editar_Publicacion
 
             string condicion = "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
                     "LEFT JOIN PEAKY_BLINDERS.rubros R ON PU.id_rubro = R.id_rubro " +
-                "WHERE ";
+                "WHERE PU.id_empresa = '" + empresaID + "' ";
             string descripcion = txtDescripcion.Text;
-
-            bool hay_condicion = false;
 
             if (descripcion != "")
             {
-                condicion += "PU.descripcion LIKE '%" + descripcion + "%' ";
-                hay_condicion = true;
+                condicion += "AND PU.descripcion LIKE '%" + descripcion + "%' ";
             }
 
             if (ckbRangoFechas.Checked)
             {
-                if (hay_condicion)
-                {
-                    condicion += "AND ";
-                }
-                condicion += "PR.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToShortDateString() + "' AND '" + mcrHasta.SelectionStart.ToShortDateString() + "' ";
+                condicion += "AND PR.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToShortDateString() + "' AND '" + mcrHasta.SelectionStart.ToShortDateString() + "' ";
             }
 
             List<string> funcionalidades_tildadas = new List<string> { };

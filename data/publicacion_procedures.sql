@@ -1,6 +1,5 @@
 ALTER PROCEDURE PEAKY_BLINDERS.generar_publicacion
 @descripcion varchar(200),
-@stock smallint,
 @fecha_publicacion datetime,
 @descripcion_rubro varchar(15),
 @calle varchar(50),
@@ -18,11 +17,10 @@ AS
 	SELECT @id_rubro = id_rubro FROM PEAKY_BLINDERS.rubros WHERE descripcion = @descripcion_rubro
 
 	DECLARE @id_grado int -- siempre asigna el mínimo grado -?-
-	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY muliplicador DESC
+	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY muliplicador ASC
 
 	INSERT INTO PEAKY_BLINDERS.publicaciones (
 		descripcion,
-		stock,
 		fecha_publicacion,
 		id_rubro,
 		calle,
@@ -34,7 +32,6 @@ AS
 		id_estado		
 	) VALUES (
 		@descripcion,
-		@stock,
 		@fecha_publicacion,
 		@id_rubro,
 		@calle,
@@ -52,7 +49,6 @@ GO
 ALTER PROCEDURE PEAKY_BLINDERS.modificar_publicacion
 @id_publicacion int,
 @descripcion varchar(200),
-@stock smallint,
 @fecha_publicacion datetime,
 @descripcion_rubro varchar(15),
 @calle varchar(50),
@@ -68,23 +64,28 @@ AS
 	DECLARE @id_rubro int
 	SELECT @id_rubro = id_rubro FROM PEAKY_BLINDERS.rubros WHERE descripcion = @descripcion_rubro
 
-	DECLARE @id_grado int -- siempre asigna el mínimo grado -?-
-	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY muliplicador DESC
-
 	UPDATE PEAKY_BLINDERS.publicaciones SET
 		descripcion = @descripcion,
-		stock = @stock,
 		fecha_publicacion = @fecha_publicacion,
 		id_rubro = @id_rubro,
 		calle = @calle,
 		numero = @numero,
 		codigo_postal = @codigo_postal,
 		localidad = @localidad,
-		id_grado = @id_grado,
 		id_estado = @id_estado
 	WHERE id_publicacion = @id_publicacion
 
 	RETURN @id_estado
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.finalizar_publicacion
+@id_publicacion int
+AS
+  BEGIN
+	DECLARE @id_estado int
+	SELECT @id_estado = id_estado FROM PEAKY_BLINDERS.estados WHERE descripcion = 'Finalizada'
+	UPDATE PEAKY_BLINDERS.publicaciones SET id_estado = @id_estado
   END
 GO
 
@@ -95,9 +96,33 @@ AS
   BEGIN
 	INSERT INTO PEAKY_BLINDERS.presentaciones (
 		id_publicacion,
-		fecha_presentacion
+		fecha_presentacion,
+		fecha_vencimiento
 	) VALUES (
 		@id_publicacion,
-		@fecha_presentacion
+		@fecha_presentacion,
+		@fecha_presentacion - 7
 	)
   END
+GO
+
+ALTER PROCEDURE PEAKY_BLINDERS.generar_ubicacion
+@id_publicacion int,
+@id_tipo_de_ubicacion int,
+@fila char(1),
+@asiento tinyint,
+@precio int
+AS
+	INSERT INTO PEAKY_BLINDERS.Ubicaciones (
+		id_publicacion,
+		id_tipo_de_ubicacion,
+		fila,
+		asiento,
+		precio
+	) VALUES (
+		@id_publicacion,
+		@id_tipo_de_ubicacion,
+		@fila,
+		@asiento,
+		@precio
+	)

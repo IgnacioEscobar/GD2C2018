@@ -30,8 +30,6 @@
         {
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtStock = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbAno = new System.Windows.Forms.ComboBox();
             this.cmbMes = new System.Windows.Forms.ComboBox();
@@ -51,29 +49,26 @@
             this.txtCalle = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cmbRubro = new System.Windows.Forms.ComboBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
             this.btnPublicar = new System.Windows.Forms.Button();
             this.btnGuardarBorrador = new System.Windows.Forms.Button();
             this.btnFinalizarPublicacion = new System.Windows.Forms.Button();
             this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.btnAgregarFecha = new System.Windows.Forms.Button();
             this.lsvFechaHora = new System.Windows.Forms.ListView();
+            this.btnDefinirUbicaciones = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHora)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinuto)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(12, 29);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(330, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(403, 20);
             this.txtDescripcion.TabIndex = 0;
             // 
             // label1
@@ -84,23 +79,6 @@
             this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "DESCRIPCIÓN";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(349, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "STOCK";
-            // 
-            // txtStock
-            // 
-            this.txtStock.Location = new System.Drawing.Point(348, 29);
-            this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(67, 20);
-            this.txtStock.TabIndex = 1;
-            this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
             // 
             // groupBox1
             // 
@@ -287,7 +265,7 @@
             this.groupBox5.Controls.Add(this.cmbRubro);
             this.groupBox5.Location = new System.Drawing.Point(12, 264);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(262, 49);
+            this.groupBox5.Size = new System.Drawing.Size(238, 49);
             this.groupBox5.TabIndex = 15;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "RUBRO";
@@ -297,44 +275,15 @@
             this.cmbRubro.FormattingEnabled = true;
             this.cmbRubro.Location = new System.Drawing.Point(7, 19);
             this.cmbRubro.Name = "cmbRubro";
-            this.cmbRubro.Size = new System.Drawing.Size(249, 21);
+            this.cmbRubro.Size = new System.Drawing.Size(225, 21);
             this.cmbRubro.TabIndex = 16;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.txtPrecio);
-            this.groupBox4.Location = new System.Drawing.Point(280, 264);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(135, 49);
-            this.groupBox4.TabIndex = 17;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "PRECIO";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(15, 16);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "$";
-            // 
-            // txtPrecio
-            // 
-            this.txtPrecio.Location = new System.Drawing.Point(25, 20);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(104, 20);
-            this.txtPrecio.TabIndex = 18;
-            this.txtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecio_KeyPress);
             // 
             // btnPublicar
             // 
             this.btnPublicar.Location = new System.Drawing.Point(12, 319);
             this.btnPublicar.Name = "btnPublicar";
             this.btnPublicar.Size = new System.Drawing.Size(403, 42);
-            this.btnPublicar.TabIndex = 19;
+            this.btnPublicar.TabIndex = 18;
             this.btnPublicar.Text = "PUBLICAR";
             this.btnPublicar.UseVisualStyleBackColor = true;
             this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
@@ -344,7 +293,7 @@
             this.btnGuardarBorrador.Location = new System.Drawing.Point(12, 367);
             this.btnGuardarBorrador.Name = "btnGuardarBorrador";
             this.btnGuardarBorrador.Size = new System.Drawing.Size(238, 42);
-            this.btnGuardarBorrador.TabIndex = 20;
+            this.btnGuardarBorrador.TabIndex = 19;
             this.btnGuardarBorrador.Text = "GUARDAR BORRADOR";
             this.btnGuardarBorrador.UseVisualStyleBackColor = true;
             this.btnGuardarBorrador.Click += new System.EventHandler(this.btnGuardarBorrador_Click);
@@ -354,7 +303,7 @@
             this.btnFinalizarPublicacion.Location = new System.Drawing.Point(256, 367);
             this.btnFinalizarPublicacion.Name = "btnFinalizarPublicacion";
             this.btnFinalizarPublicacion.Size = new System.Drawing.Size(159, 42);
-            this.btnFinalizarPublicacion.TabIndex = 21;
+            this.btnFinalizarPublicacion.TabIndex = 20;
             this.btnFinalizarPublicacion.Text = "FINALIZAR PUBLICACIÓN";
             this.btnFinalizarPublicacion.UseVisualStyleBackColor = true;
             this.btnFinalizarPublicacion.Click += new System.EventHandler(this.btnFinalizarPublicacion_Click);
@@ -365,7 +314,7 @@
             this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 416);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(403, 23);
-            this.btnMenuPrincipal.TabIndex = 22;
+            this.btnMenuPrincipal.TabIndex = 21;
             this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
             this.btnMenuPrincipal.UseVisualStyleBackColor = true;
             this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
@@ -388,25 +337,33 @@
             this.lsvFechaHora.TabIndex = 18;
             this.lsvFechaHora.UseCompatibleStateImageBehavior = false;
             // 
+            // btnDefinirUbicaciones
+            // 
+            this.btnDefinirUbicaciones.Location = new System.Drawing.Point(256, 271);
+            this.btnDefinirUbicaciones.Name = "btnDefinirUbicaciones";
+            this.btnDefinirUbicaciones.Size = new System.Drawing.Size(159, 42);
+            this.btnDefinirUbicaciones.TabIndex = 17;
+            this.btnDefinirUbicaciones.Text = "DEFINIR UBICACIONES";
+            this.btnDefinirUbicaciones.UseVisualStyleBackColor = true;
+            this.btnDefinirUbicaciones.Click += new System.EventHandler(this.btnDefinirUbicaciones_Click);
+            // 
             // FormGenerarPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(427, 451);
+            this.Controls.Add(this.btnDefinirUbicaciones);
             this.Controls.Add(this.lsvFechaHora);
             this.Controls.Add(this.btnAgregarFecha);
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.btnFinalizarPublicacion);
             this.Controls.Add(this.btnGuardarBorrador);
             this.Controls.Add(this.btnPublicar);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtStock);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDescripcion);
             this.MaximizeBox = false;
@@ -422,8 +379,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -433,8 +388,6 @@
 
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cmbAno;
         private System.Windows.Forms.ComboBox cmbMes;
@@ -454,15 +407,13 @@
         private System.Windows.Forms.TextBox txtCalle;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ComboBox cmbRubro;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Button btnPublicar;
         private System.Windows.Forms.Button btnGuardarBorrador;
         private System.Windows.Forms.Button btnFinalizarPublicacion;
         private System.Windows.Forms.Button btnMenuPrincipal;
         private System.Windows.Forms.Button btnAgregarFecha;
         private System.Windows.Forms.ListView lsvFechaHora;
+        private System.Windows.Forms.Button btnDefinirUbicaciones;
 
 
     }

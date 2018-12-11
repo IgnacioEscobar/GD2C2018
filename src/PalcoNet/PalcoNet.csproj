@@ -114,11 +114,11 @@
     <Compile Include="Abm Usuario\FormMiUsuario.Designer.cs">
       <DependentUpon>FormMiUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Canje Puntos\FormPuntos.cs">
+    <Compile Include="Canje Puntos\FormCanjePuntos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Canje Puntos\FormPuntos.Designer.cs">
-      <DependentUpon>FormPuntos.cs</DependentUpon>
+    <Compile Include="Canje Puntos\FormCanjePuntos.Designer.cs">
+      <DependentUpon>FormCanjePuntos.cs</DependentUpon>
     </Compile>
     <Compile Include="Comprar\FormFiltrarEspectaculos.cs">
       <SubType>Form</SubType>
@@ -142,6 +142,12 @@
     <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
     <Compile Include="funciones_utiles\ValidadorDeDatos.cs" />
+    <Compile Include="Generar Publicacion\FormUbicaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicacion\FormUbicaciones.Designer.cs">
+      <DependentUpon>FormUbicaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu Principal\FormMenuAdministrador.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,11 +204,11 @@
     <Compile Include="Generar Publicacion\FormGenerarPublicacion.Designer.cs">
       <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Rendicion Comisiones\FormRendicion.cs">
+    <Compile Include="Generar Rendicion Comisiones\FormGenerarRendicion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Generar Rendicion Comisiones\FormRendicion.Designer.cs">
-      <DependentUpon>FormRendicion.cs</DependentUpon>
+    <Compile Include="Generar Rendicion Comisiones\FormGenerarRendicion.Designer.cs">
+      <DependentUpon>FormGenerarRendicion.cs</DependentUpon>
     </Compile>
     <Compile Include="Historial Cliente\FormHistorialCliente.cs">
       <SubType>Form</SubType>
@@ -269,8 +275,8 @@
     <EmbeddedResource Include="Abm Usuario\FormMiUsuario.resx">
       <DependentUpon>FormMiUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Canje Puntos\FormPuntos.resx">
-      <DependentUpon>FormPuntos.cs</DependentUpon>
+    <EmbeddedResource Include="Canje Puntos\FormCanjePuntos.resx">
+      <DependentUpon>FormCanjePuntos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormAdministracionDePuntos.resx">
       <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
@@ -289,6 +295,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicacion\FormGenerarPublicacion.resx">
       <DependentUpon>FormGenerarPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicacion\FormUbicaciones.resx">
+      <DependentUpon>FormUbicaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Rendicion Comisiones\FormGenerarRendicion.resx">
+      <DependentUpon>FormGenerarRendicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Historial Cliente\FormHistorialCliente.resx">
       <DependentUpon>FormHistorialCliente.cs</DependentUpon>

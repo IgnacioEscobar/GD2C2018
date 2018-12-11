@@ -207,6 +207,16 @@ AS
   END
 GO
 
+ALTER PROCEDURE PEAKY_BLINDERS.eliminar_cliente
+@numero_de_documento int
+AS
+  BEGIN
+	DECLARE @id_usuario int
+	SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.clientes WHERE numero_de_documento = @numero_de_documento
+	UPDATE PEAKY_BLINDERS.usuarios SET habilitado = 0 WHERE id_usuario = @id_usuario
+  END
+GO
+
 CREATE PROCEDURE PEAKY_BLINDERS.crear_empresa
 @usuario varchar(30),
 @contrasenna varchar(30),
@@ -300,5 +310,15 @@ AS
 		WHERE id_empresa = @id_empresa
 		RETURN 1
 	  END
+  END
+GO
+
+ALTER PROCEDURE PEAKY_BLINDERS.eliminar_empresa
+@cuit varchar(14)
+AS
+  BEGIN
+	DECLARE @id_usuario int
+	SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.empresas WHERE cuit = @cuit
+	UPDATE PEAKY_BLINDERS.usuarios SET habilitado = 0 WHERE id_usuario = @id_usuario
   END
 GO

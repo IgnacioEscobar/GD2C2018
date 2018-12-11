@@ -80,7 +80,7 @@ namespace PalcoNet.Menu_Principal
         {
             if (e.ColumnIndex == 1)
             {
-                Form formDestino = new FormLogin();
+                Form formDestino = null;
                 bool error = false;
 
                 switch (dgvFuncionalidades.CurrentRow.Cells[0].Value.ToString())
@@ -101,9 +101,9 @@ namespace PalcoNet.Menu_Principal
                         formDestino = new FormABMGrado(userID, rolID);
                         break;
                     case "GENERAR PUBLICACIÓN":
-                        if (rolID == 1) // Administrador
+                        if (rolID != 3) // 3 = Empresa
                         {
-                            MessageBox.Show("El Administrador no puede generar nuevas publicaciones.", "Alerta");
+                            MessageBox.Show("Solo una empresa puede generar nuevas publicaciones.", "Alerta");
                             error = true;
                         }
                         else
@@ -112,16 +112,51 @@ namespace PalcoNet.Menu_Principal
                         }
                         break;
                     case "EDITAR PUBLICACIÓN":
-                        formDestino = new FormEditarPublicacion(userID, rolID);
+                        if (rolID == 2) // 2 = Cliente
+                        {
+                            MessageBox.Show("Un cliente no puede editar publicaciones.", "Alerta");
+                            error = true;
+                        }
+                        else
+                        {
+                            formDestino = new FormEditarPublicacion(userID, rolID);
+                        }
                         break;
                     case "COMPRAR":
+                        if (rolID != 2) // 2 = Cliente
+                        {
+                            MessageBox.Show("Solo un cliente puede comprar entradas.", "Alerta");
+                            error = true;
+                        }
+                        else
+                        {
+                            
+                        }
                         break;
                     case "HISTORIAL DEL CLIENTE":
-                        formDestino = new FormHistorialCliente(userID, rolID);
+                        if (rolID != 2) // 2 = Cliente
+                        {
+                            MessageBox.Show("Solo un cliente puede revisar su historial.", "Alerta");
+                            error = true;
+                        }
+                        else
+                        {
+                            formDestino = new FormHistorialCliente(userID, rolID);
+                        }
                         break;
                     case "CANJE Y ADMINISTRACIÓN DE PUNTOS":
+                        if (rolID != 2) // 2 = Cliente
+                        {
+                            MessageBox.Show("Solo un cliente puede canjear y administrar puntos.", "Alerta");
+                            error = true;
+                        }
+                        else
+                        {
+                            formDestino = new FormCanjePuntos(userID, rolID);
+                        }
                         break;
                     case "GENERAR PAGO DE COMISIONES":
+                        formDestino = new FormGenerarRendicion(userID, rolID);
                         break;
                     case "LISTADO ESTADÍSTICO":
                         formDestino = new FormListadoEstadistico(userID, rolID);

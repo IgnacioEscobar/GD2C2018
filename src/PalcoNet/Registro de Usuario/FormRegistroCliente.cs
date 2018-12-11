@@ -336,7 +336,7 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void cmbMes_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.numero(e);
+            validador.texto(e);
         }
 
         private void cmbAno_KeyPress(object sender, KeyPressEventArgs e)
