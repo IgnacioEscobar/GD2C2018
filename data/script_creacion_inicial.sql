@@ -124,14 +124,17 @@ create table PEAKY_BLINDERS.presentaciones (
   id_presentacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_publicacion int REFERENCES PEAKY_BLINDERS.publicaciones (id_publicacion),
   fecha_presentacion datetime,
+  fecha_vencimiento datetime
 )
 
 insert into PEAKY_BLINDERS.presentaciones (
   id_publicacion,
-  fecha_presentacion
+  fecha_presentacion,
+  fecha_vencimiento
 )
 select distinct
   Espectaculo_Cod,
+  Espectaculo_Fecha,
   Espectaculo_Fecha_Venc
 from gd_esquema.Maestra
 
