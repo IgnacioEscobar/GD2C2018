@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PalcoNet.funciones_utiles;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,12 @@ namespace PalcoNet.Comprar
 {
     public partial class FormComprarEntrada : Form
     {
-        public FormComprarEntrada()
+        int userID;
+        int rolID;
+        int idPresentacion;
+        GestorDB gestor = new GestorDB();
+
+        public FormComprarEntrada(int userID, int rolID, int idPresentacion)
         {
             InitializeComponent();
         }
