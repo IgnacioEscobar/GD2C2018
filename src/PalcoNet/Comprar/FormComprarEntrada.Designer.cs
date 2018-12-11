@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnUbicacion = new System.Windows.Forms.Button();
             this.btnPagar = new System.Windows.Forms.Button();
-            this.comboBoxUbicacion = new System.Windows.Forms.ComboBox();
+            this.comboTipo = new System.Windows.Forms.ComboBox();
             this.lblUbicacion = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,7 +46,7 @@
             this.groupBox1.Controls.Add(this.checkedListBox1);
             this.groupBox1.Controls.Add(this.btnUbicacion);
             this.groupBox1.Controls.Add(this.btnPagar);
-            this.groupBox1.Controls.Add(this.comboBoxUbicacion);
+            this.groupBox1.Controls.Add(this.comboTipo);
             this.groupBox1.Controls.Add(this.lblUbicacion);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -74,13 +74,13 @@
             this.btnPagar.Text = "PROCEDER AL PAGO";
             this.btnPagar.UseVisualStyleBackColor = true;
             // 
-            // comboBoxUbicacion
+            // comboTipo
             // 
-            this.comboBoxUbicacion.FormattingEnabled = true;
-            this.comboBoxUbicacion.Location = new System.Drawing.Point(12, 46);
-            this.comboBoxUbicacion.Name = "comboBoxUbicacion";
-            this.comboBoxUbicacion.Size = new System.Drawing.Size(359, 21);
-            this.comboBoxUbicacion.TabIndex = 6;
+            this.comboTipo.FormattingEnabled = true;
+            this.comboTipo.Location = new System.Drawing.Point(12, 46);
+            this.comboTipo.Name = "comboTipo";
+            this.comboTipo.Size = new System.Drawing.Size(359, 21);
+            this.comboTipo.TabIndex = 6;
             // 
             // lblUbicacion
             // 
@@ -139,7 +139,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblUbicacion;
-        private System.Windows.Forms.ComboBox comboBoxUbicacion;
+        private System.Windows.Forms.ComboBox comboTipo;
         private System.Windows.Forms.Button btnPagar;
         private System.Windows.Forms.Button btnUbicacion;
         private System.Windows.Forms.Label label2;
