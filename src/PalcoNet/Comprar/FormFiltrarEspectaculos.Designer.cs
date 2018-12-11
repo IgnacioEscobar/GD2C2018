@@ -32,17 +32,18 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Espectaculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comprar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -96,28 +97,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rango de Fechas";
             // 
-            // monthCalendar1
+            // button2
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(10, 50);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
-            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
-            // 
-            // monthCalendar2
-            // 
-            this.monthCalendar2.Location = new System.Drawing.Point(276, 50);
-            this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Inicio";
+            this.button2.Location = new System.Drawing.Point(10, 222);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(514, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Aplicar";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -129,14 +116,28 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Fin";
             // 
-            // button2
+            // label1
             // 
-            this.button2.Location = new System.Drawing.Point(10, 222);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(514, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Aplicar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(7, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 17);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Inicio";
+            // 
+            // monthCalendar2
+            // 
+            this.monthCalendar2.Location = new System.Drawing.Point(276, 50);
+            this.monthCalendar2.Name = "monthCalendar2";
+            this.monthCalendar2.TabIndex = 1;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(10, 50);
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // groupBox3
             // 
@@ -150,6 +151,14 @@
             this.groupBox3.Text = "Descripción";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(7, 19);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(252, 46);
+            this.textBox1.TabIndex = 2;
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(6, 71);
@@ -158,14 +167,6 @@
             this.button3.TabIndex = 1;
             this.button3.Text = "Aplicar";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(7, 19);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(252, 46);
-            this.textBox1.TabIndex = 2;
             // 
             // groupBox4
             // 
@@ -181,10 +182,10 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Espectaculo,
+            this.Fecha,
             this.Comprar});
             this.dataGridView1.Location = new System.Drawing.Point(10, 19);
             this.dataGridView1.Name = "dataGridView1";
@@ -198,7 +199,14 @@
             this.Espectaculo.HeaderText = "Espectaculo";
             this.Espectaculo.Name = "Espectaculo";
             this.Espectaculo.ReadOnly = true;
-            this.Espectaculo.Width = 370;
+            this.Espectaculo.Width = 260;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
+            this.Fecha.Width = 110;
             // 
             // Comprar
             // 
@@ -245,6 +253,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Espectaculo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn Comprar;
 
     }
