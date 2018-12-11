@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnUbicacion = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ubicacionesListBox = new System.Windows.Forms.CheckedListBox();
             this.btnPagar = new System.Windows.Forms.Button();
             this.comboTipo = new System.Windows.Forms.ComboBox();
             this.lblUbicacion = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.checkedListBox1);
-            this.groupBox1.Controls.Add(this.btnUbicacion);
+            this.groupBox1.Controls.Add(this.ubicacionesListBox);
             this.groupBox1.Controls.Add(this.btnPagar);
             this.groupBox1.Controls.Add(this.comboTipo);
             this.groupBox1.Controls.Add(this.lblUbicacion);
@@ -56,14 +56,43 @@
             this.groupBox1.Text = "Comprar Entrada";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // btnUbicacion
+            // button1
             // 
-            this.btnUbicacion.Location = new System.Drawing.Point(12, 73);
-            this.btnUbicacion.Name = "btnUbicacion";
-            this.btnUbicacion.Size = new System.Drawing.Size(359, 23);
-            this.btnUbicacion.TabIndex = 15;
-            this.btnUbicacion.Text = "Confirmar";
-            this.btnUbicacion.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(12, 73);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(359, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Confirmar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 108);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 17);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Ubicaciones";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(8, 401);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(106, 24);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Monto total:";
+            // 
+            // ubicacionesListBox
+            // 
+            this.ubicacionesListBox.FormattingEnabled = true;
+            this.ubicacionesListBox.Location = new System.Drawing.Point(12, 128);
+            this.ubicacionesListBox.Name = "ubicacionesListBox";
+            this.ubicacionesListBox.Size = new System.Drawing.Size(359, 259);
+            this.ubicacionesListBox.TabIndex = 16;
             // 
             // btnPagar
             // 
@@ -91,35 +120,6 @@
             this.lblUbicacion.Size = new System.Drawing.Size(122, 17);
             this.lblUbicacion.TabIndex = 5;
             this.lblUbicacion.Text = "Tipo de Ubicacion";
-            this.lblUbicacion.Click += new System.EventHandler(this.lblUbicacion_Click);
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(12, 128);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(359, 259);
-            this.checkedListBox1.TabIndex = 16;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 401);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 24);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Monto total:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 108);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 17);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Ubicaciones";
             // 
             // FormComprarEntrada
             // 
@@ -141,9 +141,9 @@
         private System.Windows.Forms.Label lblUbicacion;
         private System.Windows.Forms.ComboBox comboTipo;
         private System.Windows.Forms.Button btnPagar;
-        private System.Windows.Forms.Button btnUbicacion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox ubicacionesListBox;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -27,13 +27,6 @@ namespace PalcoNet.Comprar
             this.idPresentacion = idPresentacion;
 
             this.mostrarTiposDeUbicacion(idPresentacion);
-            // Traer asientos para el tipo de ubicacion que eligio para esta presentacion que no sean compradas
-            // select U.id_ubicacion, U.fila, U.asiento, U.precio from PEAKY_BLINDERS.ubicaciones U
-            // join PEAKY_BLINDERS.presentaciones PP on PP.id_publicacion = U.id_publicacion
-            // where U.id_tipo_de_ubicacion = 4447 and PP.id_presentacion = 103 and U.id_ubicacion not in (select C.id_ubicacion from PEAKY_BLINDERS.compras C
-            // where C.id_presentacion = 103)
-            // order by U.fila, U.asiento, U.precio
-
             // Para cada asiento tildado tenemos que hacer lo siguiente
             // insert into PEAKY_BLINDERS.compras (id_cliente, id_medio_de_pago, id_presentacion, id_publicacion, id_ubicacion, monto)
             // values (userId, /*supongo que 2 (? por tarjeta...*/, idPresentacion, idPublicacion /* esto se puede sacar de la  presentacion o del asiento*/, idUbicacion /* tildada */, monto)
@@ -57,12 +50,26 @@ namespace PalcoNet.Comprar
             gestor.desconectar();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void renovarUbicaciones(int idTipoDeUbicacion)
         {
-
+            ubicacionesListBox.Items.Clear();
+            gestor.conectar();
+            // pruebo con 4447 porque no se como bindear al evento de elegir del dropdown
+            string query_ubicaciones = "select U.id_ubicacion, U.fila, U.asiento, U.precio from PEAKY_BLINDERS.ubicaciones U "
+                + " join PEAKY_BLINDERS.presentaciones PP on PP.id_publicacion = U.id_publicacion"
+                + " where U.id_tipo_de_ubicacion = 4447 and PP.id_presentacion = " + this.idPresentacion + " and U.id_ubicacion not in (select C.id_ubicacion from PEAKY_BLINDERS.compras C"
+                + " where C.id_presentacion = " + this.idPresentacion + ")"
+                + " order by U.fila, U.asiento, U.precio";
+            gestor.consulta(query_ubicaciones);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            while (lector.Read())
+            {
+                ubicacionesListBox.Items.Add("Fila " + lector["fila"] + " - Asiento " + lector["asiento"] + " ($" + lector["precio"] + ")" );
+            }
+            gestor.desconectar();
         }
 
-        private void lblCantidad_Click(object sender, EventArgs e)
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
@@ -77,9 +84,9 @@ namespace PalcoNet.Comprar
 
         }
 
-        private void lblUbicacion_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            this.renovarUbicaciones(1);
         }
 
         /*
