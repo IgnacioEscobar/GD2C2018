@@ -29,11 +29,11 @@ namespace PalcoNet.Registro_de_Usuario
             Form proximoForm;
             if (rbnCliente.Checked)
             {
-                proximoForm = new FormRegistroCliente(false);
+                proximoForm = new FormRegistroCliente();
             }
             else
             {
-                proximoForm = new FormRegistroEmpresa(false);
+                proximoForm = new FormRegistroEmpresa();
             }
 
             this.Hide();

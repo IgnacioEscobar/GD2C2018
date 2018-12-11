@@ -132,7 +132,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(userID, true);
+            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(userID, rolID);
             this.Hide();
             formRegistroEmpresa.Show();
         }
@@ -148,7 +148,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             }
 
             string query = "SELECT * FROM PEAKY_BLINDERS.empresas WHERE cuit = '" + param[1] + "'";
-            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(userID, query);
+            FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(userID, rolID, query);
             this.Hide();
             formRegistroEmpresa.Show();
         }

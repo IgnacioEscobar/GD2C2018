@@ -141,7 +141,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, true);
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, rolID);
             this.Hide();
             formRegistroCliente.Show();
         }
@@ -160,7 +160,7 @@ namespace PalcoNet.Abm_Cliente
                            + "LEFT JOIN PEAKY_BLINDERS.tipos_de_documento T "
                                 + "ON C.id_tipo_de_documento = T.id_tipo_de_documento "
                            + "WHERE C.numero_de_documento = '" + param[2] + "'";
-            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, query);
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, rolID, query);
             this.Hide();
             formRegistroCliente.Show();
         }
