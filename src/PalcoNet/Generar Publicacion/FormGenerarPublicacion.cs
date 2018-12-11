@@ -73,6 +73,11 @@ namespace PalcoNet.Generar_Publicacion
                 retorno = false;
             }
 
+            if (listaUbicaciones.Count < 1)
+            {
+                mensaje += "\n\nTiene que definir las ubicaciones.";
+            }
+
             if (!retorno)
             {
                 MessageBox.Show(mensaje, "Alerta");
@@ -191,7 +196,7 @@ namespace PalcoNet.Generar_Publicacion
 
         private void FormGenerarPublicacion_Load(object sender, EventArgs e)
         {
-            listaUbicaciones = null;
+            listaUbicaciones = new List<ListViewItem>();
 
             GeneradorDeFechas generador = new GeneradorDeFechas();
             generador.completarDia(cmbDia);

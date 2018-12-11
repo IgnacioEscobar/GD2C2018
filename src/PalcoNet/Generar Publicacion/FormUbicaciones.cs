@@ -55,12 +55,13 @@ namespace PalcoNet.Generar_Publicacion
             lsvUbicaciones.Columns.Add("FILAS");
             lsvUbicaciones.Columns.Add("ASIENTOS");
             lsvUbicaciones.Columns.Add("");
+            lsvUbicaciones.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
             listaUbicaciones = new List<ListViewItem>();
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT descripcion FROM PEAKY_BLINDERS.tipos_de_ubicacion");
+            gestor.consulta("SELECT descripcion FROM PEAKY_BLINDERS.tipos_de_ubicacion ORDER BY descripcion ASC");
             this.mostrarTiposDeUbicacion(gestor.obtenerRegistros());
             gestor.desconectar();
         }
@@ -73,7 +74,26 @@ namespace PalcoNet.Generar_Publicacion
             if (cmbSector.Text == "")
             {
                 mensaje += "\n- Debe seleccionar un sector";
-                hubo_error = true;                
+                hubo_error = true;
+            }
+            else
+            {
+                string sector = cmbSector.Text;
+                bool sector_valido = false;
+                int i = 0;
+                while (!sector_valido && i < cmbSector.Items.Count)
+                {
+                    if (cmbSector.Items[i].ToString() == sector)
+                    {
+                        sector_valido = true;
+                    }
+                    i++;
+                }
+                if (!sector_valido)
+                {
+                    mensaje += "\n- Debe seleccionar un sector válido";
+                    hubo_error = true;
+                }
             }
             if (nudPrecio.Value <= 0)
             {

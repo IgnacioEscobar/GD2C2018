@@ -59,14 +59,14 @@
             this.cmbSector.Location = new System.Drawing.Point(12, 25);
             this.cmbSector.Name = "cmbSector";
             this.cmbSector.Size = new System.Drawing.Size(191, 21);
-            this.cmbSector.TabIndex = 1;
+            this.cmbSector.TabIndex = 0;
             // 
             // btnAgregar
             // 
             this.btnAgregar.Location = new System.Drawing.Point(12, 184);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(191, 23);
-            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "AGREGAR";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -85,14 +85,14 @@
             this.nudAsientos.Location = new System.Drawing.Point(12, 158);
             this.nudAsientos.Name = "nudAsientos";
             this.nudAsientos.Size = new System.Drawing.Size(85, 20);
-            this.nudAsientos.TabIndex = 4;
+            this.nudAsientos.TabIndex = 3;
             // 
             // nudFilas
             // 
             this.nudFilas.Location = new System.Drawing.Point(12, 114);
             this.nudFilas.Name = "nudFilas";
             this.nudFilas.Size = new System.Drawing.Size(85, 20);
-            this.nudFilas.TabIndex = 5;
+            this.nudFilas.TabIndex = 2;
             // 
             // label3
             // 
@@ -105,10 +105,11 @@
             // 
             // btnVolver
             // 
+            this.btnVolver.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnVolver.Location = new System.Drawing.Point(12, 213);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(191, 23);
-            this.btnVolver.TabIndex = 8;
+            this.btnVolver.TabIndex = 5;
             this.btnVolver.Text = "VOLVER";
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
@@ -132,21 +133,23 @@
             0});
             this.nudPrecio.Name = "nudPrecio";
             this.nudPrecio.Size = new System.Drawing.Size(85, 20);
-            this.nudPrecio.TabIndex = 11;
+            this.nudPrecio.TabIndex = 1;
             // 
             // lsvUbicaciones
             // 
             this.lsvUbicaciones.Location = new System.Drawing.Point(210, 13);
             this.lsvUbicaciones.Name = "lsvUbicaciones";
-            this.lsvUbicaciones.Size = new System.Drawing.Size(280, 223);
-            this.lsvUbicaciones.TabIndex = 12;
+            this.lsvUbicaciones.Size = new System.Drawing.Size(292, 223);
+            this.lsvUbicaciones.TabIndex = 6;
             this.lsvUbicaciones.UseCompatibleStateImageBehavior = false;
             // 
             // FormUbicaciones
             // 
+            this.AcceptButton = this.btnAgregar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 250);
+            this.CancelButton = this.btnVolver;
+            this.ClientSize = new System.Drawing.Size(514, 250);
             this.Controls.Add(this.lsvUbicaciones);
             this.Controls.Add(this.nudPrecio);
             this.Controls.Add(this.label4);
