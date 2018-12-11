@@ -28,90 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rbnCliente = new System.Windows.Forms.RadioButton();
-            this.rbnEmpresa = new System.Windows.Forms.RadioButton();
-            this.rbnAdministrador = new System.Windows.Forms.RadioButton();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnSiguiente = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
+            this.dgvRoles = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             this.SuspendLayout();
-            // 
-            // rbnCliente
-            // 
-            this.rbnCliente.AutoSize = true;
-            this.rbnCliente.Enabled = false;
-            this.rbnCliente.Location = new System.Drawing.Point(10, 19);
-            this.rbnCliente.Name = "rbnCliente";
-            this.rbnCliente.Size = new System.Drawing.Size(57, 17);
-            this.rbnCliente.TabIndex = 0;
-            this.rbnCliente.Text = "Cliente";
-            this.rbnCliente.UseVisualStyleBackColor = true;
-            // 
-            // rbnEmpresa
-            // 
-            this.rbnEmpresa.AutoSize = true;
-            this.rbnEmpresa.Enabled = false;
-            this.rbnEmpresa.Location = new System.Drawing.Point(10, 43);
-            this.rbnEmpresa.Name = "rbnEmpresa";
-            this.rbnEmpresa.Size = new System.Drawing.Size(66, 17);
-            this.rbnEmpresa.TabIndex = 2;
-            this.rbnEmpresa.Text = "Empresa";
-            this.rbnEmpresa.UseVisualStyleBackColor = true;
-            // 
-            // rbnAdministrador
-            // 
-            this.rbnAdministrador.AutoSize = true;
-            this.rbnAdministrador.Enabled = false;
-            this.rbnAdministrador.Location = new System.Drawing.Point(10, 67);
-            this.rbnAdministrador.Name = "rbnAdministrador";
-            this.rbnAdministrador.Size = new System.Drawing.Size(88, 17);
-            this.rbnAdministrador.TabIndex = 3;
-            this.rbnAdministrador.Text = "Administrador";
-            this.rbnAdministrador.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(6, 90);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(115, 44);
-            this.btnCancelar.TabIndex = 8;
-            this.btnCancelar.Text = "CANCELAR";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnSiguiente
-            // 
-            this.btnSiguiente.Location = new System.Drawing.Point(127, 90);
-            this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(115, 44);
-            this.btnSiguiente.TabIndex = 7;
-            this.btnSiguiente.Text = "SIGUIENTE";
-            this.btnSiguiente.UseVisualStyleBackColor = true;
-            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnCancelar);
-            this.groupBox1.Controls.Add(this.rbnAdministrador);
-            this.groupBox1.Controls.Add(this.btnSiguiente);
-            this.groupBox1.Controls.Add(this.rbnCliente);
-            this.groupBox1.Controls.Add(this.rbnEmpresa);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Controls.Add(this.dgvRoles);
+            this.groupBox1.Location = new System.Drawing.Point(12, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(248, 141);
+            this.groupBox1.Size = new System.Drawing.Size(313, 136);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SELECCIONAR ROL";
             // 
+            // lklCerrarSesion
+            // 
+            this.lklCerrarSesion.AutoSize = true;
+            this.lklCerrarSesion.Location = new System.Drawing.Point(230, 9);
+            this.lklCerrarSesion.Name = "lklCerrarSesion";
+            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
+            this.lklCerrarSesion.TabIndex = 14;
+            this.lklCerrarSesion.TabStop = true;
+            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            // 
+            // dgvRoles
+            // 
+            this.dgvRoles.AllowUserToAddRows = false;
+            this.dgvRoles.AllowUserToDeleteRows = false;
+            this.dgvRoles.AllowUserToOrderColumns = true;
+            this.dgvRoles.AllowUserToResizeRows = false;
+            this.dgvRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRoles.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRoles.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.dgvRoles.Location = new System.Drawing.Point(6, 19);
+            this.dgvRoles.MultiSelect = false;
+            this.dgvRoles.Name = "dgvRoles";
+            this.dgvRoles.ReadOnly = true;
+            this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRoles.Size = new System.Drawing.Size(301, 111);
+            this.dgvRoles.TabIndex = 11;
+            this.dgvRoles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellContentClick_1);
+            // 
             // FormElegirRol
             // 
-            this.AcceptButton = this.btnSiguiente;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(274, 164);
+            this.ClientSize = new System.Drawing.Size(337, 173);
+            this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.Name = "FormElegirRol";
@@ -119,18 +95,16 @@
             this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormElegirRol_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RadioButton rbnCliente;
-        private System.Windows.Forms.RadioButton rbnEmpresa;
-        private System.Windows.Forms.RadioButton rbnAdministrador;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.LinkLabel lklCerrarSesion;
+        private System.Windows.Forms.DataGridView dgvRoles;
     }
 }
