@@ -55,7 +55,6 @@ namespace PalcoNet.Generar_Publicacion
         {
             List<string[]> lista = new List<string[]>();
             lista.Add(new string[] { txtDescripcion.Text, "descripción" });
-            lista.Add(new string[] { txtStock.Text, "stock" });
             lista.Add(new string[] { txtCalle.Text, "calle" });
             lista.Add(new string[] { txtAltura.Text, "altura" });
             lista.Add(new string[] { txtCodigoPostal.Text, "calle" });
@@ -110,7 +109,6 @@ namespace PalcoNet.Generar_Publicacion
                 gestor.parametroPorValor("id_publicacion", publicacionID);
             }
             gestor.parametroPorValor("descripcion", txtDescripcion.Text);
-            gestor.parametroPorValor("stock", txtStock.Text);
             gestor.parametroPorValor("fecha_publicacion", DateTime.Today);
             gestor.parametroPorValor("descripcion_rubro", cmbRubro.Text);
             gestor.parametroPorValor("calle", txtCalle.Text);
@@ -169,7 +167,7 @@ namespace PalcoNet.Generar_Publicacion
                 string estado = "";
 
                 gestor.conectar();
-                string query = "SELECT P.descripcion AS descripcionP, P.stock, P.calle, P.numero, P.codigo_postal, " +
+                string query = "SELECT P.descripcion AS descripcionP, P.calle, P.numero, P.codigo_postal, " +
                         "P.localidad, R.descripcion AS descripcionR, E.descripcion AS descripcionE " +
                     "FROM PEAKY_BLINDERS.publicaciones P " +
                         "JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
@@ -180,7 +178,6 @@ namespace PalcoNet.Generar_Publicacion
                 if (lector.Read())
                 {
                     txtDescripcion.Text = lector["descripcionP"].ToString();
-                    txtStock.Text = lector["stock"].ToString();
                     txtCalle.Text = lector["calle"].ToString();
                     txtAltura.Text = lector["numero"].ToString();
                     txtCodigoPostal.Text = lector["codigo_postal"].ToString();
@@ -209,15 +206,14 @@ namespace PalcoNet.Generar_Publicacion
                 if (estado == "Finalizada")
                 {
                     txtDescripcion.Enabled = false;
-                    txtStock.Enabled = false;
                     txtCalle.Enabled = false;
                     txtAltura.Enabled = false;
                     txtCodigoPostal.Enabled = false;
                     txtLocalidad.Enabled = false;
                     cmbRubro.Enabled = false;
-                    txtPrecio.Enabled = false;
 
                     btnAgregarFecha.Enabled = false;
+                    btnDefinirUbicaciones.Enabled = false;
                     btnPublicar.Enabled = false;
                     btnGuardarBorrador.Enabled = false;
                     btnFinalizarPublicacion.Enabled = false;
@@ -349,9 +345,11 @@ namespace PalcoNet.Generar_Publicacion
             formDestino.Show();
         }
 
-        private void txtStock_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnDefinirUbicaciones_Click(object sender, EventArgs e)
         {
-            validador.numero(e);
+            FormUbicaciones formUbicaciones = new FormUbicaciones(userID, rolID);
+            this.Hide();
+            formUbicaciones.Show();
         }
 
         private void cmbDia_KeyPress(object sender, KeyPressEventArgs e)
@@ -397,11 +395,6 @@ namespace PalcoNet.Generar_Publicacion
         private void txtLocalidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             validador.alfanumerico(e);
-        }
-
-        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            validador.numero(e);
         }
 
     }

@@ -145,7 +145,7 @@
             // 
             this.cmbMes.FormattingEnabled = true;
             this.cmbMes.Location = new System.Drawing.Point(54, 192);
-            this.cmbMes.MaxLength = 2;
+            this.cmbMes.MaxLength = 32767;
             this.cmbMes.Name = "cmbMes";
             this.cmbMes.Size = new System.Drawing.Size(112, 21);
             this.cmbMes.TabIndex = 7;

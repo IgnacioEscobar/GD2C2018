@@ -84,7 +84,6 @@ set IDENTITY_INSERT PEAKY_BLINDERS.grados OFF;
 create table PEAKY_BLINDERS.publicaciones (
   id_publicacion int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   descripcion varchar(200),
-  stock smallint,
   fecha_publicacion datetime,
   id_rubro tinyint REFERENCES PEAKY_BLINDERS.rubros (id_rubro),
   calle varchar(50),

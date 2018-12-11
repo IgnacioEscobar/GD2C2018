@@ -60,6 +60,7 @@
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.label1);
             this.Name = "FormCanjePuntos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
             this.Load += new System.EventHandler(this.FormCanjePuntos_Load);
             this.ResumeLayout(false);
