@@ -215,7 +215,6 @@ namespace PalcoNet.Registro_de_Usuario
                 txtRazonSocial.Select();
             }
 
-            lblError.Visible = false;
             validador = new ValidadorDeDatos();
         }
 

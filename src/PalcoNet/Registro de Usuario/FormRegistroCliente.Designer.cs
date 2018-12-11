@@ -63,7 +63,6 @@
             this.btnAsociarTarjeta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.lblError = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -414,17 +413,6 @@
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(280, 263);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(90, 13);
-            this.lblError.TabIndex = 27;
-            this.lblError.Text = "mensajes de error";
-            this.lblError.Visible = false;
-            // 
             // FormRegistroCliente
             // 
             this.AcceptButton = this.btnConfirmar;
@@ -432,7 +420,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(553, 350);
-            this.Controls.Add(this.lblError);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAsociarTarjeta);
@@ -451,7 +438,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -490,7 +476,6 @@
         private System.Windows.Forms.Button btnAsociarTarjeta;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
-        private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtAltura;
     }

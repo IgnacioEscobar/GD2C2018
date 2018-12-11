@@ -184,7 +184,6 @@ namespace PalcoNet.Registro_de_Usuario
             }
 
             formTarjetaDeCredito = new FormTarjetaDeCredito(this, numeroTarjeta);
-            lblError.Visible = false;
 
             validador = new ValidadorDeDatos();
         }
