@@ -21,6 +21,9 @@ namespace PalcoNet.Comprar
         public FormComprarEntrada(int userID, int rolID, int idPresentacion)
         {
             InitializeComponent();
+            this.userID = userID;
+            this.rolID = rolID;
+            this.idPresentacion = idPresentacion;
 
             // Traer tipos de ubicacion para determinada presentacion
             // select distinct TU.id_tipo_de_ubicacion, TU.descripcion from PEAKY_BLINDERS.ubicaciones U
@@ -29,10 +32,15 @@ namespace PalcoNet.Comprar
             // where PP.id_presentacion = idPresentacion
 
             // Traer asientos para el tipo de ubicacion que eligio para esta presentacion que no sean compradas
-            // select U.id_ubicacion, U.fila, U.asiento from PEAKY_BLINDERS.ubicaciones U
+            // select U.id_ubicacion, U.fila, U.asiento, U.precio from PEAKY_BLINDERS.ubicaciones U
             // join PEAKY_BLINDERS.presentaciones PP on PP.id_publicacion = U.id_publicacion
             // where U.id_tipo_de_ubicacion = 4447 and PP.id_presentacion = 103 and U.id_ubicacion not in (select C.id_ubicacion from PEAKY_BLINDERS.compras C
             // where C.id_presentacion = 103)
+            // order by U.fila, U.asiento, U.precio
+
+            // Para cada asiento tildado tenemos que hacer lo siguiente
+            // insert into PEAKY_BLINDERS.compras (id_cliente, id_medio_de_pago, id_presentacion, id_publicacion, id_ubicacion, monto)
+            // values (userId, /*supongo que 2 (? por tarjeta...*/, idPresentacion, idPublicacion /* esto se puede sacar de la  presentacion o del asiento*/, idUbicacion /* tildada */, monto)
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
