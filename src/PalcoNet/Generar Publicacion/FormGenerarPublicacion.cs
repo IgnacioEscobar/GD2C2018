@@ -333,6 +333,12 @@ namespace PalcoNet.Generar_Publicacion
                 string fecha = campos_fecha + " " + nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString();
                 DateTime fecha_ingresada = DateTime.Parse(campos_fecha);
 
+                if (fecha_ingresada < DateTime.Today)
+                {
+                    MessageBox.Show("La fecha de presentación ingresada no puede ser anterior a la actual.", "Alerta");
+                    return;
+                }
+
                 int cant_items = lsvFechaHora.Items.Count;
                 if (cant_items > 0)
                 {
@@ -340,7 +346,7 @@ namespace PalcoNet.Generar_Publicacion
 
                     if (ultima_cargada > fecha_ingresada)
                     {
-                        MessageBox.Show("La fecha de presentación ingresada no puede ser anterior a una que ya esté cargada, intente con otra fecha.", "ALERTA");
+                        MessageBox.Show("La fecha de presentación ingresada no puede ser anterior a una que ya esté cargada.", "Alerta");
                         return;
                     }
                 }

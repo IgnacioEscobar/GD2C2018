@@ -913,10 +913,12 @@ AS
   BEGIN
 	INSERT INTO PEAKY_BLINDERS.presentaciones (
 		id_publicacion,
-		fecha_presentacion
+		fecha_presentacion,
+		fecha_vencimiento
 	) VALUES (
 		@id_publicacion,
-		@fecha_presentacion
+		@fecha_presentacion,
+		@fecha_presentacion - 7
 	)
   END
 GO
