@@ -63,7 +63,6 @@
             this.btnAsociarTarjeta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.btnModificarContrasena = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -406,23 +405,13 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(280, 295);
+            this.btnConfirmar.Location = new System.Drawing.Point(280, 279);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(262, 43);
+            this.btnConfirmar.Size = new System.Drawing.Size(262, 59);
             this.btnConfirmar.TabIndex = 21;
             this.btnConfirmar.Text = "CONFIRMAR";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
-            // 
-            // btnModificarContrasena
-            // 
-            this.btnModificarContrasena.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnModificarContrasena.Location = new System.Drawing.Point(280, 257);
-            this.btnModificarContrasena.Name = "btnModificarContrasena";
-            this.btnModificarContrasena.Size = new System.Drawing.Size(262, 32);
-            this.btnModificarContrasena.TabIndex = 22;
-            this.btnModificarContrasena.Text = "MODIFICAR CONTRASEÑA";
-            this.btnModificarContrasena.UseVisualStyleBackColor = true;
             // 
             // FormRegistroCliente
             // 
@@ -431,7 +420,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(555, 350);
-            this.Controls.Add(this.btnModificarContrasena);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAsociarTarjeta);
@@ -490,6 +478,5 @@
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtAltura;
-        private System.Windows.Forms.Button btnModificarContrasena;
     }
 }

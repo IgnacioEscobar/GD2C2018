@@ -1,6 +1,6 @@
-﻿namespace PalcoNet.Abm_Usuario
+﻿namespace PalcoNet.Login
 {
-    partial class FormMiUsuario
+    partial class FormNuevaContrasena
     {
         /// <summary>
         /// Required designer variable.

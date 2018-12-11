@@ -14,7 +14,7 @@ using PalcoNet.Menu_Principal;
 
 namespace PalcoNet.Abm_Usuario
 {
-    public partial class FormMiUsuario : Form
+    public partial class FormNuevaContrasena : Form
     {
         int userID;
         int adminID;
@@ -22,7 +22,7 @@ namespace PalcoNet.Abm_Usuario
         bool empresa;
         bool login;
 
-        public FormMiUsuario(int userID)
+        public FormNuevaContrasena(int userID)
         {
             InitializeComponent();
             this.userID = userID;
@@ -31,7 +31,7 @@ namespace PalcoNet.Abm_Usuario
             this.login = true;
         }
 
-        public FormMiUsuario(int userID, bool cliente, bool empresa)
+        public FormNuevaContrasena(int userID, bool cliente, bool empresa)
         {
             InitializeComponent();
             this.userID = userID;
@@ -40,7 +40,7 @@ namespace PalcoNet.Abm_Usuario
             this.login = true;
         }
 
-        public FormMiUsuario(int userID, int adminID)
+        public FormNuevaContrasena(int userID, int adminID)
         {
             InitializeComponent();
             this.userID = userID;

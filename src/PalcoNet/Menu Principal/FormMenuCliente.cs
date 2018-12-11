@@ -59,7 +59,7 @@ namespace PalcoNet.Menu_Principal
 
         private void btnConfiguración_Click(object sender, EventArgs e)
         {
-            FormMiUsuario formMiUsuario = new FormMiUsuario(userID, true, false);
+            FormNuevaContrasena formMiUsuario = new FormNuevaContrasena(userID, true, false);
             this.Hide();
             formMiUsuario.Show();
         }

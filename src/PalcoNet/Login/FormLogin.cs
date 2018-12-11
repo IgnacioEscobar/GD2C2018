@@ -122,7 +122,7 @@ namespace PalcoNet
                     else if (result == 3)
                     {
                         int userID = Convert.ToInt32(gestor.obtenerValor("@id"));
-                        FormMiUsuario formMiUsuario = new FormMiUsuario(userID);
+                        FormNuevaContrasena formMiUsuario = new FormNuevaContrasena(userID);
                         this.Hide();
                         formMiUsuario.Show();
                     }

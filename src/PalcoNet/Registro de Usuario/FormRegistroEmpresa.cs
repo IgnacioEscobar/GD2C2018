@@ -16,8 +16,8 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroEmpresa : Form
     {
-        int userID; // si es registro desde login viene -1
-        int rolID;
+        int userID; // user encargado de abm
+        int rolID; // rol de user encargado
         bool abm; // si viene del ABM
         bool modif; // si viene por modificar o por agregar
         string query;
