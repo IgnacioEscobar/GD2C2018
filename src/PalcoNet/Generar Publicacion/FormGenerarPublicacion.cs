@@ -448,7 +448,7 @@ namespace PalcoNet.Generar_Publicacion
             }
             else
             {
-                formUbicaciones = new FormUbicaciones(this, publicacionID, puede_modif);
+                formUbicaciones = new FormUbicaciones(this, listaUbicaciones, publicacionID, puede_modif);
             }
             this.Visible = false;
             formUbicaciones.Show();

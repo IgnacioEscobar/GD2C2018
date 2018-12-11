@@ -25,13 +25,15 @@ namespace PalcoNet.Generar_Publicacion
         {
             InitializeComponent();
             this.formGenerarPublicacion = formGenerarPublicacion;
+            this.listaUbicaciones = new List<ListViewItem>();
             this.modif = false;
         }
 
-        public FormUbicaciones(FormGenerarPublicacion formGenerarPublicacion, int publicacionID, bool puede_modif)
+        public FormUbicaciones(FormGenerarPublicacion formGenerarPublicacion, List<ListViewItem> listaUbicaciones, int publicacionID, bool puede_modif)
         {
             InitializeComponent();
             this.formGenerarPublicacion = formGenerarPublicacion;
+            this.listaUbicaciones = listaUbicaciones;
             this.publicacionID = publicacionID;
             this.modif = true;
             this.puede_modif = puede_modif;
@@ -81,8 +83,6 @@ namespace PalcoNet.Generar_Publicacion
 
         private void FormUbicaciones_Load(object sender, EventArgs e)
         {
-            listaUbicaciones = new List<ListViewItem>();
-
             lsvUbicaciones.View = View.Details;
             lsvUbicaciones.Columns.Add("SECTOR");
             lsvUbicaciones.Columns.Add("PRECIO");
@@ -96,7 +96,23 @@ namespace PalcoNet.Generar_Publicacion
             this.mostrarTiposDeUbicacion(gestor.obtenerRegistros());
             gestor.desconectar();
 
-            if (modif)
+            if (listaUbicaciones.Count > 0)
+            {
+                foreach (ListViewItem item in listaUbicaciones)
+                {
+                    bool nuevo = false;
+                    if (item.SubItems[4].Text == "NUEVO")
+                    {
+                        nuevo = true;
+                    }
+                    this.mostrarUbicacion(item.SubItems[0].Text,
+                        Convert.ToInt32(item.SubItems[1].Text),
+                        Convert.ToInt32(item.SubItems[2].Text),
+                        Convert.ToInt32(item.SubItems[3].Text),
+                        nuevo);
+                }
+            }
+            else if (modif)
             {
                 gestor.conectar();
                 string query =
