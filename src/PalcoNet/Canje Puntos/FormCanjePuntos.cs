@@ -26,14 +26,14 @@ namespace PalcoNet.Canje_Puntos
 
         private void FormCanjePuntos_Load(object sender, EventArgs e)
         {
-            this.Visible = false;
+
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
         {
-            FormMenuPrincipal formMiUsuario = new FormMenuPrincipal(userID, rolID);
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
             this.Hide();
-            formMiUsuario.Show();
+            formMenuPrincipal.Show();
         }
     }
 }

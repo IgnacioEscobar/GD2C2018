@@ -1,7 +1,8 @@
-GO -- Schema
+-- Schema
 create schema PEAKY_BLINDERS;
+GO
 
-GO -- Creación tablas y migracion
+-- Creación tablas y migracion
 -- Usuarios --
 create table PEAKY_BLINDERS.usuarios (
   id_usuario int PRIMARY KEY NOT NULL IDENTITY(1, 1),
@@ -417,3 +418,537 @@ join PEAKY_BLINDERS.ubicaciones U on
   C.id_ubicacion = U.id_ubicacion and
   U.fila = M.Ubicacion_Fila and
   U.asiento = M.Ubicacion_Asiento
+go
+
+-- Creacion de procedures
+
+CREATE PROCEDURE PEAKY_BLINDERS.autenticar_usuario
+@usuario     varchar(30),
+@contrasenna varchar(30),
+@id int output
+AS
+  BEGIN
+    DECLARE @esperada binary(32);
+	DECLARE @cant_intentos_fallidos tinyint;
+	DECLARE @nuevo bit
+
+    select top 1
+      @esperada = password_hash, @id = id_usuario, @cant_intentos_fallidos = intentos_fallidos, @nuevo = nuevo
+    from PEAKY_BLINDERS.usuarios
+    where nombre_de_usuario = @usuario and habilitado = 1
+
+    IF @esperada IS NOT NULL
+      BEGIN
+		IF @cant_intentos_fallidos >= 3
+			return 5 -- USUARIO INHABILITADO
+        IF HASHBYTES ('SHA2_256', @contrasenna) = @esperada
+          BEGIN
+            update PEAKY_BLINDERS.usuarios
+            set intentos_fallidos = 0
+            where nombre_de_usuario = @usuario
+
+			IF @nuevo = 1
+				return 3 -- USUARIO NUEVO (CAMBIO DE PASS)
+			ELSE
+				return 2 -- TODO OK
+          END
+        ELSE
+          BEGIN
+            update PEAKY_BLINDERS.usuarios
+            set intentos_fallidos = @cant_intentos_fallidos + 1
+            where nombre_de_usuario = @usuario
+
+			IF @cant_intentos_fallidos + 1 = 3
+				return 4 -- FALLA NRO 3
+			ELSE
+				return 1 -- CONTRASEÑA INVALIDA
+          END
+      END
+    ELSE
+      return 0 -- USUARIO INVALIDO
+  END
+GO
+
+CREATE FUNCTION PEAKY_BLINDERS.verificar_contrasenna (
+@id_usuario int,
+@contrasenna varchar(30)
+) RETURNS bit
+AS
+  BEGIN
+	DECLARE @retorno bit
+
+	IF EXISTS(SELECT * FROM PEAKY_BLINDERS.usuarios
+				WHERE id_usuario = @id_usuario AND password_hash = HASHBYTES('SHA2_256', @contrasenna))
+		SET @retorno = 1
+	ELSE
+		SET @retorno = 0
+	RETURN @retorno
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.actualizar_contrasenna
+@id_usuario int,
+@contrasenna varchar(30)
+AS
+	UPDATE PEAKY_BLINDERS.usuarios SET
+		password_hash = HASHBYTES('SHA2_256', @contrasenna),
+		nuevo = 0
+	WHERE id_usuario = @id_usuario
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.crear_cliente
+@usuario varchar(30),
+@contrasenna varchar(30),
+@nombre varchar(60),
+@apellido varchar(60),
+@descripcion_tipo_de_documento varchar(10),
+@numero_de_documento int,
+@cuil varchar(11),
+@fecha_nacimiento datetime,
+@calle varchar(60),
+@numero smallint,
+@piso tinyint,
+@depto char(1),
+@codigo_postal varchar(4),
+@localidad varchar(60),
+@mail varchar(60),
+@telefono varchar(10),
+@tarjeta_de_credito_asociada varchar(16),
+@fecha_creacion datetime
+AS
+  BEGIN
+	IF EXISTS(SELECT * FROM PEAKY_BLINDERS.usuarios WHERE nombre_de_usuario = @usuario)
+		RETURN 0
+	ELSE
+	  BEGIN
+		INSERT INTO PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash, nuevo)
+		VALUES (@usuario, HASHBYTES('SHA2_256', @contrasenna), 1)
+	
+		DECLARE @id_usuario int
+		SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.usuarios WHERE nombre_de_usuario = @usuario
+
+		DECLARE @id_tipo_de_documento tinyint
+		SELECT @id_tipo_de_documento = id_tipo_de_documento
+		FROM PEAKY_BLINDERS.tipos_de_documento
+		WHERE descripcion = @descripcion_tipo_de_documento
+
+		INSERT INTO PEAKY_BLINDERS.clientes (
+			id_usuario,
+			nombre,
+			apellido,
+			id_tipo_de_documento,
+			numero_de_documento,
+			cuil,
+			fecha_nacimiento,
+			calle,
+			numero,
+			piso,
+			depto,
+			codigo_postal,
+			localidad,
+			mail,
+			telefono,
+			tarjeta_de_credito_asociada,
+			fecha_creacion)
+		VALUES (
+			@id_usuario,
+			@nombre,
+			@apellido,
+			@id_tipo_de_documento,
+			@numero_de_documento,
+			@cuil,
+			@fecha_nacimiento,
+			@calle,
+			@numero,
+			@piso,
+			@depto,
+			@codigo_postal,
+			@localidad,
+			@mail,
+			@telefono,
+			@tarjeta_de_credito_asociada,
+			@fecha_creacion)
+
+		DECLARE @id_rol int
+		SELECT @id_rol = id_rol FROM PEAKY_BLINDERS.roles WHERE descripcion = 'Cliente'
+
+		INSERT INTO PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
+		VALUES (@id_usuario, @id_rol)
+
+		RETURN 1
+	  END
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.modificar_cliente
+@id_cliente int,
+@nombre varchar(60),
+@apellido varchar(60),
+@descripcion_tipo_de_documento varchar(10),
+@numero_de_documento int,
+@cuil varchar(11),
+@fecha_nacimiento datetime,
+@calle varchar(60),
+@numero smallint,
+@piso tinyint,
+@depto char(1),
+@codigo_postal varchar(4),
+@localidad varchar(60),
+@mail varchar(60),
+@telefono varchar(10),
+@tarjeta_de_credito_asociada varchar(16)
+AS
+  BEGIN
+	IF (SELECT COUNT(*) FROM PEAKY_BLINDERS.clientes WHERE cuil = @cuil) > 1
+		RETURN 0
+	ELSE
+	  BEGIN	
+		DECLARE @id_tipo_de_documento tinyint
+		SELECT @id_tipo_de_documento = id_tipo_de_documento
+		FROM PEAKY_BLINDERS.tipos_de_documento
+		WHERE descripcion = @descripcion_tipo_de_documento
+
+		UPDATE PEAKY_BLINDERS.clientes SET
+			nombre = @nombre,
+			apellido = @apellido,
+			id_tipo_de_documento = @id_tipo_de_documento,
+			numero_de_documento = @numero_de_documento,
+			cuil = @cuil,
+			fecha_nacimiento = @fecha_nacimiento,
+			calle = @calle,
+			numero = @numero,
+			piso = @piso,
+			depto = @depto,
+			codigo_postal = @codigo_postal,
+			localidad = @localidad,
+			mail = @mail,
+			telefono = @telefono,
+			tarjeta_de_credito_asociada = @tarjeta_de_credito_asociada
+		WHERE id_cliente = @id_cliente
+
+		RETURN 1
+	  END
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.eliminar_cliente
+@numero_de_documento int
+AS
+  BEGIN
+	DECLARE @id_usuario int
+	SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.clientes WHERE numero_de_documento = @numero_de_documento
+	UPDATE PEAKY_BLINDERS.usuarios SET habilitado = 0 WHERE id_usuario = @id_usuario
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.crear_empresa
+@usuario varchar(30),
+@contrasenna varchar(30),
+@razon_social varchar(60),
+@cuit varchar(11),
+@calle varchar(60),
+@numero smallint,
+@piso tinyint,
+@depto char(1),
+@codigo_postal varchar(4),
+@localidad varchar(60),
+@mail varchar(60),
+@telefono varchar(10)
+AS
+  BEGIN
+	IF EXISTS(SELECT * FROM PEAKY_BLINDERS.usuarios WHERE nombre_de_usuario = @usuario)
+		RETURN 0
+	ELSE
+	  BEGIN
+		INSERT INTO PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash, nuevo)
+		VALUES (@usuario, HASHBYTES('SHA2_256', @contrasenna), 1)
+	
+		DECLARE @id_usuario int
+		SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.usuarios WHERE nombre_de_usuario = @usuario
+
+		INSERT INTO PEAKY_BLINDERS.empresas (
+			id_usuario,
+			razon_social,
+			cuit,
+			calle,
+			numero,
+			piso,
+			depto,
+			codigo_postal,
+			localidad,
+			mail,
+			telefono)
+		VALUES (
+			@id_usuario,
+			@razon_social,
+			@cuit,
+			@calle,
+			@numero,
+			@piso,
+			@depto,
+			@codigo_postal,
+			@localidad,
+			@mail,
+			@telefono)
+
+		DECLARE @id_rol int
+		SELECT @id_rol = id_rol FROM PEAKY_BLINDERS.roles WHERE descripcion = 'Empresa'
+
+		INSERT INTO PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
+		VALUES (@id_usuario, @id_rol)
+
+		RETURN 1
+	  END
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.modificar_empresa
+@id_empresa int,
+@razon_social varchar(60),
+@cuit varchar(11),
+@calle varchar(60),
+@numero smallint,
+@piso tinyint,
+@depto char(1),
+@codigo_postal varchar(4),
+@localidad varchar(60),
+@mail varchar(60),
+@telefono varchar(10)
+AS
+  BEGIN
+	IF (SELECT COUNT(*) FROM PEAKY_BLINDERS.empresas WHERE cuit = @cuit) > 1
+		RETURN 0
+	ELSE
+	  BEGIN	
+		UPDATE PEAKY_BLINDERS.empresas SET
+			razon_social = @razon_social,
+			cuit = @cuit,
+			calle = @calle,
+			numero = @numero,
+			piso = @piso,
+			depto = @depto,
+			codigo_postal = @codigo_postal,
+			localidad = @localidad,
+			mail = @mail,
+			telefono = @telefono
+		WHERE id_empresa = @id_empresa
+		RETURN 1
+	  END
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.eliminar_empresa
+@cuit varchar(14)
+AS
+  BEGIN
+	DECLARE @id_usuario int
+	SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.empresas WHERE cuit = @cuit
+	UPDATE PEAKY_BLINDERS.usuarios SET habilitado = 0 WHERE id_usuario = @id_usuario
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.crear_rol
+@descripcion varchar(30)
+AS
+  BEGIN
+	IF EXISTS(SELECT * FROM PEAKY_BLINDERS.roles WHERE descripcion = @descripcion)
+		RETURN 0
+	ELSE
+	  BEGIN
+		INSERT INTO PEAKY_BLINDERS.roles VALUES (@descripcion, 1)
+		RETURN 1
+	  END
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.modificar_rol
+@descripcion_anterior varchar(30),
+@descripcion varchar(30)
+AS
+  BEGIN
+	IF EXISTS(SELECT * FROM PEAKY_BLINDERS.roles WHERE descripcion = @descripcion)
+		RETURN 0
+	ELSE
+	  BEGIN
+		UPDATE PEAKY_BLINDERS.roles SET descripcion = @descripcion WHERE descripcion = @descripcion_anterior
+		RETURN 1
+	  END
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.actualizar_rol_habilitado
+@descripcion varchar(30),
+@habilitado bit
+AS
+	UPDATE PEAKY_BLINDERS.roles SET habilitado = @habilitado WHERE descripcion = @descripcion
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.borrar_funcionalidades_por_rol
+@descripcion varchar(30)
+AS
+  BEGIN
+	DECLARE @id_rol int
+	SELECT @id_rol = id_rol FROM PEAKY_BLINDERS.roles WHERE descripcion = @descripcion
+
+	DELETE FROM PEAKY_BLINDERS.funcionalidades_por_rol WHERE id_rol = @id_rol
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.actualizar_funcionalidades_por_rol
+@descripcion_rol varchar(30),
+@descripcion_funcionalidad varchar(50)
+AS
+  BEGIN
+    DECLARE @id_rol int
+	SELECT @id_rol = id_rol FROM PEAKY_BLINDERS.roles WHERE descripcion = @descripcion_rol
+
+	DECLARE @id_funcionalidad int
+	SELECT @id_funcionalidad = id_funcionalidad FROM PEAKY_BLINDERS.funcionalidades WHERE descripcion = @descripcion_funcionalidad
+
+	INSERT INTO PEAKY_BLINDERS.funcionalidades_por_rol (
+		id_rol,
+		id_funcionalidad
+	) VALUES (
+		@id_rol,
+		@id_funcionalidad
+	)
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.generar_publicacion
+@descripcion varchar(200),
+@fecha_publicacion datetime,
+@descripcion_rubro varchar(15),
+@calle varchar(50),
+@numero smallint,
+@codigo_postal varchar(4),
+@localidad varchar(60),
+@id_empresa int,
+@descripcion_estado varchar(25)
+AS
+  BEGIN
+	DECLARE @id_estado int
+	SELECT @id_estado = id_estado FROM PEAKY_BLINDERS.estados WHERE descripcion = @descripcion_estado
+
+	DECLARE @id_rubro int
+	SELECT @id_rubro = id_rubro FROM PEAKY_BLINDERS.rubros WHERE descripcion = @descripcion_rubro
+
+	DECLARE @id_grado int -- siempre asigna el mínimo grado -?-
+	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY muliplicador ASC
+
+	INSERT INTO PEAKY_BLINDERS.publicaciones (
+		descripcion,
+		fecha_publicacion,
+		id_rubro,
+		calle,
+		numero,
+		codigo_postal,
+		localidad,
+		id_grado,
+		id_empresa,
+		id_estado		
+	) VALUES (
+		@descripcion,
+		@fecha_publicacion,
+		@id_rubro,
+		@calle,
+		@numero,
+		@codigo_postal,
+		@localidad,
+		@id_grado,
+		@id_empresa,
+		@id_estado
+	)
+	RETURN @@IDENTITY
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.modificar_publicacion
+@id_publicacion int,
+@descripcion varchar(200),
+@fecha_publicacion datetime,
+@descripcion_rubro varchar(15),
+@calle varchar(50),
+@numero smallint,
+@codigo_postal varchar(4),
+@localidad varchar(60),
+@descripcion_estado varchar(25)
+AS
+  BEGIN
+	DECLARE @id_estado int
+	SELECT @id_estado = id_estado FROM PEAKY_BLINDERS.estados WHERE descripcion = @descripcion_estado
+
+	DECLARE @id_rubro int
+	SELECT @id_rubro = id_rubro FROM PEAKY_BLINDERS.rubros WHERE descripcion = @descripcion_rubro
+
+	UPDATE PEAKY_BLINDERS.publicaciones SET
+		descripcion = @descripcion,
+		fecha_publicacion = @fecha_publicacion,
+		id_rubro = @id_rubro,
+		calle = @calle,
+		numero = @numero,
+		codigo_postal = @codigo_postal,
+		localidad = @localidad,
+		id_estado = @id_estado
+	WHERE id_publicacion = @id_publicacion
+
+	RETURN @id_estado
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.finalizar_publicacion
+@id_publicacion int
+AS
+  BEGIN
+	DECLARE @id_estado int
+	SELECT @id_estado = id_estado FROM PEAKY_BLINDERS.estados WHERE descripcion = 'Finalizada'
+	UPDATE PEAKY_BLINDERS.publicaciones SET id_estado = @id_estado
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.generar_presentacion
+@id_publicacion int,
+@fecha_presentacion datetime
+AS
+  BEGIN
+	INSERT INTO PEAKY_BLINDERS.presentaciones (
+		id_publicacion,
+		fecha_presentacion
+	) VALUES (
+		@id_publicacion,
+		@fecha_presentacion
+	)
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.generar_ubicacion
+@id_publicacion int,
+@id_tipo_de_ubicacion int,
+@fila char(1),
+@asiento tinyint,
+@precio int
+AS
+	INSERT INTO PEAKY_BLINDERS.Ubicaciones (
+		id_publicacion,
+		id_tipo_de_ubicacion,
+		fila,
+		asiento,
+		precio
+	) VALUES (
+		@id_publicacion,
+		@id_tipo_de_ubicacion,
+		@fila,
+		@asiento,
+		@precio
+	)
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.actualizar_grado
+@id_publicacion int,
+@descripcion_grado varchar(15)
+AS
+  BEGIN
+	DECLARE @id_grado int
+	SELECT @id_grado = id_grado FROM PEAKY_BLINDERS.grados WHERE descripcion = @descripcion_grado
+	UPDATE PEAKY_BLINDERS.publicaciones SET id_grado = @id_grado WHERE id_publicacion = @id_publicacion
+  END

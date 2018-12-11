@@ -79,6 +79,16 @@ AS
   END
 GO
 
+CREATE PROCEDURE PEAKY_BLINDERS.finalizar_publicacion
+@id_publicacion int
+AS
+  BEGIN
+	DECLARE @id_estado int
+	SELECT @id_estado = id_estado FROM PEAKY_BLINDERS.estados WHERE descripcion = 'Finalizada'
+	UPDATE PEAKY_BLINDERS.publicaciones SET id_estado = @id_estado
+  END
+GO
+
 ALTER PROCEDURE PEAKY_BLINDERS.generar_presentacion
 @id_publicacion int,
 @fecha_presentacion datetime
