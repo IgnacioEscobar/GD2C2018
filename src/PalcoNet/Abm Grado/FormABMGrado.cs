@@ -98,7 +98,7 @@ namespace PalcoNet.Abm_Grado
                 "FROM PEAKY_BLINDERS.publicaciones PU " +
                     "JOIN PEAKY_BLINDERS.estados E ON PU.id_estado = E.id_estado " +
                     "JOIN PEAKY_BLINDERS.grados G ON PU.id_grado = G.id_grado ";
-            query_actual = query_defecto + "ORDER BY PU.id_publicacion ASC";
+            query_actual = query_defecto + "WHERE NOT E.descripcion = 'Finalizada' ORDER BY PU.id_publicacion ASC";
             gestor.consulta(query_actual);
             this.mostrarPublicaciones(gestor.obtenerRegistros());
             gestor.desconectar();
@@ -147,24 +147,17 @@ namespace PalcoNet.Abm_Grado
 
             string condicion = "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
                     "LEFT JOIN PEAKY_BLINDERS.rubros R ON PU.id_rubro = R.id_rubro " +
-                "WHERE ";
+                "WHERE NOT E.descripcion = 'Finalizada' ";
             string descripcion = txtDescripcion.Text;
-
-            bool hay_condicion = false;
 
             if (descripcion != "")
             {
-                condicion += "PU.descripcion LIKE '%" + descripcion + "%' ";
-                hay_condicion = true;
+                condicion += "AND PU.descripcion LIKE '%" + descripcion + "%' ";
             }
 
             if (ckbRangoFechas.Checked)
             {
-                if (hay_condicion)
-                {
-                    condicion += "AND ";
-                }
-                condicion += "PR.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToShortDateString() + "' AND '" + mcrHasta.SelectionStart.ToShortDateString() + "' ";
+                condicion += "AND PR.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToShortDateString() + "' AND '" + mcrHasta.SelectionStart.ToShortDateString() + "' ";
             }
 
             List<string> funcionalidades_tildadas = new List<string> { };

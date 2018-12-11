@@ -283,7 +283,7 @@
             this.btnPublicar.Location = new System.Drawing.Point(12, 319);
             this.btnPublicar.Name = "btnPublicar";
             this.btnPublicar.Size = new System.Drawing.Size(403, 42);
-            this.btnPublicar.TabIndex = 19;
+            this.btnPublicar.TabIndex = 18;
             this.btnPublicar.Text = "PUBLICAR";
             this.btnPublicar.UseVisualStyleBackColor = true;
             this.btnPublicar.Click += new System.EventHandler(this.btnPublicar_Click);
@@ -293,7 +293,7 @@
             this.btnGuardarBorrador.Location = new System.Drawing.Point(12, 367);
             this.btnGuardarBorrador.Name = "btnGuardarBorrador";
             this.btnGuardarBorrador.Size = new System.Drawing.Size(238, 42);
-            this.btnGuardarBorrador.TabIndex = 20;
+            this.btnGuardarBorrador.TabIndex = 19;
             this.btnGuardarBorrador.Text = "GUARDAR BORRADOR";
             this.btnGuardarBorrador.UseVisualStyleBackColor = true;
             this.btnGuardarBorrador.Click += new System.EventHandler(this.btnGuardarBorrador_Click);
@@ -303,7 +303,7 @@
             this.btnFinalizarPublicacion.Location = new System.Drawing.Point(256, 367);
             this.btnFinalizarPublicacion.Name = "btnFinalizarPublicacion";
             this.btnFinalizarPublicacion.Size = new System.Drawing.Size(159, 42);
-            this.btnFinalizarPublicacion.TabIndex = 21;
+            this.btnFinalizarPublicacion.TabIndex = 20;
             this.btnFinalizarPublicacion.Text = "FINALIZAR PUBLICACIÓN";
             this.btnFinalizarPublicacion.UseVisualStyleBackColor = true;
             this.btnFinalizarPublicacion.Click += new System.EventHandler(this.btnFinalizarPublicacion_Click);
@@ -314,7 +314,7 @@
             this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 416);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(403, 23);
-            this.btnMenuPrincipal.TabIndex = 22;
+            this.btnMenuPrincipal.TabIndex = 21;
             this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
             this.btnMenuPrincipal.UseVisualStyleBackColor = true;
             this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
@@ -342,7 +342,7 @@
             this.btnDefinirUbicaciones.Location = new System.Drawing.Point(256, 271);
             this.btnDefinirUbicaciones.Name = "btnDefinirUbicaciones";
             this.btnDefinirUbicaciones.Size = new System.Drawing.Size(159, 42);
-            this.btnDefinirUbicaciones.TabIndex = 23;
+            this.btnDefinirUbicaciones.TabIndex = 17;
             this.btnDefinirUbicaciones.Text = "DEFINIR UBICACIONES";
             this.btnDefinirUbicaciones.UseVisualStyleBackColor = true;
             this.btnDefinirUbicaciones.Click += new System.EventHandler(this.btnDefinirUbicaciones_Click);

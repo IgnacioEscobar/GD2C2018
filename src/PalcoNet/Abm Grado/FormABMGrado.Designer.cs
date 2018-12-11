@@ -85,7 +85,10 @@
             this.dgvPublicaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPublicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPublicaciones.Location = new System.Drawing.Point(12, 28);
+            this.dgvPublicaciones.MultiSelect = false;
             this.dgvPublicaciones.Name = "dgvPublicaciones";
+            this.dgvPublicaciones.ReadOnly = true;
+            this.dgvPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPublicaciones.Size = new System.Drawing.Size(508, 425);
             this.dgvPublicaciones.TabIndex = 15;
             this.dgvPublicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPublicaciones_CellContentClick);

@@ -251,7 +251,7 @@ namespace PalcoNet.Generar_Publicacion
                 gestor.desconectar();
                 lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
-                if (estado == "Finalizada")
+                if (estado == "Publicada" || estado == "Finalizada")
                 {
                     txtDescripcion.Enabled = false;
                     txtCalle.Enabled = false;
@@ -264,15 +264,11 @@ namespace PalcoNet.Generar_Publicacion
                     btnDefinirUbicaciones.Enabled = false;
                     btnPublicar.Enabled = false;
                     btnGuardarBorrador.Enabled = false;
-                    btnFinalizarPublicacion.Enabled = false;
-                }
-                else if (estado == "Publicada")
-                {
-                    btnGuardarBorrador.Enabled = false;
-                }
-                else
-                {
-                    btnFinalizarPublicacion.Enabled = true;
+
+                    if (estado == "Finalizada")
+                    {
+                        btnFinalizarPublicacion.Enabled = false;
+                    }
                 }
             }
             else
@@ -288,32 +284,41 @@ namespace PalcoNet.Generar_Publicacion
         {
             string dia = cmbDia.Text;
             string mes = cmbMes.Text;
-            if (dia.Length == 1) dia = "0" + dia;
-            if (mes.Length == 1) mes = "0" + mes;
-            string campos_fecha = dia + "/" + mes + "/" + cmbAno.Text;
-            string fecha = campos_fecha + " " + nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString();
-            DateTime fecha_ingresada = DateTime.Parse(campos_fecha);
+            string ano = cmbAno.Text;
 
-            int cant_items = lsvFechaHora.Items.Count;
-            if (cant_items > 0)
+            if (dia == "Día" || mes == "Mes" || ano == "Año")
             {
-                DateTime ultima_cargada = DateTime.Parse(lsvFechaHora.Items[cant_items - 1].Text + " " + lsvFechaHora.Items[cant_items - 1].SubItems[1].Text);
-
-                if (ultima_cargada > fecha_ingresada)
-                {
-                    MessageBox.Show("La fecha de presentación ingresada no puede ser anterior a una que ya esté cargada, intente con otra fecha.", "ALERTA");
-                    return;
-                }
+                MessageBox.Show("Debe ingresar una fecha.", "Alerta");
             }
+            else
+            {
+                if (dia.Length == 1) dia = "0" + dia;
+                if (mes.Length == 1) mes = "0" + mes;
+                string campos_fecha = dia + "/" + mes + "/" + ano;
+                string fecha = campos_fecha + " " + nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString();
+                DateTime fecha_ingresada = DateTime.Parse(campos_fecha);
 
-            ListViewItem item = new ListViewItem(campos_fecha);
-            string hora = nudHora.Value.ToString();
-            string minuto = nudMinuto.Value.ToString();
-            if (minuto.Length == 1) minuto = "0" + minuto;
-            item.SubItems.Add(hora + ":" + minuto);
-            item.SubItems.Add("NUEVO");
-            lsvFechaHora.Items.Add(item);
-            lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                int cant_items = lsvFechaHora.Items.Count;
+                if (cant_items > 0)
+                {
+                    DateTime ultima_cargada = DateTime.Parse(lsvFechaHora.Items[cant_items - 1].Text + " " + lsvFechaHora.Items[cant_items - 1].SubItems[1].Text);
+
+                    if (ultima_cargada > fecha_ingresada)
+                    {
+                        MessageBox.Show("La fecha de presentación ingresada no puede ser anterior a una que ya esté cargada, intente con otra fecha.", "ALERTA");
+                        return;
+                    }
+                }
+
+                ListViewItem item = new ListViewItem(campos_fecha);
+                string hora = nudHora.Value.ToString();
+                string minuto = nudMinuto.Value.ToString();
+                if (minuto.Length == 1) minuto = "0" + minuto;
+                item.SubItems.Add(hora + ":" + minuto);
+                item.SubItems.Add("NUEVO");
+                lsvFechaHora.Items.Add(item);
+                lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
         }
 
         private void btnPublicar_Click(object sender, EventArgs e)
