@@ -16,12 +16,25 @@ namespace PalcoNet.Generar_Publicacion
     public partial class FormUbicaciones : Form
     {
         FormGenerarPublicacion formGenerarPublicacion;
+        int publicacionID;
+        bool modif;
+        bool puede_modif;
         List<ListViewItem> listaUbicaciones;
 
         public FormUbicaciones(FormGenerarPublicacion formGenerarPublicacion)
         {
             InitializeComponent();
             this.formGenerarPublicacion = formGenerarPublicacion;
+            this.modif = false;
+        }
+
+        public FormUbicaciones(FormGenerarPublicacion formGenerarPublicacion, int publicacionID, bool puede_modif)
+        {
+            InitializeComponent();
+            this.formGenerarPublicacion = formGenerarPublicacion;
+            this.publicacionID = publicacionID;
+            this.modif = true;
+            this.puede_modif = puede_modif;
         }
 
         // Metodos auxiliares
@@ -34,40 +47,86 @@ namespace PalcoNet.Generar_Publicacion
             }
         }
 
-        private void mostrarNuevaUbicacion()
+        private void mostrarUbicacion(string sector, int precio, int filas, int asientos, bool nuevo)
         {
-            ListViewItem item = new ListViewItem(cmbSector.Text);
-            item.SubItems.Add(nudPrecio.Value.ToString());
-            item.SubItems.Add(nudFilas.Value.ToString());
-            item.SubItems.Add(nudAsientos.Value.ToString());
-            item.SubItems.Add("NUEVO");
+            ListViewItem item = new ListViewItem(sector);
+            item.SubItems.Add(precio.ToString());
+            item.SubItems.Add(filas.ToString());
+            item.SubItems.Add(asientos.ToString());
+            if (nuevo)
+            {
+                item.SubItems.Add("NUEVO");
+            }
+            else
+            {
+                item.SubItems.Add("");
+            }
             lsvUbicaciones.Items.Add(item);
             listaUbicaciones.Add(item);
+        }
+
+        private void mostrarUbicacionesCargadas(SqlDataReader lector)
+        {
+            while (lector.Read())
+            {
+                mostrarUbicacion(lector["descripcion"].ToString(),
+                    Convert.ToInt32(lector["precio"]),
+                    Convert.ToInt32(lector["filas"]),
+                    Convert.ToInt32(lector["asientos"]),
+                    false);
+            }
         }
 
         // -------------------
 
         private void FormUbicaciones_Load(object sender, EventArgs e)
         {
+            listaUbicaciones = new List<ListViewItem>();
+
             lsvUbicaciones.View = View.Details;
             lsvUbicaciones.Columns.Add("SECTOR");
             lsvUbicaciones.Columns.Add("PRECIO");
             lsvUbicaciones.Columns.Add("FILAS");
             lsvUbicaciones.Columns.Add("ASIENTOS");
             lsvUbicaciones.Columns.Add("");
-            lsvUbicaciones.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-
-            listaUbicaciones = new List<ListViewItem>();
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.consulta("SELECT descripcion FROM PEAKY_BLINDERS.tipos_de_ubicacion ORDER BY descripcion ASC");
             this.mostrarTiposDeUbicacion(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            if (modif)
+            {
+                gestor.conectar();
+                string query =
+                    "SELECT TU.descripcion, " +
+                        "U.precio, " +
+                        "COUNT(U.fila) AS filas, " +
+                        "COUNT(U.asiento) AS asientos " +
+                    "FROM PEAKY_BLINDERS.ubicaciones U " +
+                        "JOIN PEAKY_BLINDERS.tipos_de_ubicacion TU ON U.id_tipo_de_ubicacion = TU.id_tipo_de_ubicacion " +
+                    "WHERE U.id_publicacion = '" + publicacionID + "' " +
+                    "GROUP BY TU.descripcion, U.precio";
+                gestor.consulta(query);
+                this.mostrarUbicacionesCargadas(gestor.obtenerRegistros());
+                gestor.desconectar();
+
+                if (!puede_modif)
+                {
+                    btnAgregar.Enabled = false;
+                }
+            }
+
+            lsvUbicaciones.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            string sector = cmbSector.Text;
+            int precio = Convert.ToInt32(nudPrecio.Value);
+            int filas = Convert.ToInt32(nudFilas.Value);
+            int asientos = Convert.ToInt32(nudAsientos.Value);
             string mensaje = "Error:";
             bool hubo_error = false;
 
@@ -78,7 +137,6 @@ namespace PalcoNet.Generar_Publicacion
             }
             else
             {
-                string sector = cmbSector.Text;
                 bool sector_valido = false;
                 int i = 0;
                 while (!sector_valido && i < cmbSector.Items.Count)
@@ -95,17 +153,17 @@ namespace PalcoNet.Generar_Publicacion
                     hubo_error = true;
                 }
             }
-            if (nudPrecio.Value <= 0)
+            if (precio <= 0)
             {
                 mensaje += "\n- El precio debe ser mayor a 0";
                 hubo_error = true;                
             }
-            if (nudFilas.Value <= 0)
+            if (filas <= 0)
             {
                 mensaje += "\n- Las filas deben ser mayor a 0";
                 hubo_error = true;
             }
-            if (nudAsientos.Value <= 0)
+            if (asientos <= 0)
             {
                 mensaje += "\n- Los asientos deben ser mayor a 0";
                 hubo_error = true;
@@ -116,7 +174,7 @@ namespace PalcoNet.Generar_Publicacion
             }
             else
             {
-                this.mostrarNuevaUbicacion();
+                this.mostrarUbicacion(sector, precio, filas, asientos, true);
                 lsvUbicaciones.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
         }
@@ -126,5 +184,6 @@ namespace PalcoNet.Generar_Publicacion
             this.Hide();
             formGenerarPublicacion.reaparecer(listaUbicaciones);
         }
+
     }
 }

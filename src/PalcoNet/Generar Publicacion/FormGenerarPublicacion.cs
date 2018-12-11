@@ -24,6 +24,8 @@ namespace PalcoNet.Generar_Publicacion
         bool modif;
         ValidadorDeDatos validador;
         List<ListViewItem> listaUbicaciones;
+        int cant_ubicaciones;
+        bool puede_modif;
 
         public FormGenerarPublicacion(int userID, int rolID)
         {
@@ -65,25 +67,26 @@ namespace PalcoNet.Generar_Publicacion
             lista.Add(new string[] { cmbRubro.Text, "rubro" });
 
             string mensaje = "";
-            bool retorno = validador.validar_campos_obligatorios(lista, ref mensaje);
+            bool es_valido = validador.validar_campos_obligatorios(lista, ref mensaje);
 
             if (lsvFechaHora.Items.Count < 1)
             {
                 mensaje += "\n\nTiene que ingresar al menos una fecha.";
-                retorno = false;
+                es_valido = false;
             }
 
-            if (listaUbicaciones.Count < 1)
+            if (cant_ubicaciones < 1)
             {
                 mensaje += "\n\nTiene que definir las ubicaciones.";
+                es_valido = false;
             }
 
-            if (!retorno)
+            if (!es_valido)
             {
                 MessageBox.Show(mensaje, "Alerta");
             }
 
-            return retorno;
+            return es_valido;
         }
 
         private void enviarPresentancion(int id_publicacion, DateTime fecha_presentacion)
@@ -101,7 +104,10 @@ namespace PalcoNet.Generar_Publicacion
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query = "SELECT id_tipo_de_ubicacion FROM PEAKY_BLINDERS.tipos_de_ubicacion WHERE descripcion = '" + item.SubItems[0].Text + "'";
+            string query = 
+                "SELECT id_tipo_de_ubicacion " +
+                "FROM PEAKY_BLINDERS.tipos_de_ubicacion " +
+                "WHERE descripcion = '" + item.SubItems[0].Text + "'";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
             int id_tipo_de_ubicacion = -1;
@@ -190,6 +196,7 @@ namespace PalcoNet.Generar_Publicacion
         {
             this.Visible = true;
             this.listaUbicaciones = listaUbicaciones;
+            cant_ubicaciones = listaUbicaciones.Count;
         }
 
         // -------------------
@@ -197,6 +204,7 @@ namespace PalcoNet.Generar_Publicacion
         private void FormGenerarPublicacion_Load(object sender, EventArgs e)
         {
             listaUbicaciones = new List<ListViewItem>();
+            puede_modif = true;
 
             GeneradorDeFechas generador = new GeneradorDeFechas();
             generador.completarDia(cmbDia);
@@ -220,7 +228,8 @@ namespace PalcoNet.Generar_Publicacion
                 string estado = "";
 
                 gestor.conectar();
-                string query = "SELECT P.descripcion AS descripcionP, P.calle, P.numero, P.codigo_postal, " +
+                string query = 
+                    "SELECT P.descripcion AS descripcionP, P.calle, P.numero, P.codigo_postal, " +
                         "P.localidad, R.descripcion AS descripcionR, E.descripcion AS descripcionE " +
                     "FROM PEAKY_BLINDERS.publicaciones P " +
                         "JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
@@ -241,7 +250,9 @@ namespace PalcoNet.Generar_Publicacion
                 gestor.desconectar();
 
                 gestor.conectar();
-                string query2 = "SELECT fecha_presentacion FROM PEAKY_BLINDERS.presentaciones " +
+                string query2 = 
+                    "SELECT fecha_presentacion " +
+                    "FROM PEAKY_BLINDERS.presentaciones " +
                     "WHERE id_publicacion = '" + publicacionID + "'";
                 gestor.consulta(query2);
                 SqlDataReader lector2 = gestor.obtenerRegistros();
@@ -256,8 +267,27 @@ namespace PalcoNet.Generar_Publicacion
                 gestor.desconectar();
                 lsvFechaHora.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
+                cant_ubicaciones = 0;
+                if (estado != "Finalizada")
+                {
+                    gestor.conectar();
+                    string query3 = 
+                        "SELECT COUNT(id_ubicacion) AS cant_ubicaciones " +
+                        "FROM PEAKY_BLINDERS.ubicaciones " +
+                        "WHERE id_publicacion = '" + publicacionID + "'";
+                    gestor.consulta(query3);
+                    SqlDataReader lector3 = gestor.obtenerRegistros();
+                    if (lector3.Read())
+                    {
+                        cant_ubicaciones = Convert.ToInt32(lector3["cant_ubicaciones"]);
+                    }
+                    gestor.desconectar();
+                }
+
                 if (estado == "Publicada" || estado == "Finalizada")
                 {
+                    puede_modif = false;
+
                     txtDescripcion.Enabled = false;
                     txtCalle.Enabled = false;
                     txtAltura.Enabled = false;
@@ -266,7 +296,7 @@ namespace PalcoNet.Generar_Publicacion
                     cmbRubro.Enabled = false;
 
                     btnAgregarFecha.Enabled = false;
-                    btnDefinirUbicaciones.Enabled = false;
+                    btnDefinirUbicaciones.Text = "VER UBICACIONES";
                     btnPublicar.Enabled = false;
                     btnGuardarBorrador.Enabled = false;
 
@@ -405,7 +435,15 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnDefinirUbicaciones_Click(object sender, EventArgs e)
         {
-            FormUbicaciones formUbicaciones = new FormUbicaciones(this);
+            FormUbicaciones formUbicaciones;
+            if (!modif)
+            {
+                formUbicaciones = new FormUbicaciones(this);
+            }
+            else
+            {
+                formUbicaciones = new FormUbicaciones(this, publicacionID, puede_modif);
+            }
             this.Visible = false;
             formUbicaciones.Show();
         }
