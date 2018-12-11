@@ -20,6 +20,7 @@ namespace PalcoNet.Comprar
         GestorDB gestor = new GestorDB();
         List<string> categorias = new List<string>();
 
+
         public FormFiltrarEspectaculos(int userID, int rolID)
         {
             InitializeComponent();
@@ -64,7 +65,10 @@ namespace PalcoNet.Comprar
                 + "join PEAKY_BLINDERS.publicaciones P on PP.id_publicacion = P.id_publicacion "
                 + "join PEAKY_BLINDERS.estados E on P.id_estado = E.id_estado and E.descripcion = 'Publicada' "
                 + "join PEAKY_BLINDERS.grados G on P.id_grado = G.id_grado "
-                + "where PP.fecha_vencimiento > GETDATE() and P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") "
+                + "where PP.fecha_vencimiento > GETDATE() and "
+                    + "P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") "
+                    // + "PP.fecha_presentacion > " + fechaInicio + " "
+                    // + "PP.fecha_presentacion < " + fechaFin + " "
                 + "order by G.muliplicador desc, PP.fecha_presentacion asc";
             gestor.consulta(query_presentaciones);
             SqlDataReader lector = gestor.obtenerRegistros();
