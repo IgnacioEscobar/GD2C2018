@@ -266,7 +266,7 @@ create table PEAKY_BLINDERS.movimientos_de_puntos (
 -- Premios
 create table PEAKY_BLINDERS.premios (
   id_premio int PRIMARY KEY NOT NULL IDENTITY(1, 1),
-  id_cliente int REFERENCES PEAKY_BLINDERS.cliente (id_cliente),
+  id_cliente int REFERENCES PEAKY_BLINDERS.clientes (id_cliente),
   descripcion nvarchar(100),
   usado bit default 0,
   multiplicador decimal(2,2)
