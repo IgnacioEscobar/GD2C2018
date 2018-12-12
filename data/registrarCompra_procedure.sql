@@ -27,6 +27,10 @@ as
 	insert into PEAKY_BLINDERS.compras (id_cliente, id_medio_de_pago, id_presentacion, id_publicacion, id_ubicacion, monto)
 	values (@id_cliente, @id_medio_de_pago, @id_presentacion, @id_publicacion, @id_ubicacion, @monto_a_cobrar);
 
+  update PEAKY_BLINDERS.premios
+  set usado = 1
+  where P.id_cliente = id_cliente and P.id_premio = @id_premio
+
   -- se suman 50 puntos por compra
 	insert into PEAKY_BLINDERS.movimientos_de_puntos (id_cliente, variacion)
 	values (@id_cliente, 50);
