@@ -63,6 +63,7 @@
             this.btnAsociarTarjeta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.ckbHabilitado = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -340,6 +341,7 @@
             // 
             // txtDepto
             // 
+            this.txtDepto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDepto.Location = new System.Drawing.Point(200, 58);
             this.txtDepto.MaxLength = 1;
             this.txtDepto.Name = "txtDepto";
@@ -422,6 +424,17 @@
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // ckbHabilitado
+            // 
+            this.ckbHabilitado.AutoSize = true;
+            this.ckbHabilitado.Location = new System.Drawing.Point(286, 257);
+            this.ckbHabilitado.Name = "ckbHabilitado";
+            this.ckbHabilitado.Size = new System.Drawing.Size(90, 17);
+            this.ckbHabilitado.TabIndex = 22;
+            this.ckbHabilitado.Text = "HABILITADO";
+            this.ckbHabilitado.UseVisualStyleBackColor = true;
+            this.ckbHabilitado.Visible = false;
+            // 
             // FormRegistroCliente
             // 
             this.AcceptButton = this.btnConfirmar;
@@ -429,6 +442,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(555, 350);
+            this.Controls.Add(this.ckbHabilitado);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAsociarTarjeta);
@@ -447,6 +461,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -487,5 +502,6 @@
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtAltura;
+        private System.Windows.Forms.CheckBox ckbHabilitado;
     }
 }

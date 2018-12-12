@@ -428,18 +428,18 @@ CREATE PROCEDURE PEAKY_BLINDERS.autenticar_usuario
 @id int output
 AS
   BEGIN
-    DECLARE @esperada binary(32);
-	DECLARE @cant_intentos_fallidos tinyint;
+    DECLARE @esperada binary(32)
+	DECLARE @habilitado bit
 	DECLARE @nuevo bit
 
     select top 1
-      @esperada = password_hash, @id = id_usuario, @cant_intentos_fallidos = intentos_fallidos, @nuevo = nuevo
+      @esperada = password_hash, @id = id_usuario, @habilitado = habilitado, @nuevo = nuevo
     from PEAKY_BLINDERS.usuarios
-    where nombre_de_usuario = @usuario and habilitado = 1
+    where nombre_de_usuario = @usuario
 
     IF @esperada IS NOT NULL
       BEGIN
-		IF @cant_intentos_fallidos >= 3
+		IF @habilitado = 0
 			return 5 -- USUARIO INHABILITADO
         IF HASHBYTES ('SHA2_256', @contrasenna) = @esperada
           BEGIN
@@ -455,11 +455,22 @@ AS
         ELSE
           BEGIN
             update PEAKY_BLINDERS.usuarios
-            set intentos_fallidos = @cant_intentos_fallidos + 1
+            set intentos_fallidos += 1
             where nombre_de_usuario = @usuario
 
-			IF @cant_intentos_fallidos + 1 = 3
+			DECLARE @intentos_fallidos tinyint
+			select @intentos_fallidos = intentos_fallidos
+			from PEAKY_BLINDERS.usuarios
+			WHERE nombre_de_usuario = @usuario
+
+			IF @intentos_fallidos = 3
+			  BEGIN
+			    update PEAKY_BLINDERS.usuarios
+				set habilitado = 0
+				where nombre_de_usuario = @usuario
+
 				return 4 -- FALLA NRO 3
+			  END
 			ELSE
 				return 1 -- CONTRASEÑA INVALIDA
           END
@@ -494,6 +505,13 @@ AS
 		password_hash = HASHBYTES('SHA2_256', @contrasenna),
 		nuevo = 0
 	WHERE id_usuario = @id_usuario
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.actualizar_estado_usuario
+@id_usuario int,
+@habilitado bit
+AS
+	UPDATE PEAKY_BLINDERS.usuarios SET habilitado = @habilitado, intentos_fallidos = 0 WHERE id_usuario = @id_usuario
 GO
 
 CREATE PROCEDURE PEAKY_BLINDERS.crear_cliente
@@ -641,6 +659,24 @@ AS
   END
 GO
 
+CREATE FUNCTION PEAKY_BLINDERS.cliente_habilitado (
+@id_cliente int
+) RETURNS int
+AS
+  BEGIN
+	DECLARE @resultado int
+
+	DECLARE @id_usuario int
+	SELECT @id_usuario = ISNULL(id_usuario, -1) FROM PEAKY_BLINDERS.clientes WHERE id_cliente = @id_cliente
+	IF @id_usuario = -1
+		SET @resultado = -1
+	ELSE
+		SELECT @resultado = habilitado FROM PEAKY_BLINDERS.usuarios WHERE id_usuario = @id_usuario
+
+	RETURN @resultado
+  END
+GO
+
 CREATE PROCEDURE PEAKY_BLINDERS.crear_empresa
 @usuario varchar(30),
 @contrasenna varchar(30),
@@ -744,6 +780,24 @@ AS
 	DECLARE @id_usuario int
 	SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.empresas WHERE cuit = @cuit
 	UPDATE PEAKY_BLINDERS.usuarios SET habilitado = 0 WHERE id_usuario = @id_usuario
+  END
+GO
+
+CREATE FUNCTION PEAKY_BLINDERS.empresa_habilitada (
+@id_empresa int
+) RETURNS int
+AS
+  BEGIN
+	DECLARE @resultado int
+
+	DECLARE @id_usuario int
+	SELECT @id_usuario = ISNULL(id_usuario, -1) FROM PEAKY_BLINDERS.empresas WHERE id_empresa = @id_empresa
+	IF @id_usuario = -1
+		SET @resultado = -1
+	ELSE
+		SELECT @resultado = habilitado FROM PEAKY_BLINDERS.usuarios WHERE id_usuario = @id_usuario
+
+	RETURN @resultado
   END
 GO
 

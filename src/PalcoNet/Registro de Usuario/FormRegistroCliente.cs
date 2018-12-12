@@ -179,6 +179,21 @@ namespace PalcoNet.Registro_de_Usuario
                     numeroTarjeta = lector["tarjeta_de_credito_asociada"].ToString();
                 }
                 gestor.desconectar();
+
+                gestor.conectar();
+                gestor.consulta("SELECT PEAKY_BLINDERS.cliente_habilitado(" + clienteID + ") AS esta_habilitado");
+                SqlDataReader lector2 = gestor.obtenerRegistros();
+                if (lector2.Read())
+                {
+                    int resultado = Convert.ToInt32(lector2["esta_habilitado"]);
+
+                    if (resultado != -1) // el cliente tiene usuario generado
+                    {
+                        ckbHabilitado.Visible = true;
+                        ckbHabilitado.Checked = Convert.ToBoolean(resultado);
+                    }
+                }
+                gestor.desconectar();
             }
             else
             {
@@ -310,6 +325,27 @@ namespace PalcoNet.Registro_de_Usuario
                     }
                     else
                     {
+                        if (ckbHabilitado.Visible)
+                        {
+                            int cambioID = -1;
+                            gestor.conectar();
+                            gestor.consulta(
+                                "SELECT id_usuario FROM PEAKY_BLINDERS.clientes WHERE id_cliente = '" + clienteID + "'");
+                            SqlDataReader lector = gestor.obtenerRegistros();
+                            if (lector.Read())
+                            {
+                                cambioID = Convert.ToInt32(lector["id_usuario"]);
+                            }
+                            gestor.desconectar();
+
+                            gestor.conectar();
+                            gestor.generarStoredProcedure("actualizar_estado_usuario");
+                            gestor.parametroPorValor("id_usuario", cambioID);
+                            gestor.parametroPorValor("habilitado", Convert.ToInt32(ckbHabilitado.Checked));
+                            gestor.ejecutarStoredProcedure();
+                            gestor.desconectar();
+                        }
+                        
                         MessageBox.Show("¡Datos actualizados!");
                     }
 

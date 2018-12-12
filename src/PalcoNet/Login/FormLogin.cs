@@ -193,7 +193,7 @@ namespace PalcoNet
                     }
                     else if (result == 5)
                     {
-                        lblError.Text = "Ha realizado 3 intentos fallidos, el usuario se encuentra\ninhabilitado";
+                        lblError.Text = "El usuario se encuentra inhabilitado";
                     }
                     else
                     {

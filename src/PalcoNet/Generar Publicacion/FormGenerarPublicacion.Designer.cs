@@ -238,6 +238,7 @@
             // 
             this.txtLocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLocalidad.Location = new System.Drawing.Point(101, 71);
+            this.txtLocalidad.MaxLength = 60;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(296, 20);
             this.txtLocalidad.TabIndex = 14;

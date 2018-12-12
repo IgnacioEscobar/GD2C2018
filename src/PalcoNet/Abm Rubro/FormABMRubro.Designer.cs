@@ -41,12 +41,13 @@
             this.txtIDPublicacion = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lsvPublicaciones = new System.Windows.Forms.ListView();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(457, 144);
+            this.btnConfirmar.Location = new System.Drawing.Point(454, 156);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(101, 26);
             this.btnConfirmar.TabIndex = 5;
@@ -56,7 +57,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(354, 101);
+            this.label2.Location = new System.Drawing.Point(351, 113);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(147, 13);
             this.label2.TabIndex = 3;
@@ -65,7 +66,7 @@
             // cmbCategoria
             // 
             this.cmbCategoria.FormattingEnabled = true;
-            this.cmbCategoria.Location = new System.Drawing.Point(354, 117);
+            this.cmbCategoria.Location = new System.Drawing.Point(351, 129);
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(204, 21);
             this.cmbCategoria.TabIndex = 4;
@@ -73,7 +74,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 85);
+            this.label1.Location = new System.Drawing.Point(9, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 0;
@@ -82,7 +83,7 @@
             // btnMenuPrincipal
             // 
             this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnMenuPrincipal.Location = new System.Drawing.Point(354, 447);
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(351, 459);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(204, 49);
             this.btnMenuPrincipal.TabIndex = 6;
@@ -98,9 +99,9 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtIDPublicacion);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(15, 13);
+            this.groupBox1.Location = new System.Drawing.Point(12, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(543, 69);
+            this.groupBox1.Size = new System.Drawing.Size(546, 69);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
@@ -109,31 +110,31 @@
             // 
             this.btnBuscar.Location = new System.Drawing.Point(376, 43);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(161, 20);
+            this.btnBuscar.Size = new System.Drawing.Size(164, 20);
             this.btnBuscar.TabIndex = 3;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(209, 43);
+            this.btnLimpiar.Location = new System.Drawing.Point(206, 43);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(161, 20);
+            this.btnLimpiar.Size = new System.Drawing.Size(164, 20);
             this.btnLimpiar.TabIndex = 2;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(278, 17);
+            this.txtDescripcion.Location = new System.Drawing.Point(275, 17);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(276, 20);
+            this.txtDescripcion.Size = new System.Drawing.Size(265, 20);
             this.txtDescripcion.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(206, 20);
+            this.label4.Location = new System.Drawing.Point(203, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 13);
             this.label4.TabIndex = 2;
@@ -159,18 +160,30 @@
             // lsvPublicaciones
             // 
             this.lsvPublicaciones.FullRowSelect = true;
-            this.lsvPublicaciones.Location = new System.Drawing.Point(12, 101);
+            this.lsvPublicaciones.Location = new System.Drawing.Point(9, 113);
             this.lsvPublicaciones.Name = "lsvPublicaciones";
             this.lsvPublicaciones.Size = new System.Drawing.Size(336, 395);
             this.lsvPublicaciones.TabIndex = 7;
             this.lsvPublicaciones.UseCompatibleStateImageBehavior = false;
+            // 
+            // lklCerrarSesion
+            // 
+            this.lklCerrarSesion.AutoSize = true;
+            this.lklCerrarSesion.Location = new System.Drawing.Point(463, 9);
+            this.lklCerrarSesion.Name = "lklCerrarSesion";
+            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
+            this.lklCerrarSesion.TabIndex = 16;
+            this.lklCerrarSesion.TabStop = true;
+            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
             // FormABMRubro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
-            this.ClientSize = new System.Drawing.Size(570, 508);
+            this.ClientSize = new System.Drawing.Size(570, 519);
+            this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.lsvPublicaciones);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnConfirmar);
@@ -205,5 +218,6 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.ListView lsvPublicaciones;
+        private System.Windows.Forms.LinkLabel lklCerrarSesion;
     }
 }

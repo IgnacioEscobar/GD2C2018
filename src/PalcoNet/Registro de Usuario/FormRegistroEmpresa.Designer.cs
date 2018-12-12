@@ -53,6 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.ckbHabilitado = new System.Windows.Forms.CheckBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -167,6 +168,7 @@
             // 
             this.txtLocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLocalidad.Location = new System.Drawing.Point(120, 104);
+            this.txtLocalidad.MaxLength = 60;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);
             this.txtLocalidad.TabIndex = 9;
@@ -304,6 +306,17 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "CUIT";
             // 
+            // ckbHabilitado
+            // 
+            this.ckbHabilitado.AutoSize = true;
+            this.ckbHabilitado.Location = new System.Drawing.Point(286, 119);
+            this.ckbHabilitado.Name = "ckbHabilitado";
+            this.ckbHabilitado.Size = new System.Drawing.Size(90, 17);
+            this.ckbHabilitado.TabIndex = 23;
+            this.ckbHabilitado.Text = "HABILITADO";
+            this.ckbHabilitado.UseVisualStyleBackColor = true;
+            this.ckbHabilitado.Visible = false;
+            // 
             // FormRegistroEmpresa
             // 
             this.AcceptButton = this.btnConfirmar;
@@ -311,6 +324,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(553, 264);
+            this.Controls.Add(this.ckbHabilitado);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox3);
@@ -328,6 +342,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -358,5 +373,6 @@
         private System.Windows.Forms.TextBox txtAltura;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCalle;
+        private System.Windows.Forms.CheckBox ckbHabilitado;
     }
 }

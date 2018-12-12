@@ -38,6 +38,7 @@
             this.lsbRoles = new System.Windows.Forms.ListBox();
             this.btnModificarNombre = new System.Windows.Forms.Button();
             this.btnCrearRol = new System.Windows.Forms.Button();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -127,7 +128,7 @@
             // 
             // btnCrearRol
             // 
-            this.btnCrearRol.Location = new System.Drawing.Point(221, 12);
+            this.btnCrearRol.Location = new System.Drawing.Point(12, 12);
             this.btnCrearRol.Name = "btnCrearRol";
             this.btnCrearRol.Size = new System.Drawing.Size(203, 24);
             this.btnCrearRol.TabIndex = 12;
@@ -135,12 +136,24 @@
             this.btnCrearRol.UseVisualStyleBackColor = true;
             this.btnCrearRol.Click += new System.EventHandler(this.btnCrearRol_Click);
             // 
+            // lklCerrarSesion
+            // 
+            this.lklCerrarSesion.AutoSize = true;
+            this.lklCerrarSesion.Location = new System.Drawing.Point(329, 9);
+            this.lklCerrarSesion.Name = "lklCerrarSesion";
+            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
+            this.lklCerrarSesion.TabIndex = 16;
+            this.lklCerrarSesion.TabStop = true;
+            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
+            // 
             // FormABMRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(436, 338);
+            this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.btnCrearRol);
             this.Controls.Add(this.btnModificarNombre);
             this.Controls.Add(this.lsbRoles);
@@ -173,5 +186,6 @@
         private System.Windows.Forms.ListBox lsbRoles;
         private System.Windows.Forms.Button btnModificarNombre;
         private System.Windows.Forms.Button btnCrearRol;
+        private System.Windows.Forms.LinkLabel lklCerrarSesion;
     }
 }

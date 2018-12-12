@@ -31,6 +31,7 @@
             this.dgvHistorial = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnMenuPrincipal = new System.Windows.Forms.Button();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             this.dgvHistorial.Location = new System.Drawing.Point(12, 41);
             this.dgvHistorial.Name = "dgvHistorial";
             this.dgvHistorial.ReadOnly = true;
-            this.dgvHistorial.Size = new System.Drawing.Size(665, 547);
+            this.dgvHistorial.Size = new System.Drawing.Size(665, 497);
             this.dgvHistorial.TabIndex = 1;
             // 
             // label1
@@ -60,13 +61,24 @@
             // btnMenuPrincipal
             // 
             this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnMenuPrincipal.Location = new System.Drawing.Point(481, 12);
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(421, 544);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
-            this.btnMenuPrincipal.Size = new System.Drawing.Size(197, 23);
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(256, 44);
             this.btnMenuPrincipal.TabIndex = 0;
             this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
             this.btnMenuPrincipal.UseVisualStyleBackColor = true;
             this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
+            // 
+            // lklCerrarSesion
+            // 
+            this.lklCerrarSesion.AutoSize = true;
+            this.lklCerrarSesion.Location = new System.Drawing.Point(582, 9);
+            this.lklCerrarSesion.Name = "lklCerrarSesion";
+            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
+            this.lklCerrarSesion.TabIndex = 16;
+            this.lklCerrarSesion.TabStop = true;
+            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
             // FormHistorialCliente
             // 
@@ -75,6 +87,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(690, 600);
+            this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvHistorial);
@@ -94,5 +107,6 @@
         private System.Windows.Forms.DataGridView dgvHistorial;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMenuPrincipal;
+        private System.Windows.Forms.LinkLabel lklCerrarSesion;
     }
 }

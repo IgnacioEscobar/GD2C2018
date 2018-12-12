@@ -76,6 +76,13 @@ namespace PalcoNet.Abm_Rubro
             formMenuPrincipal.Show();
         }
 
+        private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormLogin formDestino = new FormLogin();
+            this.Hide();
+            formDestino.Show();
+        }
+
         private void txtIDPublicacion_KeyPress(object sender, KeyPressEventArgs e)
         {
             validador.numero(e);
