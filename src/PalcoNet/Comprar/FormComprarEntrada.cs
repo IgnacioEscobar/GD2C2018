@@ -37,7 +37,9 @@ namespace PalcoNet.Comprar
         private void mostrarPremiosDisponibles()
         {
             gestor.conectar();
-            string query_premios = "select P.id_premio, P.descripcion from PEAKY_BLINDERS.premios P where usado = 0 and P.id_cliente = " + this.userID;
+            string query_premios = "select P.id_premio, TP.descripcion from PEAKY_BLINDERS.premios P "
+                + " join PEAKY_BLINDERS.tipos_de_premios TP on TP.id_tipo_de_premio = P.id_tipo_de_premio "
+                + " where P.id_cliente = " + this.userID + " and P.usado = 0";
             gestor.consulta(query_premios);
             SqlDataReader lector = gestor.obtenerRegistros();
             while (lector.Read())

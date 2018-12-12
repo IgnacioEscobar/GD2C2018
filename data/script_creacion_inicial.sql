@@ -263,13 +263,24 @@ create table PEAKY_BLINDERS.movimientos_de_puntos (
   fecha_vencimiento datetime default DATEADD(day, 30, GETDATE())
 )
 
+-- Tipos de premios
+create table PEAKY_BLINDERS.tipos_de_premios (
+  id_tipo_de_premio tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(100),
+  muliplicador decimal(3, 2)
+)
+
+insert into PEAKY_BLINDERS.tipos_de_premios
+values ('Entrada Bonificada', 1),
+  ('Entrada al 50%', 0.5),
+  ('Entrada 25%', 0.75)
+
 -- Premios
 create table PEAKY_BLINDERS.premios (
   id_premio int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_tipo_de_premio tinyint REFERENCES PEAKY_BLINDERS.tipos_de_premios (id_tipo_de_premio),
   id_cliente int REFERENCES PEAKY_BLINDERS.clientes (id_cliente),
-  descripcion nvarchar(100),
-  usado bit default 0,
-  multiplicador decimal(2,2)
+  usado bit default 0
 )
 
 -- Medio de Pago --
