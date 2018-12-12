@@ -10,7 +10,7 @@ if OBJECT_ID('PEAKY_BLINDERS.crear_cliente', 'P') is not null
   drop procedure PEAKY_BLINDERS.crear_cliente;
 if OBJECT_ID('PEAKY_BLINDERS.modificar_cliente', 'P') is not null
   drop procedure PEAKY_BLINDERS.modificar_cliente;
-if OBJECT_ID('PEAKY_BLINDERS.eliminar_cliente', 'P') is not null
+if OBJECT_ID('PEAKY_BLINDERS.baja_cliente', 'P') is not null
   drop procedure PEAKY_BLINDERS.eliminar_cliente;
 if OBJECT_ID('PEAKY_BLINDERS.cliente_habilitado', N'FN') is not null
   drop function PEAKY_BLINDERS.cliente_habilitado;
