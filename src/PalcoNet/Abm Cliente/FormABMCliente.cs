@@ -64,7 +64,7 @@ namespace PalcoNet.Abm_Cliente
             dgvClientes.ColumnCount = 5;
             dgvClientes.ColumnHeadersVisible = true;
             dgvClientes.Columns[0].Name = "ID";
-            //dgvClientes.Columns[0].Visible = false;
+            dgvClientes.Columns[0].Visible = false;
             dgvClientes.Columns[1].Name = "NOMBRE";
             dgvClientes.Columns[2].Name = "APELLIDO";
             dgvClientes.Columns[3].Name = "DOCUMENTO";

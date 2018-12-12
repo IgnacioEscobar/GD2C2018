@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -50,7 +50,7 @@
             // btnMenuPrincipal
             // 
             this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnMenuPrincipal.Location = new System.Drawing.Point(591, 455);
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(661, 455);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(211, 44);
             this.btnMenuPrincipal.TabIndex = 8;
@@ -60,7 +60,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(591, 190);
+            this.btnEliminar.Location = new System.Drawing.Point(661, 190);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(211, 44);
             this.btnEliminar.TabIndex = 7;
@@ -70,7 +70,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(591, 140);
+            this.btnModificar.Location = new System.Drawing.Point(661, 140);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(211, 44);
             this.btnModificar.TabIndex = 6;
@@ -80,7 +80,7 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(591, 90);
+            this.btnAgregar.Location = new System.Drawing.Point(661, 90);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(211, 44);
             this.btnAgregar.TabIndex = 5;
@@ -95,22 +95,23 @@
             this.dgvEmpresas.AllowUserToOrderColumns = true;
             this.dgvEmpresas.AllowUserToResizeRows = false;
             this.dgvEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmpresas.Location = new System.Drawing.Point(12, 90);
             this.dgvEmpresas.MultiSelect = false;
             this.dgvEmpresas.Name = "dgvEmpresas";
             this.dgvEmpresas.ReadOnly = true;
             this.dgvEmpresas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmpresas.Size = new System.Drawing.Size(573, 409);
+            this.dgvEmpresas.Size = new System.Drawing.Size(643, 409);
             this.dgvEmpresas.TabIndex = 9;
+            this.dgvEmpresas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpresas_CellContentClick);
             // 
             // groupBox1
             // 
@@ -124,7 +125,7 @@
             this.groupBox1.Controls.Add(this.txtRazonSocial);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(573, 72);
+            this.groupBox1.Size = new System.Drawing.Size(860, 72);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
@@ -132,7 +133,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(264, 22);
+            this.label3.Location = new System.Drawing.Point(435, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 8;
@@ -140,9 +141,9 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(420, 45);
+            this.btnBuscar.Location = new System.Drawing.Point(649, 45);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(147, 20);
+            this.btnBuscar.Size = new System.Drawing.Size(205, 20);
             this.btnBuscar.TabIndex = 4;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -150,9 +151,9 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(267, 45);
+            this.btnLimpiar.Location = new System.Drawing.Point(438, 45);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(147, 20);
+            this.btnLimpiar.Size = new System.Drawing.Size(205, 20);
             this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -178,10 +179,10 @@
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(299, 19);
+            this.txtMail.Location = new System.Drawing.Point(470, 19);
             this.txtMail.MaxLength = 8;
             this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(268, 20);
+            this.txtMail.Size = new System.Drawing.Size(384, 20);
             this.txtMail.TabIndex = 2;
             // 
             // txtCUIT
@@ -189,7 +190,7 @@
             this.txtCUIT.Location = new System.Drawing.Point(84, 45);
             this.txtCUIT.MaxLength = 11;
             this.txtCUIT.Name = "txtCUIT";
-            this.txtCUIT.Size = new System.Drawing.Size(151, 20);
+            this.txtCUIT.Size = new System.Drawing.Size(297, 20);
             this.txtCUIT.TabIndex = 1;
             this.txtCUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCUIT_KeyPress);
             // 
@@ -197,7 +198,7 @@
             // 
             this.txtRazonSocial.Location = new System.Drawing.Point(84, 19);
             this.txtRazonSocial.Name = "txtRazonSocial";
-            this.txtRazonSocial.Size = new System.Drawing.Size(151, 20);
+            this.txtRazonSocial.Size = new System.Drawing.Size(297, 20);
             this.txtRazonSocial.TabIndex = 0;
             // 
             // FormABMEmpresa
@@ -206,7 +207,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
-            this.ClientSize = new System.Drawing.Size(814, 511);
+            this.ClientSize = new System.Drawing.Size(884, 511);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.btnEliminar);

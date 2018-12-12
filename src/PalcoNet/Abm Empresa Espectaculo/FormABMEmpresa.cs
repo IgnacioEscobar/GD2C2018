@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using PalcoNet.funciones_utiles;
 using PalcoNet.Registro_de_Usuario;
 using PalcoNet.Menu_Principal;
+using PalcoNet.Login;
 
 namespace PalcoNet.Abm_Empresa_Espectaculo
 {
@@ -19,7 +20,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
     {
         int userID;
         int rolID;
-        string query_defecto = "SELECT razon_social, cuit, mail FROM PEAKY_BLINDERS.empresas";
+        string query_defecto = "SELECT id_empresa, razon_social, cuit, mail FROM PEAKY_BLINDERS.empresas";
         ValidadorDeDatos validador;
 
         public FormABMEmpresa(int userID, int rolID)
@@ -37,6 +38,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             {
                 object[] row = new string[]
                 {
+                    lector["id_empresa"].ToString(),
                     lector["razon_social"].ToString(),
                     lector["cuit"].ToString(),
                     lector["mail"].ToString(),
@@ -45,15 +47,27 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             }
         }
 
+        private void agregarButtonColumn(string header)
+        {
+            DataGridViewButtonColumn column = new DataGridViewButtonColumn();
+            column.HeaderText = header;
+            column.Text = "-->";
+            column.UseColumnTextForButtonValue = true;
+            dgvEmpresas.Columns.Add(column);
+        }
+
         // -------------------
 
         private void FormABMEmpresa_Load(object sender, EventArgs e)
         {
-            dgvEmpresas.ColumnCount = 3;
+            dgvEmpresas.ColumnCount = 4;
             dgvEmpresas.ColumnHeadersVisible = true;
-            dgvEmpresas.Columns[0].Name = "RAZON SOCIAL";
-            dgvEmpresas.Columns[1].Name = "CUIT";
-            dgvEmpresas.Columns[2].Name = "MAIL";
+            dgvEmpresas.Columns[0].Name = "ID";
+            dgvEmpresas.Columns[0].Visible = false;
+            dgvEmpresas.Columns[1].Name = "RAZON SOCIAL";
+            dgvEmpresas.Columns[2].Name = "CUIT";
+            dgvEmpresas.Columns[3].Name = "MAIL";
+            agregarButtonColumn("CAMBIAR CONTRASEÑA");
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
@@ -139,15 +153,9 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            string[] param = new string[3];
-            int i = 0;
-            foreach (DataGridViewCell item in dgvEmpresas.CurrentRow.Cells)
-            {
-                param[i] = item.Value.ToString();
-                i++;
-            }
+            string cuit = dgvEmpresas.CurrentRow.Cells[2].Value.ToString();
 
-            string query = "SELECT * FROM PEAKY_BLINDERS.empresas WHERE cuit = '" + param[1] + "'";
+            string query = "SELECT * FROM PEAKY_BLINDERS.empresas WHERE cuit = '" + cuit + "'";
             FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(userID, rolID, query);
             this.Hide();
             formRegistroEmpresa.Show();
@@ -155,14 +163,10 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            string[] datos = new string[3];
-            int i = 0;
-            foreach (DataGridViewCell item in dgvEmpresas.CurrentRow.Cells)
-            {
-                datos[i] = item.Value.ToString();
-                i++;
-            }
-            string mensaje = "¿Confirma que desea eliminar a la empresa " + datos[0] + "?";
+            string razon_social = dgvEmpresas.CurrentRow.Cells[0].Value.ToString();
+            string cuit = dgvEmpresas.CurrentRow.Cells[2].Value.ToString();
+
+            string mensaje = "¿Confirma que desea eliminar a la empresa " + razon_social + "?";
             DialogResult respuesta = MessageBox.Show(this, mensaje, "Eliminar empresa", MessageBoxButtons.YesNo);
 
             if (respuesta == DialogResult.Yes)
@@ -173,13 +177,50 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
                 GestorDB gestor = new GestorDB();
                 gestor.conectar();
                 gestor.generarStoredProcedure("eliminar_empresa");
-                gestor.parametroPorValor("cuit", datos[1]);
+                gestor.parametroPorValor("cuit", cuit);
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
                 /*
                  * FIN TRANSACCION
                  */
                 MessageBox.Show("¡Empresa eliminada exitosamente!");
+            }
+        }
+
+        private void dgvEmpresas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
+            {
+                string razon_social = dgvEmpresas.CurrentRow.Cells[1].Value.ToString();
+                int empresaID = Convert.ToInt32(dgvEmpresas.CurrentRow.Cells[0].Value);
+                int cambioID = 0;
+                bool encontro = false;
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                gestor.consulta(
+                    "SELECT ISNULL(id_usuario, 0) AS id_empresa " +
+                    "FROM PEAKY_BLINDERS.empresas " +
+                    "WHERE id_empresa = '" + empresaID + "'");
+                SqlDataReader lector = gestor.obtenerRegistros();
+                if (lector.Read())
+                {
+                    cambioID = Convert.ToInt32(lector["id_empresa"].ToString());
+                    if (cambioID > 0)
+                    {
+                        encontro = true;
+                    }
+                }
+                gestor.desconectar();
+                if (encontro)
+                {
+                    FormNuevaContrasena formNuevaContrasena = new FormNuevaContrasena(userID, rolID, cambioID, false, true);
+                    this.Hide();
+                    formNuevaContrasena.Show();
+                }
+                else
+                {
+                    MessageBox.Show("La empresa " + razon_social + " no tiene un usuario asociado.", "Alerta");
+                }
             }
         }
 
