@@ -655,7 +655,7 @@ AS
   END
 GO
 
-CREATE PROCEDURE PEAKY_BLINDERS.eliminar_cliente
+CREATE PROCEDURE PEAKY_BLINDERS.baja_cliente
 @id_cliente int
 AS
   BEGIN
@@ -783,7 +783,7 @@ AS
   END
 GO
 
-CREATE PROCEDURE PEAKY_BLINDERS.eliminar_empresa
+CREATE PROCEDURE PEAKY_BLINDERS.baja_empresa
 @id_empresa int
 AS
   BEGIN
