@@ -159,5 +159,17 @@ namespace PalcoNet.Comprar
             this.mostrarPublicaciones(query_actual);
         }
 
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtDescripcion.Text = "";
+            mcrDesde.SetDate(DateTime.Today);
+            mcrHasta.SetDate(DateTime.Today);
+            for (int i = 0; i < clbCategorias.Items.Count; i++)
+            {
+                clbCategorias.SetItemChecked(i, false);
+            }
+            txtDescripcion.Select();
+        }
+
     }
 }
