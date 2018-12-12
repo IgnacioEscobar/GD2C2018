@@ -122,5 +122,10 @@ namespace PalcoNet.Comprar
             this.label1.Text = "Monto: $" + lector[0].ToString();
             gestor.desconectar();
         }
+
+        private void FormComprarEntrada_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
