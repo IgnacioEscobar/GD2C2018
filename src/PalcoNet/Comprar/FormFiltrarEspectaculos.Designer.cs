@@ -28,224 +28,187 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ckbRangoFechas = new System.Windows.Forms.CheckBox();
+            this.mcrHasta = new System.Windows.Forms.MonthCalendar();
+            this.mcrDesde = new System.Windows.Forms.MonthCalendar();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
-            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Espectaculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clbCategorias = new System.Windows.Forms.CheckedListBox();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnMenuPrincipal = new System.Windows.Forms.Button();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
+            this.dgvEspectaculos = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             this.SuspendLayout();
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(10, 19);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(248, 139);
-            this.checkedListBox1.TabIndex = 0;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.checkedListBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 278);
+            this.groupBox1.Controls.Add(this.ckbRangoFechas);
+            this.groupBox1.Controls.Add(this.mcrHasta);
+            this.groupBox1.Controls.Add(this.mcrDesde);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.clbCategorias);
+            this.groupBox1.Controls.Add(this.txtDescripcion);
+            this.groupBox1.Controls.Add(this.btnBuscar);
+            this.groupBox1.Controls.Add(this.btnLimpiar);
+            this.groupBox1.Location = new System.Drawing.Point(526, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(270, 196);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.Size = new System.Drawing.Size(425, 377);
+            this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Categorias";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.groupBox1.Text = "FILTROS DE BÚSQUEDA";
             // 
-            // button1
+            // ckbRangoFechas
             // 
-            this.button1.Location = new System.Drawing.Point(6, 164);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(252, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Aplicar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.ckbRangoFechas.AutoSize = true;
+            this.ckbRangoFechas.Location = new System.Drawing.Point(6, 67);
+            this.ckbRangoFechas.Name = "ckbRangoFechas";
+            this.ckbRangoFechas.Size = new System.Drawing.Size(149, 17);
+            this.ckbRangoFechas.TabIndex = 20;
+            this.ckbRangoFechas.Text = "Filtrar por rango de fechas";
+            this.ckbRangoFechas.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // mcrHasta
             // 
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.monthCalendar2);
-            this.groupBox2.Controls.Add(this.monthCalendar1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(541, 260);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Rango de Fechas";
+            this.mcrHasta.Location = new System.Drawing.Point(222, 90);
+            this.mcrHasta.MaxSelectionCount = 1;
+            this.mcrHasta.Name = "mcrHasta";
+            this.mcrHasta.TabIndex = 19;
             // 
-            // button2
+            // mcrDesde
             // 
-            this.button2.Location = new System.Drawing.Point(10, 222);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(514, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Aplicar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.mcrDesde.Location = new System.Drawing.Point(12, 90);
+            this.mcrDesde.Name = "mcrDesde";
+            this.mcrDesde.TabIndex = 18;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 261);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Categorías";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(273, 24);
+            this.label2.Location = new System.Drawing.Point(7, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Fin";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Descripción";
             // 
-            // label1
+            // clbCategorias
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Inicio";
+            this.clbCategorias.FormattingEnabled = true;
+            this.clbCategorias.Location = new System.Drawing.Point(6, 277);
+            this.clbCategorias.Name = "clbCategorias";
+            this.clbCategorias.Size = new System.Drawing.Size(209, 94);
+            this.clbCategorias.TabIndex = 4;
             // 
-            // monthCalendar2
+            // txtDescripcion
             // 
-            this.monthCalendar2.Location = new System.Drawing.Point(276, 50);
-            this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.TabIndex = 1;
+            this.txtDescripcion.Location = new System.Drawing.Point(6, 36);
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(413, 20);
+            this.txtDescripcion.TabIndex = 1;
             // 
-            // monthCalendar1
+            // btnBuscar
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(10, 50);
-            this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
-            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
+            this.btnBuscar.Location = new System.Drawing.Point(221, 277);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(198, 44);
+            this.btnBuscar.TabIndex = 5;
+            this.btnBuscar.Text = "BUSCAR";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // groupBox3
+            // btnLimpiar
             // 
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Location = new System.Drawing.Point(288, 278);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(265, 104);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Descripción";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            this.btnLimpiar.Location = new System.Drawing.Point(221, 327);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(198, 44);
+            this.btnLimpiar.TabIndex = 6;
+            this.btnLimpiar.Text = "LIMPIAR";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // btnMenuPrincipal
             // 
-            this.textBox1.Location = new System.Drawing.Point(7, 19);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(252, 46);
-            this.textBox1.TabIndex = 2;
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(748, 412);
+            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(197, 42);
+            this.btnMenuPrincipal.TabIndex = 19;
+            this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
+            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
             // 
-            // button3
+            // lklCerrarSesion
             // 
-            this.button3.Location = new System.Drawing.Point(6, 71);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(252, 23);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Aplicar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.lklCerrarSesion.AutoSize = true;
+            this.lklCerrarSesion.Location = new System.Drawing.Point(856, 10);
+            this.lklCerrarSesion.Name = "lklCerrarSesion";
+            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
+            this.lklCerrarSesion.TabIndex = 20;
+            this.lklCerrarSesion.TabStop = true;
+            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             // 
-            // groupBox4
+            // dgvEspectaculos
             // 
-            this.groupBox4.Controls.Add(this.dataGridView1);
-            this.groupBox4.Location = new System.Drawing.Point(12, 480);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(541, 196);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Resultados";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Espectaculo,
-            this.Fecha});
-            this.dataGridView1.Location = new System.Drawing.Point(10, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(514, 171);
-            this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Espectaculo
-            // 
-            this.Espectaculo.HeaderText = "Espectaculo";
-            this.Espectaculo.Name = "Espectaculo";
-            this.Espectaculo.ReadOnly = true;
-            this.Espectaculo.Width = 260;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
-            this.Fecha.Width = 110;
+            this.dgvEspectaculos.AllowUserToAddRows = false;
+            this.dgvEspectaculos.AllowUserToDeleteRows = false;
+            this.dgvEspectaculos.AllowUserToResizeRows = false;
+            this.dgvEspectaculos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEspectaculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEspectaculos.Location = new System.Drawing.Point(12, 29);
+            this.dgvEspectaculos.MultiSelect = false;
+            this.dgvEspectaculos.Name = "dgvEspectaculos";
+            this.dgvEspectaculos.ReadOnly = true;
+            this.dgvEspectaculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEspectaculos.Size = new System.Drawing.Size(508, 425);
+            this.dgvEspectaculos.TabIndex = 21;
             // 
             // FormFiltrarEspectaculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(565, 698);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(963, 467);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnMenuPrincipal);
+            this.Controls.Add(this.lklCerrarSesion);
+            this.Controls.Add(this.dgvEspectaculos);
             this.Name = "FormFiltrarEspectaculos";
             this.Text = "Filtrar Espectaculos";
+            this.Load += new System.EventHandler(this.FormFiltrarEspectaculos_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.MonthCalendar monthCalendar1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox ckbRangoFechas;
+        private System.Windows.Forms.MonthCalendar mcrHasta;
+        private System.Windows.Forms.MonthCalendar mcrDesde;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MonthCalendar monthCalendar2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Espectaculo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fecha;
+        private System.Windows.Forms.CheckedListBox clbCategorias;
+        private System.Windows.Forms.TextBox txtDescripcion;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnMenuPrincipal;
+        private System.Windows.Forms.LinkLabel lklCerrarSesion;
+        private System.Windows.Forms.DataGridView dgvEspectaculos;
+
 
     }
 }
