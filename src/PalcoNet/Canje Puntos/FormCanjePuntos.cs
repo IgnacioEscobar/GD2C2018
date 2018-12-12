@@ -38,6 +38,23 @@ namespace PalcoNet.Canje_Puntos
             {
                 lblPuntosDisponibles.Text = "PUNTOS DISPONIBLES " + lector["puntos"].ToString();
             }
+            gestor.desconectar();
+
+            lsvPremiosDisponibles.View = View.Details;
+            lsvPremiosDisponibles.Columns.Add("DESCRIPCIÓN");
+            lsvPremiosDisponibles.Columns.Add("PUNTOS");
+            lsvPremiosDisponibles.Columns.Add("DESCUENTO");
+
+            gestor.conectar();
+            gestor.consulta("SELECT descripcion, puntos, multiplicador FROM PEAKY_BLINDERS.tipos_de_premio");
+            SqlDataReader lector2 = gestor.obtenerRegistros();
+            while (lector2.Read())
+            {
+                ListViewItem item = new ListViewItem(lector2["descripcion"].ToString());
+                item.SubItems.Add(lector2["puntos"].ToString());
+                item.SubItems.Add((Convert.ToInt32(lector2["multiplicador"]) * 100).ToString());
+                lsvPremiosDisponibles.Items.Add(item);
+            }
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
