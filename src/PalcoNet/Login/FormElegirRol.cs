@@ -17,11 +17,13 @@ namespace PalcoNet.Login
     public partial class FormElegirRol : Form
     {
         int userID;
+        bool cambiar_pass;
 
-        public FormElegirRol(int userID)
+        public FormElegirRol(int userID, bool cambiar_pass)
         {
             InitializeComponent();
             this.userID = userID;
+            this.cambiar_pass = cambiar_pass;
         }
 
         // Metodos auxiliares
@@ -77,9 +79,20 @@ namespace PalcoNet.Login
         {
             if (e.ColumnIndex == 2)
             {
-                FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, Convert.ToInt32(dgvRoles.CurrentRow.Cells[0].Value));
+                int rolID = Convert.ToInt32(dgvRoles.CurrentRow.Cells[0].Value);
+                Form formDestino;
+
+                if (cambiar_pass)
+                {
+                    formDestino = new FormNuevaContrasena(userID, rolID, true);
+                }
+                else
+                {
+                    formDestino = new FormMenuPrincipal(userID, rolID);
+                }
+
                 this.Hide();
-                formMenuPrincipal.Show();
+                formDestino.Show();
             }
         }
 

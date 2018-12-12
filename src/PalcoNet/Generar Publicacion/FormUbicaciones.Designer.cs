@@ -60,6 +60,7 @@
             this.cmbSector.Name = "cmbSector";
             this.cmbSector.Size = new System.Drawing.Size(191, 21);
             this.cmbSector.TabIndex = 0;
+            this.cmbSector.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSector_KeyPress);
             // 
             // btnAgregar
             // 

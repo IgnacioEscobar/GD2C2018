@@ -9,9 +9,21 @@ namespace PalcoNet.funciones_utiles
 {
     class ValidadorDeDatos
     {
-        public void texto(KeyPressEventArgs e)
+        public void texto_espacio(KeyPressEventArgs e)
         {
             if (Char.IsLetter(e.KeyChar) || Char.IsSeparator(e.KeyChar) || Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void texto(KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar) || Char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }

@@ -53,7 +53,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnModificarContrasena = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -61,9 +60,9 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(280, 157);
+            this.btnConfirmar.Location = new System.Drawing.Point(280, 155);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(262, 57);
+            this.btnConfirmar.Size = new System.Drawing.Size(262, 59);
             this.btnConfirmar.TabIndex = 13;
             this.btnConfirmar.Text = "CONFIRMAR";
             this.btnConfirmar.UseVisualStyleBackColor = true;
@@ -131,6 +130,7 @@
             // 
             this.txtCalle.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCalle.Location = new System.Drawing.Point(6, 32);
+            this.txtCalle.MaxLength = 60;
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(188, 20);
             this.txtCalle.TabIndex = 4;
@@ -174,9 +174,11 @@
             // 
             this.txtDepto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDepto.Location = new System.Drawing.Point(200, 58);
+            this.txtDepto.MaxLength = 1;
             this.txtDepto.Name = "txtDepto";
             this.txtDepto.Size = new System.Drawing.Size(56, 20);
             this.txtDepto.TabIndex = 7;
+            this.txtDepto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepto_KeyPress);
             // 
             // label10
             // 
@@ -190,6 +192,7 @@
             // txtPiso
             // 
             this.txtPiso.Location = new System.Drawing.Point(39, 58);
+            this.txtPiso.MaxLength = 3;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(56, 20);
             this.txtPiso.TabIndex = 6;
@@ -238,6 +241,7 @@
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(6, 32);
+            this.txtMail.MaxLength = 60;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(250, 20);
             this.txtMail.TabIndex = 11;
@@ -267,7 +271,7 @@
             // txtCUIT
             // 
             this.txtCUIT.Location = new System.Drawing.Point(6, 71);
-            this.txtCUIT.MaxLength = 11;
+            this.txtCUIT.MaxLength = 12;
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(250, 20);
             this.txtCUIT.TabIndex = 2;
@@ -285,6 +289,7 @@
             // txtRazonSocial
             // 
             this.txtRazonSocial.Location = new System.Drawing.Point(6, 32);
+            this.txtRazonSocial.MaxLength = 60;
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(250, 20);
             this.txtRazonSocial.TabIndex = 1;
@@ -298,17 +303,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "CUIT";
             // 
-            // btnModificarContrasena
-            // 
-            this.btnModificarContrasena.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnModificarContrasena.Location = new System.Drawing.Point(280, 119);
-            this.btnModificarContrasena.Name = "btnModificarContrasena";
-            this.btnModificarContrasena.Size = new System.Drawing.Size(262, 32);
-            this.btnModificarContrasena.TabIndex = 23;
-            this.btnModificarContrasena.Text = "MODIFICAR CONTRASEÑA";
-            this.btnModificarContrasena.UseVisualStyleBackColor = true;
-            this.btnModificarContrasena.Visible = false;
-            // 
             // FormRegistroEmpresa
             // 
             this.AcceptButton = this.btnConfirmar;
@@ -316,7 +310,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(553, 264);
-            this.Controls.Add(this.btnModificarContrasena);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox3);
@@ -364,6 +357,5 @@
         private System.Windows.Forms.TextBox txtAltura;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCalle;
-        private System.Windows.Forms.Button btnModificarContrasena;
     }
 }
