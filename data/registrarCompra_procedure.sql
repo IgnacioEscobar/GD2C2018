@@ -7,6 +7,25 @@ create procedure PEAKY_BLINDERS.registrarCompra
 @monto int
 as
   begin
+  -- registra compra con monto correspondiente, fecha actual y cantidad = 1
+	insert into PEAKY_BLINDERS.compras (id_cliente, id_medio_de_pago, fecha, cantidad, id_presentacion, id_publicacion, id_ubicacion, monto)
+	values (@id_cliente, @id_medio_de_pago, GETDATE(), 1, @id_presentacion, @id_publicacion, @id_ubicacion, @monto);
+
+  -- se suman 50 puntos por compra
+	insert into PEAKY_BLINDERS.movimientos_de_puntos (id_cliente, variacion, fecha, fecha_vencimiento)
+	values (@id_cliente, 50, GETDATE(), DATEADD(day, 15, GETDATE()));
+  end
+go
+
+create procedure PEAKY_BLINDERS.registrarCompraConCanje
+@id_cliente int,
+@id_medio_de_pago tinyint,
+@id_presentacion int,
+@id_publicacion int,
+@id_ubicacion int,
+@monto int
+as
+  begin
 	declare @puntos as int
 	declare @monto_a_cobrar as int
 
