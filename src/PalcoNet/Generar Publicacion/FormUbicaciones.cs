@@ -185,5 +185,11 @@ namespace PalcoNet.Generar_Publicacion
             formGenerarPublicacion.reaparecer(listaUbicaciones);
         }
 
+        private void cmbSector_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorDeDatos validador = new ValidadorDeDatos();
+            validador.texto(e);
+        }
+
     }
 }

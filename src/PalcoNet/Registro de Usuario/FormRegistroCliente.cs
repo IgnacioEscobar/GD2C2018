@@ -312,12 +312,12 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.texto(e);
+            validador.texto_espacio(e);
         }
 
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.texto(e);
+            validador.texto_espacio(e);
         }
 
         private void txtNumeroDoc_KeyPress(object sender, KeyPressEventArgs e)
@@ -366,6 +366,11 @@ namespace PalcoNet.Registro_de_Usuario
         }
 
         private void cmbTipoDoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.texto(e);
+        }
+
+        private void txtDepto_KeyPress(object sender, KeyPressEventArgs e)
         {
             validador.texto(e);
         }

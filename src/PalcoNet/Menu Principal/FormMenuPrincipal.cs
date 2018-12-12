@@ -178,5 +178,12 @@ namespace PalcoNet.Menu_Principal
             formDestino.Show();
         }
 
+        private void btnModificarContrasena_Click(object sender, EventArgs e)
+        {
+            FormNuevaContrasena formNuevaContrasena = new FormNuevaContrasena(userID, rolID, false);
+            this.Hide();
+            formNuevaContrasena.Show();
+        }
+
     }
 }

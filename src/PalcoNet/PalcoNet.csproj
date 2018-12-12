@@ -108,11 +108,11 @@
     <Compile Include="Abm Usuario\FormABMUsuario.Designer.cs">
       <DependentUpon>FormABMUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Usuario\FormMiUsuario.cs">
+    <Compile Include="Abm Usuario\FormNuevaContrasena.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Usuario\FormMiUsuario.Designer.cs">
-      <DependentUpon>FormMiUsuario.cs</DependentUpon>
+    <Compile Include="Abm Usuario\FormNuevaContrasena.Designer.cs">
+      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
     </Compile>
     <Compile Include="Canje Puntos\FormCanjePuntos.cs">
       <SubType>Form</SubType>
@@ -141,6 +141,12 @@
     </Compile>
     <Compile Include="Generar Publicacion\FormUbicaciones.Designer.cs">
       <DependentUpon>FormUbicaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FormNuevaContrasena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormNuevaContrasena.Designer.cs">
+      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu Principal\FormMenuAdministrador.cs">
       <SubType>Form</SubType>
@@ -266,8 +272,8 @@
     <EmbeddedResource Include="Abm Usuario\FormABMUsuario.resx">
       <DependentUpon>FormABMUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Usuario\FormMiUsuario.resx">
-      <DependentUpon>FormMiUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="Abm Usuario\FormNuevaContrasena.resx">
+      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Canje Puntos\FormCanjePuntos.resx">
       <DependentUpon>FormCanjePuntos.cs</DependentUpon>
@@ -304,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FormElegirRol.resx">
       <DependentUpon>FormElegirRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormNuevaContrasena.resx">
+      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu Principal\FormMenuAdministrador.resx">
       <DependentUpon>FormMenuAdministrador.cs</DependentUpon>

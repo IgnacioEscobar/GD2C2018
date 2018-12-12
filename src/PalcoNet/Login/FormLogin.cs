@@ -15,7 +15,6 @@ using PalcoNet.funciones_utiles;
 using PalcoNet.Abm_Cliente;
 using PalcoNet.Abm_Empresa_Espectaculo;
 using PalcoNet.Menu_Principal;
-using PalcoNet.Abm_Usuario;
 
 namespace PalcoNet
 {
@@ -119,14 +118,7 @@ namespace PalcoNet
                     {
                         lblError.Text = "La contraseña es inválida";
                     }
-                    else if (result == 3)
-                    {
-                        int userID = Convert.ToInt32(gestor.obtenerValor("@id"));
-                        FormMiUsuario formMiUsuario = new FormMiUsuario(userID);
-                        this.Hide();
-                        formMiUsuario.Show();
-                    }
-                    else if (result == 2)
+                    else if (result == 2 || result == 3)
                     {
                         int userID = Convert.ToInt32(gestor.obtenerValor("@id"));
 
@@ -161,14 +153,34 @@ namespace PalcoNet
                                 if (lector2.Read())
                                 {
                                     int rolID = Convert.ToInt32(lector2["id_rol"].ToString());
-                                    FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
+                                    Form formDestino;
+                                    
+                                    if (result == 2)
+                                    {
+                                        formDestino = new FormMenuPrincipal(userID, rolID);
+                                    }
+                                    else
+                                    {
+                                        formDestino = new FormNuevaContrasena(userID, rolID, true);
+                                    }
+
                                     this.Hide();
-                                    formMenuPrincipal.Show();
+                                    formDestino.Show();
                                 }
                                 break;
 
                             default:
-                                FormElegirRol formElegirRol = new FormElegirRol(userID);
+                                FormElegirRol formElegirRol;
+
+                                if (result == 2)
+                                {
+                                    formElegirRol = new FormElegirRol(userID, false);
+                                }
+                                else
+                                {
+                                    formElegirRol = new FormElegirRol(userID, true);
+                                }
+                                
                                 this.Hide();
                                 formElegirRol.Show();
                                 break;
