@@ -18,6 +18,8 @@ namespace PalcoNet.Comprar
         int rolID;
         int idPresentacion;
         GestorDB gestor = new GestorDB();
+        List<string> ubicaciones = new List<string>();
+        List<string> ubicacionesSeleccionadas = new List<string>();
 
         public FormComprarEntrada(int userID, int rolID, int idPresentacion)
         {
@@ -53,6 +55,7 @@ namespace PalcoNet.Comprar
         private void renovarUbicaciones(string idTipoDeUbicacion)
         {
             ubicacionesListBox.Items.Clear();
+            this.ubicaciones.Clear();
             gestor.conectar();
             string query_ubicaciones = "select U.id_ubicacion, U.fila, U.asiento, U.precio from PEAKY_BLINDERS.ubicaciones U "
                 + " join PEAKY_BLINDERS.presentaciones PP on PP.id_publicacion = U.id_publicacion"
@@ -63,6 +66,7 @@ namespace PalcoNet.Comprar
             SqlDataReader lector = gestor.obtenerRegistros();
             while (lector.Read())
             {
+                this.ubicaciones.Add(lector["id_ubicacion"].ToString());
                 ubicacionesListBox.Items.Add("Fila " + lector["fila"] + " - Asiento " + lector["asiento"] + " ($" + lector["precio"] + ")" );
             }
             gestor.desconectar();
@@ -99,6 +103,27 @@ namespace PalcoNet.Comprar
             string idTipo = this.idTipoSegunDescripcion(descripcion);
             gestor.desconectar();
             this.renovarUbicaciones(idTipo);
+        }
+
+        private void btnCosto_Click(object sender, EventArgs e)
+        {
+            this.ubicacionesSeleccionadas.Clear();
+            for (int i = 0; i < ubicacionesListBox.Items.Count; i++)
+            {
+                if (ubicacionesListBox.GetItemChecked(i))
+                {
+                    this.ubicacionesSeleccionadas.Add(this.ubicaciones[i]);
+                }
+            }
+
+            gestor.conectar();
+            string query_ubicaciones = "select sum(U.precio) from PEAKY_BLINDERS.ubicaciones U "
+                + " where U.id_ubicacion in (" + String.Join(",", this.ubicacionesSeleccionadas.Select(x => x).ToArray()) + ")";
+            gestor.consulta(query_ubicaciones);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            lector.Read();
+            this.label1.Text = "Monto: $" + lector[0].ToString();
+            gestor.desconectar();
         }
     }
 }
