@@ -45,9 +45,21 @@ namespace PalcoNet.funciones_utiles
             }
         }
 
-        public void alfanumerico(KeyPressEventArgs e)
+        public void alfanumerico_espacio(KeyPressEventArgs e)
         {
             if (Char.IsLetterOrDigit(e.KeyChar) || char.IsSeparator(e.KeyChar) || Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void alfanumerico(KeyPressEventArgs e)
+        {
+            if (Char.IsLetterOrDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }
@@ -89,7 +101,7 @@ namespace PalcoNet.funciones_utiles
         public bool validar_campos_obligatorios(List<string[]> lista, ref string mensaje)
         {
             bool completo = true;
-            mensaje = "Faltaron completar los siguientes campos:";
+            mensaje = "Faltaron completar los siguientes campos obligatorios:";
             foreach (string[] item in lista)
             {
                 if (item[0].Trim() == "")

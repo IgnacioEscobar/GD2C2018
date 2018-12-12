@@ -486,7 +486,7 @@ namespace PalcoNet.Generar_Publicacion
 
         private void txtCalle_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.alfanumerico(e);
+            validador.alfanumerico_espacio(e);
         }
 
         private void txtAltura_KeyPress(object sender, KeyPressEventArgs e)
@@ -501,7 +501,7 @@ namespace PalcoNet.Generar_Publicacion
 
         private void txtLocalidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.alfanumerico(e);
+            validador.alfanumerico_espacio(e);
         }
 
     }

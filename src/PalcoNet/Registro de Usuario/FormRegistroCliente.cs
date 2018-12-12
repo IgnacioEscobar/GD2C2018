@@ -229,6 +229,7 @@ namespace PalcoNet.Registro_de_Usuario
                 bool creacion = false;
                 string usuario = "";
                 string contrasena = "";
+                bool user_autogenerado = true;
 
                 if (!modif)
                 {
@@ -238,21 +239,27 @@ namespace PalcoNet.Registro_de_Usuario
                         if (formNombreDeUsuario.ShowDialog(this) == DialogResult.OK)
                         {
                             usuario = formNombreDeUsuario.getNombreUsuario();
-                        }
-                        else
-                        {
-                            usuario = txtCUIL.Text;
+                            user_autogenerado = false;
                         }
                         formNombreDeUsuario.Dispose();
                     }
-                    else
+                    
+                    if (user_autogenerado)
                     {
-                        usuario = txtCUIL.Text;
+                        gestor.conectar();
+                        gestor.consulta("SELECT ISNULL(MAX(id_usuario), 0) AS id_ultimo FROM PEAKY_BLINDERS.usuarios");
+                        SqlDataReader lector = gestor.obtenerRegistros();
+                        if (lector.Read())
+                        {
+                            usuario = "user" + (Convert.ToInt32(lector["id_ultimo"]) + 1);
+                        }
+                        gestor.desconectar();
                     }
 
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                     contrasena = generadorDeContrasenas.generar(4);
 
+                    gestor.conectar();
                     gestor.generarStoredProcedure("crear_cliente");
                     gestor.parametroPorValor("usuario", usuario);
                     gestor.parametroPorValor("contrasenna", contrasena);
