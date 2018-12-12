@@ -27,7 +27,7 @@ create table PEAKY_BLINDERS.empresas (
   localidad varchar(60), -- estos datos no estan en la tabla maestra
   codigo_postal varchar(4),
   ciudad varchar(60), -- estos datos no estan en la tabla maestra
-  cuit varchar(14)
+  cuit varchar(12)
 );
 
 insert into PEAKY_BLINDERS.empresas (
@@ -212,7 +212,7 @@ create table PEAKY_BLINDERS.clientes (
   apellido varchar(60),
   id_tipo_de_documento tinyint REFERENCES PEAKY_BLINDERS.tipos_de_documento,
   numero_de_documento int,
-  cuil varchar(14),
+  cuil varchar(12),
   mail varchar(60),
   telefono varchar(10),
   calle varchar(60),

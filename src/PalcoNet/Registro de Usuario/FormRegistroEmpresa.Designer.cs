@@ -130,6 +130,7 @@
             // 
             this.txtCalle.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCalle.Location = new System.Drawing.Point(6, 32);
+            this.txtCalle.MaxLength = 60;
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(188, 20);
             this.txtCalle.TabIndex = 4;
@@ -173,9 +174,11 @@
             // 
             this.txtDepto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDepto.Location = new System.Drawing.Point(200, 58);
+            this.txtDepto.MaxLength = 1;
             this.txtDepto.Name = "txtDepto";
             this.txtDepto.Size = new System.Drawing.Size(56, 20);
             this.txtDepto.TabIndex = 7;
+            this.txtDepto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepto_KeyPress);
             // 
             // label10
             // 
@@ -189,6 +192,7 @@
             // txtPiso
             // 
             this.txtPiso.Location = new System.Drawing.Point(39, 58);
+            this.txtPiso.MaxLength = 3;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(56, 20);
             this.txtPiso.TabIndex = 6;
@@ -237,6 +241,7 @@
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(6, 32);
+            this.txtMail.MaxLength = 60;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(250, 20);
             this.txtMail.TabIndex = 11;
@@ -266,7 +271,7 @@
             // txtCUIT
             // 
             this.txtCUIT.Location = new System.Drawing.Point(6, 71);
-            this.txtCUIT.MaxLength = 11;
+            this.txtCUIT.MaxLength = 12;
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(250, 20);
             this.txtCUIT.TabIndex = 2;
@@ -284,6 +289,7 @@
             // txtRazonSocial
             // 
             this.txtRazonSocial.Location = new System.Drawing.Point(6, 32);
+            this.txtRazonSocial.MaxLength = 60;
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(250, 20);
             this.txtRazonSocial.TabIndex = 1;

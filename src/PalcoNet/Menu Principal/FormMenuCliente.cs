@@ -59,9 +59,11 @@ namespace PalcoNet.Menu_Principal
 
         private void btnConfiguración_Click(object sender, EventArgs e)
         {
+            /*
             FormNuevaContrasena formMiUsuario = new FormNuevaContrasena(userID, true, false);
             this.Hide();
             formMiUsuario.Show();
+             */
         }
 
         private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

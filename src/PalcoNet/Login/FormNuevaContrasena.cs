@@ -11,6 +11,8 @@ using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Menu_Principal;
+using PalcoNet.Abm_Cliente;
+using PalcoNet.Abm_Empresa_Espectaculo;
 
 namespace PalcoNet.Login
 {
@@ -18,15 +20,17 @@ namespace PalcoNet.Login
     {
         int userID; // user que realiza el cambio
         int rolID; // rol de este user
+        bool desde_login; // para saber si es el cambio por ingresar la primera vez o no
         int cambioID; // user que se va a cambiar
         bool cliente;
         bool empresa;
 
-        public FormNuevaContrasena(int userID, int rolID)
+        public FormNuevaContrasena(int userID, int rolID, bool desde_login)
         {
             InitializeComponent();
             this.userID = userID;
             this.rolID = rolID;
+            this.desde_login = desde_login;
             this.cambioID = userID;
             this.cliente = false;
             this.empresa = false;
@@ -44,31 +48,24 @@ namespace PalcoNet.Login
 
         // Metodos auxiliares
 
-        private void avanzarDeForm(bool loginCargado)
+        private void avanzarDeForm(bool hubo_cambio)
         {
             Form formDestino;
             if (cliente)
             {
-                formDestino = new FormMenuCliente(userID);
+                formDestino = new FormABMCliente(userID, rolID);
             }
             else if (empresa)
             {
-                formDestino = new FormMenuEmpresa(userID);
+                formDestino = new FormABMCliente(userID, rolID);
             }
-            else if (login)
+            else if ((desde_login & hubo_cambio) || !desde_login)
             {
-                if (loginCargado)
-                {
-                    formDestino = new FormLogin(userID);
-                }
-                else
-                {
-                    formDestino = new FormLogin();
-                }
+                formDestino = new FormMenuPrincipal(userID, rolID);
             }
             else
             {
-                formDestino = new FormABMUsuario(adminID);
+                formDestino = new FormLogin();
             }
             this.Hide();
             formDestino.Show();
@@ -80,7 +77,7 @@ namespace PalcoNet.Login
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query = "SELECT nombre_de_usuario FROM PEAKY_BLINDERS.usuarios WHERE id_usuario = '" + userID + "'";
+            string query = "SELECT nombre_de_usuario FROM PEAKY_BLINDERS.usuarios WHERE id_usuario = '" + cambioID + "'";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
             if (lector.Read())
@@ -113,7 +110,7 @@ namespace PalcoNet.Login
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query = "SELECT PEAKY_BLINDERS.verificar_contrasenna (" + userID + ", '" + txtPassActual.Text + "') AS passok";
+            string query = "SELECT PEAKY_BLINDERS.verificar_contrasenna (" + cambioID + ", '" + txtPassActual.Text + "') AS passok";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
             bool passok = false;
@@ -132,7 +129,7 @@ namespace PalcoNet.Login
             else
             {
                 gestor.generarStoredProcedure("actualizar_contrasenna");
-                gestor.parametroPorValor("id_usuario", userID);
+                gestor.parametroPorValor("id_usuario", cambioID);
                 gestor.parametroPorValor("contrasenna", txtPassNueva.Text);
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();

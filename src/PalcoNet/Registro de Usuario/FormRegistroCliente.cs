@@ -370,5 +370,10 @@ namespace PalcoNet.Registro_de_Usuario
             validador.texto(e);
         }
 
+        private void txtDepto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.texto(e);
+        }
+
     }
 }

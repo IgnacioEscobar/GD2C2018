@@ -80,6 +80,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(6, 32);
+            this.txtNombre.MaxLength = 60;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(250, 20);
             this.txtNombre.TabIndex = 1;
@@ -88,6 +89,7 @@
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(6, 72);
+            this.txtApellido.MaxLength = 60;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(250, 20);
             this.txtApellido.TabIndex = 2;
@@ -115,6 +117,7 @@
             // 
             this.cmbTipoDoc.FormattingEnabled = true;
             this.cmbTipoDoc.Location = new System.Drawing.Point(6, 113);
+            this.cmbTipoDoc.MaxLength = 10;
             this.cmbTipoDoc.Name = "cmbTipoDoc";
             this.cmbTipoDoc.Size = new System.Drawing.Size(90, 21);
             this.cmbTipoDoc.TabIndex = 3;
@@ -165,6 +168,7 @@
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(6, 32);
+            this.txtMail.MaxLength = 60;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(250, 20);
             this.txtMail.TabIndex = 17;
@@ -231,7 +235,7 @@
             // txtCUIL
             // 
             this.txtCUIL.Location = new System.Drawing.Point(6, 153);
-            this.txtCUIL.MaxLength = 11;
+            this.txtCUIL.MaxLength = 12;
             this.txtCUIL.Name = "txtCUIL";
             this.txtCUIL.Size = new System.Drawing.Size(250, 20);
             this.txtCUIL.TabIndex = 5;
@@ -328,6 +332,7 @@
             // 
             this.txtLocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLocalidad.Location = new System.Drawing.Point(120, 104);
+            this.txtLocalidad.MaxLength = 60;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);
             this.txtLocalidad.TabIndex = 15;
@@ -335,9 +340,11 @@
             // txtDepto
             // 
             this.txtDepto.Location = new System.Drawing.Point(200, 58);
+            this.txtDepto.MaxLength = 1;
             this.txtDepto.Name = "txtDepto";
             this.txtDepto.Size = new System.Drawing.Size(56, 20);
             this.txtDepto.TabIndex = 13;
+            this.txtDepto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepto_KeyPress);
             // 
             // label10
             // 
@@ -368,6 +375,7 @@
             // txtPiso
             // 
             this.txtPiso.Location = new System.Drawing.Point(39, 58);
+            this.txtPiso.MaxLength = 3;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(56, 20);
             this.txtPiso.TabIndex = 12;
