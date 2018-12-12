@@ -51,7 +51,7 @@
             btnCosto.Name = "btnCosto";
             btnCosto.Size = new System.Drawing.Size(359, 23);
             btnCosto.TabIndex = 20;
-            btnCosto.Text = "Calcular Costo";
+            btnCosto.Text = "Calcular Costo - Confirmar Ubicaciones";
             btnCosto.UseVisualStyleBackColor = true;
             btnCosto.Click += new System.EventHandler(this.btnCosto_Click);
             // 
