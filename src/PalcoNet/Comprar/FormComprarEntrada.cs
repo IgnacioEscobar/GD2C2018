@@ -112,7 +112,7 @@ namespace PalcoNet.Comprar
                     this.ubicacionesSeleccionadas.Add(this.ubicaciones[i]);
                 }
             }
-            // Acá habría que tener en cuenta si tiene o no mas de 1000 puntos...
+            
             gestor.conectar();
             string query_ubicaciones = "select sum(U.precio) from PEAKY_BLINDERS.ubicaciones U "
                 + " where U.id_ubicacion in (" + String.Join(",", this.ubicacionesSeleccionadas.Select(x => x).ToArray()) + ")";

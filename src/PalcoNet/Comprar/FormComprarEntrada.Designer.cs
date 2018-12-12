@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Button btnCosto;
+            System.Windows.Forms.Button btnPremio;
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,12 +38,28 @@
             this.btnPagar = new System.Windows.Forms.Button();
             this.comboTipo = new System.Windows.Forms.ComboBox();
             this.lblUbicacion = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboPremios = new System.Windows.Forms.ComboBox();
             btnCosto = new System.Windows.Forms.Button();
+            btnPremio = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnCosto
+            // 
+            btnCosto.Location = new System.Drawing.Point(12, 273);
+            btnCosto.Name = "btnCosto";
+            btnCosto.Size = new System.Drawing.Size(359, 23);
+            btnCosto.TabIndex = 20;
+            btnCosto.Text = "Calcular Costo";
+            btnCosto.UseVisualStyleBackColor = true;
+            btnCosto.Click += new System.EventHandler(this.btnCosto_Click);
+            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboPremios);
+            this.groupBox1.Controls.Add(btnPremio);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(btnCosto);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label2);
@@ -53,7 +70,7 @@
             this.groupBox1.Controls.Add(this.lblUbicacion);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(382, 511);
+            this.groupBox1.Size = new System.Drawing.Size(382, 481);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Comprar Entrada";
@@ -83,7 +100,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 430);
+            this.label1.Location = new System.Drawing.Point(8, 390);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 24);
             this.label1.TabIndex = 17;
@@ -94,12 +111,12 @@
             this.ubicacionesListBox.FormattingEnabled = true;
             this.ubicacionesListBox.Location = new System.Drawing.Point(12, 128);
             this.ubicacionesListBox.Name = "ubicacionesListBox";
-            this.ubicacionesListBox.Size = new System.Drawing.Size(359, 259);
+            this.ubicacionesListBox.Size = new System.Drawing.Size(359, 139);
             this.ubicacionesListBox.TabIndex = 16;
             // 
             // btnPagar
             // 
-            this.btnPagar.Location = new System.Drawing.Point(12, 457);
+            this.btnPagar.Location = new System.Drawing.Point(12, 424);
             this.btnPagar.Name = "btnPagar";
             this.btnPagar.Size = new System.Drawing.Size(359, 44);
             this.btnPagar.TabIndex = 11;
@@ -124,21 +141,38 @@
             this.lblUbicacion.TabIndex = 5;
             this.lblUbicacion.Text = "Tipo de Ubicacion";
             // 
-            // btnCosto
+            // label3
             // 
-            btnCosto.Location = new System.Drawing.Point(12, 393);
-            btnCosto.Name = "btnCosto";
-            btnCosto.Size = new System.Drawing.Size(359, 23);
-            btnCosto.TabIndex = 20;
-            btnCosto.Text = "Calcular Costo";
-            btnCosto.UseVisualStyleBackColor = true;
-            btnCosto.Click += new System.EventHandler(this.btnCosto_Click);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 310);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 17);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Premios";
+            // 
+            // btnPremio
+            // 
+            btnPremio.Location = new System.Drawing.Point(12, 357);
+            btnPremio.Name = "btnPremio";
+            btnPremio.Size = new System.Drawing.Size(359, 23);
+            btnPremio.TabIndex = 22;
+            btnPremio.Text = "Confirmar premio a usar";
+            btnPremio.UseVisualStyleBackColor = true;
+            // 
+            // comboPremios
+            // 
+            this.comboPremios.FormattingEnabled = true;
+            this.comboPremios.Location = new System.Drawing.Point(12, 330);
+            this.comboPremios.Name = "comboPremios";
+            this.comboPremios.Size = new System.Drawing.Size(359, 21);
+            this.comboPremios.TabIndex = 23;
             // 
             // FormComprarEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 529);
+            this.ClientSize = new System.Drawing.Size(406, 503);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormComprarEntrada";
             this.Text = "PalcoNet";
@@ -158,5 +192,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox ubicacionesListBox;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboPremios;
+        private System.Windows.Forms.Label label3;
     }
 }
