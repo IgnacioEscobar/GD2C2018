@@ -29,9 +29,6 @@ namespace PalcoNet.Comprar
             this.idPresentacion = idPresentacion;
 
             this.mostrarTiposDeUbicacion(idPresentacion);
-            // Para cada asiento tildado tenemos que hacer lo siguiente
-            // insert into PEAKY_BLINDERS.compras (id_cliente, id_medio_de_pago, id_presentacion, id_publicacion, id_ubicacion, monto)
-            // values (userId, /*supongo que 2 (? por tarjeta...*/, idPresentacion, idPublicacion /* esto se puede sacar de la  presentacion o del asiento*/, idUbicacion /* tildada */, monto)
         }
 
         private void mostrarTiposDeUbicacion(int idPresentacion)
@@ -115,7 +112,7 @@ namespace PalcoNet.Comprar
                     this.ubicacionesSeleccionadas.Add(this.ubicaciones[i]);
                 }
             }
-
+            // Acá habría que tener en cuenta si tiene o no mas de 1000 puntos...
             gestor.conectar();
             string query_ubicaciones = "select sum(U.precio) from PEAKY_BLINDERS.ubicaciones U "
                 + " where U.id_ubicacion in (" + String.Join(",", this.ubicacionesSeleccionadas.Select(x => x).ToArray()) + ")";

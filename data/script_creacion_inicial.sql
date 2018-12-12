@@ -259,7 +259,8 @@ create table PEAKY_BLINDERS.movimientos_de_puntos (
   id_movimiento int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_cliente int REFERENCES PEAKY_BLINDERS.clientes (id_cliente),
   variacion int,
-  fecha datetime
+  fecha datetime,
+  fecha_vencimiento datetime
 )
 
 -- Medio de Pago --
