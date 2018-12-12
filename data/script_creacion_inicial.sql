@@ -27,7 +27,8 @@ create table PEAKY_BLINDERS.empresas (
   localidad varchar(60), -- estos datos no estan en la tabla maestra
   codigo_postal varchar(4),
   ciudad varchar(60), -- estos datos no estan en la tabla maestra
-  cuit varchar(12)
+  cuit varchar(12),
+  activo bit
 );
 
 insert into PEAKY_BLINDERS.empresas (
@@ -38,7 +39,8 @@ insert into PEAKY_BLINDERS.empresas (
   piso,
   depto,
   codigo_postal,
-  cuit
+  cuit,
+  activo
 )
 select distinct
   Espec_Empresa_Razon_Social,
@@ -48,7 +50,8 @@ select distinct
   Espec_Empresa_Piso,
   Espec_Empresa_Depto,
   Espec_Empresa_Cod_Postal,
-  (select replace(Espec_Empresa_Cuit, '-', ''))
+  (select replace(Espec_Empresa_Cuit, '-', '')),
+  1
 from gd_esquema.Maestra;
 
 -- Estados --
@@ -223,7 +226,8 @@ create table PEAKY_BLINDERS.clientes (
   codigo_postal varchar(4),
   fecha_nacimiento datetime,
   fecha_creacion datetime,
-  tarjeta_de_credito_asociada varchar(16)
+  tarjeta_de_credito_asociada varchar(16),
+  activo bit
 );
 
 insert into PEAKY_BLINDERS.clientes (
@@ -237,7 +241,8 @@ insert into PEAKY_BLINDERS.clientes (
   piso,
   depto,
   codigo_postal,
-  fecha_nacimiento
+  fecha_nacimiento,
+  activo
 )
 select distinct
   Cli_Nombre,
@@ -250,7 +255,8 @@ select distinct
   Cli_Piso,
   Cli_Depto,
   Cli_Cod_Postal,
-  Cli_Fecha_Nac
+  Cli_Fecha_Nac,
+  1
 from gd_esquema.Maestra
 where Cli_Dni is not null;
 
@@ -650,12 +656,16 @@ AS
 GO
 
 CREATE PROCEDURE PEAKY_BLINDERS.eliminar_cliente
-@numero_de_documento int
+@id_cliente int
 AS
   BEGIN
 	DECLARE @id_usuario int
-	SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.clientes WHERE numero_de_documento = @numero_de_documento
-	UPDATE PEAKY_BLINDERS.usuarios SET habilitado = 0 WHERE id_usuario = @id_usuario
+	SELECT @id_usuario = ISNULL(id_usuario, -1) FROM PEAKY_BLINDERS.clientes WHERE id_cliente = @id_cliente
+	IF @id_usuario = -1
+		RETURN 0
+	ELSE
+		UPDATE PEAKY_BLINDERS.usuarios SET habilitado = 0 WHERE id_usuario = @id_usuario
+		RETURN 1
   END
 GO
 
@@ -774,12 +784,16 @@ AS
 GO
 
 CREATE PROCEDURE PEAKY_BLINDERS.eliminar_empresa
-@cuit varchar(14)
+@id_empresa int
 AS
   BEGIN
 	DECLARE @id_usuario int
-	SELECT @id_usuario = id_usuario FROM PEAKY_BLINDERS.empresas WHERE cuit = @cuit
-	UPDATE PEAKY_BLINDERS.usuarios SET habilitado = 0 WHERE id_usuario = @id_usuario
+	SELECT @id_usuario = ISNULL(id_usuario, -1) FROM PEAKY_BLINDERS.empresas WHERE id_empresa = @id_empresa
+	IF @id_usuario = -1
+		RETURN 0
+	ELSE
+		UPDATE PEAKY_BLINDERS.usuarios SET habilitado = 0 WHERE id_usuario = @id_usuario
+		RETURN 1
   END
 GO
 

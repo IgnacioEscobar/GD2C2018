@@ -20,7 +20,10 @@ namespace PalcoNet.Abm_Cliente
     {
         int userID;
         int rolID;
-        string query_defecto = "SELECT id_cliente, nombre, apellido, numero_de_documento, mail FROM PEAKY_BLINDERS.clientes";
+        string query_defecto = "SELECT id_cliente, nombre, apellido, numero_de_documento, mail, " +
+            "ISNULL(habilitado, 0) AS habilitado FROM PEAKY_BLINDERS.clientes C " +
+            "LEFT JOIN PEAKY_BLINDERS.usuarios U ON C.id_usuario = U.id_usuario ";
+        string query_actual;
         ValidadorDeDatos validador;
 
         public FormABMCliente(int userID, int rolID)
@@ -36,16 +39,24 @@ namespace PalcoNet.Abm_Cliente
         {
             while (lector.Read())
             {
-                object[] row = new string[]
+                object[] row = new object[]
                 {
                     lector["id_cliente"].ToString(),
                     lector["nombre"].ToString(),
                     lector["apellido"].ToString(),
                     lector["numero_de_documento"].ToString(),
-                    lector["mail"].ToString()
+                    lector["mail"].ToString(),
+                    Convert.ToBoolean(lector["habilitado"])
                 };
                 dgvClientes.Rows.Add(row);
             }
+        }
+
+        private void agregarCheckBoxColumn(string header)
+        {
+            DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
+            column.HeaderText = header;
+            dgvClientes.Columns.Add(column);
         }
 
         private void agregarButtonColumn(string header)
@@ -69,6 +80,7 @@ namespace PalcoNet.Abm_Cliente
             dgvClientes.Columns[2].Name = "APELLIDO";
             dgvClientes.Columns[3].Name = "DOCUMENTO";
             dgvClientes.Columns[4].Name = "MAIL";
+            agregarCheckBoxColumn("HABILITADO");
             agregarButtonColumn("CAMBIAR CONTRASEÑA");
 
             GestorDB gestor = new GestorDB();
@@ -76,6 +88,8 @@ namespace PalcoNet.Abm_Cliente
             gestor.consulta(query_defecto);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            query_actual = query_defecto;
 
             dgvClientes.AutoResizeColumns();
             validador = new ValidadorDeDatos();
@@ -142,6 +156,8 @@ namespace PalcoNet.Abm_Cliente
             gestor.consulta(query);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            query_actual = query;
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -162,41 +178,56 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            string nro_documento = dgvClientes.CurrentRow.Cells[3].Value.ToString();
+            string clienteID = dgvClientes.CurrentRow.Cells[0].Value.ToString();
 
             string query = "SELECT * FROM PEAKY_BLINDERS.clientes C "
                            + "LEFT JOIN PEAKY_BLINDERS.tipos_de_documento T "
                                 + "ON C.id_tipo_de_documento = T.id_tipo_de_documento "
-                           + "WHERE C.numero_de_documento = '" + nro_documento + "'";
+                           + "WHERE C.id_cliente = '" + clienteID + "'";
             FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, rolID, query);
             this.Hide();
             formRegistroCliente.Show();
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnDarBaja_Click(object sender, EventArgs e)
         {
+            string clienteID = dgvClientes.CurrentRow.Cells[0].Value.ToString();
             string nombre = dgvClientes.CurrentRow.Cells[1].Value.ToString();
             string apellido = dgvClientes.CurrentRow.Cells[2].Value.ToString();
-            string nro_documento = dgvClientes.CurrentRow.Cells[3].Value.ToString();
+            bool habilitado = Convert.ToBoolean(dgvClientes.CurrentRow.Cells[5].Value);
 
-            string mensaje = "¿Confirma que desea eliminar al cliente " + nombre + " " + apellido + "?";
-            DialogResult  respuesta = MessageBox.Show(this, mensaje, "Eliminar cliente", MessageBoxButtons.YesNo);
-
-            if (respuesta == DialogResult.Yes)
+            if (!habilitado)
             {
-                /*
-                 * INICIO TRANSACCION
-                 */
-                GestorDB gestor = new GestorDB();
-                gestor.conectar();
-                gestor.generarStoredProcedure("eliminar_cliente");
-                gestor.parametroPorValor("numero_de_documento", nro_documento);
-                gestor.ejecutarStoredProcedure();
-                gestor.desconectar();
-                /*
-                 * FIN TRANSACCION
-                 */
-                MessageBox.Show("¡Cliente eliminado exitosamente!");
+                MessageBox.Show("El cliente " + nombre + " " + apellido + " ya está dado de baja.", "Alerta");
+            }
+            else
+            {
+                string mensaje = "¿Confirma que desea eliminar al cliente " + nombre + " " + apellido + "?";
+                DialogResult respuesta = MessageBox.Show(this, mensaje, "Eliminar cliente", MessageBoxButtons.YesNo);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    GestorDB gestor = new GestorDB();
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("baja_cliente");
+                    gestor.parametroPorValor("id_cliente", clienteID);
+                    int resultado = gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+
+                    if (resultado == 0)
+                    {
+                        MessageBox.Show("El cliente no tiene un usuario asignado por lo que ya está dado de baja.", "Alerta");
+                    }
+                    else
+                    {
+                        MessageBox.Show("¡Cliente eliminado exitosamente!");
+                        dgvClientes.Rows.Clear();
+                        gestor.conectar();
+                        gestor.consulta(query_actual);
+                        this.mostrarRegistros(gestor.obtenerRegistros());
+                        gestor.desconectar();
+                    }
+                }
             }
         }
 
