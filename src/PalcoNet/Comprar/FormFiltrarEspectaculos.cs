@@ -87,7 +87,7 @@ namespace PalcoNet.Comprar
             dgvEspectaculos.Columns[0].Visible = false;
             dgvEspectaculos.Columns[1].Name = "DESCRIPCIÓN";
             dgvEspectaculos.Columns[2].Name = "FECHA_PRESENTACION";
-            agregarButtonColumn("COMPRAR");
+            agregarButtonColumn("SELECCIONAR");
 
             gestor.conectar();
             string query_categorias = "SELECT id_rubro, descripcion FROM PEAKY_BLINDERS.rubros";
