@@ -21,7 +21,7 @@ namespace PalcoNet.Comprar
         List<string> ubicaciones = new List<string>();
         List<string> ubicacionesSeleccionadas = new List<string>();
         List<string> premios = new List<string>();
-        string premioSeleccionado;
+        string premioSeleccionado = "-1";
 
         public FormComprarEntrada(int userID, int rolID, int idPresentacion)
         {
@@ -150,6 +150,36 @@ namespace PalcoNet.Comprar
         private void btnPremio_Click(object sender, EventArgs e)
         {
             this.premioSeleccionado = premios[this.comboPremios.SelectedIndex];
+        }
+
+        private void btnPagar_Click(object sender, EventArgs e)
+        {
+            gestor.conectar();
+            string query_ubicaciones = "select id_publicacion from PEAKY_BLINDERS.ubicaciones where id_ubicacion = " + ubicacionesSeleccionadas[0];
+            gestor.consulta(query_ubicaciones);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            lector.Read();
+            string id_publicacion = lector["id_publicacion"].ToString();
+            gestor.desconectar();
+            // @id_cliente int,
+            // @id_medio_de_pago tinyint,
+            // @id_presentacion int,
+            // @id_publicacion int,
+            // @id_ubicacion int,
+            // @id_premio int
+            for (int i = 0; i < ubicacionesSeleccionadas.Count; i++)
+            {
+                gestor.conectar();
+                gestor.generarStoredProcedure("registrarCompra");
+                gestor.parametroPorValor("id_cliente", this.userID);
+                gestor.parametroPorValor("id_medio_de_pago", 1);
+                gestor.parametroPorValor("id_presentacion", this.idPresentacion);
+                gestor.parametroPorValor("id_publicacion", id_publicacion);
+                gestor.parametroPorValor("id_ubicacion", ubicacionesSeleccionadas[i]);
+                gestor.parametroPorValor("id_premio", this.premioSeleccionado);
+                gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
+            }
         }
     }
 }

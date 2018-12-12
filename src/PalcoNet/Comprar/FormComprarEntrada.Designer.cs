@@ -150,6 +150,7 @@
             this.btnPagar.TabIndex = 11;
             this.btnPagar.Text = "PROCEDER AL PAGO";
             this.btnPagar.UseVisualStyleBackColor = true;
+            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
             // 
             // comboTipo
             // 
