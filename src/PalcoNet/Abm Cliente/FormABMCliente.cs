@@ -204,12 +204,12 @@ namespace PalcoNet.Abm_Cliente
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.texto(e);
+            validador.texto_espacio(e);
         }
 
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.texto(e);
+            validador.texto_espacio(e);
         }
 
         private void txtDocumento_KeyPress(object sender, KeyPressEventArgs e)

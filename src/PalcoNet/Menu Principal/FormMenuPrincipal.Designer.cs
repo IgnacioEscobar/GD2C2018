@@ -80,6 +80,7 @@
             this.btnModificarContrasena.TabIndex = 16;
             this.btnModificarContrasena.Text = "MODIFICAR CONTRASEÑA";
             this.btnModificarContrasena.UseVisualStyleBackColor = true;
+            this.btnModificarContrasena.Click += new System.EventHandler(this.btnModificarContrasena_Click);
             // 
             // FormMenuPrincipal
             // 
