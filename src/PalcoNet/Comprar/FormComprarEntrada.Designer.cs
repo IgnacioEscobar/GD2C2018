@@ -41,6 +41,16 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // btnCosto
+            // 
+            btnCosto.Location = new System.Drawing.Point(12, 393);
+            btnCosto.Name = "btnCosto";
+            btnCosto.Size = new System.Drawing.Size(359, 23);
+            btnCosto.TabIndex = 20;
+            btnCosto.Text = "Calcular Costo";
+            btnCosto.UseVisualStyleBackColor = true;
+            btnCosto.Click += new System.EventHandler(this.btnCosto_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(btnCosto);
@@ -124,16 +134,6 @@
             this.lblUbicacion.TabIndex = 5;
             this.lblUbicacion.Text = "Tipo de Ubicacion";
             // 
-            // btnCosto
-            // 
-            btnCosto.Location = new System.Drawing.Point(12, 393);
-            btnCosto.Name = "btnCosto";
-            btnCosto.Size = new System.Drawing.Size(359, 23);
-            btnCosto.TabIndex = 20;
-            btnCosto.Text = "Calcular Costo";
-            btnCosto.UseVisualStyleBackColor = true;
-            btnCosto.Click += new System.EventHandler(this.btnCosto_Click);
-            // 
             // FormComprarEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,6 +142,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FormComprarEntrada";
             this.Text = "PalcoNet";
+            this.Load += new System.EventHandler(this.FormComprarEntrada_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

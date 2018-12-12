@@ -174,6 +174,7 @@
             this.dgvEspectaculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEspectaculos.Size = new System.Drawing.Size(508, 425);
             this.dgvEspectaculos.TabIndex = 21;
+            this.dgvEspectaculos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEspectaculos_CellContentClick);
             // 
             // FormFiltrarEspectaculos
             // 

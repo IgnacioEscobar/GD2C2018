@@ -19,7 +19,7 @@ namespace PalcoNet.Comprar
 
         int userID;
         int rolID;
-        string query_defecto = "select P.descripcion, PP.fecha_presentacion from PEAKY_BLINDERS.presentaciones PP "
+        string query_defecto = "select PP.id_presentacion, P.descripcion, PP.fecha_presentacion from PEAKY_BLINDERS.presentaciones PP "
                 + "join PEAKY_BLINDERS.publicaciones P on PP.id_publicacion = P.id_publicacion "
                 + "join PEAKY_BLINDERS.estados E on P.id_estado = E.id_estado and E.descripcion = 'Publicada' "
                 + "join PEAKY_BLINDERS.grados G on P.id_grado = G.id_grado ";
@@ -67,6 +67,7 @@ namespace PalcoNet.Comprar
             {
                 object[] row = new string[]
                 {
+                    lector["id_presentacion"].ToString(),
                     lector["descripcion"].ToString(),
                     lector["fecha_presentacion"].ToString(),
                 };
@@ -80,10 +81,12 @@ namespace PalcoNet.Comprar
 
         private void FormFiltrarEspectaculos_Load(object sender, EventArgs e)
         {
-            dgvEspectaculos.ColumnCount = 2;
+            dgvEspectaculos.ColumnCount = 3;
             dgvEspectaculos.ColumnHeadersVisible = true;
-            dgvEspectaculos.Columns[0].Name = "DESCRIPCIÓN";
-            dgvEspectaculos.Columns[1].Name = "FECHA_PRESENTACION";
+            dgvEspectaculos.Columns[0].Name = "ID";
+            dgvEspectaculos.Columns[0].Visible = false;
+            dgvEspectaculos.Columns[1].Name = "DESCRIPCIÓN";
+            dgvEspectaculos.Columns[2].Name = "FECHA_PRESENTACION";
             agregarButtonColumn("COMPRAR");
 
             gestor.conectar();
@@ -176,6 +179,16 @@ namespace PalcoNet.Comprar
             FormLogin formLogin = new FormLogin();
             this.Hide();
             formLogin.Show();
+        }
+
+        private void dgvEspectaculos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                FormComprarEntrada formComprarEntrada = new FormComprarEntrada(userID, rolID, Convert.ToInt32(dgvEspectaculos.CurrentRow.Cells[0].Value));
+                this.Hide();
+                formComprarEntrada.Show();
+            }
         }
 
     }
