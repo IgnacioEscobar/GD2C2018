@@ -31,6 +31,8 @@
             System.Windows.Forms.Button btnCosto;
             System.Windows.Forms.Button btnPremio;
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboPremios = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,8 +40,6 @@
             this.btnPagar = new System.Windows.Forms.Button();
             this.comboTipo = new System.Windows.Forms.ComboBox();
             this.lblUbicacion = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboPremios = new System.Windows.Forms.ComboBox();
             btnCosto = new System.Windows.Forms.Button();
             btnPremio = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -54,6 +54,16 @@
             btnCosto.Text = "Calcular Costo";
             btnCosto.UseVisualStyleBackColor = true;
             btnCosto.Click += new System.EventHandler(this.btnCosto_Click);
+            // 
+            // btnPremio
+            // 
+            btnPremio.Location = new System.Drawing.Point(12, 357);
+            btnPremio.Name = "btnPremio";
+            btnPremio.Size = new System.Drawing.Size(359, 23);
+            btnPremio.TabIndex = 22;
+            btnPremio.Text = "Confirmar premio a usar";
+            btnPremio.UseVisualStyleBackColor = true;
+            btnPremio.Click += new System.EventHandler(this.btnPremio_Click);
             // 
             // groupBox1
             // 
@@ -75,6 +85,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Comprar Entrada";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // comboPremios
+            // 
+            this.comboPremios.FormattingEnabled = true;
+            this.comboPremios.Location = new System.Drawing.Point(12, 330);
+            this.comboPremios.Name = "comboPremios";
+            this.comboPremios.Size = new System.Drawing.Size(359, 21);
+            this.comboPremios.TabIndex = 23;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(9, 310);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 17);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Premios";
             // 
             // button1
             // 
@@ -140,33 +168,6 @@
             this.lblUbicacion.Size = new System.Drawing.Size(122, 17);
             this.lblUbicacion.TabIndex = 5;
             this.lblUbicacion.Text = "Tipo de Ubicacion";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 310);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 17);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Premios";
-            // 
-            // btnPremio
-            // 
-            btnPremio.Location = new System.Drawing.Point(12, 357);
-            btnPremio.Name = "btnPremio";
-            btnPremio.Size = new System.Drawing.Size(359, 23);
-            btnPremio.TabIndex = 22;
-            btnPremio.Text = "Confirmar premio a usar";
-            btnPremio.UseVisualStyleBackColor = true;
-            // 
-            // comboPremios
-            // 
-            this.comboPremios.FormattingEnabled = true;
-            this.comboPremios.Location = new System.Drawing.Point(12, 330);
-            this.comboPremios.Name = "comboPremios";
-            this.comboPremios.Size = new System.Drawing.Size(359, 21);
-            this.comboPremios.TabIndex = 23;
             // 
             // FormComprarEntrada
             // 

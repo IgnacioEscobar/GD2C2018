@@ -20,6 +20,8 @@ namespace PalcoNet.Comprar
         GestorDB gestor = new GestorDB();
         List<string> ubicaciones = new List<string>();
         List<string> ubicacionesSeleccionadas = new List<string>();
+        List<string> premios = new List<string>();
+        string premioSeleccionado;
 
         public FormComprarEntrada(int userID, int rolID, int idPresentacion)
         {
@@ -29,6 +31,21 @@ namespace PalcoNet.Comprar
             this.idPresentacion = idPresentacion;
 
             this.mostrarTiposDeUbicacion(idPresentacion);
+            this.mostrarPremiosDisponibles();
+        }
+
+        private void mostrarPremiosDisponibles()
+        {
+            gestor.conectar();
+            string query_premios = "select P.id_premio, P.descripcion from PEAKY_BLINDERS.premios P where usado = 0 and P.id_cliente = " + this.userID;
+            gestor.consulta(query_premios);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            while (lector.Read())
+            {
+                premios.Add(lector["id_premio"].ToString());
+                comboPremios.Items.Add(lector["descripcion"]);
+            }
+            gestor.desconectar();
         }
 
         private void mostrarTiposDeUbicacion(int idPresentacion)
@@ -126,6 +143,11 @@ namespace PalcoNet.Comprar
         private void FormComprarEntrada_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPremio_Click(object sender, EventArgs e)
+        {
+            this.premioSeleccionado = premios[this.comboPremios.SelectedIndex];
         }
     }
 }
