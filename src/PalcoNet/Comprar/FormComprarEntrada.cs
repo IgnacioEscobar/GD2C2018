@@ -50,14 +50,13 @@ namespace PalcoNet.Comprar
             gestor.desconectar();
         }
 
-        private void renovarUbicaciones(int idTipoDeUbicacion)
+        private void renovarUbicaciones(string idTipoDeUbicacion)
         {
             ubicacionesListBox.Items.Clear();
             gestor.conectar();
-            // pruebo con 4447 porque no se como bindear al evento de elegir del dropdown
             string query_ubicaciones = "select U.id_ubicacion, U.fila, U.asiento, U.precio from PEAKY_BLINDERS.ubicaciones U "
                 + " join PEAKY_BLINDERS.presentaciones PP on PP.id_publicacion = U.id_publicacion"
-                + " where U.id_tipo_de_ubicacion = 4447 and PP.id_presentacion = " + this.idPresentacion + " and U.id_ubicacion not in (select C.id_ubicacion from PEAKY_BLINDERS.compras C"
+                + " where U.id_tipo_de_ubicacion = " + idTipoDeUbicacion + " and PP.id_presentacion = " + this.idPresentacion + " and U.id_ubicacion not in (select C.id_ubicacion from PEAKY_BLINDERS.compras C"
                 + " where C.id_presentacion = " + this.idPresentacion + ")"
                 + " order by U.fila, U.asiento, U.precio";
             gestor.consulta(query_ubicaciones);
@@ -84,15 +83,22 @@ namespace PalcoNet.Comprar
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private string idTipoSegunDescripcion(string descripcion)
         {
-            this.renovarUbicaciones(1);
+            gestor.conectar();
+            string query_ubicaciones = "select TU.id_tipo_de_ubicacion from PEAKY_BLINDERS.tipos_de_ubicacion TU where TU.descripcion = '" + descripcion + "'";
+            gestor.consulta(query_ubicaciones);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            lector.Read();
+            return lector["id_tipo_de_ubicacion"].ToString();
         }
 
-        /*
-         * Para armar DataGridView paginada (paginando la query para no llenar la memoria):
-         * https://www.codeproject.com/Articles/211551/A-Simple-way-for-Paging-in-DataGridView-in-WinForm
-         */
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string descripcion = comboTipo.Items[comboTipo.SelectedIndex].ToString();
+            string idTipo = this.idTipoSegunDescripcion(descripcion);
+            gestor.desconectar();
+            this.renovarUbicaciones(idTipo);
+        }
     }
 }
