@@ -167,11 +167,7 @@ namespace PalcoNet.Abm_Cliente
             string query = "SELECT * FROM PEAKY_BLINDERS.clientes C "
                            + "LEFT JOIN PEAKY_BLINDERS.tipos_de_documento T "
                                 + "ON C.id_tipo_de_documento = T.id_tipo_de_documento "
-<<<<<<< HEAD
-                           + "WHERE C.numero_de_documento = '" + param[2] + "'";
-=======
                            + "WHERE C.numero_de_documento = '" + nro_documento + "'";
->>>>>>> 30d60d983faa86af0c772189b151b12d987836e6
             FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, rolID, query);
             this.Hide();
             formRegistroCliente.Show();

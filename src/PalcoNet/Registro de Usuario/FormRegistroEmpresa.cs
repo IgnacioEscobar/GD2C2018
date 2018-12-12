@@ -11,6 +11,7 @@ using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Abm_Empresa_Espectaculo;
+using PalcoNet.Registro_de_Usuario;
 
 namespace PalcoNet.Registro_de_Usuario
 {
@@ -118,7 +119,24 @@ namespace PalcoNet.Registro_de_Usuario
 
                 if (!modif)
                 {
-                    usuario = txtCUIT.Text;
+                    if (abm)
+                    {
+                        FormNombreUsuario formNombreDeUsuario = new FormNombreUsuario();
+                        if (formNombreDeUsuario.ShowDialog(this) == DialogResult.OK)
+                        {
+                            usuario = formNombreDeUsuario.getNombreUsuario();
+                        }
+                        else
+                        {
+                            usuario = txtCUIT.Text;
+                        }
+                        formNombreDeUsuario.Dispose();
+                    }
+                    else
+                    {
+                        usuario = txtCUIT.Text;
+                    }
+
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                     contrasena = generadorDeContrasenas.generar(4);
 

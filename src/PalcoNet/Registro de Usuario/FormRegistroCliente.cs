@@ -232,7 +232,24 @@ namespace PalcoNet.Registro_de_Usuario
 
                 if (!modif)
                 {
-                    usuario = txtCUIL.Text;
+                    if (abm)
+                    {
+                        FormNombreUsuario formNombreDeUsuario = new FormNombreUsuario();
+                        if (formNombreDeUsuario.ShowDialog(this) == DialogResult.OK)
+                        {
+                            usuario = formNombreDeUsuario.getNombreUsuario();
+                        }
+                        else
+                        {
+                            usuario = txtCUIL.Text;
+                        }
+                        formNombreDeUsuario.Dispose();
+                    }
+                    else
+                    {
+                        usuario = txtCUIL.Text;
+                    }
+
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                     contrasena = generadorDeContrasenas.generar(4);
 

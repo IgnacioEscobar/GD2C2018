@@ -172,6 +172,12 @@
     <Compile Include="Menu Principal\FormMenuPrincipal.Designer.cs">
       <DependentUpon>FormMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Registro de Usuario\FormNombreUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de Usuario\FormNombreUsuario.Designer.cs">
+      <DependentUpon>FormNombreUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registro de Usuario\FormTarjetaDeCredito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -335,6 +341,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Registro de Usuario\FormNombreUsuario.resx">
+      <DependentUpon>FormNombreUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Registro de Usuario\FormRegistroEmpresa.resx">
       <DependentUpon>FormRegistroEmpresa.cs</DependentUpon>
     </EmbeddedResource>

@@ -154,12 +154,8 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
         private void btnModificar_Click(object sender, EventArgs e)
         {
             string cuit = dgvEmpresas.CurrentRow.Cells[2].Value.ToString();
-
-<<<<<<< HEAD
-            string query = "SELECT * FROM PEAKY_BLINDERS.empresas WHERE cuit = '" + param[1] + "'";
-=======
             string query = "SELECT * FROM PEAKY_BLINDERS.empresas WHERE cuit = '" + cuit + "'";
->>>>>>> 30d60d983faa86af0c772189b151b12d987836e6
+
             FormRegistroEmpresa formRegistroEmpresa = new FormRegistroEmpresa(userID, rolID, query);
             this.Hide();
             formRegistroEmpresa.Show();
