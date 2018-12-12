@@ -132,18 +132,6 @@ namespace PalcoNet.Editar_Publicacion
             formLogin.Show();
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
-        {
-            txtDescripcion.Text = "";
-            mcrDesde.SetDate(DateTime.Today);
-            mcrHasta.SetDate(DateTime.Today);
-            for (int i = 0; i < clbCategorias.Items.Count; i++)
-            {
-                clbCategorias.SetItemChecked(i, false);
-            }
-            txtDescripcion.Select();
-        }
-
         private void dgvPublicaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 4)
@@ -218,7 +206,7 @@ namespace PalcoNet.Editar_Publicacion
             formMenuPrincipal.Show();
         }
 
-        private void btnLimpiar_Click_1(object sender, EventArgs e)
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtDescripcion.Text = "";
             mcrDesde.SetDate(DateTime.Today);
