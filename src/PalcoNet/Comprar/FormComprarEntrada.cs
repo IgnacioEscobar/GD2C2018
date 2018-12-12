@@ -36,6 +36,9 @@ namespace PalcoNet.Comprar
 
         private void mostrarPremiosDisponibles()
         {
+            premios.Add("-1");
+            comboPremios.Items.Add("No usar");
+            this.comboPremios.SelectedIndex = this.comboPremios.Items.IndexOf("No usar");
             gestor.conectar();
             string query_premios = "select P.id_premio, TP.descripcion from PEAKY_BLINDERS.premios P "
                 + " join PEAKY_BLINDERS.tipos_de_premios TP on TP.id_tipo_de_premio = P.id_tipo_de_premio "
@@ -52,6 +55,7 @@ namespace PalcoNet.Comprar
 
         private void mostrarTiposDeUbicacion(int idPresentacion)
         {
+            comboTipo.Items.Clear();
             gestor.conectar();
             string query_tipos = "select distinct TU.id_tipo_de_ubicacion, TU.descripcion from PEAKY_BLINDERS.ubicaciones U "
                 + " join PEAKY_BLINDERS.presentaciones PP on PP.id_publicacion = U.id_publicacion "
@@ -66,6 +70,7 @@ namespace PalcoNet.Comprar
                 comboTipo.Items.Add(lector["descripcion"]);
             }
             gestor.desconectar();
+            this.comboTipo.SelectedIndex = this.comboTipo.Items.IndexOf(comboTipo.Items[0]);
         }
 
         private void renovarUbicaciones(string idTipoDeUbicacion)
@@ -86,21 +91,6 @@ namespace PalcoNet.Comprar
                 ubicacionesListBox.Items.Add("Fila " + lector["fila"] + " - Asiento " + lector["asiento"] + " ($" + lector["precio"] + ")" );
             }
             gestor.desconectar();
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void numericBtn_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCantEntradas_Click(object sender, EventArgs e)
-        {
-
         }
 
         private string idTipoSegunDescripcion(string descripcion)
@@ -180,6 +170,13 @@ namespace PalcoNet.Comprar
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
             }
+            this.comboTipo.Items.Clear();
+            this.comboPremios.Items.Clear();
+            this.ubicacionesListBox.Items.Clear();
+            this.comboPremios.SelectedIndex = this.comboPremios.Items.IndexOf("No usar");
+            this.mostrarTiposDeUbicacion(this.idPresentacion);
+            this.mostrarPremiosDisponibles();
+            this.label1.Text = "Monto: $0";
         }
     }
 }
