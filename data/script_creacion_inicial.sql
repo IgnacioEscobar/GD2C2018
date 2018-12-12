@@ -271,7 +271,7 @@ create table PEAKY_BLINDERS.tipos_de_premios (
 )
 
 insert into PEAKY_BLINDERS.tipos_de_premios
-values ('Entrada Bonificada', 1),
+values ('Entrada Bonificada', 0),
   ('Entrada al 50%', 0.5),
   ('Entrada 25%', 0.75)
 
