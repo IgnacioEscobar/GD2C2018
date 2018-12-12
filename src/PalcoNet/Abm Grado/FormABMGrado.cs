@@ -182,6 +182,10 @@ namespace PalcoNet.Abm_Grado
                     }
                 }
             }
+            else
+            {
+                condicion += "AND P.id_rubro = NULL ";
+            }
 
             condicion += "ORDER BY PR.fecha_presentacion ASC";
 
