@@ -61,7 +61,7 @@ namespace PalcoNet.Login
                 "SELECT R.id_rol, R.descripcion " +
                 "FROM PEAKY_BLINDERS.roles R " +
                     "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON R.id_rol = RU.id_rol " +
-                "WHERE RU.id_usuario = '" + userID + "'";
+                "WHERE R.habilitado = 1 AND RU.id_usuario = '" + userID + "'";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
             while (lector.Read())

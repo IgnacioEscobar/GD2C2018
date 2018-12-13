@@ -145,9 +145,10 @@ namespace PalcoNet
 
                             case 1:
                                 gestor.conectar();
-                                string query2 = "SELECT id_rol " +
-                                    "FROM PEAKY_BLINDERS.roles_por_usuario " +
-                                    "WHERE id_usuario = '" + userID + "'";
+                                string query2 = "SELECT RU.id_rol " +
+                                    "FROM PEAKY_BLINDERS.roles_por_usuario RU " +
+                                        "JOIN PEAKY_BLINDERS.roles R ON RU.id_rol = R.id_rol " +
+                                    "WHERE R.habilitado = 1 AND RU.id_usuario = '" + userID + "'";
                                 gestor.consulta(query2);
                                 SqlDataReader lector2 = gestor.obtenerRegistros();
                                 if (lector2.Read())
