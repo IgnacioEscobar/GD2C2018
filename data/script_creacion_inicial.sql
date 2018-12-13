@@ -265,7 +265,28 @@ create table PEAKY_BLINDERS.movimientos_de_puntos (
   id_movimiento int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_cliente int REFERENCES PEAKY_BLINDERS.clientes (id_cliente),
   variacion int,
-  fecha datetime
+  fecha datetime default GETDATE(),
+  fecha_vencimiento datetime default DATEADD(day, 30, GETDATE())
+)
+
+-- Tipos de premios
+create table PEAKY_BLINDERS.tipos_de_premios (
+  id_tipo_de_premio tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  descripcion varchar(100),
+  muliplicador decimal(3, 2)
+)
+
+insert into PEAKY_BLINDERS.tipos_de_premios
+values ('Entrada Bonificada', 0),
+  ('Entrada al 50%', 0.5),
+  ('Entrada 25%', 0.75)
+
+-- Premios
+create table PEAKY_BLINDERS.premios (
+  id_premio int PRIMARY KEY NOT NULL IDENTITY(1, 1),
+  id_tipo_de_premio tinyint REFERENCES PEAKY_BLINDERS.tipos_de_premios (id_tipo_de_premio),
+  id_cliente int REFERENCES PEAKY_BLINDERS.clientes (id_cliente),
+  usado bit default 0
 )
 
 -- Medio de Pago --
@@ -350,8 +371,8 @@ create table PEAKY_BLINDERS.compras (
   id_compra int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_cliente int REFERENCES PEAKY_BLINDERS.clientes (id_cliente),
   id_medio_de_pago tinyint REFERENCES PEAKY_BLINDERS.medios_de_pago (id_medio_de_pago),
-  fecha datetime,
-  cantidad tinyint,
+  fecha datetime default GETDATE(),
+  cantidad tinyint default 1,
   id_presentacion int REFERENCES PEAKY_BLINDERS.presentaciones (id_presentacion),
   id_publicacion int REFERENCES PEAKY_BLINDERS.publicaciones (id_publicacion),
   -- ^^ desnormalizacion para hacer mas simple la migración y cualquier consulta futura
