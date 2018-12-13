@@ -42,49 +42,57 @@ namespace PalcoNet.Abm_Rol
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             string mensaje;
-            string nuevo_nombre = txtNombreRol.Text;
-            if (modif)
+            string nuevo_nombre = txtNombreRol.Text.Trim();
+
+            if (nuevo_nombre == "")
             {
-                mensaje = "¿Confirma que desea actualizar el rol " + rol_seleccionado + " a " + nuevo_nombre + "?";
+                MessageBox.Show("Debe ingresar un nombre para el rol.", "Alerta");
             }
             else
             {
-                mensaje = "¿Confirma que desea crear el rol " + nuevo_nombre + "?";
-            }
-            DialogResult respuesta = MessageBox.Show(mensaje, "", MessageBoxButtons.YesNo);
-
-            if (respuesta == DialogResult.Yes)
-            {
-                GestorDB gestor = new GestorDB();
-                gestor.conectar();
                 if (modif)
                 {
-                    gestor.generarStoredProcedure("modificar_rol");
-                    gestor.parametroPorValor("descripcion_anterior", rol_seleccionado);
+                    mensaje = "¿Confirma que desea actualizar el rol " + rol_seleccionado + " a " + nuevo_nombre + "?";
                 }
                 else
                 {
-                    gestor.generarStoredProcedure("crear_rol");
+                    mensaje = "¿Confirma que desea crear el rol " + nuevo_nombre + "?";
                 }
-                gestor.parametroPorValor("descripcion", nuevo_nombre);
-                int result = gestor.ejecutarStoredProcedure();
-                gestor.desconectar();
+                DialogResult respuesta = MessageBox.Show(mensaje, "", MessageBoxButtons.YesNo);
 
-                if (result == 0)
+                if (respuesta == DialogResult.Yes)
                 {
-                    MessageBox.Show("Ya existe un rol con esa descripción.", "Alerta");
-                }
-                else if (modif)
-                {
-                    MessageBox.Show("Rol actualizado exitosamente.");
-                }
-                else
-                {
-                    MessageBox.Show("Rol creado exitosamente.");
-                }
+                    GestorDB gestor = new GestorDB();
+                    gestor.conectar();
+                    if (modif)
+                    {
+                        gestor.generarStoredProcedure("modificar_rol");
+                        gestor.parametroPorValor("descripcion_anterior", rol_seleccionado);
+                    }
+                    else
+                    {
+                        gestor.generarStoredProcedure("crear_rol");
+                    }
+                    gestor.parametroPorValor("descripcion", nuevo_nombre);
+                    int result = gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
 
-                formABMRol.actualizar();
-                this.Hide();
+                    if (result == 0)
+                    {
+                        MessageBox.Show("Ya existe un rol con esa descripción.", "Alerta");
+                    }
+                    else if (modif)
+                    {
+                        MessageBox.Show("Rol actualizado exitosamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Rol creado exitosamente.");
+                    }
+
+                    formABMRol.actualizar();
+                    this.Hide();
+                }
             }
         }
 

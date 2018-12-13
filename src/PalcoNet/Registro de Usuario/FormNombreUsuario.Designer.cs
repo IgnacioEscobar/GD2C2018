@@ -1,6 +1,6 @@
-﻿namespace PalcoNet.Abm_Rol
+﻿namespace PalcoNet.Registro_de_Usuario
 {
-    partial class FormNombreRol
+    partial class FormNombreUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.txtNombreRol = new System.Windows.Forms.TextBox();
-            this.btnConfirmar = new System.Windows.Forms.Button();
+            this.txtNombreUsuario = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnConfirmar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -39,55 +39,55 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 13);
+            this.label1.Size = new System.Drawing.Size(96, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "NOMBRE DEL ROL";
+            this.label1.Text = "Nombre de usuario";
             // 
-            // txtNombreRol
+            // txtNombreUsuario
             // 
-            this.txtNombreRol.Location = new System.Drawing.Point(12, 30);
-            this.txtNombreRol.MaxLength = 30;
-            this.txtNombreRol.Name = "txtNombreRol";
-            this.txtNombreRol.Size = new System.Drawing.Size(250, 20);
-            this.txtNombreRol.TabIndex = 1;
-            // 
-            // btnConfirmar
-            // 
-            this.btnConfirmar.Location = new System.Drawing.Point(12, 56);
-            this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(250, 23);
-            this.btnConfirmar.TabIndex = 2;
-            this.btnConfirmar.Text = "CONFIRMAR";
-            this.btnConfirmar.UseVisualStyleBackColor = true;
-            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
+            this.txtNombreUsuario.Location = new System.Drawing.Point(12, 30);
+            this.txtNombreUsuario.Name = "txtNombreUsuario";
+            this.txtNombreUsuario.Size = new System.Drawing.Size(261, 20);
+            this.txtNombreUsuario.TabIndex = 0;
+            this.txtNombreUsuario.TextChanged += new System.EventHandler(this.txtNombreUsuario_TextChanged);
+            this.txtNombreUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreUsuario_KeyPress);
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(12, 86);
+            this.btnCancelar.Location = new System.Drawing.Point(12, 97);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(250, 23);
-            this.btnCancelar.TabIndex = 3;
+            this.btnCancelar.Size = new System.Drawing.Size(261, 35);
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // FormNombreRol
+            // btnConfirmar
+            // 
+            this.btnConfirmar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnConfirmar.Location = new System.Drawing.Point(12, 56);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(261, 35);
+            this.btnConfirmar.TabIndex = 1;
+            this.btnConfirmar.Text = "CONFIRMAR";
+            this.btnConfirmar.UseVisualStyleBackColor = true;
+            // 
+            // FormNombreUsuario
             // 
             this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(274, 122);
+            this.ClientSize = new System.Drawing.Size(285, 144);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.txtNombreRol);
+            this.Controls.Add(this.txtNombreUsuario);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
-            this.Name = "FormNombreRol";
+            this.Name = "FormNombreUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
-            this.Load += new System.EventHandler(this.FormNombreRol_Load);
+            this.Load += new System.EventHandler(this.FormNombreUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,8 +96,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtNombreRol;
-        private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.TextBox txtNombreUsuario;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnConfirmar;
     }
 }

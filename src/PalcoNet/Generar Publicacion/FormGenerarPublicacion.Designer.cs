@@ -201,6 +201,7 @@
             // txtAltura
             // 
             this.txtAltura.Location = new System.Drawing.Point(339, 32);
+            this.txtAltura.MaxLength = 6;
             this.txtAltura.Name = "txtAltura";
             this.txtAltura.Size = new System.Drawing.Size(58, 20);
             this.txtAltura.TabIndex = 12;
@@ -237,6 +238,7 @@
             // 
             this.txtLocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLocalidad.Location = new System.Drawing.Point(101, 71);
+            this.txtLocalidad.MaxLength = 60;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(296, 20);
             this.txtLocalidad.TabIndex = 14;

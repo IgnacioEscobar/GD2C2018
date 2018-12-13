@@ -118,7 +118,7 @@ namespace PalcoNet.Abm_Usuario
         {
             if (e.ColumnIndex == 6)
             {
-                FormMiUsuario formMiUsuario = new FormMiUsuario(Convert.ToInt32(dgvUsuarios.CurrentRow.Cells[0].Value), userID);
+                FormNuevaContrasena formMiUsuario = new FormNuevaContrasena(Convert.ToInt32(dgvUsuarios.CurrentRow.Cells[0].Value), userID);
                 this.Hide();
                 formMiUsuario.Show();
             }

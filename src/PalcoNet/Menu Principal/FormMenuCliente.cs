@@ -59,9 +59,11 @@ namespace PalcoNet.Menu_Principal
 
         private void btnConfiguración_Click(object sender, EventArgs e)
         {
-            FormMiUsuario formMiUsuario = new FormMiUsuario(userID, true, false);
+            /*
+            FormNuevaContrasena formMiUsuario = new FormNuevaContrasena(userID, true, false);
             this.Hide();
             formMiUsuario.Show();
+             */
         }
 
         private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -123,9 +125,11 @@ namespace PalcoNet.Menu_Principal
 
         private void btnAdministracionPuntos_Click(object sender, EventArgs e)
         {
+            /*
             FormAdministracionDePuntos formAdministracionDePuntos = new FormAdministracionDePuntos(userID);
             this.Hide();
             formAdministracionDePuntos.Show();
+             */
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

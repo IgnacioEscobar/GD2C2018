@@ -17,12 +17,27 @@ namespace PalcoNet.Login
     public partial class FormElegirRol : Form
     {
         int userID;
+        bool cambiar_pass;
 
-        public FormElegirRol(int userID)
+        public FormElegirRol(int userID, bool cambiar_pass)
         {
             InitializeComponent();
             this.userID = userID;
+            this.cambiar_pass = cambiar_pass;
         }
+
+        // Metodos auxiliares
+
+        private void agregarButtonColumn(string header)
+        {
+            DataGridViewButtonColumn column = new DataGridViewButtonColumn();
+            column.HeaderText = header;
+            column.Text = "-->";
+            column.UseColumnTextForButtonValue = true;
+            dgvRoles.Columns.Add(column);
+        }
+
+        // -------------------
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -31,66 +46,53 @@ namespace PalcoNet.Login
             formLogin.Show();
         }
 
-        private void btnSiguiente_Click(object sender, EventArgs e)
-        {
-            string rol_seleccionado = "";
-            if (rbnCliente.Checked)
-            {
-                rol_seleccionado = rbnCliente.Text;
-            }
-            if (rbnEmpresa.Checked)
-            {
-                rol_seleccionado = rbnEmpresa.Text;
-            }
-            if (rbnAdministrador.Checked)
-            {
-                rol_seleccionado = rbnAdministrador.Text;
-            }
-
-            GestorDB gestor = new GestorDB();
-            gestor.conectar();
-            string query = "SELECT id_rol " +
-                "FROM PEAKY_BLINDERS.roles " +
-                "WHERE descripcion = '" + rol_seleccionado + "'";
-            gestor.consulta(query);
-            SqlDataReader lector = gestor.obtenerRegistros();
-            int rolID = -1;
-            if (lector.Read())
-            {
-                rolID = Convert.ToInt32(lector["id_rol"].ToString());
-            }
-
-            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
-            this.Hide();
-            formMenuPrincipal.Show();
-        }
-
         private void FormElegirRol_Load(object sender, EventArgs e)
         {
+            dgvRoles.ColumnCount = 2;
+            dgvRoles.ColumnHeadersVisible = true;
+            dgvRoles.Columns[0].Name = "ID";
+            dgvRoles.Columns[0].Visible = false;
+            dgvRoles.Columns[1].Name = "ROL";
+            agregarButtonColumn("SELECCIONAR");
+
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            string query = "SELECT R.descripcion FROM PEAKY_BLINDERS.roles R " +
-                "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON R.id_rol = RU.id_rol " +
+            string query = 
+                "SELECT R.id_rol, R.descripcion " +
+                "FROM PEAKY_BLINDERS.roles R " +
+                    "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON R.id_rol = RU.id_rol " +
                 "WHERE RU.id_usuario = '" + userID + "'";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
             while (lector.Read())
             {
-                string rolCargado = lector["descripcion"].ToString();
-                switch (rolCargado)
+                object[] row = new object[]
                 {
-                    case "Cliente":
-                        rbnCliente.Enabled = true;
-                        break;
+                    lector["id_rol"].ToString(),
+                    lector["descripcion"].ToString()
+                };
+                dgvRoles.Rows.Add(row);
+            }
+        }
 
-                    case "Empresa":
-                        rbnEmpresa.Enabled = true;
-                        break;
+        private void dgvRoles_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                int rolID = Convert.ToInt32(dgvRoles.CurrentRow.Cells[0].Value);
+                Form formDestino;
 
-                    case "Administrador":
-                        rbnAdministrador.Enabled = true;
-                        break;
+                if (cambiar_pass)
+                {
+                    formDestino = new FormNuevaContrasena(userID, rolID, true);
                 }
+                else
+                {
+                    formDestino = new FormMenuPrincipal(userID, rolID);
+                }
+
+                this.Hide();
+                formDestino.Show();
             }
         }
 

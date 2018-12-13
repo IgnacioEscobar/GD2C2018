@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblError = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -54,21 +53,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.ckbHabilitado = new System.Windows.Forms.CheckBox();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(280, 139);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(90, 13);
-            this.lblError.TabIndex = 33;
-            this.lblError.Text = "mensajes de error";
-            this.lblError.Visible = false;
             // 
             // btnConfirmar
             // 
@@ -124,6 +113,7 @@
             // txtAltura
             // 
             this.txtAltura.Location = new System.Drawing.Point(200, 32);
+            this.txtAltura.MaxLength = 6;
             this.txtAltura.Name = "txtAltura";
             this.txtAltura.Size = new System.Drawing.Size(56, 20);
             this.txtAltura.TabIndex = 5;
@@ -142,6 +132,7 @@
             // 
             this.txtCalle.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCalle.Location = new System.Drawing.Point(6, 32);
+            this.txtCalle.MaxLength = 60;
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(188, 20);
             this.txtCalle.TabIndex = 4;
@@ -177,6 +168,7 @@
             // 
             this.txtLocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLocalidad.Location = new System.Drawing.Point(120, 104);
+            this.txtLocalidad.MaxLength = 60;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);
             this.txtLocalidad.TabIndex = 9;
@@ -185,9 +177,11 @@
             // 
             this.txtDepto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDepto.Location = new System.Drawing.Point(200, 58);
+            this.txtDepto.MaxLength = 1;
             this.txtDepto.Name = "txtDepto";
             this.txtDepto.Size = new System.Drawing.Size(56, 20);
             this.txtDepto.TabIndex = 7;
+            this.txtDepto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepto_KeyPress);
             // 
             // label10
             // 
@@ -201,6 +195,7 @@
             // txtPiso
             // 
             this.txtPiso.Location = new System.Drawing.Point(39, 58);
+            this.txtPiso.MaxLength = 3;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(56, 20);
             this.txtPiso.TabIndex = 6;
@@ -249,6 +244,7 @@
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(6, 32);
+            this.txtMail.MaxLength = 60;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(250, 20);
             this.txtMail.TabIndex = 11;
@@ -278,7 +274,7 @@
             // txtCUIT
             // 
             this.txtCUIT.Location = new System.Drawing.Point(6, 71);
-            this.txtCUIT.MaxLength = 11;
+            this.txtCUIT.MaxLength = 12;
             this.txtCUIT.Name = "txtCUIT";
             this.txtCUIT.Size = new System.Drawing.Size(250, 20);
             this.txtCUIT.TabIndex = 2;
@@ -296,6 +292,7 @@
             // txtRazonSocial
             // 
             this.txtRazonSocial.Location = new System.Drawing.Point(6, 32);
+            this.txtRazonSocial.MaxLength = 60;
             this.txtRazonSocial.Name = "txtRazonSocial";
             this.txtRazonSocial.Size = new System.Drawing.Size(250, 20);
             this.txtRazonSocial.TabIndex = 1;
@@ -309,6 +306,17 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "CUIT";
             // 
+            // ckbHabilitado
+            // 
+            this.ckbHabilitado.AutoSize = true;
+            this.ckbHabilitado.Location = new System.Drawing.Point(286, 119);
+            this.ckbHabilitado.Name = "ckbHabilitado";
+            this.ckbHabilitado.Size = new System.Drawing.Size(90, 17);
+            this.ckbHabilitado.TabIndex = 23;
+            this.ckbHabilitado.Text = "HABILITADO";
+            this.ckbHabilitado.UseVisualStyleBackColor = true;
+            this.ckbHabilitado.Visible = false;
+            // 
             // FormRegistroEmpresa
             // 
             this.AcceptButton = this.btnConfirmar;
@@ -316,7 +324,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(553, 264);
-            this.Controls.Add(this.lblError);
+            this.Controls.Add(this.ckbHabilitado);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox3);
@@ -340,7 +348,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -366,5 +373,6 @@
         private System.Windows.Forms.TextBox txtAltura;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCalle;
+        private System.Windows.Forms.CheckBox ckbHabilitado;
     }
 }

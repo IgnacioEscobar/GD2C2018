@@ -9,9 +9,21 @@ namespace PalcoNet.funciones_utiles
 {
     class ValidadorDeDatos
     {
-        public void texto(KeyPressEventArgs e)
+        public void texto_espacio(KeyPressEventArgs e)
         {
             if (Char.IsLetter(e.KeyChar) || Char.IsSeparator(e.KeyChar) || Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void texto(KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar) || Char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }
@@ -33,9 +45,21 @@ namespace PalcoNet.funciones_utiles
             }
         }
 
-        public void alfanumerico(KeyPressEventArgs e)
+        public void alfanumerico_espacio(KeyPressEventArgs e)
         {
             if (Char.IsLetterOrDigit(e.KeyChar) || char.IsSeparator(e.KeyChar) || Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
+
+        public void alfanumerico(KeyPressEventArgs e)
+        {
+            if (Char.IsLetterOrDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }
@@ -77,10 +101,10 @@ namespace PalcoNet.funciones_utiles
         public bool validar_campos_obligatorios(List<string[]> lista, ref string mensaje)
         {
             bool completo = true;
-            mensaje = "Faltaron completar los siguientes campos:";
+            mensaje = "Faltaron completar los siguientes campos obligatorios:";
             foreach (string[] item in lista)
             {
-                if (item[0] == "")
+                if (item[0].Trim() == "")
                 {
                     completo = false;
                     mensaje += "\n - " + item[1];

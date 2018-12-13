@@ -181,8 +181,14 @@ namespace PalcoNet.Generar_Publicacion
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Visible = false;
             formGenerarPublicacion.reaparecer(listaUbicaciones);
+        }
+
+        private void cmbSector_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ValidadorDeDatos validador = new ValidadorDeDatos();
+            validador.texto(e);
         }
 
     }

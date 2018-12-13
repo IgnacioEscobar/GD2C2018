@@ -11,41 +11,42 @@ using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Abm_Empresa_Espectaculo;
+using PalcoNet.Registro_de_Usuario;
 
 namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroEmpresa : Form
     {
-        int userID; // si es registro desde login viene -1
+        int userID; // user encargado de abm
+        int rolID; // rol de user encargado
         bool abm; // si viene del ABM
         bool modif; // si viene por modificar o por agregar
         string query;
         string empresaID;
         ValidadorDeDatos validador;
 
-        public FormRegistroEmpresa(bool abm)
+        public FormRegistroEmpresa()
         {
             InitializeComponent();
-            this.userID = -1;
-            this.abm = abm;
+            this.abm = false;
             this.modif = false;
-            this.query = "";
         }
 
-        public FormRegistroEmpresa(int userID, bool abm)
+        public FormRegistroEmpresa(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
-            this.abm = abm;
+            this.rolID = rolID;
+            this.abm = true;
             this.modif = false;
-            this.query = "";
         }
 
-        public FormRegistroEmpresa(int userID, string query)
+        public FormRegistroEmpresa(int userID, int rolID, string query)
         {
 
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
             this.abm = true;
             this.modif = true;
             this.query = query;
@@ -96,7 +97,7 @@ namespace PalcoNet.Registro_de_Usuario
             Form formDestino;
             if (abm)
             {
-                formDestino = new FormABMEmpresa(userID, 1);
+                formDestino = new FormABMEmpresa(userID, rolID);
             }
             else
             {
@@ -115,13 +116,37 @@ namespace PalcoNet.Registro_de_Usuario
                 bool creacion = false;
                 string usuario = "";
                 string contrasena = "";
+                bool user_autogenerado = true;
 
                 if (!modif)
                 {
-                    usuario = txtCUIT.Text;
+                    if (abm)
+                    {
+                        FormNombreUsuario formNombreDeUsuario = new FormNombreUsuario();
+                        if (formNombreDeUsuario.ShowDialog(this) == DialogResult.OK)
+                        {
+                            usuario = formNombreDeUsuario.getNombreUsuario();
+                            user_autogenerado = false;
+                        }
+                        formNombreDeUsuario.Dispose();
+                    }
+
+                    if (user_autogenerado)
+                    {
+                        gestor.conectar();
+                        gestor.consulta("SELECT ISNULL(MAX(id_usuario), 0) AS id_ultimo FROM PEAKY_BLINDERS.usuarios");
+                        SqlDataReader lector = gestor.obtenerRegistros();
+                        if (lector.Read())
+                        {
+                            usuario = "user" + (Convert.ToInt32(lector["id_ultimo"]) + 1);
+                        }
+                        gestor.desconectar();
+                    }
+
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                     contrasena = generadorDeContrasenas.generar(4);
 
+                    gestor.conectar();
                     gestor.generarStoredProcedure("crear_empresa");
                     gestor.parametroPorValor("usuario", usuario);
                     gestor.parametroPorValor("contrasenna", contrasena);
@@ -162,13 +187,34 @@ namespace PalcoNet.Registro_de_Usuario
                     }
                     else
                     {
+                        if (ckbHabilitado.Visible)
+                        {
+                            int cambioID = -1;
+                            gestor.conectar();
+                            gestor.consulta(
+                                "SELECT id_usuario FROM PEAKY_BLINDERS.empresas WHERE id_empresa = '" + empresaID + "'");
+                            SqlDataReader lector = gestor.obtenerRegistros();
+                            if (lector.Read())
+                            {
+                                cambioID = Convert.ToInt32(lector["id_usuario"]);
+                            }
+                            gestor.desconectar();
+
+                            gestor.conectar();
+                            gestor.generarStoredProcedure("actualizar_estado_usuario");
+                            gestor.parametroPorValor("id_usuario", cambioID);
+                            gestor.parametroPorValor("habilitado", Convert.ToInt32(ckbHabilitado.Checked));
+                            gestor.ejecutarStoredProcedure();
+                            gestor.desconectar();
+                        }
+
                         MessageBox.Show("¡Datos actualizados!");
                     }
 
                     Form formDestino;
                     if (abm)
                     {
-                        formDestino = new FormABMEmpresa(userID, 1);
+                        formDestino = new FormABMEmpresa(userID, rolID);
                     }
                     else if (creacion)
                     {
@@ -209,13 +255,27 @@ namespace PalcoNet.Registro_de_Usuario
                     cargarTexto(lector, txtTelefono, "telefono");
                 }
                 gestor.desconectar();
+
+                gestor.conectar();
+                gestor.consulta("SELECT PEAKY_BLINDERS.empresa_habilitada(" + empresaID + ") AS esta_habilitada");
+                SqlDataReader lector2 = gestor.obtenerRegistros();
+                if (lector2.Read())
+                {
+                    int resultado = Convert.ToInt32(lector2["esta_habilitada"]);
+
+                    if (resultado != -1) // la empresa tiene usuario generado
+                    {
+                        ckbHabilitado.Visible = true;
+                        ckbHabilitado.Checked = Convert.ToBoolean(resultado);
+                    }
+                }
+                gestor.desconectar();
             }
             else
             {
                 txtRazonSocial.Select();
             }
 
-            lblError.Visible = false;
             validador = new ValidadorDeDatos();
         }
 
@@ -242,6 +302,11 @@ namespace PalcoNet.Registro_de_Usuario
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             validador.numero(e);
+        }
+
+        private void txtDepto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.texto(e);
         }
 
     }

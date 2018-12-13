@@ -60,6 +60,7 @@
             this.cmbSector.Name = "cmbSector";
             this.cmbSector.Size = new System.Drawing.Size(191, 21);
             this.cmbSector.TabIndex = 0;
+            this.cmbSector.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cmbSector_KeyPress);
             // 
             // btnAgregar
             // 
@@ -83,6 +84,11 @@
             // nudAsientos
             // 
             this.nudAsientos.Location = new System.Drawing.Point(12, 158);
+            this.nudAsientos.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.nudAsientos.Name = "nudAsientos";
             this.nudAsientos.Size = new System.Drawing.Size(85, 20);
             this.nudAsientos.TabIndex = 3;
@@ -90,6 +96,11 @@
             // nudFilas
             // 
             this.nudFilas.Location = new System.Drawing.Point(12, 114);
+            this.nudFilas.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
             this.nudFilas.Name = "nudFilas";
             this.nudFilas.Size = new System.Drawing.Size(85, 20);
             this.nudFilas.TabIndex = 2;
@@ -127,7 +138,7 @@
             // 
             this.nudPrecio.Location = new System.Drawing.Point(12, 70);
             this.nudPrecio.Maximum = new decimal(new int[] {
-            99999,
+            999,
             0,
             0,
             0});

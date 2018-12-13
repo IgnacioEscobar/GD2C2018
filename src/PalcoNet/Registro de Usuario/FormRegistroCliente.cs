@@ -17,7 +17,8 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormRegistroCliente : Form
     {
-        int userID; // si es registro desde login es -1
+        int userID; // user encargado de abm
+        int rolID; // rol de user encargado
         bool abm; // si viene del ABM
         bool modif; // si viene por modificar o por agregar
         string query;
@@ -26,28 +27,29 @@ namespace PalcoNet.Registro_de_Usuario
         string numeroTarjeta;
         ValidadorDeDatos validador;
 
-        public FormRegistroCliente(bool abm)
+        public FormRegistroCliente()
         {
             InitializeComponent();
-            this.userID = -1;
-            this.abm = abm;
+            this.abm = false;
             this.modif = false;
             this.numeroTarjeta = "";
         }
 
-        public FormRegistroCliente(int userID, bool abm)
+        public FormRegistroCliente(int userID, int rolID)
         {
             InitializeComponent();
             this.userID = userID;
-            this.abm = abm;
+            this.rolID = rolID;
+            this.abm = true;
             this.modif = false;
             this.numeroTarjeta = "";
         }
 
-        public FormRegistroCliente(int userID, string query)
+        public FormRegistroCliente(int userID, int rolID, string query)
         {
             InitializeComponent();
             this.userID = userID;
+            this.rolID = rolID;
             this.abm = true;
             this.modif = true;
             this.query = query;
@@ -177,6 +179,21 @@ namespace PalcoNet.Registro_de_Usuario
                     numeroTarjeta = lector["tarjeta_de_credito_asociada"].ToString();
                 }
                 gestor.desconectar();
+
+                gestor.conectar();
+                gestor.consulta("SELECT PEAKY_BLINDERS.cliente_habilitado(" + clienteID + ") AS esta_habilitado");
+                SqlDataReader lector2 = gestor.obtenerRegistros();
+                if (lector2.Read())
+                {
+                    int resultado = Convert.ToInt32(lector2["esta_habilitado"]);
+
+                    if (resultado != -1) // el cliente tiene usuario generado
+                    {
+                        ckbHabilitado.Visible = true;
+                        ckbHabilitado.Checked = Convert.ToBoolean(resultado);
+                    }
+                }
+                gestor.desconectar();
             }
             else
             {
@@ -184,7 +201,6 @@ namespace PalcoNet.Registro_de_Usuario
             }
 
             formTarjetaDeCredito = new FormTarjetaDeCredito(this, numeroTarjeta);
-            lblError.Visible = false;
 
             validador = new ValidadorDeDatos();
         }
@@ -194,7 +210,7 @@ namespace PalcoNet.Registro_de_Usuario
             Form formDestino;
             if (abm)
             {
-                formDestino = new FormABMCliente(userID, 1);
+                formDestino = new FormABMCliente(userID, rolID);
             }
             else
             {
@@ -228,13 +244,37 @@ namespace PalcoNet.Registro_de_Usuario
                 bool creacion = false;
                 string usuario = "";
                 string contrasena = "";
+                bool user_autogenerado = true;
 
                 if (!modif)
                 {
-                    usuario = txtCUIL.Text;
+                    if (abm)
+                    {
+                        FormNombreUsuario formNombreDeUsuario = new FormNombreUsuario();
+                        if (formNombreDeUsuario.ShowDialog(this) == DialogResult.OK)
+                        {
+                            usuario = formNombreDeUsuario.getNombreUsuario();
+                            user_autogenerado = false;
+                        }
+                        formNombreDeUsuario.Dispose();
+                    }
+                    
+                    if (user_autogenerado)
+                    {
+                        gestor.conectar();
+                        gestor.consulta("SELECT ISNULL(MAX(id_usuario), 0) AS id_ultimo FROM PEAKY_BLINDERS.usuarios");
+                        SqlDataReader lector = gestor.obtenerRegistros();
+                        if (lector.Read())
+                        {
+                            usuario = "user" + (Convert.ToInt32(lector["id_ultimo"]) + 1);
+                        }
+                        gestor.desconectar();
+                    }
+
                     GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
                     contrasena = generadorDeContrasenas.generar(4);
 
+                    gestor.conectar();
                     gestor.generarStoredProcedure("crear_cliente");
                     gestor.parametroPorValor("usuario", usuario);
                     gestor.parametroPorValor("contrasenna", contrasena);
@@ -285,13 +325,34 @@ namespace PalcoNet.Registro_de_Usuario
                     }
                     else
                     {
+                        if (ckbHabilitado.Visible)
+                        {
+                            int cambioID = -1;
+                            gestor.conectar();
+                            gestor.consulta(
+                                "SELECT id_usuario FROM PEAKY_BLINDERS.clientes WHERE id_cliente = '" + clienteID + "'");
+                            SqlDataReader lector = gestor.obtenerRegistros();
+                            if (lector.Read())
+                            {
+                                cambioID = Convert.ToInt32(lector["id_usuario"]);
+                            }
+                            gestor.desconectar();
+
+                            gestor.conectar();
+                            gestor.generarStoredProcedure("actualizar_estado_usuario");
+                            gestor.parametroPorValor("id_usuario", cambioID);
+                            gestor.parametroPorValor("habilitado", Convert.ToInt32(ckbHabilitado.Checked));
+                            gestor.ejecutarStoredProcedure();
+                            gestor.desconectar();
+                        }
+                        
                         MessageBox.Show("¡Datos actualizados!");
                     }
 
                     Form formDestino;
                     if (abm)
                     {
-                        formDestino = new FormABMCliente(userID, 1);
+                        formDestino = new FormABMCliente(userID, rolID);
                     }
                     else if (creacion)
                     {
@@ -311,12 +372,12 @@ namespace PalcoNet.Registro_de_Usuario
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.texto(e);
+            validador.texto_espacio(e);
         }
 
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.texto(e);
+            validador.texto_espacio(e);
         }
 
         private void txtNumeroDoc_KeyPress(object sender, KeyPressEventArgs e)
@@ -365,6 +426,11 @@ namespace PalcoNet.Registro_de_Usuario
         }
 
         private void cmbTipoDoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            validador.texto(e);
+        }
+
+        private void txtDepto_KeyPress(object sender, KeyPressEventArgs e)
         {
             validador.texto(e);
         }

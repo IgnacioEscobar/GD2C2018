@@ -22,6 +22,7 @@ using PalcoNet.Historial_Cliente;
 using PalcoNet.Canje_Puntos;
 using PalcoNet.Generar_Rendicion_Comisiones;
 using PalcoNet.Listado_Estadistico;
+using PalcoNet.Comprar;
 
 namespace PalcoNet.Menu_Principal
 {
@@ -130,7 +131,7 @@ namespace PalcoNet.Menu_Principal
                         }
                         else
                         {
-                            
+                            formDestino = new FormFiltrarEspectaculos(userID, rolID);
                         }
                         break;
                     case "HISTORIAL DEL CLIENTE":
@@ -156,7 +157,7 @@ namespace PalcoNet.Menu_Principal
                         }
                         break;
                     case "GENERAR PAGO DE COMISIONES":
-                        formDestino = new FormGenerarRendicion(userID, rolID);
+                        error = true;
                         break;
                     case "LISTADO ESTADÍSTICO":
                         formDestino = new FormListadoEstadistico(userID, rolID);
@@ -176,6 +177,13 @@ namespace PalcoNet.Menu_Principal
             FormLogin formDestino = new FormLogin();
             this.Hide();
             formDestino.Show();
+        }
+
+        private void btnModificarContrasena_Click(object sender, EventArgs e)
+        {
+            FormNuevaContrasena formNuevaContrasena = new FormNuevaContrasena(userID, rolID, false);
+            this.Hide();
+            formNuevaContrasena.Show();
         }
 
     }

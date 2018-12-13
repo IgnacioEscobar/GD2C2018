@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using PalcoNet.funciones_utiles;
 using PalcoNet.Registro_de_Usuario;
 using PalcoNet.Menu_Principal;
+using PalcoNet.Login;
 
 namespace PalcoNet.Abm_Cliente
 {
@@ -19,7 +20,10 @@ namespace PalcoNet.Abm_Cliente
     {
         int userID;
         int rolID;
-        string query_defecto = "SELECT nombre, apellido, numero_de_documento, mail FROM PEAKY_BLINDERS.clientes";
+        string query_defecto = "SELECT id_cliente, nombre, apellido, numero_de_documento, mail, " +
+            "ISNULL(habilitado, 0) AS habilitado FROM PEAKY_BLINDERS.clientes C " +
+            "LEFT JOIN PEAKY_BLINDERS.usuarios U ON C.id_usuario = U.id_usuario ";
+        string query_actual;
         ValidadorDeDatos validador;
 
         public FormABMCliente(int userID, int rolID)
@@ -35,33 +39,57 @@ namespace PalcoNet.Abm_Cliente
         {
             while (lector.Read())
             {
-                object[] row = new string[]
+                object[] row = new object[]
                 {
+                    lector["id_cliente"].ToString(),
                     lector["nombre"].ToString(),
                     lector["apellido"].ToString(),
                     lector["numero_de_documento"].ToString(),
-                    lector["mail"].ToString()
+                    lector["mail"].ToString(),
+                    Convert.ToBoolean(lector["habilitado"])
                 };
                 dgvClientes.Rows.Add(row);
             }
+        }
+
+        private void agregarCheckBoxColumn(string header)
+        {
+            DataGridViewCheckBoxColumn column = new DataGridViewCheckBoxColumn();
+            column.HeaderText = header;
+            dgvClientes.Columns.Add(column);
+        }
+
+        private void agregarButtonColumn(string header)
+        {
+            DataGridViewButtonColumn column = new DataGridViewButtonColumn();
+            column.HeaderText = header;
+            column.Text = "-->";
+            column.UseColumnTextForButtonValue = true;
+            dgvClientes.Columns.Add(column);
         }
 
         // -------------------
 
         private void FormABMCliente_Load(object sender, EventArgs e)
         {
-            dgvClientes.ColumnCount = 4;
+            dgvClientes.ColumnCount = 5;
             dgvClientes.ColumnHeadersVisible = true;
-            dgvClientes.Columns[0].Name = "NOMBRE";
-            dgvClientes.Columns[1].Name = "APELLIDO";
-            dgvClientes.Columns[2].Name = "DOCUMENTO";
-            dgvClientes.Columns[3].Name = "MAIL";
+            dgvClientes.Columns[0].Name = "ID";
+            dgvClientes.Columns[0].Visible = false;
+            dgvClientes.Columns[1].Name = "NOMBRE";
+            dgvClientes.Columns[2].Name = "APELLIDO";
+            dgvClientes.Columns[3].Name = "DOCUMENTO";
+            dgvClientes.Columns[4].Name = "MAIL";
+            agregarCheckBoxColumn("HABILITADO");
+            agregarButtonColumn("CAMBIAR CONTRASEÑA");
 
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.consulta(query_defecto);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            query_actual = query_defecto;
 
             dgvClientes.AutoResizeColumns();
             validador = new ValidadorDeDatos();
@@ -70,10 +98,10 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string nombre = txtNombre.Text;
-            string apellido = txtApellido.Text;
-            string documento = txtDocumento.Text;
-            string mail = txtMail.Text;
+            string nombre = txtNombre.Text.Trim();
+            string apellido = txtApellido.Text.Trim();
+            string documento = txtDocumento.Text.Trim();
+            string mail = txtMail.Text.Trim();
 
             List<object[]> listaCampos = new List<object[]>();
 
@@ -128,6 +156,8 @@ namespace PalcoNet.Abm_Cliente
             gestor.consulta(query);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
+
+            query_actual = query;
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -141,57 +171,103 @@ namespace PalcoNet.Abm_Cliente
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, true);
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, rolID);
             this.Hide();
             formRegistroCliente.Show();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            string[] param = new string[4];
-            int i = 0;
-            foreach (DataGridViewCell item in dgvClientes.CurrentRow.Cells)
-            {
-                param[i] = item.Value.ToString();
-                i++;
-            }
+            string clienteID = dgvClientes.CurrentRow.Cells[0].Value.ToString();
 
             string query = "SELECT * FROM PEAKY_BLINDERS.clientes C "
                            + "LEFT JOIN PEAKY_BLINDERS.tipos_de_documento T "
                                 + "ON C.id_tipo_de_documento = T.id_tipo_de_documento "
-                           + "WHERE C.numero_de_documento = '" + param[2] + "'";
-            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, query);
+                           + "WHERE C.id_cliente = '" + clienteID + "'";
+            FormRegistroCliente formRegistroCliente = new FormRegistroCliente(userID, rolID, query);
             this.Hide();
             formRegistroCliente.Show();
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private void btnDarBaja_Click(object sender, EventArgs e)
         {
-            string[] datos = new string[4];
-            int i = 0;
-            foreach (DataGridViewCell item in dgvClientes.CurrentRow.Cells)
-            {
-                datos[i] = item.Value.ToString();
-                i++;
-            }
-            string mensaje = "¿Confirma que desea eliminar al cliente " + datos[0] + " " + datos[1] + "?";
-            DialogResult  respuesta = MessageBox.Show(this, mensaje, "Eliminar cliente", MessageBoxButtons.YesNo);
+            string clienteID = dgvClientes.CurrentRow.Cells[0].Value.ToString();
+            string nombre = dgvClientes.CurrentRow.Cells[1].Value.ToString();
+            string apellido = dgvClientes.CurrentRow.Cells[2].Value.ToString();
+            bool habilitado = Convert.ToBoolean(dgvClientes.CurrentRow.Cells[5].Value);
 
-            if (respuesta == DialogResult.Yes)
+            if (!habilitado)
             {
-                /*
-                 * INICIO TRANSACCION
-                 */
+                MessageBox.Show("El cliente " + nombre + " " + apellido + " ya está dado de baja.", "Alerta");
+            }
+            else
+            {
+                string mensaje = "¿Confirma que desea eliminar al cliente " + nombre + " " + apellido + "?";
+                DialogResult respuesta = MessageBox.Show(this, mensaje, "Eliminar cliente", MessageBoxButtons.YesNo);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    GestorDB gestor = new GestorDB();
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("baja_cliente");
+                    gestor.parametroPorValor("id_cliente", clienteID);
+                    int resultado = gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+
+                    if (resultado == 0)
+                    {
+                        MessageBox.Show("El cliente no tiene un usuario asignado por lo que ya está dado de baja.", "Alerta");
+                    }
+                    else
+                    {
+                        MessageBox.Show("¡Cliente eliminado exitosamente!");
+                        dgvClientes.Rows.Clear();
+                        gestor.conectar();
+                        gestor.consulta(query_actual);
+                        this.mostrarRegistros(gestor.obtenerRegistros());
+                        gestor.desconectar();
+                    }
+                }
+            }
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                string nombre = dgvClientes.CurrentRow.Cells[1].Value.ToString();
+                string apellido = dgvClientes.CurrentRow.Cells[2].Value.ToString();
+                int clienteID = Convert.ToInt32(dgvClientes.CurrentRow.Cells[0].Value);
+                int cambioID = 0;
+                bool encontro = false;
+
                 GestorDB gestor = new GestorDB();
                 gestor.conectar();
-                gestor.generarStoredProcedure("eliminar_cliente");
-                gestor.parametroPorValor("numero_de_documento", datos[2]);
-                gestor.ejecutarStoredProcedure();
+                gestor.consulta(
+                    "SELECT ISNULL(id_usuario, 0) AS id_usuario " +
+                    "FROM PEAKY_BLINDERS.clientes " +
+                    "WHERE id_cliente = '" + clienteID + "'");
+                SqlDataReader lector = gestor.obtenerRegistros();
+                if (lector.Read())
+                {
+                    cambioID = Convert.ToInt32(lector["id_usuario"].ToString());
+                    if (cambioID > 0)
+                    {
+                        encontro = true;
+                    }
+                }
                 gestor.desconectar();
-                /*
-                 * FIN TRANSACCION
-                 */
-                MessageBox.Show("¡Cliente eliminado exitosamente!");
+
+                if (encontro)
+                {
+                    FormNuevaContrasena formMiUsuario = new FormNuevaContrasena(userID, rolID, cambioID, true, false);
+                    this.Hide();
+                    formMiUsuario.Show();
+                }
+                else
+                {
+                    MessageBox.Show("El cliente " + nombre + " " + apellido + " no tiene un usuario asociado.", "Alerta");
+                }
             }
         }
 
@@ -204,12 +280,12 @@ namespace PalcoNet.Abm_Cliente
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.texto(e);
+            validador.texto_espacio(e);
         }
 
         private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            validador.texto(e);
+            validador.texto_espacio(e);
         }
 
         private void txtDocumento_KeyPress(object sender, KeyPressEventArgs e)

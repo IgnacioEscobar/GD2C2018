@@ -31,6 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvFuncionalidades = new System.Windows.Forms.DataGridView();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
+            this.btnModificarContrasena = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncionalidades)).BeginInit();
             this.SuspendLayout();
@@ -71,11 +72,22 @@
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
+            // btnModificarContrasena
+            // 
+            this.btnModificarContrasena.Location = new System.Drawing.Point(313, 345);
+            this.btnModificarContrasena.Name = "btnModificarContrasena";
+            this.btnModificarContrasena.Size = new System.Drawing.Size(254, 30);
+            this.btnModificarContrasena.TabIndex = 16;
+            this.btnModificarContrasena.Text = "MODIFICAR CONTRASEÑA";
+            this.btnModificarContrasena.UseVisualStyleBackColor = true;
+            this.btnModificarContrasena.Click += new System.EventHandler(this.btnModificarContrasena_Click);
+            // 
             // FormMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 351);
+            this.ClientSize = new System.Drawing.Size(579, 387);
+            this.Controls.Add(this.btnModificarContrasena);
             this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
@@ -95,5 +107,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvFuncionalidades;
         private System.Windows.Forms.LinkLabel lklCerrarSesion;
+        private System.Windows.Forms.Button btnModificarContrasena;
     }
 }

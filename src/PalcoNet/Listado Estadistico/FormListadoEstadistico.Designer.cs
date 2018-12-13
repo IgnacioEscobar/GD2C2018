@@ -38,11 +38,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(250, 65);
+            this.btnConsultar.Location = new System.Drawing.Point(250, 74);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(156, 21);
             this.btnConsultar.TabIndex = 3;
@@ -54,16 +55,16 @@
             // 
             this.cmbConsulta.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cmbConsulta.FormattingEnabled = true;
-            this.cmbConsulta.Location = new System.Drawing.Point(12, 25);
+            this.cmbConsulta.Location = new System.Drawing.Point(12, 34);
             this.cmbConsulta.Name = "cmbConsulta";
-            this.cmbConsulta.Size = new System.Drawing.Size(394, 21);
+            this.cmbConsulta.Size = new System.Drawing.Size(395, 21);
             this.cmbConsulta.TabIndex = 0;
             // 
             // cmbTrimestre
             // 
             this.cmbTrimestre.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cmbTrimestre.FormattingEnabled = true;
-            this.cmbTrimestre.Location = new System.Drawing.Point(131, 65);
+            this.cmbTrimestre.Location = new System.Drawing.Point(131, 74);
             this.cmbTrimestre.Name = "cmbTrimestre";
             this.cmbTrimestre.Size = new System.Drawing.Size(113, 21);
             this.cmbTrimestre.TabIndex = 2;
@@ -72,14 +73,14 @@
             // 
             this.cmbAno.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cmbAno.FormattingEnabled = true;
-            this.cmbAno.Location = new System.Drawing.Point(12, 65);
+            this.cmbAno.Location = new System.Drawing.Point(12, 74);
             this.cmbAno.Name = "cmbAno";
             this.cmbAno.Size = new System.Drawing.Size(113, 21);
             this.cmbAno.TabIndex = 1;
             // 
             // lsvConsulta
             // 
-            this.lsvConsulta.Location = new System.Drawing.Point(12, 118);
+            this.lsvConsulta.Location = new System.Drawing.Point(12, 127);
             this.lsvConsulta.Name = "lsvConsulta";
             this.lsvConsulta.Size = new System.Drawing.Size(394, 178);
             this.lsvConsulta.TabIndex = 5;
@@ -89,7 +90,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 99);
+            this.label1.Location = new System.Drawing.Point(12, 108);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 9;
@@ -98,7 +99,7 @@
             // btnMenuPrincipal
             // 
             this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 302);
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 311);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(394, 21);
             this.btnMenuPrincipal.TabIndex = 4;
@@ -109,7 +110,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(12, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 11;
@@ -118,7 +119,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 49);
+            this.label3.Location = new System.Drawing.Point(12, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 12;
@@ -127,11 +128,22 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(131, 49);
+            this.label4.Location = new System.Drawing.Point(131, 58);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 13;
             this.label4.Text = "Trimestre";
+            // 
+            // lklCerrarSesion
+            // 
+            this.lklCerrarSesion.AutoSize = true;
+            this.lklCerrarSesion.Location = new System.Drawing.Point(312, 9);
+            this.lklCerrarSesion.Name = "lklCerrarSesion";
+            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
+            this.lklCerrarSesion.TabIndex = 16;
+            this.lklCerrarSesion.TabStop = true;
+            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
             // FormListadoEstadistico
             // 
@@ -139,7 +151,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
-            this.ClientSize = new System.Drawing.Size(419, 335);
+            this.ClientSize = new System.Drawing.Size(419, 345);
+            this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -172,5 +185,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.LinkLabel lklCerrarSesion;
     }
 }

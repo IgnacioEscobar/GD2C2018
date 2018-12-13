@@ -63,7 +63,7 @@
             this.btnAsociarTarjeta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.lblError = new System.Windows.Forms.Label();
+            this.ckbHabilitado = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -81,6 +81,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(6, 32);
+            this.txtNombre.MaxLength = 60;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(250, 20);
             this.txtNombre.TabIndex = 1;
@@ -89,6 +90,7 @@
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(6, 72);
+            this.txtApellido.MaxLength = 60;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(250, 20);
             this.txtApellido.TabIndex = 2;
@@ -116,6 +118,7 @@
             // 
             this.cmbTipoDoc.FormattingEnabled = true;
             this.cmbTipoDoc.Location = new System.Drawing.Point(6, 113);
+            this.cmbTipoDoc.MaxLength = 10;
             this.cmbTipoDoc.Name = "cmbTipoDoc";
             this.cmbTipoDoc.Size = new System.Drawing.Size(90, 21);
             this.cmbTipoDoc.TabIndex = 3;
@@ -166,6 +169,7 @@
             // txtMail
             // 
             this.txtMail.Location = new System.Drawing.Point(6, 32);
+            this.txtMail.MaxLength = 60;
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(250, 20);
             this.txtMail.TabIndex = 17;
@@ -232,7 +236,7 @@
             // txtCUIL
             // 
             this.txtCUIL.Location = new System.Drawing.Point(6, 153);
-            this.txtCUIL.MaxLength = 11;
+            this.txtCUIL.MaxLength = 12;
             this.txtCUIL.Name = "txtCUIL";
             this.txtCUIL.Size = new System.Drawing.Size(250, 20);
             this.txtCUIL.TabIndex = 5;
@@ -293,6 +297,7 @@
             // txtAltura
             // 
             this.txtAltura.Location = new System.Drawing.Point(200, 32);
+            this.txtAltura.MaxLength = 6;
             this.txtAltura.Name = "txtAltura";
             this.txtAltura.Size = new System.Drawing.Size(56, 20);
             this.txtAltura.TabIndex = 11;
@@ -329,16 +334,20 @@
             // 
             this.txtLocalidad.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtLocalidad.Location = new System.Drawing.Point(120, 104);
+            this.txtLocalidad.MaxLength = 60;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(136, 20);
             this.txtLocalidad.TabIndex = 15;
             // 
             // txtDepto
             // 
+            this.txtDepto.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtDepto.Location = new System.Drawing.Point(200, 58);
+            this.txtDepto.MaxLength = 1;
             this.txtDepto.Name = "txtDepto";
             this.txtDepto.Size = new System.Drawing.Size(56, 20);
             this.txtDepto.TabIndex = 13;
+            this.txtDepto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepto_KeyPress);
             // 
             // label10
             // 
@@ -369,6 +378,7 @@
             // txtPiso
             // 
             this.txtPiso.Location = new System.Drawing.Point(39, 58);
+            this.txtPiso.MaxLength = 3;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(56, 20);
             this.txtPiso.TabIndex = 12;
@@ -414,16 +424,16 @@
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // lblError
+            // ckbHabilitado
             // 
-            this.lblError.AutoSize = true;
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(280, 263);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(90, 13);
-            this.lblError.TabIndex = 27;
-            this.lblError.Text = "mensajes de error";
-            this.lblError.Visible = false;
+            this.ckbHabilitado.AutoSize = true;
+            this.ckbHabilitado.Location = new System.Drawing.Point(286, 257);
+            this.ckbHabilitado.Name = "ckbHabilitado";
+            this.ckbHabilitado.Size = new System.Drawing.Size(90, 17);
+            this.ckbHabilitado.TabIndex = 22;
+            this.ckbHabilitado.Text = "HABILITADO";
+            this.ckbHabilitado.UseVisualStyleBackColor = true;
+            this.ckbHabilitado.Visible = false;
             // 
             // FormRegistroCliente
             // 
@@ -431,8 +441,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(553, 350);
-            this.Controls.Add(this.lblError);
+            this.ClientSize = new System.Drawing.Size(555, 350);
+            this.Controls.Add(this.ckbHabilitado);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAsociarTarjeta);
@@ -490,8 +500,8 @@
         private System.Windows.Forms.Button btnAsociarTarjeta;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
-        private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtAltura;
+        private System.Windows.Forms.CheckBox ckbHabilitado;
     }
 }

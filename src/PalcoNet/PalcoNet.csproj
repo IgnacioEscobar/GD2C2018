@@ -108,11 +108,11 @@
     <Compile Include="Abm Usuario\FormABMUsuario.Designer.cs">
       <DependentUpon>FormABMUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Usuario\FormMiUsuario.cs">
+    <Compile Include="Abm Usuario\FormNuevaContrasena.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Abm Usuario\FormMiUsuario.Designer.cs">
-      <DependentUpon>FormMiUsuario.cs</DependentUpon>
+    <Compile Include="Abm Usuario\FormNuevaContrasena.Designer.cs">
+      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
     </Compile>
     <Compile Include="Canje Puntos\FormCanjePuntos.cs">
       <SubType>Form</SubType>
@@ -120,11 +120,11 @@
     <Compile Include="Canje Puntos\FormCanjePuntos.Designer.cs">
       <DependentUpon>FormCanjePuntos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar\FormAdministracionDePuntos.cs">
+    <Compile Include="Comprar\FormFiltrarEspectaculos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprar\FormAdministracionDePuntos.Designer.cs">
-      <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
+    <Compile Include="Comprar\FormFiltrarEspectaculos.Designer.cs">
+      <DependentUpon>FormFiltrarEspectaculos.cs</DependentUpon>
     </Compile>
     <Compile Include="DB_Espectaculos.cs" />
     <Compile Include="Editar Publicacion\FormEditarPublicacion.cs">
@@ -141,6 +141,12 @@
     </Compile>
     <Compile Include="Generar Publicacion\FormUbicaciones.Designer.cs">
       <DependentUpon>FormUbicaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\FormNuevaContrasena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\FormNuevaContrasena.Designer.cs">
+      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu Principal\FormMenuAdministrador.cs">
       <SubType>Form</SubType>
@@ -166,6 +172,12 @@
     <Compile Include="Menu Principal\FormMenuPrincipal.Designer.cs">
       <DependentUpon>FormMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Registro de Usuario\FormNombreUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de Usuario\FormNombreUsuario.Designer.cs">
+      <DependentUpon>FormNombreUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Registro de Usuario\FormTarjetaDeCredito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,12 +185,6 @@
       <DependentUpon>FormTarjetaDeCredito.cs</DependentUpon>
     </Compile>
     <Compile Include="SQL_Connector.cs" />
-    <Compile Include="Comprar\FormPagar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Comprar\FormPagar.Designer.cs">
-      <DependentUpon>FormPagar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Comprar\FormComprarEntrada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,17 +272,14 @@
     <EmbeddedResource Include="Abm Usuario\FormABMUsuario.resx">
       <DependentUpon>FormABMUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Usuario\FormMiUsuario.resx">
-      <DependentUpon>FormMiUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="Abm Usuario\FormNuevaContrasena.resx">
+      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Canje Puntos\FormCanjePuntos.resx">
       <DependentUpon>FormCanjePuntos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\FormAdministracionDePuntos.resx">
-      <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\FormPagar.resx">
-      <DependentUpon>FormPagar.cs</DependentUpon>
+    <EmbeddedResource Include="Comprar\FormFiltrarEspectaculos.resx">
+      <DependentUpon>FormFiltrarEspectaculos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormComprarEntrada.resx">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>
@@ -305,6 +308,9 @@
     <EmbeddedResource Include="Login\FormElegirRol.resx">
       <DependentUpon>FormElegirRol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login\FormNuevaContrasena.resx">
+      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu Principal\FormMenuAdministrador.resx">
       <DependentUpon>FormMenuAdministrador.cs</DependentUpon>
     </EmbeddedResource>
@@ -326,6 +332,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Registro de Usuario\FormNombreUsuario.resx">
+      <DependentUpon>FormNombreUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Registro de Usuario\FormRegistroEmpresa.resx">
       <DependentUpon>FormRegistroEmpresa.cs</DependentUpon>
     </EmbeddedResource>

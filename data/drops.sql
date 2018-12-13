@@ -4,18 +4,24 @@ if OBJECT_ID('PEAKY_BLINDERS.verificar_contrasenna', N'FN') is not null
   drop function PEAKY_BLINDERS.verificar_contrasenna;
 if OBJECT_ID('PEAKY_BLINDERS.actualizar_contrasenna', 'P') is not null
   drop procedure PEAKY_BLINDERS.actualizar_contrasenna;
+if OBJECT_ID('PEAKY_BLINDERS.actualizar_estado_usuario', 'P') is not null
+  drop procedure PEAKY_BLINDERS.actualizar_estado_usuario;
 if OBJECT_ID('PEAKY_BLINDERS.crear_cliente', 'P') is not null
   drop procedure PEAKY_BLINDERS.crear_cliente;
 if OBJECT_ID('PEAKY_BLINDERS.modificar_cliente', 'P') is not null
   drop procedure PEAKY_BLINDERS.modificar_cliente;
-if OBJECT_ID('PEAKY_BLINDERS.eliminar_cliente', 'P') is not null
-  drop procedure PEAKY_BLINDERS.eliminar_cliente;
+if OBJECT_ID('PEAKY_BLINDERS.baja_cliente', 'P') is not null
+  drop procedure PEAKY_BLINDERS.baja_cliente;
+if OBJECT_ID('PEAKY_BLINDERS.cliente_habilitado', N'FN') is not null
+  drop function PEAKY_BLINDERS.cliente_habilitado;
 if OBJECT_ID('PEAKY_BLINDERS.crear_empresa', 'P') is not null
   drop procedure PEAKY_BLINDERS.crear_empresa;
 if OBJECT_ID('PEAKY_BLINDERS.modificar_empresa', 'P') is not null
   drop procedure PEAKY_BLINDERS.modificar_empresa;
-if OBJECT_ID('PEAKY_BLINDERS.eliminar_empresa', 'P') is not null
-  drop procedure PEAKY_BLINDERS.eliminar_empresa;
+if OBJECT_ID('PEAKY_BLINDERS.baja_empresa', 'P') is not null
+  drop procedure PEAKY_BLINDERS.baja_empresa;
+if OBJECT_ID('PEAKY_BLINDERS.empresa_habilitada', N'FN') is not null
+  drop function PEAKY_BLINDERS.empresa_habilitada;
 if OBJECT_ID('PEAKY_BLINDERS.crear_rol', 'P') is not null
   drop procedure PEAKY_BLINDERS.crear_rol;
 if OBJECT_ID('PEAKY_BLINDERS.modificar_rol', 'P') is not null

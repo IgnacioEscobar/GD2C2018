@@ -83,5 +83,12 @@ namespace PalcoNet.Listado_Estadistico
             formMenuPrincipal.Show();
         }
 
+        private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormLogin formDestino = new FormLogin();
+            this.Hide();
+            formDestino.Show();
+        }
+
     }
 }
