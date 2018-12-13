@@ -1,5 +1,4 @@
-﻿using PalcoNet.funciones_utiles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using PalcoNet.funciones_utiles;
+using PalcoNet.Menu_Principal;
+
 namespace PalcoNet.Comprar
 {
     public partial class FormComprarEntrada : Form
@@ -17,6 +19,7 @@ namespace PalcoNet.Comprar
         int userID;
         int rolID;
         int idPresentacion;
+        int clienteID;
         GestorDB gestor = new GestorDB();
         List<string> ubicaciones = new List<string>();
         List<string> ubicacionesSeleccionadas = new List<string>();
@@ -30,8 +33,22 @@ namespace PalcoNet.Comprar
             this.rolID = rolID;
             this.idPresentacion = idPresentacion;
 
+            this.obtenerClienteID();
             this.mostrarTiposDeUbicacion(idPresentacion);
             this.mostrarPremiosDisponibles();
+        }
+
+        private void obtenerClienteID()
+        {
+            gestor.conectar();
+            string query_clienteID = "select id_cliente from PEAKY_BLINDERS.clientes where id_usuario = '" + userID + "'";
+            gestor.consulta(query_clienteID);
+            SqlDataReader lector2 = gestor.obtenerRegistros();
+            if (lector2.Read())
+            {
+                clienteID = Convert.ToInt32(lector2["id_cliente"]);
+            }
+            gestor.desconectar();
         }
 
         private void mostrarPremiosDisponibles()
@@ -42,7 +59,7 @@ namespace PalcoNet.Comprar
             gestor.conectar();
             string query_premios = "select P.id_premio, TP.descripcion from PEAKY_BLINDERS.premios P "
                 + " join PEAKY_BLINDERS.tipos_de_premios TP on TP.id_tipo_de_premio = P.id_tipo_de_premio "
-                + " where P.id_cliente = " + this.userID + " and P.usado = 0";
+                + " where P.id_cliente = " + this.clienteID + " and P.usado = 0 ";
             gestor.consulta(query_premios);
             SqlDataReader lector = gestor.obtenerRegistros();
             while (lector.Read())
@@ -130,11 +147,8 @@ namespace PalcoNet.Comprar
             lector.Read();
             this.label1.Text = "Monto: $" + lector[0].ToString();
             gestor.desconectar();
-        }
 
-        private void FormComprarEntrada_Load(object sender, EventArgs e)
-        {
-
+            btnPagar.Enabled = true;
         }
 
         private void btnPremio_Click(object sender, EventArgs e)
@@ -161,7 +175,7 @@ namespace PalcoNet.Comprar
             {
                 gestor.conectar();
                 gestor.generarStoredProcedure("registrarCompra");
-                gestor.parametroPorValor("id_cliente", this.userID);
+                gestor.parametroPorValor("id_cliente", clienteID);
                 gestor.parametroPorValor("id_medio_de_pago", 1);
                 gestor.parametroPorValor("id_presentacion", this.idPresentacion);
                 gestor.parametroPorValor("id_publicacion", id_publicacion);
@@ -177,6 +191,16 @@ namespace PalcoNet.Comprar
             this.mostrarTiposDeUbicacion(this.idPresentacion);
             this.mostrarPremiosDisponibles();
             this.label1.Text = "Monto: $0";
+            MessageBox.Show("Gracias por su compra, se le enviará por mail un detalle de la factura.");
+            btnPagar.Enabled = false;
         }
+
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
+            this.Hide();
+            formMenuPrincipal.Show();
+        }
+
     }
 }

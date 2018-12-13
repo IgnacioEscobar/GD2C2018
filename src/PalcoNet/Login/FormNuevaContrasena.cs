@@ -115,40 +115,42 @@ namespace PalcoNet.Login
             {
                 MessageBox.Show("La nueva contraseña no coincide.", "Alerta");
             }
-
-            GestorDB gestor = new GestorDB();
-
-            if (!cliente && !empresa)
+            else
             {
-                gestor.conectar();
-                string query = "SELECT PEAKY_BLINDERS.verificar_contrasenna (" + cambioID + ", '" + txtPassActual.Text + "') AS encontro";
-                gestor.consulta(query);
-                SqlDataReader lector = gestor.obtenerRegistros();
-                bool encontro = false;
-                if (lector.Read())
+                GestorDB gestor = new GestorDB();
+
+                if (!cliente && !empresa)
                 {
-                    encontro = Convert.ToBoolean(lector["encontro"]);
+                    gestor.conectar();
+                    string query = "SELECT PEAKY_BLINDERS.verificar_contrasenna (" + cambioID + ", '" + txtPassActual.Text + "') AS encontro";
+                    gestor.consulta(query);
+                    SqlDataReader lector = gestor.obtenerRegistros();
+                    bool encontro = false;
+                    if (lector.Read())
+                    {
+                        encontro = Convert.ToBoolean(lector["encontro"]);
+                    }
+
+                    gestor.desconectar();
+
+                    if (!encontro)
+                    {
+                        MessageBox.Show("La actual contraseña es incorrecta.", "Alerta");
+                        return;
+                    }
                 }
 
+                gestor.conectar();
+                gestor.generarStoredProcedure("actualizar_contrasenna");
+                gestor.parametroPorValor("id_usuario", cambioID);
+                gestor.parametroPorValor("contrasenna", txtPassNueva.Text);
+                gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
 
-                if (!encontro)
-                {
-                    MessageBox.Show("La actual contraseña es incorrecta.", "Alerta");
-                    return;
-                }
-            }
+                MessageBox.Show("La contraseña ha sido actualizada.");
 
-            gestor.conectar();
-            gestor.generarStoredProcedure("actualizar_contrasenna");
-            gestor.parametroPorValor("id_usuario", cambioID);
-            gestor.parametroPorValor("contrasenna", txtPassNueva.Text);
-            gestor.ejecutarStoredProcedure();
-            gestor.desconectar();
-
-            MessageBox.Show("La contraseña ha sido actualizada.");
-
-            this.avanzarDeForm(true);
+                this.avanzarDeForm(true);
+            }            
         }
 
     }

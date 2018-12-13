@@ -126,12 +126,6 @@
     <Compile Include="Comprar\FormFiltrarEspectaculos.Designer.cs">
       <DependentUpon>FormFiltrarEspectaculos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Comprar\FormAdministracionDePuntos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Comprar\FormAdministracionDePuntos.Designer.cs">
-      <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
-    </Compile>
     <Compile Include="DB_Espectaculos.cs" />
     <Compile Include="Editar Publicacion\FormEditarPublicacion.cs">
       <SubType>Form</SubType>
@@ -191,12 +185,6 @@
       <DependentUpon>FormTarjetaDeCredito.cs</DependentUpon>
     </Compile>
     <Compile Include="SQL_Connector.cs" />
-    <Compile Include="Comprar\FormPagar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Comprar\FormPagar.Designer.cs">
-      <DependentUpon>FormPagar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Comprar\FormComprarEntrada.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -290,14 +278,8 @@
     <EmbeddedResource Include="Canje Puntos\FormCanjePuntos.resx">
       <DependentUpon>FormCanjePuntos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\FormAdministracionDePuntos.resx">
-      <DependentUpon>FormAdministracionDePuntos.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormFiltrarEspectaculos.resx">
       <DependentUpon>FormFiltrarEspectaculos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Comprar\FormPagar.resx">
-      <DependentUpon>FormPagar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprar\FormComprarEntrada.resx">
       <DependentUpon>FormComprarEntrada.cs</DependentUpon>

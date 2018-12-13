@@ -15,7 +15,7 @@ as
 
 	if @id_premio != -1
 		set @multiplicador_premio = (
-      select TP.muliplicador from PEAKY_BLINDERS.premios P
+      select TP.multiplicador from PEAKY_BLINDERS.premios P
       join PEAKY_BLINDERS.tipos_de_premios TP on P.id_tipo_de_premio = TP.id_tipo_de_premio
 		  where P.id_cliente = @id_cliente and usado = 0 and P.id_premio = @id_premio
     )

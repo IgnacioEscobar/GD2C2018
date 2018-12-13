@@ -125,9 +125,11 @@ namespace PalcoNet.Menu_Principal
 
         private void btnAdministracionPuntos_Click(object sender, EventArgs e)
         {
+            /*
             FormAdministracionDePuntos formAdministracionDePuntos = new FormAdministracionDePuntos(userID);
             this.Hide();
             formAdministracionDePuntos.Show();
+             */
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

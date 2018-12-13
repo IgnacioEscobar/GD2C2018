@@ -57,7 +57,7 @@ namespace PalcoNet.Comprar
             dgvEspectaculos.Columns.Add(column);
         }
 
-        private void mostrarPublicaciones(string query)
+        private void mostrarPresentaciones(string query)
         {
             gestor.conectar();
             gestor.consulta(query);
@@ -99,8 +99,9 @@ namespace PalcoNet.Comprar
                     + "P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") "
                 // + "PP.fecha_presentacion > " + fechaInicio + " "
                 // + "PP.fecha_presentacion < " + fechaFin + " "
-                + "order by G.muliplicador desc, PP.fecha_presentacion asc";
-            this.mostrarPublicaciones(query_presentaciones);
+                + "order by G.multiplicador desc, PP.fecha_presentacion asc";
+            this.mostrarPresentaciones(query_presentaciones);
+            dgvEspectaculos.AutoResizeColumns();
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
@@ -155,11 +156,11 @@ namespace PalcoNet.Comprar
                 condicion += "AND P.id_rubro = NULL ";
             }
 
-            condicion += "order by G.muliplicador desc, PP.fecha_presentacion asc";
+            condicion += "order by G.multiplicador desc, PP.fecha_presentacion asc";
 
             string query_actual = query_defecto + condicion;
             dgvEspectaculos.Rows.Clear();
-            this.mostrarPublicaciones(query_actual);
+            this.mostrarPresentaciones(query_actual);
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

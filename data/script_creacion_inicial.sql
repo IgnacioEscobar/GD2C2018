@@ -74,11 +74,11 @@ insert into PEAKY_BLINDERS.rubros values ('Vacio');
 create table PEAKY_BLINDERS.grados (
   id_grado tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   descripcion varchar(15),
-  muliplicador decimal(2, 2)
+  multiplicador decimal(2, 2)
 )
 
 set IDENTITY_INSERT PEAKY_BLINDERS.grados ON;
-insert into PEAKY_BLINDERS.grados (id_grado, descripcion, muliplicador) values
+insert into PEAKY_BLINDERS.grados (id_grado, descripcion, multiplicador) values
 	(1, 'BAJO', 0.10),
 	(2, 'MEDIO', 0.20),
 	(3, 'ALTO', 0.30);
@@ -273,13 +273,14 @@ create table PEAKY_BLINDERS.movimientos_de_puntos (
 create table PEAKY_BLINDERS.tipos_de_premios (
   id_tipo_de_premio tinyint PRIMARY KEY NOT NULL IDENTITY(1, 1),
   descripcion varchar(100),
-  muliplicador decimal(3, 2)
+  puntos int,
+  multiplicador decimal(3, 2)
 )
 
 insert into PEAKY_BLINDERS.tipos_de_premios
-values ('Entrada Bonificada', 0),
-  ('Entrada al 50%', 0.5),
-  ('Entrada 25%', 0.75)
+values ('Entrada 100% OFF', 1000, 0),
+  ('Entrada 50% OFF', 700, 0.5),
+  ('Entrada 25% OFF', 400, 0.75)
 
 -- Premios
 create table PEAKY_BLINDERS.premios (
@@ -923,7 +924,7 @@ AS
 	SELECT @id_rubro = id_rubro FROM PEAKY_BLINDERS.rubros WHERE descripcion = @descripcion_rubro
 
 	DECLARE @id_grado int -- siempre asigna el mínimo grado -?-
-	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY muliplicador ASC
+	SELECT TOP 1 @id_grado = id_grado FROM PEAKY_BLINDERS.grados ORDER BY multiplicador ASC
 
 	INSERT INTO PEAKY_BLINDERS.publicaciones (
 		descripcion,
@@ -1042,4 +1043,73 @@ AS
 	DECLARE @id_grado int
 	SELECT @id_grado = id_grado FROM PEAKY_BLINDERS.grados WHERE descripcion = @descripcion_grado
 	UPDATE PEAKY_BLINDERS.publicaciones SET id_grado = @id_grado WHERE id_publicacion = @id_publicacion
+  END
+GO
+
+create procedure PEAKY_BLINDERS.registrarCompra
+@id_cliente int,
+@id_medio_de_pago tinyint,
+@id_presentacion int,
+@id_publicacion int,
+@id_ubicacion int,
+@id_premio int
+as
+  begin
+	declare @monto_a_cobrar as int
+	declare @multiplicador_premio as decimal(3,2)
+	set @multiplicador_premio = 1
+
+  set @monto_a_cobrar = (select U.precio from PEAKY_BLINDERS.ubicaciones U where U.id_ubicacion = @id_ubicacion)
+
+	if @id_premio != -1
+		set @multiplicador_premio = (
+      select TP.multiplicador from PEAKY_BLINDERS.premios P
+      join PEAKY_BLINDERS.tipos_de_premios TP on P.id_tipo_de_premio = TP.id_tipo_de_premio
+		  where P.id_cliente = @id_cliente and usado = 0 and P.id_premio = @id_premio
+    )
+  
+	set @monto_a_cobrar = @monto_a_cobrar * @multiplicador_premio
+  -- registra compra con monto correspondiente, fecha actual y cantidad = 1
+  insert into PEAKY_BLINDERS.compras (id_cliente, id_medio_de_pago, id_presentacion, id_publicacion, id_ubicacion, monto)
+  values (@id_cliente, @id_medio_de_pago, @id_presentacion, @id_publicacion, @id_ubicacion, @monto_a_cobrar);
+
+  update PEAKY_BLINDERS.premios
+  set usado = 1
+  where id_cliente = @id_cliente and id_premio = @id_premio
+
+  -- se suman 50 puntos por compra
+  insert into PEAKY_BLINDERS.movimientos_de_puntos (id_cliente, variacion)
+  values (@id_cliente, 50);
+  end
+go
+
+CREATE PROCEDURE PEAKY_BLINDERS.canjear_premio
+@id_usuario int,
+@descripcion varchar(100),
+@puntos int
+AS
+  BEGIN
+	DECLARE @id_tipo_de_premio int
+	SELECT @id_tipo_de_premio = id_tipo_de_premio FROM PEAKY_BLINDERS.tipos_de_premios WHERE descripcion = @descripcion
+
+	DECLARE @id_cliente int
+	SELECT @id_cliente = id_cliente FROM PEAKY_BLINDERS.clientes WHERE id_usuario = @id_usuario
+
+	INSERT INTO PEAKY_BLINDERS.premios (
+		id_tipo_de_premio,
+		id_cliente,
+		usado
+	) VALUES (
+		@id_tipo_de_premio,
+		@id_cliente,
+		0
+	)
+
+	INSERT INTO PEAKY_BLINDERS.movimientos_de_puntos (
+		id_cliente,
+		variacion
+	) VALUES (
+		@id_cliente,
+		-@puntos
+	)
   END

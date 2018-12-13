@@ -141,6 +141,7 @@
             // 
             // btnMenuPrincipal
             // 
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnMenuPrincipal.Location = new System.Drawing.Point(748, 412);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(197, 42);
@@ -178,14 +179,18 @@
             // 
             // FormFiltrarEspectaculos
             // 
+            this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(963, 467);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.dgvEspectaculos);
+            this.MaximizeBox = false;
             this.Name = "FormFiltrarEspectaculos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Filtrar Espectaculos";
             this.Load += new System.EventHandler(this.FormFiltrarEspectaculos_Load);
             this.groupBox1.ResumeLayout(false);

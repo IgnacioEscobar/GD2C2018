@@ -31,6 +31,7 @@
             System.Windows.Forms.Button btnCosto;
             System.Windows.Forms.Button btnPremio;
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.comboPremios = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -67,6 +68,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnMenuPrincipal);
             this.groupBox1.Controls.Add(this.comboPremios);
             this.groupBox1.Controls.Add(btnPremio);
             this.groupBox1.Controls.Add(this.label3);
@@ -80,10 +82,21 @@
             this.groupBox1.Controls.Add(this.lblUbicacion);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(382, 481);
+            this.groupBox1.Size = new System.Drawing.Size(382, 531);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Comprar Entrada";
+            // 
+            // btnMenuPrincipal
+            // 
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 474);
+            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(359, 44);
+            this.btnMenuPrincipal.TabIndex = 24;
+            this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
+            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
+            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
             // 
             // comboPremios
             // 
@@ -143,11 +156,12 @@
             // 
             // btnPagar
             // 
+            this.btnPagar.Enabled = false;
             this.btnPagar.Location = new System.Drawing.Point(12, 424);
             this.btnPagar.Name = "btnPagar";
             this.btnPagar.Size = new System.Drawing.Size(359, 44);
             this.btnPagar.TabIndex = 11;
-            this.btnPagar.Text = "PROCEDER AL PAGO";
+            this.btnPagar.Text = "CONFIRMAR COMPRA";
             this.btnPagar.UseVisualStyleBackColor = true;
             this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
             // 
@@ -167,17 +181,18 @@
             this.lblUbicacion.Name = "lblUbicacion";
             this.lblUbicacion.Size = new System.Drawing.Size(122, 17);
             this.lblUbicacion.TabIndex = 5;
-            this.lblUbicacion.Text = "Tipo de Ubicacion";
+            this.lblUbicacion.Text = "Tipo de Ubicación";
             // 
             // FormComprarEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 503);
+            this.CancelButton = this.btnMenuPrincipal;
+            this.ClientSize = new System.Drawing.Size(406, 555);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormComprarEntrada";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PalcoNet";
-            this.Load += new System.EventHandler(this.FormComprarEntrada_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -196,5 +211,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboPremios;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnMenuPrincipal;
     }
 }

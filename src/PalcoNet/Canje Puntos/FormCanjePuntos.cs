@@ -18,6 +18,7 @@ namespace PalcoNet.Canje_Puntos
     {
         int userID;
         int rolID;
+        int puntos_disponibles;
 
         public FormCanjePuntos(int userID, int rolID)
         {
@@ -26,35 +27,72 @@ namespace PalcoNet.Canje_Puntos
             this.rolID = rolID;
         }
 
-        private void FormCanjePuntos_Load(object sender, EventArgs e)
+        // Metodos auxiliares
+
+        private void mostrarCanjeados()
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT SUM(MP.variacion) AS puntos FROM PEAKY_BLINDERS.movimiento_de_puntos MP " +
+            gestor.consulta(
+                "SELECT TP.descripcion, COUNT(*) AS cantidad " +
+                "FROM PEAKY_BLINDERS.premios P " +
+                    "JOIN PEAKY_BLINDERS.tipos_de_premios TP ON P.id_tipo_de_premio = TP.id_tipo_de_premio " +
+                    "JOIN PEAKY_BLINDERS.clientes C ON P.id_cliente = C.id_cliente " +
+                "WHERE C.id_usuario = '" + userID + "' AND P.usado = 0 " +
+                "GROUP BY TP.descripcion " +
+                "ORDER BY TP.descripcion ASC");
+            SqlDataReader lector = gestor.obtenerRegistros();
+            while (lector.Read())
+            {
+                ListViewItem item = new ListViewItem(lector["descripcion"].ToString());
+                item.SubItems.Add(lector["cantidad"].ToString());
+                lsvPremiosCanjeados.Items.Add(item);
+            }
+            lsvPremiosCanjeados.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void mostrarPuntosDisponibles()
+        {
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            gestor.consulta("SELECT ISNULL(SUM(MP.variacion), 0) AS puntos FROM PEAKY_BLINDERS.movimientos_de_puntos MP " +
                 "JOIN PEAKY_BLINDERS.clientes C ON MP.id_cliente = C.id_cliente " +
-                "WHERE C.id_usuario = '" + userID + "' AND MP.fecha >= GETDATE()");
+                "WHERE C.id_usuario = '" + userID + "' AND MP.fecha_vencimiento >= GETDATE()");
             SqlDataReader lector = gestor.obtenerRegistros();
             if (lector.Read())
             {
-                lblPuntosDisponibles.Text = "PUNTOS DISPONIBLES " + lector["puntos"].ToString();
+                puntos_disponibles = Convert.ToInt32(lector["puntos"]);
+                lblPuntosDisponibles.Text = "PUNTOS DISPONIBLES: " + puntos_disponibles.ToString();
             }
             gestor.desconectar();
+        }
+
+        // -------------------
+
+        private void FormCanjePuntos_Load(object sender, EventArgs e)
+        {
+            mostrarPuntosDisponibles();
 
             lsvPremiosDisponibles.View = View.Details;
             lsvPremiosDisponibles.Columns.Add("DESCRIPCIÓN");
             lsvPremiosDisponibles.Columns.Add("PUNTOS");
-            lsvPremiosDisponibles.Columns.Add("DESCUENTO");
 
+            GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT descripcion, puntos, multiplicador FROM PEAKY_BLINDERS.tipos_de_premio");
-            SqlDataReader lector2 = gestor.obtenerRegistros();
-            while (lector2.Read())
+            gestor.consulta("SELECT descripcion, puntos FROM PEAKY_BLINDERS.tipos_de_premios");
+            SqlDataReader lector = gestor.obtenerRegistros();
+            while (lector.Read())
             {
-                ListViewItem item = new ListViewItem(lector2["descripcion"].ToString());
-                item.SubItems.Add(lector2["puntos"].ToString());
-                item.SubItems.Add((Convert.ToInt32(lector2["multiplicador"]) * 100).ToString());
+                ListViewItem item = new ListViewItem(lector["descripcion"].ToString());
+                item.SubItems.Add(lector["puntos"].ToString());
                 lsvPremiosDisponibles.Items.Add(item);
             }
+            lsvPremiosDisponibles.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+            lsvPremiosCanjeados.View = View.Details;
+            lsvPremiosCanjeados.Columns.Add("DESCRIPCIÓN");
+            lsvPremiosCanjeados.Columns.Add("CANTIDAD");
+            this.mostrarCanjeados();
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
@@ -70,5 +108,44 @@ namespace PalcoNet.Canje_Puntos
             this.Hide();
             formDestino.Show();
         }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            if (lsvPremiosDisponibles.SelectedItems.Count == 1)
+            {
+                string premio_seleccionado = lsvPremiosDisponibles.SelectedItems[0].SubItems[0].Text;
+                int puntos_requeridos = Convert.ToInt32(lsvPremiosDisponibles.SelectedItems[0].SubItems[1].Text);
+
+                if (puntos_requeridos > puntos_disponibles)
+                {
+                    MessageBox.Show("No tiene la cantidad necesaria de puntos acumulados.", "Alerta");
+                }
+                else
+                {
+                    string mensaje = "¿Confirma que desea canjear " + puntos_requeridos + " puntos por " + premio_seleccionado + "?";
+                    DialogResult result = MessageBox.Show(mensaje, "Confirmar canje", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        GestorDB gestor = new GestorDB();
+                        gestor.conectar();
+                        gestor.generarStoredProcedure("canjear_premio");
+                        gestor.parametroPorValor("id_usuario", userID);
+                        gestor.parametroPorValor("descripcion", premio_seleccionado);
+                        gestor.parametroPorValor("puntos", puntos_requeridos);
+                        gestor.ejecutarStoredProcedure();
+                        gestor.desconectar();
+
+                        mostrarPuntosDisponibles();
+                        lsvPremiosCanjeados.Items.Clear();
+                        mostrarCanjeados();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar algún premio.", "Alerta");
+            }
+        }
+
     }
 }
