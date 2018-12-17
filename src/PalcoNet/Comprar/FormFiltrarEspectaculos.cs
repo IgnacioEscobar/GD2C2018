@@ -25,6 +25,8 @@ namespace PalcoNet.Comprar
                 + "join PEAKY_BLINDERS.grados G on P.id_grado = G.id_grado ";
         GestorDB gestor = new GestorDB();
         List<string> categorias = new List<string>();
+        string condicion;
+        int pagina;
 
 
         public FormFiltrarEspectaculos(int userID, int rolID)
@@ -115,7 +117,7 @@ namespace PalcoNet.Comprar
         {
             dgvEspectaculos.Rows.Clear();
 
-            string condicion = "LEFT JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
+            condicion = "LEFT JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
                 "WHERE PP.fecha_vencimiento >= GETDATE() ";
             string descripcion = txtDescripcion.Text;
 
@@ -157,8 +159,10 @@ namespace PalcoNet.Comprar
             }
 
             condicion += "order by G.multiplicador desc, PP.fecha_presentacion asc";
+            pagina = 1;
+            string condicion_paginada = aplicarPagina(condicion, pagina);
 
-            string query_actual = query_defecto + condicion;
+            string query_actual = query_defecto + condicion_paginada;
             dgvEspectaculos.Rows.Clear();
             this.mostrarPresentaciones(query_actual);
         }
@@ -190,6 +194,12 @@ namespace PalcoNet.Comprar
                 this.Hide();
                 formComprarEntrada.Show();
             }
+        }
+
+        private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 10){
+            int offset = (pagina - 1) * tamanio_pagina;
+            string complemento = "OFFSET {offset}! ROWS FETCH NEXT {tamanio_pagina}! ROWS ONLY";
+            return condicion + complemento;
         }
 
     }
