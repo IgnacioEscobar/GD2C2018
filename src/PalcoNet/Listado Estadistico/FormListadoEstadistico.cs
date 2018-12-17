@@ -25,6 +25,23 @@ namespace PalcoNet.Listado_Estadistico
             this.rolID = rolID;
         }
 
+        // Metodos auxiliares
+
+        private void mostrarResultados(string query, Queue<string> headers)
+        {
+            lsvConsulta.View = View.Details;
+
+            while (headers.Count > 0)
+            {
+                string header = headers.Dequeue();
+                lsvConsulta.Columns.Add(header.ToUpper());
+            }
+
+            MessageBox.Show(query);
+        }
+
+        // -------------------
+
         private void FormListado_Load(object sender, EventArgs e)
         {
             GeneradorDeFechas generador = new GeneradorDeFechas();
@@ -37,20 +54,23 @@ namespace PalcoNet.Listado_Estadistico
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
+            string consulta = cmbConsulta.Text;
+            string ano = cmbAno.Text;
+            string trimestre = cmbTrimestre.Text;
             bool error = false;
             string mensaje = "Faltaron completar los siguientes campos:";
 
-            if (cmbConsulta.Text == "")
+            if (consulta == "")
             {
                 error = true;
                 mensaje += "\n- Tipo de consulta";
             }
-            if (cmbAno.Text == "")
+            if (ano == "")
             {
                 error = true;
                 mensaje += "\n- Año";
             }
-            if (cmbTrimestre.Text == "")
+            if (trimestre == "")
             {
                 error = true;
                 mensaje += "\n- Trimestre";
@@ -61,16 +81,57 @@ namespace PalcoNet.Listado_Estadistico
             }
             else
             {
-                switch (cmbConsulta.Text)
+                string query;
+                Queue<string> headers = new Queue<string>();
+                int desdeMes = 0;
+                int hastaMes = 0;
+
+                switch (Convert.ToInt32(trimestre))
+                {
+                    case 1:
+                        desdeMes = 1;
+                        hastaMes = 3;
+                        break;
+                    case 2:
+                        desdeMes = 4;
+                        hastaMes = 6;
+                        break;
+                    case 3:
+                        desdeMes = 7;
+                        hastaMes = 9;
+                        break;
+                    case 4:
+                        desdeMes = 10;
+                        hastaMes = 12;
+                        break;
+                }
+
+                switch (consulta)
                 {
                     case "EMPRESAS CON MAYOR CANTIDAD DE LOCALIDADES NO VENDIDAS":
                         // TODO: query
+                        query = "";
+                        this.mostrarResultados(query, headers);
                         break;
                     case "CLIENTES CON MAYORES PUNTOS VENCIDOS":
                         // TODO: query
+                        query = "";
+                        this.mostrarResultados(query, headers);
                         break;
                     case "CLIENTES CON MAYOR CANTIDAD DE COMPRAS":
-                        // TODO: query
+                        query =
+                            "SELECT TOP 5 CL.nombre, CL.apellido, CL.cuil, COUNT(CO.id_compra) AS compras " +
+                            "FROM PEAKY_BLINDERS.clientes CL " +
+                                "JOIN PEAKY_BLINDERS.compras CO ON CL.id_cliente = CO.id_cliente " +
+                            "WHERE YEAR(CO.fecha) = '" + ano + "' " +
+                                "AND MONTH(CO.fecha) BETWEEN '" + desdeMes + "' AND '" + hastaMes + "' " +
+                            "GROUP BY CL.nombre, CL.apellido, CL.cuil " +
+                            "ORDER BY compras DESC";
+                        headers.Enqueue("nombre");
+                        headers.Enqueue("apellido");
+                        headers.Enqueue("cuil");
+                        headers.Enqueue("compras");
+                        this.mostrarResultados(query, headers);
                         break;
                 }
             }            
