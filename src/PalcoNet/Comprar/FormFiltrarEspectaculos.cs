@@ -204,12 +204,27 @@ namespace PalcoNet.Comprar
 
         private void siguiente_Click(object sender, EventArgs e)
         {
-            // TODO
+            pagina = pagina + 1;
+            paginarYCorrer();
         }
 
         private void anterior_Click(object sender, EventArgs e)
         {
-            // TODO
+            pagina = Math.Max(0, pagina - 1);
+            paginarYCorrer();
+        }
+
+        private void paginarYCorrer()
+        {
+            string condicion_paginada = aplicarPagina(condicion, pagina);
+            correrQuery(condicion_paginada);
+        }
+
+        private void correrQuery(string condicion_paginada)
+        {
+            string query_actual = query_defecto + condicion_paginada;
+            dgvEspectaculos.Rows.Clear();
+            this.mostrarPresentaciones(query_actual);
         }
 
     }
