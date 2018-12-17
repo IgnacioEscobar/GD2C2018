@@ -41,6 +41,8 @@
             this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.dgvEspectaculos = new System.Windows.Forms.DataGridView();
+            this.anterior = new System.Windows.Forms.Button();
+            this.siguiente = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             this.SuspendLayout();
@@ -173,9 +175,29 @@
             this.dgvEspectaculos.Name = "dgvEspectaculos";
             this.dgvEspectaculos.ReadOnly = true;
             this.dgvEspectaculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEspectaculos.Size = new System.Drawing.Size(508, 425);
+            this.dgvEspectaculos.Size = new System.Drawing.Size(508, 377);
             this.dgvEspectaculos.TabIndex = 21;
             this.dgvEspectaculos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEspectaculos_CellContentClick);
+            // 
+            // anterior
+            // 
+            this.anterior.Location = new System.Drawing.Point(13, 413);
+            this.anterior.Name = "anterior";
+            this.anterior.Size = new System.Drawing.Size(242, 41);
+            this.anterior.TabIndex = 23;
+            this.anterior.Text = "Anterior";
+            this.anterior.UseVisualStyleBackColor = true;
+            this.anterior.Click += new System.EventHandler(this.anterior_Click);
+            // 
+            // siguiente
+            // 
+            this.siguiente.Location = new System.Drawing.Point(278, 414);
+            this.siguiente.Name = "siguiente";
+            this.siguiente.Size = new System.Drawing.Size(242, 41);
+            this.siguiente.TabIndex = 24;
+            this.siguiente.Text = "Siguiente";
+            this.siguiente.UseVisualStyleBackColor = true;
+            this.siguiente.Click += new System.EventHandler(this.siguiente_Click);
             // 
             // FormFiltrarEspectaculos
             // 
@@ -184,6 +206,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(963, 467);
+            this.Controls.Add(this.siguiente);
+            this.Controls.Add(this.anterior);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.lklCerrarSesion);
@@ -216,6 +240,8 @@
         private System.Windows.Forms.Button btnMenuPrincipal;
         private System.Windows.Forms.LinkLabel lklCerrarSesion;
         private System.Windows.Forms.DataGridView dgvEspectaculos;
+        private System.Windows.Forms.Button anterior;
+        private System.Windows.Forms.Button siguiente;
 
 
     }

@@ -202,5 +202,15 @@ namespace PalcoNet.Comprar
             return condicion + complemento;
         }
 
+        private void siguiente_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
+        private void anterior_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
     }
 }
