@@ -101,7 +101,10 @@ namespace PalcoNet.Comprar
                     + "P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") "
                 // + "PP.fecha_presentacion > " + fechaInicio + " "
                 // + "PP.fecha_presentacion < " + fechaFin + " "
-                + "order by G.multiplicador desc, PP.fecha_presentacion asc";
+                + "order by G.multiplicador desc, PP.fecha_presentacion asc ";
+            condicion = query_presentaciones;
+            pagina = 1;
+            query_presentaciones = aplicarPagina(query_presentaciones, pagina);
             this.mostrarPresentaciones(query_presentaciones);
             dgvEspectaculos.AutoResizeColumns();
         }
@@ -198,7 +201,7 @@ namespace PalcoNet.Comprar
 
         private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 10){
             int offset = (pagina - 1) * tamanio_pagina;
-            string complemento = "OFFSET {offset}! ROWS FETCH NEXT {tamanio_pagina}! ROWS ONLY";
+            string complemento = "OFFSET "+ offset +" ROWS FETCH NEXT "+ tamanio_pagina +" ROWS ONLY";
             return condicion + complemento;
         }
 
@@ -210,7 +213,7 @@ namespace PalcoNet.Comprar
 
         private void anterior_Click(object sender, EventArgs e)
         {
-            pagina = Math.Max(0, pagina - 1);
+            pagina = Math.Max(1, pagina - 1);
             paginarYCorrer();
         }
 
@@ -222,9 +225,8 @@ namespace PalcoNet.Comprar
 
         private void correrQuery(string condicion_paginada)
         {
-            string query_actual = query_defecto + condicion_paginada;
             dgvEspectaculos.Rows.Clear();
-            this.mostrarPresentaciones(query_actual);
+            this.mostrarPresentaciones(condicion_paginada);
         }
 
     }
