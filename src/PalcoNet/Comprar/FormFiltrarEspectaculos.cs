@@ -102,7 +102,7 @@ namespace PalcoNet.Comprar
             gestor.desconectar();
 
             string filtro_default = "where PP.fecha_vencimiento > GETDATE() and "
-                    + "P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") ";
+                    + " P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") ";
                 // + "PP.fecha_presentacion > " + fechaInicio + " "
                 // + "PP.fecha_presentacion < " + fechaFin + " "
 
@@ -171,16 +171,16 @@ namespace PalcoNet.Comprar
 
             maxPaginas = maximoPaginas(joins_defecto, filtro);
             filtro += "order by G.multiplicador desc, PP.fecha_presentacion asc";
-            condicion += filtro;
+            condicion = query_defecto + filtro;
             pagina = 1;
             
 
             string condicion_paginada = aplicarPagina(condicion, pagina);
 
-            string query_actual = query_defecto + condicion_paginada;
+            string query_actual = condicion_paginada;
             dgvEspectaculos.Rows.Clear();
             this.mostrarPresentaciones(query_actual);
-            
+            showPageNum();
         }
 
         private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 10)
@@ -228,7 +228,7 @@ namespace PalcoNet.Comprar
 
         private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 10){
             int offset = (pagina - 1) * tamanio_pagina;
-            string complemento = "OFFSET "+ offset +" ROWS FETCH NEXT "+ tamanio_pagina +" ROWS ONLY";
+            string complemento = " OFFSET "+ offset +" ROWS FETCH NEXT "+ tamanio_pagina +" ROWS ONLY";
             return condicion + complemento;
         }
 
