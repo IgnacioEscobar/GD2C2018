@@ -43,6 +43,8 @@
             this.dgvEspectaculos = new System.Windows.Forms.DataGridView();
             this.anterior = new System.Windows.Forms.Button();
             this.siguiente = new System.Windows.Forms.Button();
+            this.Ultima = new System.Windows.Forms.Button();
+            this.Primera = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             this.SuspendLayout();
@@ -181,9 +183,9 @@
             // 
             // anterior
             // 
-            this.anterior.Location = new System.Drawing.Point(13, 413);
+            this.anterior.Location = new System.Drawing.Point(93, 412);
             this.anterior.Name = "anterior";
-            this.anterior.Size = new System.Drawing.Size(242, 41);
+            this.anterior.Size = new System.Drawing.Size(113, 41);
             this.anterior.TabIndex = 23;
             this.anterior.Text = "Anterior";
             this.anterior.UseVisualStyleBackColor = true;
@@ -191,13 +193,33 @@
             // 
             // siguiente
             // 
-            this.siguiente.Location = new System.Drawing.Point(278, 414);
+            this.siguiente.Location = new System.Drawing.Point(326, 412);
             this.siguiente.Name = "siguiente";
-            this.siguiente.Size = new System.Drawing.Size(242, 41);
+            this.siguiente.Size = new System.Drawing.Size(113, 41);
             this.siguiente.TabIndex = 24;
             this.siguiente.Text = "Siguiente";
             this.siguiente.UseVisualStyleBackColor = true;
             this.siguiente.Click += new System.EventHandler(this.siguiente_Click);
+            // 
+            // Ultima
+            // 
+            this.Ultima.Location = new System.Drawing.Point(445, 412);
+            this.Ultima.Name = "Ultima";
+            this.Ultima.Size = new System.Drawing.Size(75, 41);
+            this.Ultima.TabIndex = 25;
+            this.Ultima.Text = "Ultima";
+            this.Ultima.UseVisualStyleBackColor = true;
+            this.Ultima.Click += new System.EventHandler(this.Ultima_Click);
+            // 
+            // Primera
+            // 
+            this.Primera.Location = new System.Drawing.Point(12, 412);
+            this.Primera.Name = "Primera";
+            this.Primera.Size = new System.Drawing.Size(75, 41);
+            this.Primera.TabIndex = 26;
+            this.Primera.Text = "Primera";
+            this.Primera.UseVisualStyleBackColor = true;
+            this.Primera.Click += new System.EventHandler(this.Primera_Click);
             // 
             // FormFiltrarEspectaculos
             // 
@@ -206,6 +228,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(963, 467);
+            this.Controls.Add(this.Primera);
+            this.Controls.Add(this.Ultima);
             this.Controls.Add(this.siguiente);
             this.Controls.Add(this.anterior);
             this.Controls.Add(this.groupBox1);
@@ -242,6 +266,8 @@
         private System.Windows.Forms.DataGridView dgvEspectaculos;
         private System.Windows.Forms.Button anterior;
         private System.Windows.Forms.Button siguiente;
+        private System.Windows.Forms.Button Ultima;
+        private System.Windows.Forms.Button Primera;
 
 
     }

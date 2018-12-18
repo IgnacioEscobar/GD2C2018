@@ -254,5 +254,17 @@ namespace PalcoNet.Comprar
             this.mostrarPresentaciones(condicion_paginada);
         }
 
+        private void Ultima_Click(object sender, EventArgs e)
+        {
+            pagina = maxPaginas;
+            paginarYCorrer();
+        }
+
+        private void Primera_Click(object sender, EventArgs e)
+        {
+            pagina = 1;
+            paginarYCorrer();
+        }
+
     }
 }
