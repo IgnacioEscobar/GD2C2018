@@ -181,7 +181,7 @@ namespace PalcoNet.Comprar
             this.mostrarPresentaciones(query_actual);
         }
 
-        private int maximoPaginas(string joins_defecto, string filtro)
+        private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 10)
         {
             string count_querry = "select count(distinct PP.id_presentacion) as presentaciones from PEAKY_BLINDERS.presentaciones PP ";
             count_querry += joins_defecto;
@@ -192,7 +192,7 @@ namespace PalcoNet.Comprar
             lector.Read();
             int count = lector.GetInt32(0);
             gestor.desconectar();
-            return (count + 10 - 1) / 10;
+            return (count + tamanio_pagina - 1) / tamanio_pagina;
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
