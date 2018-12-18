@@ -114,6 +114,7 @@ namespace PalcoNet.Comprar
             query_presentaciones = aplicarPagina(query_presentaciones, pagina);
             this.mostrarPresentaciones(query_presentaciones);
             dgvEspectaculos.AutoResizeColumns();
+            showPageNum();
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
@@ -179,6 +180,7 @@ namespace PalcoNet.Comprar
             string query_actual = query_defecto + condicion_paginada;
             dgvEspectaculos.Rows.Clear();
             this.mostrarPresentaciones(query_actual);
+            
         }
 
         private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 10)
@@ -246,6 +248,12 @@ namespace PalcoNet.Comprar
         {
             string condicion_paginada = aplicarPagina(condicion, pagina);
             correrQuery(condicion_paginada);
+            showPageNum();
+        }
+
+        private void showPageNum()
+        {
+            paginaLabel.Text = pagina + " / " + maxPaginas;
         }
 
         private void correrQuery(string condicion_paginada)

@@ -45,6 +45,7 @@
             this.siguiente = new System.Windows.Forms.Button();
             this.Ultima = new System.Windows.Forms.Button();
             this.Primera = new System.Windows.Forms.Button();
+            this.paginaLabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEspectaculos)).BeginInit();
             this.SuspendLayout();
@@ -221,6 +222,14 @@
             this.Primera.UseVisualStyleBackColor = true;
             this.Primera.Click += new System.EventHandler(this.Primera_Click);
             // 
+            // paginaLabel
+            // 
+            this.paginaLabel.AutoSize = true;
+            this.paginaLabel.Location = new System.Drawing.Point(248, 426);
+            this.paginaLabel.Name = "paginaLabel";
+            this.paginaLabel.Size = new System.Drawing.Size(0, 13);
+            this.paginaLabel.TabIndex = 27;
+            // 
             // FormFiltrarEspectaculos
             // 
             this.AcceptButton = this.btnBuscar;
@@ -228,6 +237,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(963, 467);
+            this.Controls.Add(this.paginaLabel);
             this.Controls.Add(this.Primera);
             this.Controls.Add(this.Ultima);
             this.Controls.Add(this.siguiente);
@@ -268,6 +278,7 @@
         private System.Windows.Forms.Button siguiente;
         private System.Windows.Forms.Button Ultima;
         private System.Windows.Forms.Button Primera;
+        private System.Windows.Forms.Label paginaLabel;
 
 
     }
