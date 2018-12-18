@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Menu_Principal;
+using PalcoNet.Registro_de_Usuario;
 
 namespace PalcoNet.Comprar
 {
@@ -130,25 +131,35 @@ namespace PalcoNet.Comprar
 
         private void btnCosto_Click(object sender, EventArgs e)
         {
-            this.ubicacionesSeleccionadas.Clear();
-            for (int i = 0; i < ubicacionesListBox.Items.Count; i++)
+            int cantidadUbicacionesTotales = ubicacionesListBox.Items.Count;
+            int cantidadUbicacionesSeleccionadas = 0;
+
+            if (cantidadUbicacionesTotales > 0)
             {
-                if (ubicacionesListBox.GetItemChecked(i))
+                this.ubicacionesSeleccionadas.Clear();
+                for (int i = 0; i < cantidadUbicacionesTotales; i++)
                 {
-                    this.ubicacionesSeleccionadas.Add(this.ubicaciones[i]);
+                    if (ubicacionesListBox.GetItemChecked(i))
+                    {
+                        this.ubicacionesSeleccionadas.Add(this.ubicaciones[i]);
+                        cantidadUbicacionesSeleccionadas++;
+                    }
+                }
+
+                if (cantidadUbicacionesSeleccionadas > 0)
+                {
+                    gestor.conectar();
+                    string query_ubicaciones = "select sum(U.precio) from PEAKY_BLINDERS.ubicaciones U "
+                        + " where U.id_ubicacion in (" + String.Join(",", this.ubicacionesSeleccionadas.Select(x => x).ToArray()) + ")";
+                    gestor.consulta(query_ubicaciones);
+                    SqlDataReader lector = gestor.obtenerRegistros();
+                    lector.Read();
+                    this.label1.Text = "Monto: $" + lector[0].ToString();
+                    gestor.desconectar();
+
+                    btnPagar.Enabled = true;
                 }
             }
-            
-            gestor.conectar();
-            string query_ubicaciones = "select sum(U.precio) from PEAKY_BLINDERS.ubicaciones U "
-                + " where U.id_ubicacion in (" + String.Join(",", this.ubicacionesSeleccionadas.Select(x => x).ToArray()) + ")";
-            gestor.consulta(query_ubicaciones);
-            SqlDataReader lector = gestor.obtenerRegistros();
-            lector.Read();
-            this.label1.Text = "Monto: $" + lector[0].ToString();
-            gestor.desconectar();
-
-            btnPagar.Enabled = true;
         }
 
         private void btnPremio_Click(object sender, EventArgs e)
@@ -159,40 +170,67 @@ namespace PalcoNet.Comprar
         private void btnPagar_Click(object sender, EventArgs e)
         {
             gestor.conectar();
-            string query_ubicaciones = "select id_publicacion from PEAKY_BLINDERS.ubicaciones where id_ubicacion = " + ubicacionesSeleccionadas[0];
-            gestor.consulta(query_ubicaciones);
+            string query_tarjeta = "select tarjeta_de_credito_asociada from PEAKY_BLINDERS.clientes where id_cliente = " + clienteID;
+            gestor.consulta(query_tarjeta);
             SqlDataReader lector = gestor.obtenerRegistros();
             lector.Read();
-            string id_publicacion = lector["id_publicacion"].ToString();
+            string tarjeta = lector["tarjeta_de_credito_asociada"].ToString();
             gestor.desconectar();
-            // @id_cliente int,
-            // @id_medio_de_pago tinyint,
-            // @id_presentacion int,
-            // @id_publicacion int,
-            // @id_ubicacion int,
-            // @id_premio int
-            for (int i = 0; i < ubicacionesSeleccionadas.Count; i++)
+
+            if (tarjeta == "")
+            {
+                MessageBox.Show("Registre su número de tarjeta de crédito por favor.", "Alerta");
+                FormTarjetaDeCredito formTarjetaDeCredito = new FormTarjetaDeCredito();
+                if (formTarjetaDeCredito.ShowDialog(this) == DialogResult.OK)
+                {
+                    tarjeta = formTarjetaDeCredito.getNumeroDeTarjeta();
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("registrar_tarjeta");
+                    gestor.parametroPorValor("id_cliente", clienteID);
+                    gestor.parametroPorValor("numero_tarjeta", tarjeta);
+                    gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+                }
+                formTarjetaDeCredito.Dispose();
+            }
+            else
             {
                 gestor.conectar();
-                gestor.generarStoredProcedure("registrarCompra");
-                gestor.parametroPorValor("id_cliente", clienteID);
-                gestor.parametroPorValor("id_medio_de_pago", 1);
-                gestor.parametroPorValor("id_presentacion", this.idPresentacion);
-                gestor.parametroPorValor("id_publicacion", id_publicacion);
-                gestor.parametroPorValor("id_ubicacion", ubicacionesSeleccionadas[i]);
-                gestor.parametroPorValor("id_premio", this.premioSeleccionado);
-                gestor.ejecutarStoredProcedure();
+                string query_ubicaciones = "select id_publicacion from PEAKY_BLINDERS.ubicaciones where id_ubicacion = " + ubicacionesSeleccionadas[0];
+                gestor.consulta(query_ubicaciones);
+                SqlDataReader lector2 = gestor.obtenerRegistros();
+                lector2.Read();
+                string id_publicacion = lector2["id_publicacion"].ToString();
                 gestor.desconectar();
+                // @id_cliente int,
+                // @id_medio_de_pago tinyint,
+                // @id_presentacion int,
+                // @id_publicacion int,
+                // @id_ubicacion int,
+                // @id_premio int
+                for (int i = 0; i < ubicacionesSeleccionadas.Count; i++)
+                {
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("registrarCompra");
+                    gestor.parametroPorValor("id_cliente", clienteID);
+                    gestor.parametroPorValor("id_medio_de_pago", 1);
+                    gestor.parametroPorValor("id_presentacion", this.idPresentacion);
+                    gestor.parametroPorValor("id_publicacion", id_publicacion);
+                    gestor.parametroPorValor("id_ubicacion", ubicacionesSeleccionadas[i]);
+                    gestor.parametroPorValor("id_premio", this.premioSeleccionado);
+                    gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+                }
+                this.comboTipo.Items.Clear();
+                this.comboPremios.Items.Clear();
+                this.ubicacionesListBox.Items.Clear();
+                this.comboPremios.SelectedIndex = this.comboPremios.Items.IndexOf("No usar");
+                this.mostrarTiposDeUbicacion(this.idPresentacion);
+                this.mostrarPremiosDisponibles();
+                this.label1.Text = "Monto: $0";
+                MessageBox.Show("Gracias por su compra, se le enviará por mail un detalle de la factura.");
+                btnPagar.Enabled = false;
             }
-            this.comboTipo.Items.Clear();
-            this.comboPremios.Items.Clear();
-            this.ubicacionesListBox.Items.Clear();
-            this.comboPremios.SelectedIndex = this.comboPremios.Items.IndexOf("No usar");
-            this.mostrarTiposDeUbicacion(this.idPresentacion);
-            this.mostrarPremiosDisponibles();
-            this.label1.Text = "Monto: $0";
-            MessageBox.Show("Gracias por su compra, se le enviará por mail un detalle de la factura.");
-            btnPagar.Enabled = false;
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)

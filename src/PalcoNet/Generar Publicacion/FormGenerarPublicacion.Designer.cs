@@ -201,7 +201,7 @@
             // txtAltura
             // 
             this.txtAltura.Location = new System.Drawing.Point(339, 32);
-            this.txtAltura.MaxLength = 6;
+            this.txtAltura.MaxLength = 5;
             this.txtAltura.Name = "txtAltura";
             this.txtAltura.Size = new System.Drawing.Size(58, 20);
             this.txtAltura.TabIndex = 12;

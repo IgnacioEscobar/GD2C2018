@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtNumeroTarjeta = new System.Windows.Forms.TextBox();
+            this.txtNumeroDeTarjeta = new System.Windows.Forms.TextBox();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtNumeroTarjeta
+            // txtNumeroDeTarjeta
             // 
-            this.txtNumeroTarjeta.Location = new System.Drawing.Point(12, 29);
-            this.txtNumeroTarjeta.MaxLength = 16;
-            this.txtNumeroTarjeta.Name = "txtNumeroTarjeta";
-            this.txtNumeroTarjeta.Size = new System.Drawing.Size(290, 20);
-            this.txtNumeroTarjeta.TabIndex = 0;
-            this.txtNumeroTarjeta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeroTarjeta_KeyPress);
+            this.txtNumeroDeTarjeta.Location = new System.Drawing.Point(12, 29);
+            this.txtNumeroDeTarjeta.MaxLength = 16;
+            this.txtNumeroDeTarjeta.Name = "txtNumeroDeTarjeta";
+            this.txtNumeroDeTarjeta.Size = new System.Drawing.Size(290, 20);
+            this.txtNumeroDeTarjeta.TabIndex = 0;
+            this.txtNumeroDeTarjeta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeroTarjeta_KeyPress);
             // 
             // btnConfirmar
             // 
+            this.btnConfirmar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnConfirmar.Location = new System.Drawing.Point(12, 56);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(290, 23);
@@ -83,7 +84,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.txtNumeroTarjeta);
+            this.Controls.Add(this.txtNumeroDeTarjeta);
             this.MaximizeBox = false;
             this.Name = "FormTarjetaDeCredito";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -96,7 +97,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtNumeroTarjeta;
+        private System.Windows.Forms.TextBox txtNumeroDeTarjeta;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label1;

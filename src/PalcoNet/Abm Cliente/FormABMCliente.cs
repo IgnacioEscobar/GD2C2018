@@ -233,7 +233,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 6)
             {
                 string nombre = dgvClientes.CurrentRow.Cells[1].Value.ToString();
                 string apellido = dgvClientes.CurrentRow.Cells[2].Value.ToString();

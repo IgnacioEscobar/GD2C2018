@@ -219,7 +219,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
         private void dgvEmpresas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 5)
             {
                 string razon_social = dgvEmpresas.CurrentRow.Cells[1].Value.ToString();
                 int empresaID = Convert.ToInt32(dgvEmpresas.CurrentRow.Cells[0].Value);

@@ -296,7 +296,7 @@ create table PEAKY_BLINDERS.medios_de_pago (
   descripcion varchar(20)
 );
 
-insert into PEAKY_BLINDERS.medios_de_pago values ('Efectivo'), ('Tarjeta de Crédito');
+insert into PEAKY_BLINDERS.medios_de_pago values ('Tarjeta de Crédito');
 
 -- Factura --
 create table PEAKY_BLINDERS.facturas (
@@ -707,6 +707,13 @@ AS
 
 	RETURN @resultado
   END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.registrar_tarjeta
+@id_cliente int,
+@numero_tarjeta varchar(16)
+AS
+	UPDATE PEAKY_BLINDERS.clientes SET tarjeta_de_credito_asociada = @numero_tarjeta WHERE id_cliente = @id_cliente
 GO
 
 CREATE PROCEDURE PEAKY_BLINDERS.crear_empresa

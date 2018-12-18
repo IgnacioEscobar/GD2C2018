@@ -124,8 +124,9 @@ namespace PalcoNet
 
                         gestor.conectar();
                         string query = "SELECT COUNT(*) AS cant_roles " +
-                            "FROM PEAKY_BLINDERS.roles_por_usuario " +
-                            "WHERE id_usuario = '" + userID.ToString() + "'";
+                            "FROM PEAKY_BLINDERS.roles_por_usuario RU " +
+                                "JOIN PEAKY_BLINDERS.roles R ON RU.id_rol = R.id_rol " +
+                            "WHERE R.habilitado = 1 AND RU.id_usuario = '" + userID.ToString() + "'";
                         gestor.consulta(query);
 
                         SqlDataReader lector = gestor.obtenerRegistros();
@@ -140,7 +141,7 @@ namespace PalcoNet
                         switch (cantRolesAsignados)
                         {
                             case 0:
-                                lblError.Text = "Usuario sin roles asignados";
+                                lblError.Text = "Usuario sin roles habilitados asignados";
                                 break;
 
                             case 1:

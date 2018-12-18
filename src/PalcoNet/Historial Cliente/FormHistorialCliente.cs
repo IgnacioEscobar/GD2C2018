@@ -33,13 +33,14 @@ namespace PalcoNet.Historial_Cliente
                 object[] row = new string[]
                 {
                     lector["descripcion"].ToString(),
-                    lector["fecha"].ToString(),
+                    lector["fecha_presentacion"].ToString(),
                     lector["cantidad"].ToString(),
                     lector["monto"].ToString(),
                     lector["medio_de_pago"].ToString()
                 };
                 dgvHistorial.Rows.Add(row);
             }
+            dgvHistorial.AutoResizeColumns();
         }
 
         private void FormHistorial_Load(object sender, EventArgs e)
@@ -47,7 +48,7 @@ namespace PalcoNet.Historial_Cliente
             dgvHistorial.ColumnCount = 5;
             dgvHistorial.ColumnHeadersVisible = true;
             dgvHistorial.Columns[0].Name = "PUBLICACION";
-            dgvHistorial.Columns[1].Name = "FECHA";
+            dgvHistorial.Columns[1].Name = "FECHA DE PRESENTACION";
             dgvHistorial.Columns[2].Name = "CANTIDAD";
             dgvHistorial.Columns[3].Name = "MONTO";
             dgvHistorial.Columns[4].Name = "MEDIO DE PAGO";
@@ -69,17 +70,20 @@ namespace PalcoNet.Historial_Cliente
             gestor.desconectar();
 
             gestor.conectar();
-            string query = "SELECT ISNULL(P.descripcion, '---') AS descripcion, " +
-                    "CO.fecha, " +
-                    "CO.cantidad, " +
-                    "CO.monto, " +
+            string query = 
+                "SELECT ISNULL(PU.descripcion, '---') AS descripcion, " +
+                    "PR.fecha_presentacion, " +
+                    "SUM(CO.cantidad) AS cantidad, " +
+                    "SUM(CO.monto) AS monto, " +
                     "MP.descripcion AS medio_de_pago " +
                 "FROM PEAKY_BLINDERS.compras CO " +
                     "JOIN PEAKY_BLINDERS.clientes CL ON CO.id_cliente = CL.id_cliente " +
-                    "JOIN PEAKY_BLINDERS.publicaciones P ON CO.id_publicacion = P.id_publicacion " +
+                    "JOIN PEAKY_BLINDERS.publicaciones PU ON CO.id_publicacion = PU.id_publicacion " +
+                    "JOIN PEAKY_BLINDERS.presentaciones PR ON CO.id_presentacion = PR.id_presentacion " +
                     "JOIN PEAKY_BLINDERS.medios_de_pago MP ON CO.id_medio_de_pago = MP.id_medio_de_pago " +
                 "WHERE Cl.id_cliente = '" + clienteID + "' " +
-                "ORDER BY CO.fecha DESC";
+                "GROUP BY PU.descripcion, PR.fecha_presentacion, MP.descripcion " +
+                "ORDER BY PR.fecha_presentacion DESC";
             gestor.consulta(query);
             this.mostrarRegistros(gestor.obtenerRegistros());
             gestor.desconectar();
