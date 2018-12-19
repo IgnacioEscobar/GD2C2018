@@ -18,17 +18,10 @@ namespace PalcoNet.funciones_utiles
             connectionString = ConfigurationManager.AppSettings["database"].ToString();
             try{
                 date = ConfigurationManager.AppSettings["date"].ToString();
+                dateTime = DateTime.Parse(date);
             }catch(System.TypeInitializationException){
                 date = "GETDATE()";
-            }
-
-            try { 
-                dateTime = DateTime.Parse(date);
-            }
-            catch (System.TypeInitializationException)
-            {
                 dateTime = DateTime.Now;
-                date = "GETDATE()";
             }
         }
     }
