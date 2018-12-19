@@ -296,7 +296,7 @@ create table PEAKY_BLINDERS.medios_de_pago (
   descripcion varchar(20)
 );
 
-insert into PEAKY_BLINDERS.medios_de_pago values ('Tarjeta de Crédito');
+insert into PEAKY_BLINDERS.medios_de_pago values ('Efectivo'), ('Tarjeta de Crédito');
 
 -- Factura --
 create table PEAKY_BLINDERS.facturas (
