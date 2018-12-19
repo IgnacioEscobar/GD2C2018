@@ -45,5 +45,6 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
             gestor.desconectar();
         }
 
+
     }
 }

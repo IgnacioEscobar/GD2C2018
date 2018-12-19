@@ -101,7 +101,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
         private void btnFacturarVentas_Click(object sender, EventArgs e)
         {
             string query =
-                "SELECT E.razon_social, SUM(C.monto) as monto_total, SUM(C.monto * G.multiplicador) AS comision_total " +
+                "SELECT E.razon_social, SUM(C.monto) AS monto_total, SUM(C.monto * G.multiplicador) AS comision_total " +
                 "FROM PEAKY_BLINDERS.empresas E " +
                     "JOIN PEAKY_BLINDERS.publicaciones P ON E.id_empresa = P.id_empresa " +
                     "JOIN PEAKY_BLINDERS.grados G ON P.id_grado = G.id_grado " +
@@ -114,9 +114,23 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
             if (formConfirmarFacturacion.ShowDialog(this) == DialogResult.OK)
             {
                 GestorDB gestor = new GestorDB();
+
                 gestor.conectar();
-                //gestor.generarStoredProcedure("generar_factura");
-                //int facturaID = gestor.ejecutarStoredProcedure();
+                gestor.consulta(
+                    "SELECT SUM(C.monto) AS monto_total " +
+                    "FROM PEAKY_BLINDERS.compras C " +
+                    "WHERE C.facturada = 0 " +
+                        "AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToShortDateString() + "'");
+                SqlDataReader lector = gestor.obtenerRegistros();
+                int monto_total = -1;
+                if (lector.Read()) monto_total = Convert.ToInt32(lector["monto_total"]);
+                gestor.desconectar();
+
+                gestor.conectar();
+                gestor.generarStoredProcedure("generar_factura");
+                gestor.parametroPorValor("fecha", DateTime.Today);
+                gestor.parametroPorValor("total", monto_total);
+                int facturaID = gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
             }
             formConfirmarFacturacion.Dispose();
