@@ -1052,7 +1052,8 @@ create procedure PEAKY_BLINDERS.registrarCompra
 @id_presentacion int,
 @id_publicacion int,
 @id_ubicacion int,
-@id_premio int
+@id_premio int,
+@fecha datetime
 as
   begin
 	declare @monto_a_cobrar as int
@@ -1070,8 +1071,8 @@ as
   
 	set @monto_a_cobrar = @monto_a_cobrar * @multiplicador_premio
   -- registra compra con monto correspondiente, fecha actual y cantidad = 1
-  insert into PEAKY_BLINDERS.compras (id_cliente, id_medio_de_pago, id_presentacion, id_publicacion, id_ubicacion, monto)
-  values (@id_cliente, @id_medio_de_pago, @id_presentacion, @id_publicacion, @id_ubicacion, @monto_a_cobrar);
+  insert into PEAKY_BLINDERS.compras (id_cliente, id_medio_de_pago, id_presentacion, id_publicacion, id_ubicacion, monto, fecha)
+  values (@id_cliente, @id_medio_de_pago, @id_presentacion, @id_publicacion, @id_ubicacion, @monto_a_cobrar, @fecha);
 
   update PEAKY_BLINDERS.premios
   set usado = 1

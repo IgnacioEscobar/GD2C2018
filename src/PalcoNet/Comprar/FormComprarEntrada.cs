@@ -181,6 +181,7 @@ namespace PalcoNet.Comprar
                 gestor.parametroPorValor("id_publicacion", id_publicacion);
                 gestor.parametroPorValor("id_ubicacion", ubicacionesSeleccionadas[i]);
                 gestor.parametroPorValor("id_premio", this.premioSeleccionado);
+                gestor.parametroPorValor("fecha", Config.date);
                 gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
             }
