@@ -19,17 +19,23 @@ namespace PalcoNet.Comprar
 
         int userID;
         int rolID;
-        string query_defecto = "select PP.id_presentacion, P.descripcion, PP.fecha_presentacion from PEAKY_BLINDERS.presentaciones PP "
-                + "join PEAKY_BLINDERS.publicaciones P on PP.id_publicacion = P.id_publicacion "
+        string query_defecto;
+        string select_defecto = "select PP.id_presentacion, P.descripcion, PP.fecha_presentacion from PEAKY_BLINDERS.presentaciones PP ";
+        string joins_defecto = " join PEAKY_BLINDERS.publicaciones P on PP.id_publicacion = P.id_publicacion "
                 + "join PEAKY_BLINDERS.estados E on P.id_estado = E.id_estado and E.descripcion = 'Publicada' "
                 + "join PEAKY_BLINDERS.grados G on P.id_grado = G.id_grado ";
+
         GestorDB gestor = new GestorDB();
         List<string> categorias = new List<string>();
+        string condicion;
+        int pagina;
+        int maxPaginas;
 
 
         public FormFiltrarEspectaculos(int userID, int rolID)
         {
             InitializeComponent();
+            this.query_defecto = select_defecto + joins_defecto;
             this.userID = userID;
             this.rolID = rolID;
         }
@@ -95,13 +101,20 @@ namespace PalcoNet.Comprar
             this.mostrarCategorias(gestor.obtenerRegistros());
             gestor.desconectar();
 
-            string query_presentaciones = query_defecto + "where PP.fecha_vencimiento > GETDATE() and "
-                    + "P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") "
+            string filtro_default = "where PP.fecha_vencimiento > GETDATE() and "
+                    + " P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") ";
                 // + "PP.fecha_presentacion > " + fechaInicio + " "
                 // + "PP.fecha_presentacion < " + fechaFin + " "
-                + "order by G.multiplicador desc, PP.fecha_presentacion asc";
+
+            string query_presentaciones = query_defecto + filtro_default
+                + "order by G.multiplicador desc, PP.fecha_presentacion asc ";
+            condicion = query_presentaciones;
+            pagina = 1;
+            maxPaginas = maximoPaginas(joins_defecto, filtro_default);
+            query_presentaciones = aplicarPagina(query_presentaciones, pagina);
             this.mostrarPresentaciones(query_presentaciones);
             dgvEspectaculos.AutoResizeColumns();
+            showPageNum();
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
@@ -115,18 +128,18 @@ namespace PalcoNet.Comprar
         {
             dgvEspectaculos.Rows.Clear();
 
-            string condicion = "LEFT JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
+            string filtro = "LEFT JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
                 "WHERE PP.fecha_vencimiento >= GETDATE() ";
             string descripcion = txtDescripcion.Text;
 
             if (descripcion != "")
             {
-                condicion += "AND P.descripcion LIKE '%" + descripcion + "%' ";
+                filtro += "AND P.descripcion LIKE '%" + descripcion + "%' ";
             }
 
             if (ckbRangoFechas.Checked)
             {
-                condicion += "AND PP.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToShortDateString() + "' AND '" + mcrHasta.SelectionStart.ToShortDateString() + "' ";
+                filtro += "AND PP.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToShortDateString() + "' AND '" + mcrHasta.SelectionStart.ToShortDateString() + "' ";
             }
 
             List<string> funcionalidades_tildadas = new List<string> { };
@@ -141,26 +154,47 @@ namespace PalcoNet.Comprar
             int cant_categorias_seleccionadas = funcionalidades_tildadas.Count;
             if (cant_categorias_seleccionadas > 0)
             {
-                condicion += "AND ";
+                filtro += "AND ";
                 for (int i = 0; i < cant_categorias_seleccionadas; i++)
                 {
-                    condicion += "R.descripcion = '" + funcionalidades_tildadas[i] + "' ";
+                    filtro += "R.descripcion = '" + funcionalidades_tildadas[i] + "' ";
                     if (i != cant_categorias_seleccionadas - 1)
                     {
-                        condicion += "OR ";
+                        filtro += "OR ";
                     }
                 }
             }
             else
             {
-                condicion += "AND P.id_rubro = NULL ";
+                filtro += "AND P.id_rubro = NULL ";
             }
 
-            condicion += "order by G.multiplicador desc, PP.fecha_presentacion asc";
+            maxPaginas = maximoPaginas(joins_defecto, filtro);
+            filtro += "order by G.multiplicador desc, PP.fecha_presentacion asc";
+            condicion = query_defecto + filtro;
+            pagina = 1;
+            
 
-            string query_actual = query_defecto + condicion;
+            string condicion_paginada = aplicarPagina(condicion, pagina);
+
+            string query_actual = condicion_paginada;
             dgvEspectaculos.Rows.Clear();
             this.mostrarPresentaciones(query_actual);
+            showPageNum();
+        }
+
+        private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 10)
+        {
+            string count_querry = "select count(distinct PP.id_presentacion) as presentaciones from PEAKY_BLINDERS.presentaciones PP ";
+            count_querry += joins_defecto;
+            count_querry += filtro;
+            gestor.conectar();
+            gestor.consulta(count_querry);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            lector.Read();
+            int count = lector.GetInt32(0);
+            gestor.desconectar();
+            return Math.Max(1, (count + tamanio_pagina - 1) / tamanio_pagina);
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -190,6 +224,54 @@ namespace PalcoNet.Comprar
                 this.Hide();
                 formComprarEntrada.Show();
             }
+        }
+
+        private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 10){
+            int offset = (pagina - 1) * tamanio_pagina;
+            string complemento = " OFFSET "+ offset +" ROWS FETCH NEXT "+ tamanio_pagina +" ROWS ONLY";
+            return condicion + complemento;
+        }
+
+        private void siguiente_Click(object sender, EventArgs e)
+        {
+            pagina = Math.Min(maxPaginas, pagina + 1);
+            paginarYCorrer();
+        }
+
+        private void anterior_Click(object sender, EventArgs e)
+        {
+            pagina = Math.Max(1, pagina - 1);
+            paginarYCorrer();
+        }
+
+        private void paginarYCorrer()
+        {
+            string condicion_paginada = aplicarPagina(condicion, pagina);
+            correrQuery(condicion_paginada);
+            showPageNum();
+        }
+
+        private void showPageNum()
+        {
+            paginaLabel.Text = pagina + " / " + maxPaginas;
+        }
+
+        private void correrQuery(string condicion_paginada)
+        {
+            dgvEspectaculos.Rows.Clear();
+            this.mostrarPresentaciones(condicion_paginada);
+        }
+
+        private void Ultima_Click(object sender, EventArgs e)
+        {
+            pagina = maxPaginas;
+            paginarYCorrer();
+        }
+
+        private void Primera_Click(object sender, EventArgs e)
+        {
+            pagina = 1;
+            paginarYCorrer();
         }
 
     }

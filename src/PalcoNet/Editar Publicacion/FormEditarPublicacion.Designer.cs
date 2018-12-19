@@ -42,6 +42,11 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.paginaLabel = new System.Windows.Forms.Label();
+            this.Primera = new System.Windows.Forms.Button();
+            this.Ultima = new System.Windows.Forms.Button();
+            this.siguiente = new System.Windows.Forms.Button();
+            this.anterior = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublicaciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -89,7 +94,7 @@
             this.dgvPublicaciones.Name = "dgvPublicaciones";
             this.dgvPublicaciones.ReadOnly = true;
             this.dgvPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPublicaciones.Size = new System.Drawing.Size(508, 425);
+            this.dgvPublicaciones.Size = new System.Drawing.Size(508, 377);
             this.dgvPublicaciones.TabIndex = 15;
             this.dgvPublicaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPublicaciones_CellContentClick);
             // 
@@ -187,12 +192,65 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // paginaLabel
+            // 
+            this.paginaLabel.AutoSize = true;
+            this.paginaLabel.Location = new System.Drawing.Point(248, 426);
+            this.paginaLabel.Name = "paginaLabel";
+            this.paginaLabel.Size = new System.Drawing.Size(0, 13);
+            this.paginaLabel.TabIndex = 32;
+            // 
+            // Primera
+            // 
+            this.Primera.Location = new System.Drawing.Point(12, 412);
+            this.Primera.Name = "Primera";
+            this.Primera.Size = new System.Drawing.Size(75, 41);
+            this.Primera.TabIndex = 31;
+            this.Primera.Text = "Primera";
+            this.Primera.UseVisualStyleBackColor = true;
+            this.Primera.Click += new System.EventHandler(this.Primera_Click);
+            // 
+            // Ultima
+            // 
+            this.Ultima.Location = new System.Drawing.Point(445, 412);
+            this.Ultima.Name = "Ultima";
+            this.Ultima.Size = new System.Drawing.Size(75, 41);
+            this.Ultima.TabIndex = 30;
+            this.Ultima.Text = "Ultima";
+            this.Ultima.UseVisualStyleBackColor = true;
+            this.Ultima.Click += new System.EventHandler(this.Ultima_Click);
+            // 
+            // siguiente
+            // 
+            this.siguiente.Location = new System.Drawing.Point(326, 412);
+            this.siguiente.Name = "siguiente";
+            this.siguiente.Size = new System.Drawing.Size(113, 41);
+            this.siguiente.TabIndex = 29;
+            this.siguiente.Text = "Siguiente";
+            this.siguiente.UseVisualStyleBackColor = true;
+            this.siguiente.Click += new System.EventHandler(this.siguiente_Click);
+            // 
+            // anterior
+            // 
+            this.anterior.Location = new System.Drawing.Point(93, 412);
+            this.anterior.Name = "anterior";
+            this.anterior.Size = new System.Drawing.Size(113, 41);
+            this.anterior.TabIndex = 28;
+            this.anterior.Text = "Anterior";
+            this.anterior.UseVisualStyleBackColor = true;
+            this.anterior.Click += new System.EventHandler(this.anterior_Click);
+            // 
             // FormEditarPublicacion
             // 
             this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 465);
+            this.Controls.Add(this.paginaLabel);
+            this.Controls.Add(this.Primera);
+            this.Controls.Add(this.Ultima);
+            this.Controls.Add(this.siguiente);
+            this.Controls.Add(this.anterior);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.lklCerrarSesion);
@@ -227,5 +285,10 @@
         private System.Windows.Forms.CheckBox ckbRangoFechas;
         private System.Windows.Forms.MonthCalendar mcrHasta;
         private System.Windows.Forms.MonthCalendar mcrDesde;
+        private System.Windows.Forms.Label paginaLabel;
+        private System.Windows.Forms.Button Primera;
+        private System.Windows.Forms.Button Ultima;
+        private System.Windows.Forms.Button siguiente;
+        private System.Windows.Forms.Button anterior;
     }
 }
