@@ -194,7 +194,7 @@ namespace PalcoNet.Comprar
             lector.Read();
             int count = lector.GetInt32(0);
             gestor.desconectar();
-            return (count + tamanio_pagina - 1) / tamanio_pagina;
+            return Math.Max(1, (count + tamanio_pagina - 1) / tamanio_pagina);
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

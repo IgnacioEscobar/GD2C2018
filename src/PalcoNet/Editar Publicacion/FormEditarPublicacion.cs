@@ -22,6 +22,11 @@ namespace PalcoNet.Editar_Publicacion
         int userID;
         int rolID;
         int empresaID;
+        string select_defecto = "SELECT PU.id_publicacion, PU.descripcion AS descripcionP, " +
+                    "E.descripcion AS descripcionE, G.descripcion AS descripcionG " +
+                    "FROM PEAKY_BLINDERS.publicaciones PU ";
+        string join_defecto = "JOIN PEAKY_BLINDERS.estados E ON PU.id_estado = E.id_estado " +
+                    "JOIN PEAKY_BLINDERS.grados G ON PU.id_grado = G.id_grado ";
         string query_defecto;
         string query_actual;
         int pagina;
@@ -33,6 +38,7 @@ namespace PalcoNet.Editar_Publicacion
             InitializeComponent();
             this.userID = userID;
             this.rolID = rolID;
+            this.query_defecto = select_defecto + join_defecto;
         }
 
         // Metodos auxiliares
@@ -107,7 +113,6 @@ namespace PalcoNet.Editar_Publicacion
             dgvPublicaciones.Columns[3].Name = "GRADO";
             agregarButtonColumn("SELECCIONAR");
 
-            GestorDB gestor = new GestorDB();
             gestor.conectar();
 
             gestor.consulta("SELECT id_empresa FROM PEAKY_BLINDERS.empresas WHERE id_usuario = '" + userID + "'");
@@ -117,18 +122,17 @@ namespace PalcoNet.Editar_Publicacion
                 empresaID = Convert.ToInt32(lector["id_empresa"]);
             }
             gestor.desconectar();
+            pagina = 1;
 
-            gestor.conectar();
-            query_defecto = "SELECT PU.id_publicacion, PU.descripcion AS descripcionP, " +
-                    "E.descripcion AS descripcionE, G.descripcion AS descripcionG " +
-                "FROM PEAKY_BLINDERS.publicaciones PU " +
-                    "JOIN PEAKY_BLINDERS.estados E ON PU.id_estado = E.id_estado " +
-                    "JOIN PEAKY_BLINDERS.grados G ON PU.id_grado = G.id_grado ";
             query_actual = query_defecto + "WHERE PU.id_empresa = '" + empresaID + "' ORDER BY PU.id_publicacion ASC";
-            this.mostrarPublicaciones(query_actual);
+            string query_publicaciones = aplicarPagina(query_actual, pagina);
+            this.mostrarPublicaciones(query_publicaciones);
 
             string query_categorias = "SELECT descripcion FROM PEAKY_BLINDERS.rubros";
             this.mostrarCategorias(query_categorias);
+            
+            maxPaginas = maximoPaginas(join_defecto, " WHERE PU.id_empresa = '" + empresaID + "'");
+            showPageNum();
 
             dgvPublicaciones.AutoResizeColumns();
             txtDescripcion.Select();
@@ -196,14 +200,14 @@ namespace PalcoNet.Editar_Publicacion
             {
                 condicion += "AND P.id_rubro = NULL ";
             }
-
+            maxPaginas = maximoPaginas(join_defecto, condicion);
             condicion += "ORDER BY PR.fecha_presentacion ASC";
-
-            GestorDB gestor = new GestorDB();
-            gestor.conectar();
+            pagina = 1;
 
             query_actual = query_defecto + condicion;
-            this.mostrarPublicaciones(query_actual);
+            string condicion_paginada = aplicarPagina(query_actual, pagina);
+            this.mostrarPublicaciones(condicion_paginada);
+            showPageNum();
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
@@ -276,7 +280,7 @@ namespace PalcoNet.Editar_Publicacion
 
         private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 10)
         {
-            string count_querry = "select count(distinct PP.id_presentacion) as presentaciones from PEAKY_BLINDERS.presentaciones PP ";
+            string count_querry = "select count(distinct PU.id_publicacion) as presentaciones FROM PEAKY_BLINDERS.publicaciones PU ";
             count_querry += joins_defecto;
             count_querry += filtro;
             gestor.conectar();
@@ -285,7 +289,7 @@ namespace PalcoNet.Editar_Publicacion
             lector.Read();
             int count = lector.GetInt32(0);
             gestor.desconectar();
-            return (count + tamanio_pagina - 1) / tamanio_pagina;
+            return Math.Max(1,(count + tamanio_pagina - 1) / tamanio_pagina);
         }
 
 
