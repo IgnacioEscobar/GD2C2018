@@ -233,11 +233,11 @@ namespace PalcoNet.Comprar
             }
         }
 
-        private void btnMenuPrincipal_Click(object sender, EventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
-            FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
+            FormFiltrarEspectaculos formFiltrarEspectaculos = new FormFiltrarEspectaculos(userID, rolID);
             this.Hide();
-            formMenuPrincipal.Show();
+            formFiltrarEspectaculos.Show();
         }
 
     }

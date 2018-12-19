@@ -18,6 +18,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
     {
         int userID;
         int rolID;
+        DateTime fecha_seleccionada;
 
         public FormGenerarRendicion(int userID, int rolID)
         {
@@ -42,6 +43,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
                 dgvVentas.Rows.Add(row);
             }
             dgvVentas.AutoResizeColumns();
+            dgvVentas.SelectedRows[0].Selected = false;
         }
 
         private void FormGenerarRendicion_Load(object sender, EventArgs e)
@@ -65,15 +67,18 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            btnFacturarVentas.Enabled = true;
+            fecha_seleccionada = dtpFechaRendicion.Value;
+
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.consulta(
-                "SELECT E.razon_social, PU.descripcion, CONVERT(DATE, C.fecha) as fecha, C.monto, (C.monto * G.multiplicador) AS comision " +
+                "SELECT E.razon_social, P.descripcion, CONVERT(DATE, C.fecha) as fecha, C.monto, (C.monto * G.multiplicador) AS comision " +
                 "FROM PEAKY_BLINDERS.empresas E " +
-                    "JOIN PEAKY_BLINDERS.publicaciones PU ON E.id_empresa = PU.id_empresa " +
-                    "JOIN PEAKY_BLINDERS.grados G ON PU.id_grado = G.id_grado " +
-                    "JOIN PEAKY_BLINDERS.compras C ON PU.id_publicacion = C.id_publicacion " +
-                "WHERE C.facturada = 0 AND CONVERT(DATE, C.fecha) <= '" + dtpFechaRendicion.Value.ToShortDateString() + "' " +
+                    "JOIN PEAKY_BLINDERS.publicaciones P ON E.id_empresa = P.id_empresa " +
+                    "JOIN PEAKY_BLINDERS.grados G ON P.id_grado = G.id_grado " +
+                    "JOIN PEAKY_BLINDERS.compras C ON P.id_publicacion = C.id_publicacion " +
+                "WHERE C.facturada = 0 AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToShortDateString() + "' " +
                 "ORDER BY C.fecha ASC");
             this.mostrarVentas(gestor.obtenerRegistros());
             gestor.desconectar();
@@ -91,6 +96,30 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
         {
             dtpFechaRendicion.Value = DateTime.Today;
             this.btnSeleccionar_Click(sender, e);
+        }
+
+        private void btnFacturarVentas_Click(object sender, EventArgs e)
+        {
+            string query =
+                "SELECT E.razon_social, SUM(C.monto) as monto_total, SUM(C.monto * G.multiplicador) AS comision_total " +
+                "FROM PEAKY_BLINDERS.empresas E " +
+                    "JOIN PEAKY_BLINDERS.publicaciones P ON E.id_empresa = P.id_empresa " +
+                    "JOIN PEAKY_BLINDERS.grados G ON P.id_grado = G.id_grado " +
+                    "JOIN PEAKY_BLINDERS.compras C ON P.id_publicacion = C.id_publicacion " +
+                "WHERE C.facturada = 0 AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToShortDateString() + "' " +
+                "GROUP BY E.razon_social " +
+                "ORDER BY E.razon_social ASC";
+
+            FormConfirmarFacturacion formConfirmarFacturacion = new FormConfirmarFacturacion(query);
+            if (formConfirmarFacturacion.ShowDialog(this) == DialogResult.OK)
+            {
+                GestorDB gestor = new GestorDB();
+                gestor.conectar();
+                //gestor.generarStoredProcedure("generar_factura");
+                //int facturaID = gestor.ejecutarStoredProcedure();
+                gestor.desconectar();
+            }
+            formConfirmarFacturacion.Dispose();
         }
 
     }

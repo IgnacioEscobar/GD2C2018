@@ -261,6 +261,13 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
             formMenuPrincipal.Show();
         }
 
+        private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormLogin formLogin = new FormLogin();
+            this.Hide();
+            formLogin.Show();
+        }
+
         private void txtCUIT_KeyPress(object sender, KeyPressEventArgs e)
         {
             validador.numero(e);

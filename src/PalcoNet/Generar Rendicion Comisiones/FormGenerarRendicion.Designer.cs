@@ -31,13 +31,13 @@
             this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.dtpFechaRendicion = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblCantidad = new System.Windows.Forms.Label();
-            this.btnFacturarVentas = new System.Windows.Forms.Button();
-            this.dgvVentas = new System.Windows.Forms.DataGridView();
-            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.btnTodas = new System.Windows.Forms.Button();
+            this.dgvVentas = new System.Windows.Forms.DataGridView();
+            this.lblCantidad = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.btnFacturarVentas = new System.Windows.Forms.Button();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.SuspendLayout();
@@ -75,45 +75,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RENDICIÓN DE COMISIONES";
             // 
-            // btnSeleccionar
+            // btnTodas
             // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(425, 19);
-            this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(133, 20);
-            this.btnSeleccionar.TabIndex = 2;
-            this.btnSeleccionar.Text = "SELECCIONAR";
-            this.btnSeleccionar.UseVisualStyleBackColor = true;
-            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(412, 13);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Observación: se rendirán todas las ventas no facturadas hasta la fecha selecciona" +
-    "da.";
-            // 
-            // lblCantidad
-            // 
-            this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCantidad.Location = new System.Drawing.Point(7, 68);
-            this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(74, 13);
-            this.lblCantidad.TabIndex = 19;
-            this.lblCantidad.Text = "CANTIDAD:";
-            // 
-            // btnFacturarVentas
-            // 
-            this.btnFacturarVentas.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnFacturarVentas.Location = new System.Drawing.Point(722, 394);
-            this.btnFacturarVentas.Name = "btnFacturarVentas";
-            this.btnFacturarVentas.Size = new System.Drawing.Size(197, 42);
-            this.btnFacturarVentas.TabIndex = 5;
-            this.btnFacturarVentas.Text = "FACTURAR VENTAS";
-            this.btnFacturarVentas.UseVisualStyleBackColor = true;
+            this.btnTodas.Location = new System.Drawing.Point(564, 19);
+            this.btnTodas.Name = "btnTodas";
+            this.btnTodas.Size = new System.Drawing.Size(133, 20);
+            this.btnTodas.TabIndex = 3;
+            this.btnTodas.Text = "TODAS";
+            this.btnTodas.UseVisualStyleBackColor = true;
+            this.btnTodas.Click += new System.EventHandler(this.btnTodas_Click);
             // 
             // dgvVentas
             // 
@@ -130,6 +100,48 @@
             this.dgvVentas.Size = new System.Drawing.Size(691, 381);
             this.dgvVentas.TabIndex = 4;
             // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidad.Location = new System.Drawing.Point(7, 68);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(74, 13);
+            this.lblCantidad.TabIndex = 19;
+            this.lblCantidad.Text = "CANTIDAD:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(412, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Observación: se rendirán todas las ventas no facturadas hasta la fecha selecciona" +
+    "da.";
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Location = new System.Drawing.Point(425, 19);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(133, 20);
+            this.btnSeleccionar.TabIndex = 2;
+            this.btnSeleccionar.Text = "SELECCIONAR";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
+            // btnFacturarVentas
+            // 
+            this.btnFacturarVentas.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnFacturarVentas.Enabled = false;
+            this.btnFacturarVentas.Location = new System.Drawing.Point(722, 394);
+            this.btnFacturarVentas.Name = "btnFacturarVentas";
+            this.btnFacturarVentas.Size = new System.Drawing.Size(197, 42);
+            this.btnFacturarVentas.TabIndex = 5;
+            this.btnFacturarVentas.Text = "FACTURAR VENTAS";
+            this.btnFacturarVentas.UseVisualStyleBackColor = true;
+            this.btnFacturarVentas.Click += new System.EventHandler(this.btnFacturarVentas_Click);
+            // 
             // lklCerrarSesion
             // 
             this.lklCerrarSesion.AutoSize = true;
@@ -140,16 +152,6 @@
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
-            // 
-            // btnTodas
-            // 
-            this.btnTodas.Location = new System.Drawing.Point(564, 19);
-            this.btnTodas.Name = "btnTodas";
-            this.btnTodas.Size = new System.Drawing.Size(133, 20);
-            this.btnTodas.TabIndex = 3;
-            this.btnTodas.Text = "TODAS";
-            this.btnTodas.UseVisualStyleBackColor = true;
-            this.btnTodas.Click += new System.EventHandler(this.btnTodas_Click);
             // 
             // FormGenerarRendicion
             // 
