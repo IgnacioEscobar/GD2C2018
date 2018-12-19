@@ -158,7 +158,7 @@ namespace PalcoNet.Generar_Publicacion
                 gestor.parametroPorValor("id_publicacion", publicacionID);
             }
             gestor.parametroPorValor("descripcion", txtDescripcion.Text);
-            gestor.parametroPorValor("fecha_publicacion", DateTime.Today);
+            gestor.parametroPorValor("fecha_publicacion", Config.dateTime);
             gestor.parametroPorValor("descripcion_rubro", cmbRubro.Text);
             gestor.parametroPorValor("calle", txtCalle.Text);
             gestor.parametroPorValor("numero", txtAltura.Text);
@@ -343,7 +343,7 @@ namespace PalcoNet.Generar_Publicacion
                 string fecha = campos_fecha + " " + nudHora.Value.ToString() + ":" + nudMinuto.Value.ToString();
                 DateTime fecha_ingresada = DateTime.Parse(campos_fecha);
 
-                if (fecha_ingresada < DateTime.Today)
+                if (fecha_ingresada < Config.dateTime)
                 {
                     MessageBox.Show("La fecha de presentación ingresada no puede ser anterior a la actual.", "Alerta");
                     return;

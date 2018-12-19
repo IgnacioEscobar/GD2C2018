@@ -328,6 +328,7 @@ namespace PalcoNet.Registro_de_Usuario
                         }
 
                         if (user_autogenerado)
+                        
                         {
                             gestor.conectar();
                             gestor.consulta("SELECT ISNULL(MAX(id_usuario), 0) AS id_ultimo FROM PEAKY_BLINDERS.usuarios");
@@ -371,7 +372,7 @@ namespace PalcoNet.Registro_de_Usuario
                     gestor.parametroPorValor("tarjeta_de_credito_asociada", numeroTarjeta);
                     if (!modif)
                     {
-                        gestor.parametroPorValor("fecha_creacion", DateTime.Today);
+                        gestor.parametroPorValor("fecha_creacion", Config.dateTime);
                     }
 
                     int resultado = gestor.ejecutarStoredProcedure();

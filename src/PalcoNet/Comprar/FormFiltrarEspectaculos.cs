@@ -101,7 +101,7 @@ namespace PalcoNet.Comprar
             this.mostrarCategorias(gestor.obtenerRegistros());
             gestor.desconectar();
 
-            string filtro_default = "where PP.fecha_vencimiento > GETDATE() and "
+            string filtro_default = "where PP.fecha_vencimiento > " + Config.date + " and "
                     + " P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") ";
                 // + "PP.fecha_presentacion > " + fechaInicio + " "
                 // + "PP.fecha_presentacion < " + fechaFin + " "
@@ -129,7 +129,7 @@ namespace PalcoNet.Comprar
             dgvEspectaculos.Rows.Clear();
 
             string filtro = "LEFT JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
-                "WHERE PP.fecha_vencimiento >= GETDATE() ";
+                "WHERE PP.fecha_vencimiento >= " + Config.date;
             string descripcion = txtDescripcion.Text;
 
             if (descripcion != "")
@@ -200,8 +200,8 @@ namespace PalcoNet.Comprar
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtDescripcion.Text = "";
-            mcrDesde.SetDate(DateTime.Today);
-            mcrHasta.SetDate(DateTime.Today);
+            mcrDesde.SetDate(Config.dateTime);
+            mcrHasta.SetDate(Config.dateTime);
             for (int i = 0; i < clbCategorias.Items.Count; i++)
             {
                 clbCategorias.SetItemChecked(i, false);
