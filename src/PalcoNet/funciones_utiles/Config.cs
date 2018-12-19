@@ -28,6 +28,7 @@ namespace PalcoNet.funciones_utiles
             catch (System.TypeInitializationException)
             {
                 dateTime = DateTime.Now;
+                date = "GETDATE()";
             }
         }
     }
