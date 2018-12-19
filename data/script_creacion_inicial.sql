@@ -303,24 +303,19 @@ create table PEAKY_BLINDERS.facturas (
   id_factura int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   nro_factura int unique,
   fecha datetime,
-  total int,
-  id_medio_de_pago tinyint REFERENCES PEAKY_BLINDERS.medios_de_pago (id_medio_de_pago),
+  total int
 );
 
 insert into PEAKY_BLINDERS.facturas (
   nro_factura,
   fecha,
-  total,
-  id_medio_de_pago
+  total
 )
 select distinct
   Factura_Nro,
   Factura_Fecha,
-  Factura_Total,
-  id_medio_de_pago
-from gd_esquema.Maestra M
-join PEAKY_BLINDERS.medios_de_pago MP on M.Forma_Pago_Desc = MP.descripcion 
-where Factura_Nro is not null;
+  Factura_Total
+from gd_esquema.Maestra
 
 -- Tipos de ubicacion --
 create table PEAKY_BLINDERS.tipos_de_ubicacion (
@@ -1122,4 +1117,53 @@ AS
 		@id_cliente,
 		-@puntos
 	)
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.generar_factura
+@fecha datetime,
+@total int
+AS
+  BEGIN
+	DECLARE @nro_factura int
+	SELECT @nro_factura = MAX(nro_factura) + 1
+	FROM PEAKY_BLINDERS.facturas
+
+	INSERT INTO PEAKY_BLINDERS.facturas (
+		nro_factura,
+		fecha,
+		total
+	) VALUES (
+		@nro_factura,
+		@fecha,
+		@total
+	)
+
+	RETURN @@IDENTITY
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.agregar_item
+@id_factura int,
+@descripcion varchar(100),
+@id_compra int,
+@cantidad tinyint,
+@comision decimal(6, 2)
+AS
+  BEGIN
+	INSERT INTO PEAKY_BLINDERS.items (
+		id_factura,
+		descripcion,
+		id_compra,
+		cantidad,
+		comision
+	) VALUES (
+		@id_factura,
+		@descripcion,
+		@id_compra,
+		@cantidad,
+		@comision
+	)
+
+	UPDATE PEAKY_BLINDERS.compras SET facturada = 1 WHERE id_compra = @id_compra
   END
