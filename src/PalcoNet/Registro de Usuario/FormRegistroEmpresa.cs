@@ -85,15 +85,37 @@ namespace PalcoNet.Registro_de_Usuario
         private bool validarRepeticiones()
         {
             GestorDB gestor = new GestorDB();
+            string razon_social = txtRazonSocial.Text;
+            string cuit = txtCUIT.Text;
 
-            string query_cuit =
-                "SELECT cuil " +
+            string query_razon_social =
+                "SELECT razon_social " +
                 "FROM PEAKY_BLINDERS.empresas " +
-                "WHERE cuit = '" + txtCUIT.Text + "' ";
+                "WHERE razon_social = '" + razon_social + "' ";
+            string query_cuit =
+                "SELECT cuit " +
+                "FROM PEAKY_BLINDERS.empresas " +
+                "WHERE cuit = '" + cuit + "' ";
 
             string mensaje = "Ya existe una empresa con estos datos:";
             bool hubo_repeticion = false; ;
 
+            gestor.conectar();
+            if (modif)
+            {
+                gestor.consulta(query_razon_social + "AND NOT id_empresa = '" + empresaID + "'");
+            }
+            else
+            {
+                gestor.consulta(query_razon_social);
+            }
+
+            if (gestor.obtenerRegistros().Read())
+            {
+                mensaje += "\n- Razón social: " + razon_social;
+                hubo_repeticion = true;
+            }
+            gestor.desconectar();
             gestor.conectar();
             if (modif)
             {
@@ -106,7 +128,7 @@ namespace PalcoNet.Registro_de_Usuario
 
             if (gestor.obtenerRegistros().Read())
             {
-                mensaje += "\n- CUIT";
+                mensaje += "\n- CUIT: " + cuit;
                 hubo_repeticion = true;
             }
             gestor.desconectar();

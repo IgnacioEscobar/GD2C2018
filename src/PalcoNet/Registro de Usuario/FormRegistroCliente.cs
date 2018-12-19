@@ -98,17 +98,20 @@ namespace PalcoNet.Registro_de_Usuario
         private bool validarRepeticiones()
         {
             GestorDB gestor = new GestorDB();
+            string tipo_doc = cmbTipoDoc.Text;
+            string nro_doc = txtNumeroDoc.Text;
+            string cuil = txtCUIL.Text;
 
             string query_doc = 
                 "SELECT TD.descripcion, C.numero_de_documento " +
                 "FROM PEAKY_BLINDERS.clientes C " +
                     "JOIN PEAKY_BLINDERS.tipos_de_documento TD ON C.id_tipo_de_documento = TD.id_tipo_de_documento " +
-                "WHERE TD.descripcion = '" + cmbTipoDoc.Text + "' " +
-                    "AND C.numero_de_documento = '" + txtNumeroDoc.Text + "' ";
+                "WHERE TD.descripcion = '" + tipo_doc + "' " +
+                    "AND C.numero_de_documento = '" + nro_doc + "' ";
             string query_cuil =
                 "SELECT cuil " +
                 "FROM PEAKY_BLINDERS.clientes " +
-                "WHERE cuil = '" + txtCUIL.Text + "' ";
+                "WHERE cuil = '" + cuil + "' ";
 
             string mensaje = "Ya existe un cliente con estos datos:";
             bool hubo_repeticion = false; ;
@@ -125,7 +128,7 @@ namespace PalcoNet.Registro_de_Usuario
 
             if (gestor.obtenerRegistros().Read())
             {
-                mensaje += "\n- Tipo y número de documento";
+                mensaje += "\n- Tipo y número de documento: " + tipo_doc + " - " + nro_doc;
                 hubo_repeticion = true;
             }
             gestor.desconectar();
@@ -141,7 +144,7 @@ namespace PalcoNet.Registro_de_Usuario
 
             if (gestor.obtenerRegistros().Read())
             {
-                mensaje += "\n- CUIL";
+                mensaje += "\n- CUIL: " + cuil;
                 hubo_repeticion = true;
             }
             gestor.desconectar();
