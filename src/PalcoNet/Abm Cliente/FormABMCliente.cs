@@ -233,7 +233,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 6)
             {
                 string nombre = dgvClientes.CurrentRow.Cells[1].Value.ToString();
                 string apellido = dgvClientes.CurrentRow.Cells[2].Value.ToString();
@@ -276,6 +276,13 @@ namespace PalcoNet.Abm_Cliente
             FormMenuPrincipal formMenuPrincipal = new FormMenuPrincipal(userID, rolID);
             this.Hide();
             formMenuPrincipal.Show();
+        }
+
+        private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormLogin formLogin = new FormLogin();
+            this.Hide();
+            formLogin.Show();
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)

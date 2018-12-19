@@ -61,7 +61,8 @@ namespace PalcoNet.Login
                 "SELECT R.id_rol, R.descripcion " +
                 "FROM PEAKY_BLINDERS.roles R " +
                     "JOIN PEAKY_BLINDERS.roles_por_usuario RU ON R.id_rol = RU.id_rol " +
-                "WHERE R.habilitado = 1 AND RU.id_usuario = '" + userID + "'";
+                "WHERE R.habilitado = 1 AND RU.id_usuario = '" + userID + "' " +
+                "ORDER BY R.descripcion ASC";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
             while (lector.Read())
@@ -75,7 +76,7 @@ namespace PalcoNet.Login
             }
         }
 
-        private void dgvRoles_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dgvRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 2)
             {
@@ -94,6 +95,13 @@ namespace PalcoNet.Login
                 this.Hide();
                 formDestino.Show();
             }
+        }
+
+        private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormLogin formDestino = new FormLogin();
+            this.Hide();
+            formDestino.Show();
         }
 
     }

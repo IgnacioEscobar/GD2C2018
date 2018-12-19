@@ -15,28 +15,52 @@ namespace PalcoNet.Registro_de_Usuario
 {
     public partial class FormTarjetaDeCredito : Form
     {
-        string numeroTarjeta;
+        string numeroDeTarjeta;
         FormRegistroCliente formRegistroCliente;
         ValidadorDeDatos validador;
+        bool registroNuevo;
 
-        public FormTarjetaDeCredito(FormRegistroCliente formRegistroCliente, string numeroTarjeta)
+        public FormTarjetaDeCredito(FormRegistroCliente formRegistroCliente, string numeroDeTarjeta)
         {
             InitializeComponent();
             this.formRegistroCliente = formRegistroCliente;
-            this.numeroTarjeta = numeroTarjeta;
+            this.numeroDeTarjeta = numeroDeTarjeta;
+            this.registroNuevo = true;
+        }
+
+        public FormTarjetaDeCredito()
+        {
+            InitializeComponent();
+            this.numeroDeTarjeta = "";
+            this.registroNuevo = false;
+        }
+
+        public string getNumeroDeTarjeta()
+        {
+            return txtNumeroDeTarjeta.Text;
         }
 
         private void FormTarjetaDeCredito_Load(object sender, EventArgs e)
         {
-            txtNumeroTarjeta.Text = numeroTarjeta;
+            txtNumeroDeTarjeta.Text = numeroDeTarjeta;
+            if (this.numeroDeTarjeta == "") txtNumeroDeTarjeta.Select();
             validador = new ValidadorDeDatos();
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            formRegistroCliente.cambioNumeroTarjeta(txtNumeroTarjeta.Text);
-            this.Hide();
-            MessageBox.Show("Tarjeta de crédito registrada exitosamente.");
+            if (txtNumeroDeTarjeta.Text != "")
+            {
+                if (registroNuevo)
+                {
+                    formRegistroCliente.cambioNumeroTarjeta(txtNumeroDeTarjeta.Text);
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Tarjeta de crédito registrada exitosamente.");
+                }
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

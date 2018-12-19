@@ -297,7 +297,7 @@
             // txtAltura
             // 
             this.txtAltura.Location = new System.Drawing.Point(200, 32);
-            this.txtAltura.MaxLength = 6;
+            this.txtAltura.MaxLength = 5;
             this.txtAltura.Name = "txtAltura";
             this.txtAltura.Size = new System.Drawing.Size(56, 20);
             this.txtAltura.TabIndex = 11;
@@ -378,7 +378,7 @@
             // txtPiso
             // 
             this.txtPiso.Location = new System.Drawing.Point(39, 58);
-            this.txtPiso.MaxLength = 3;
+            this.txtPiso.MaxLength = 2;
             this.txtPiso.Name = "txtPiso";
             this.txtPiso.Size = new System.Drawing.Size(56, 20);
             this.txtPiso.TabIndex = 12;

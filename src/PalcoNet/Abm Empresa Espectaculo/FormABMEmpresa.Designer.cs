@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.btnDarBaja = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
@@ -43,6 +43,7 @@
             this.txtMail = new System.Windows.Forms.TextBox();
             this.txtCUIT = new System.Windows.Forms.TextBox();
             this.txtRazonSocial = new System.Windows.Forms.TextBox();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresas)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -95,14 +96,14 @@
             this.dgvEmpresas.AllowUserToOrderColumns = true;
             this.dgvEmpresas.AllowUserToResizeRows = false;
             this.dgvEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmpresas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvEmpresas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmpresas.Location = new System.Drawing.Point(12, 90);
             this.dgvEmpresas.MultiSelect = false;
@@ -201,6 +202,17 @@
             this.txtRazonSocial.Size = new System.Drawing.Size(297, 20);
             this.txtRazonSocial.TabIndex = 0;
             // 
+            // lklCerrarSesion
+            // 
+            this.lklCerrarSesion.AutoSize = true;
+            this.lklCerrarSesion.Location = new System.Drawing.Point(994, 9);
+            this.lklCerrarSesion.Name = "lklCerrarSesion";
+            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
+            this.lklCerrarSesion.TabIndex = 16;
+            this.lklCerrarSesion.TabStop = true;
+            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
+            // 
             // FormABMEmpresa
             // 
             this.AcceptButton = this.btnBuscar;
@@ -208,6 +220,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(1100, 511);
+            this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.btnDarBaja);
@@ -223,6 +236,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -242,5 +256,6 @@
         private System.Windows.Forms.TextBox txtCUIT;
         private System.Windows.Forms.TextBox txtRazonSocial;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel lklCerrarSesion;
     }
 }

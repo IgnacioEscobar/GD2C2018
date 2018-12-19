@@ -30,8 +30,8 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.dgvRoles = new System.Windows.Forms.DataGridView();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             this.SuspendLayout();
@@ -45,16 +45,6 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SELECCIONAR ROL";
-            // 
-            // lklCerrarSesion
-            // 
-            this.lklCerrarSesion.AutoSize = true;
-            this.lklCerrarSesion.Location = new System.Drawing.Point(230, 9);
-            this.lklCerrarSesion.Name = "lklCerrarSesion";
-            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
-            this.lklCerrarSesion.TabIndex = 14;
-            this.lklCerrarSesion.TabStop = true;
-            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             // 
             // dgvRoles
             // 
@@ -80,7 +70,18 @@
             this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRoles.Size = new System.Drawing.Size(301, 111);
             this.dgvRoles.TabIndex = 11;
-            this.dgvRoles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellContentClick_1);
+            this.dgvRoles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellContentClick);
+            // 
+            // lklCerrarSesion
+            // 
+            this.lklCerrarSesion.AutoSize = true;
+            this.lklCerrarSesion.Location = new System.Drawing.Point(230, 9);
+            this.lklCerrarSesion.Name = "lklCerrarSesion";
+            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
+            this.lklCerrarSesion.TabIndex = 14;
+            this.lklCerrarSesion.TabStop = true;
+            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
             // FormElegirRol
             // 

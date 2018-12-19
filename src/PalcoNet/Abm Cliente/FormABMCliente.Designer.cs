@@ -45,6 +45,7 @@
             this.txtDocumento = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
+            this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -224,6 +225,17 @@
             this.txtNombre.TabIndex = 0;
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
+            // lklCerrarSesion
+            // 
+            this.lklCerrarSesion.AutoSize = true;
+            this.lklCerrarSesion.Location = new System.Drawing.Point(993, 9);
+            this.lklCerrarSesion.Name = "lklCerrarSesion";
+            this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
+            this.lklCerrarSesion.TabIndex = 17;
+            this.lklCerrarSesion.TabStop = true;
+            this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
+            // 
             // FormABMCliente
             // 
             this.AcceptButton = this.btnBuscar;
@@ -231,6 +243,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(1100, 511);
+            this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.btnDarBaja);
@@ -246,6 +259,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -267,5 +281,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.LinkLabel lklCerrarSesion;
     }
 }

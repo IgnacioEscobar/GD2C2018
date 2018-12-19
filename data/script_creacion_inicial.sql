@@ -68,7 +68,7 @@ create table PEAKY_BLINDERS.rubros (
   descripcion varchar(15)
 );
 
-insert into PEAKY_BLINDERS.rubros values ('Vacio');
+insert into PEAKY_BLINDERS.rubros values ('Otros');
 
 -- Grados --
 create table PEAKY_BLINDERS.grados (
@@ -303,24 +303,19 @@ create table PEAKY_BLINDERS.facturas (
   id_factura int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   nro_factura int unique,
   fecha datetime,
-  total int,
-  id_medio_de_pago tinyint REFERENCES PEAKY_BLINDERS.medios_de_pago (id_medio_de_pago),
+  total int
 );
 
 insert into PEAKY_BLINDERS.facturas (
   nro_factura,
   fecha,
-  total,
-  id_medio_de_pago
+  total
 )
 select distinct
   Factura_Nro,
   Factura_Fecha,
-  Factura_Total,
-  id_medio_de_pago
-from gd_esquema.Maestra M
-join PEAKY_BLINDERS.medios_de_pago MP on M.Forma_Pago_Desc = MP.descripcion 
-where Factura_Nro is not null;
+  Factura_Total
+from gd_esquema.Maestra
 
 -- Tipos de ubicacion --
 create table PEAKY_BLINDERS.tipos_de_ubicacion (
@@ -378,7 +373,8 @@ create table PEAKY_BLINDERS.compras (
   id_publicacion int REFERENCES PEAKY_BLINDERS.publicaciones (id_publicacion),
   -- ^^ desnormalizacion para hacer mas simple la migración y cualquier consulta futura
   id_ubicacion int REFERENCES PEAKY_BLINDERS.ubicaciones (id_ubicacion),
-  monto int
+  monto int,
+  facturada bit default 0
 );
 
 insert into PEAKY_BLINDERS.compras (
@@ -389,7 +385,8 @@ insert into PEAKY_BLINDERS.compras (
   id_presentacion,
   id_publicacion,
   id_ubicacion,
-  monto
+  monto,
+  facturada
 )
 select distinct
   C.id_cliente,
@@ -399,7 +396,8 @@ select distinct
   PRS.id_presentacion,
   M.Espectaculo_Cod,
   U.id_ubicacion,
-  M.Ubicacion_Precio
+  M.Ubicacion_Precio,
+  1
 from gd_esquema.Maestra M
 join PEAKY_BLINDERS.clientes C on C.numero_de_documento = M.Cli_Dni
 join PEAKY_BLINDERS.presentaciones PRS on M.Espectaculo_Cod = PRS.id_publicacion
@@ -707,6 +705,13 @@ AS
 
 	RETURN @resultado
   END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.registrar_tarjeta
+@id_cliente int,
+@numero_tarjeta varchar(16)
+AS
+	UPDATE PEAKY_BLINDERS.clientes SET tarjeta_de_credito_asociada = @numero_tarjeta WHERE id_cliente = @id_cliente
 GO
 
 CREATE PROCEDURE PEAKY_BLINDERS.crear_empresa
@@ -1113,4 +1118,53 @@ AS
 		@id_cliente,
 		-@puntos
 	)
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.generar_factura
+@fecha datetime,
+@total int
+AS
+  BEGIN
+	DECLARE @nro_factura int
+	SELECT @nro_factura = MAX(nro_factura) + 1
+	FROM PEAKY_BLINDERS.facturas
+
+	INSERT INTO PEAKY_BLINDERS.facturas (
+		nro_factura,
+		fecha,
+		total
+	) VALUES (
+		@nro_factura,
+		@fecha,
+		@total
+	)
+
+	RETURN @@IDENTITY
+  END
+GO
+
+CREATE PROCEDURE PEAKY_BLINDERS.agregar_item
+@id_factura int,
+@descripcion varchar(100),
+@id_compra int,
+@cantidad tinyint,
+@comision decimal(6, 2)
+AS
+  BEGIN
+	INSERT INTO PEAKY_BLINDERS.items (
+		id_factura,
+		descripcion,
+		id_compra,
+		cantidad,
+		comision
+	) VALUES (
+		@id_factura,
+		@descripcion,
+		@id_compra,
+		@cantidad,
+		@comision
+	)
+
+	UPDATE PEAKY_BLINDERS.compras SET facturada = 1 WHERE id_compra = @id_compra
   END

@@ -31,7 +31,7 @@
             System.Windows.Forms.Button btnCosto;
             System.Windows.Forms.Button btnPremio;
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnMenuPrincipal = new System.Windows.Forms.Button();
+            this.btnVolver = new System.Windows.Forms.Button();
             this.comboPremios = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -68,7 +68,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnMenuPrincipal);
+            this.groupBox1.Controls.Add(this.btnVolver);
             this.groupBox1.Controls.Add(this.comboPremios);
             this.groupBox1.Controls.Add(btnPremio);
             this.groupBox1.Controls.Add(this.label3);
@@ -87,16 +87,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Comprar Entrada";
             // 
-            // btnMenuPrincipal
+            // btnVolver
             // 
-            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 474);
-            this.btnMenuPrincipal.Name = "btnMenuPrincipal";
-            this.btnMenuPrincipal.Size = new System.Drawing.Size(359, 44);
-            this.btnMenuPrincipal.TabIndex = 24;
-            this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
-            this.btnMenuPrincipal.UseVisualStyleBackColor = true;
-            this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
+            this.btnVolver.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnVolver.Location = new System.Drawing.Point(12, 474);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(359, 44);
+            this.btnVolver.TabIndex = 24;
+            this.btnVolver.Text = "VOLVER";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // comboPremios
             // 
@@ -187,7 +187,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnMenuPrincipal;
+            this.CancelButton = this.btnVolver;
             this.ClientSize = new System.Drawing.Size(406, 555);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormComprarEntrada";
@@ -211,6 +211,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboPremios;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnMenuPrincipal;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

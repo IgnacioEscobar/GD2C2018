@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 using PalcoNet.funciones_utiles;
 using PalcoNet.Menu_Principal;
@@ -29,15 +30,35 @@ namespace PalcoNet.Listado_Estadistico
 
         private void mostrarResultados(string query, Queue<string> headers)
         {
+            lsvConsulta.Clear();
             lsvConsulta.View = View.Details;
 
             while (headers.Count > 0)
             {
                 string header = headers.Dequeue();
-                lsvConsulta.Columns.Add(header.ToUpper());
+                lsvConsulta.Columns.Add(header);
             }
 
-            MessageBox.Show(query);
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            gestor.consulta(query);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            while (lector.Read())
+            {
+                ListViewItem item = new ListViewItem(lector[lsvConsulta.Columns[0].Text].ToString());
+                for (int i = 1; i < lsvConsulta.Columns.Count; i++)
+                {
+                    item.SubItems.Add(lector[lsvConsulta.Columns[i].Text].ToString());
+                }
+                lsvConsulta.Items.Add(item);
+            }
+
+            for (int i = 0; i < lsvConsulta.Columns.Count; i++)
+            {
+                lsvConsulta.Columns[i].Text = lsvConsulta.Columns[i].Text.ToUpper().Replace('_', ' ');
+            }
+
+            lsvConsulta.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         // -------------------
@@ -109,18 +130,40 @@ namespace PalcoNet.Listado_Estadistico
                 switch (consulta)
                 {
                     case "EMPRESAS CON MAYOR CANTIDAD DE LOCALIDADES NO VENDIDAS":
-                        // TODO: query
-                        query = "";
+                        query =
+                            "SELECT TOP 5 E.razon_social, COUNT(U.id_ubicacion) AS no_vendidas " +
+                            "FROM PEAKY_BLINDERS.empresas E " +
+                                "JOIN PEAKY_BLINDERS.publicaciones PU ON E.id_empresa = PU.id_empresa " +
+                                "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
+                                "JOIN PEAKY_BLINDERS.ubicaciones U ON PU.id_publicacion = U.id_publicacion " +
+                            "WHERE U.id_ubicacion NOT IN (SELECT C.id_ubicacion FROM PEAKY_BLINDERS.compras C) " +
+                                "AND YEAR(PR.fecha_vencimiento) = '" + ano + "' " +
+                                "AND MONTH(PR.fecha_vencimiento) BETWEEN '" + desdeMes + "' AND '" + hastaMes + "' " +
+                            "GROUP BY E.razon_social " +
+                            "ORDER BY no_vendidas DESC";
+                        headers.Enqueue("razon_social");
+                        headers.Enqueue("no_vendidas");
                         this.mostrarResultados(query, headers);
                         break;
                     case "CLIENTES CON MAYORES PUNTOS VENCIDOS":
-                        // TODO: query
-                        query = "";
+                        query =
+                            "SELECT TOP 5 CL.nombre, CL.apellido, ISNULL(CL.cuil, '---') AS cuil, COUNT(MP.id_movimiento) AS puntos " +
+                            "FROM PEAKY_BLINDERS.clientes CL " +
+                                "JOIN PEAKY_BLINDERS.movimientos_de_puntos MP ON CL.id_cliente = MP.id_cliente " +
+                            "WHERE MP.fecha_vencimiento < GETDATE() " +
+                                "AND YEAR(MP.fecha_vencimiento) = '" + ano + "' " +
+                                "AND MONTH(MP.fecha_vencimiento) BETWEEN '" + desdeMes + "' AND '" + hastaMes + "' " +
+                            "GROUP BY CL.nombre, CL.apellido, CL.cuil " +
+                            "ORDER BY puntos DESC";
+                        headers.Enqueue("nombre");
+                        headers.Enqueue("apellido");
+                        headers.Enqueue("cuil");
+                        headers.Enqueue("puntos");
                         this.mostrarResultados(query, headers);
                         break;
                     case "CLIENTES CON MAYOR CANTIDAD DE COMPRAS":
                         query =
-                            "SELECT TOP 5 CL.nombre, CL.apellido, CL.cuil, COUNT(CO.id_compra) AS compras " +
+                            "SELECT TOP 5 CL.nombre, CL.apellido, ISNULL(CL.cuil, '---') AS cuil, COUNT(CO.id_compra) AS compras " +
                             "FROM PEAKY_BLINDERS.clientes CL " +
                                 "JOIN PEAKY_BLINDERS.compras CO ON CL.id_cliente = CO.id_cliente " +
                             "WHERE YEAR(CO.fecha) = '" + ano + "' " +

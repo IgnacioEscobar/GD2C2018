@@ -14,6 +14,8 @@ if OBJECT_ID('PEAKY_BLINDERS.baja_cliente', 'P') is not null
   drop procedure PEAKY_BLINDERS.baja_cliente;
 if OBJECT_ID('PEAKY_BLINDERS.cliente_habilitado', N'FN') is not null
   drop function PEAKY_BLINDERS.cliente_habilitado;
+if OBJECT_ID('PEAKY_BLINDERS.registrar_tarjeta', 'P') is not null
+  drop procedure PEAKY_BLINDERS.registrar_tarjeta;
 if OBJECT_ID('PEAKY_BLINDERS.crear_empresa', 'P') is not null
   drop procedure PEAKY_BLINDERS.crear_empresa;
 if OBJECT_ID('PEAKY_BLINDERS.modificar_empresa', 'P') is not null
@@ -44,6 +46,14 @@ if OBJECT_ID('PEAKY_BLINDERS.generar_ubicacion', 'P') is not null
   drop procedure PEAKY_BLINDERS.generar_ubicacion;
 if OBJECT_ID('PEAKY_BLINDERS.actualizar_grado', 'P') is not null
   drop procedure PEAKY_BLINDERS.actualizar_grado;
+if OBJECT_ID('PEAKY_BLINDERS.canjear_premio', 'P') is not null
+  drop procedure PEAKY_BLINDERS.canjear_premio;
+if OBJECT_ID('PEAKY_BLINDERS.registrarCompra', 'P') is not null
+  drop procedure PEAKY_BLINDERS.registrarCompra;
+if OBJECT_ID('PEAKY_BLINDERS.agregar_item', 'P') is not null
+  drop procedure PEAKY_BLINDERS.agregar_item;
+if OBJECT_ID('PEAKY_BLINDERS.generar_factura', 'P') is not null
+  drop procedure PEAKY_BLINDERS.generar_factura;
 if OBJECT_ID('PEAKY_BLINDERS.items', 'U') is not null
   drop table PEAKY_BLINDERS.items;
 if OBJECT_ID('PEAKY_BLINDERS.compras', 'U') is not null
@@ -84,5 +94,9 @@ if OBJECT_ID('PEAKY_BLINDERS.empresas', 'U') is not null
   drop table PEAKY_BLINDERS.empresas;
 if OBJECT_ID('PEAKY_BLINDERS.usuarios', 'U') is not null
   drop table PEAKY_BLINDERS.usuarios;
+if OBJECT_ID('PEAKY_BLINDERS.premios', 'U') is not null
+  drop table PEAKY_BLINDERS.premios;
+if OBJECT_ID('PEAKY_BLINDERS.tipos_de_premios', 'U') is not null
+  drop table PEAKY_BLINDERS.tipos_de_premios;
 -- Drops schema
 drop schema PEAKY_BLINDERS;

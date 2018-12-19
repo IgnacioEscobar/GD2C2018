@@ -57,6 +57,7 @@
             this.dgvFuncionalidades.MultiSelect = false;
             this.dgvFuncionalidades.Name = "dgvFuncionalidades";
             this.dgvFuncionalidades.ReadOnly = true;
+            this.dgvFuncionalidades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFuncionalidades.Size = new System.Drawing.Size(543, 289);
             this.dgvFuncionalidades.TabIndex = 16;
             this.dgvFuncionalidades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFuncionalidades_CellContentClick);

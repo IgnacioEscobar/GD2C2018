@@ -65,7 +65,7 @@ namespace PalcoNet.Editar_Publicacion
                     lector["id_publicacion"].ToString(),
                     lector["descripcionP"].ToString(),
                     lector["descripcionE"].ToString(),
-                    lector["descripcionG"].ToString(),
+                    lector["descripcionG"].ToString()
                 };
                 dgvPublicaciones.Rows.Add(row);
             }
@@ -198,7 +198,7 @@ namespace PalcoNet.Editar_Publicacion
             }
             else
             {
-                condicion += "AND P.id_rubro = NULL ";
+                condicion += "AND PU.id_rubro = NULL ";
             }
             maxPaginas = maximoPaginas(join_defecto, condicion);
             condicion += "ORDER BY PR.fecha_presentacion ASC";

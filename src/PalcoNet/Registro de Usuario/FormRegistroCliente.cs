@@ -55,6 +55,8 @@ namespace PalcoNet.Registro_de_Usuario
             this.query = query;
         }
 
+        // Metodos auxiliares
+
         private bool validarCampos()
         {
             List<string[]> lista = new List<string[]>();
@@ -91,6 +93,68 @@ namespace PalcoNet.Registro_de_Usuario
             }
 
             return retorno;
+        }
+
+        private bool validarRepeticiones()
+        {
+            GestorDB gestor = new GestorDB();
+            string tipo_doc = cmbTipoDoc.Text;
+            string nro_doc = txtNumeroDoc.Text;
+            string cuil = txtCUIL.Text;
+
+            string query_doc = 
+                "SELECT TD.descripcion, C.numero_de_documento " +
+                "FROM PEAKY_BLINDERS.clientes C " +
+                    "JOIN PEAKY_BLINDERS.tipos_de_documento TD ON C.id_tipo_de_documento = TD.id_tipo_de_documento " +
+                "WHERE TD.descripcion = '" + tipo_doc + "' " +
+                    "AND C.numero_de_documento = '" + nro_doc + "' ";
+            string query_cuil =
+                "SELECT cuil " +
+                "FROM PEAKY_BLINDERS.clientes " +
+                "WHERE cuil = '" + cuil + "' ";
+
+            string mensaje = "Ya existe un cliente con estos datos:";
+            bool hubo_repeticion = false; ;
+
+            gestor.conectar();
+            if (modif)
+            {
+                gestor.consulta(query_doc + "AND NOT id_cliente = '" + clienteID + "'");
+            }
+            else
+            {
+                gestor.consulta(query_doc);
+            }
+
+            if (gestor.obtenerRegistros().Read())
+            {
+                mensaje += "\n- Tipo y número de documento: " + tipo_doc + " - " + nro_doc;
+                hubo_repeticion = true;
+            }
+            gestor.desconectar();
+            gestor.conectar();
+            if (modif)
+            {
+                gestor.consulta(query_cuil + "AND NOT id_cliente = '" + clienteID + "'");
+            }
+            else
+            {
+                gestor.consulta(query_cuil);
+            }
+
+            if (gestor.obtenerRegistros().Read())
+            {
+                mensaje += "\n- CUIL: " + cuil;
+                hubo_repeticion = true;
+            }
+            gestor.desconectar();
+
+            if (hubo_repeticion)
+            {
+                MessageBox.Show(mensaje, "Alerta");
+            }
+
+            return !hubo_repeticion;
         }
 
         private void cargarTexto(SqlDataReader lector, TextBox txtCampo, string campo)
@@ -144,6 +208,8 @@ namespace PalcoNet.Registro_de_Usuario
                 cmbTipoDoc.Items.Add(lector["descripcion"].ToString());
             }
         }
+
+        // -------------------
 
         private void FormRegistroCliente_Load(object sender, EventArgs e)
         {
@@ -246,126 +312,130 @@ namespace PalcoNet.Registro_de_Usuario
                 string contrasena = "";
                 bool user_autogenerado = true;
 
-                if (!modif)
-                {
-                    if (abm)
-                    {
-                        FormNombreUsuario formNombreDeUsuario = new FormNombreUsuario();
-                        if (formNombreDeUsuario.ShowDialog(this) == DialogResult.OK)
-                        {
-                            usuario = formNombreDeUsuario.getNombreUsuario();
-                            user_autogenerado = false;
-                        }
-                        formNombreDeUsuario.Dispose();
-                    }
-                    
-                    if (user_autogenerado)
-                    {
-                        gestor.conectar();
-                        gestor.consulta("SELECT ISNULL(MAX(id_usuario), 0) AS id_ultimo FROM PEAKY_BLINDERS.usuarios");
-                        SqlDataReader lector = gestor.obtenerRegistros();
-                        if (lector.Read())
-                        {
-                            usuario = "user" + (Convert.ToInt32(lector["id_ultimo"]) + 1);
-                        }
-                        gestor.desconectar();
-                    }
-
-                    GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
-                    contrasena = generadorDeContrasenas.generar(4);
-
-                    gestor.conectar();
-                    gestor.generarStoredProcedure("crear_cliente");
-                    gestor.parametroPorValor("usuario", usuario);
-                    gestor.parametroPorValor("contrasenna", contrasena);
-                }
-                else
-                {
-                    gestor.generarStoredProcedure("modificar_cliente");
-                    gestor.parametroPorValor("id_cliente", clienteID);
-                }
-
-                gestor.parametroPorValor("nombre", txtNombre.Text);
-                gestor.parametroPorValor("apellido", txtApellido.Text);
-                gestor.parametroPorValor("descripcion_tipo_de_documento", cmbTipoDoc.Text);
-                gestor.parametroPorValor("numero_de_documento", txtNumeroDoc.Text);
-                gestor.parametroPorValor("cuil", txtCUIL.Text);
-                DateTime fecha_nacimiento = DateTime.Parse(cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text);
-                gestor.parametroPorValor("fecha_nacimiento", fecha_nacimiento);
-                gestor.parametroPorValor("calle", txtCalle.Text);
-                gestor.parametroPorValor("numero", txtAltura.Text);
-                gestor.parametroPorValor("piso", txtPiso.Text);
-                gestor.parametroPorValor("depto", txtDepto.Text);
-                gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
-                gestor.parametroPorValor("localidad", txtLocalidad.Text);
-                gestor.parametroPorValor("mail", txtMail.Text);
-                gestor.parametroPorValor("telefono", txtTelefono.Text);
-                gestor.parametroPorValor("tarjeta_de_credito_asociada", numeroTarjeta);
-                if (!modif)
-                {
-                    gestor.parametroPorValor("fecha_creacion", Config.dateTime);
-                }
-
-                int resultado = gestor.ejecutarStoredProcedure();
-                gestor.desconectar();
-
-                if (resultado == 0)
-                {
-                    MessageBox.Show("Ya existe un usuario con ese número de CUIL.", "Alerta");
-                }
-                else
+                if (this.validarRepeticiones())
                 {
                     if (!modif)
                     {
-                        MessageBox.Show("Usuario: " + usuario
-                            + "\nContraseña: " + contrasena
-                            + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
-
-                        creacion = true;
-                    }
-                    else
-                    {
-                        if (ckbHabilitado.Visible)
+                        if (abm)
                         {
-                            int cambioID = -1;
+                            FormNombreUsuario formNombreDeUsuario = new FormNombreUsuario();
+                            if (formNombreDeUsuario.ShowDialog(this) == DialogResult.OK)
+                            {
+                                usuario = formNombreDeUsuario.getNombreUsuario();
+                                user_autogenerado = false;
+                            }
+                            formNombreDeUsuario.Dispose();
+                        }
+
+                        if (user_autogenerado)
+                        
+                        {
                             gestor.conectar();
-                            gestor.consulta(
-                                "SELECT id_usuario FROM PEAKY_BLINDERS.clientes WHERE id_cliente = '" + clienteID + "'");
+                            gestor.consulta("SELECT ISNULL(MAX(id_usuario), 0) AS id_ultimo FROM PEAKY_BLINDERS.usuarios");
                             SqlDataReader lector = gestor.obtenerRegistros();
                             if (lector.Read())
                             {
-                                cambioID = Convert.ToInt32(lector["id_usuario"]);
+                                usuario = "user" + (Convert.ToInt32(lector["id_ultimo"]) + 1);
                             }
                             gestor.desconectar();
-
-                            gestor.conectar();
-                            gestor.generarStoredProcedure("actualizar_estado_usuario");
-                            gestor.parametroPorValor("id_usuario", cambioID);
-                            gestor.parametroPorValor("habilitado", Convert.ToInt32(ckbHabilitado.Checked));
-                            gestor.ejecutarStoredProcedure();
-                            gestor.desconectar();
                         }
-                        
-                        MessageBox.Show("¡Datos actualizados!");
-                    }
 
-                    Form formDestino;
-                    if (abm)
-                    {
-                        formDestino = new FormABMCliente(userID, rolID);
-                    }
-                    else if (creacion)
-                    {
-                        formDestino = new FormLogin(usuario);
+                        GeneradorDeContrasenasAleatorias generadorDeContrasenas = new GeneradorDeContrasenasAleatorias();
+                        contrasena = generadorDeContrasenas.generar(4);
+
+                        gestor.conectar();
+                        gestor.generarStoredProcedure("crear_cliente");
+                        gestor.parametroPorValor("usuario", usuario);
+                        gestor.parametroPorValor("contrasenna", contrasena);
                     }
                     else
                     {
-                        formDestino = new FormLogin();
+                        gestor.generarStoredProcedure("modificar_cliente");
+                        gestor.parametroPorValor("id_cliente", clienteID);
                     }
 
-                    this.Hide();
-                    formTarjetaDeCredito.Hide();
-                    formDestino.Show();
+                    gestor.parametroPorValor("nombre", txtNombre.Text);
+                    gestor.parametroPorValor("apellido", txtApellido.Text);
+                    gestor.parametroPorValor("descripcion_tipo_de_documento", cmbTipoDoc.Text);
+                    gestor.parametroPorValor("numero_de_documento", txtNumeroDoc.Text);
+                    gestor.parametroPorValor("cuil", txtCUIL.Text);
+                    DateTime fecha_nacimiento = DateTime.Parse(cmbAno.Text + "/" + cmbMes.Text + "/" + cmbDia.Text);
+                    gestor.parametroPorValor("fecha_nacimiento", fecha_nacimiento);
+                    gestor.parametroPorValor("calle", txtCalle.Text);
+                    gestor.parametroPorValor("numero", txtAltura.Text);
+                    gestor.parametroPorValor("piso", txtPiso.Text);
+                    gestor.parametroPorValor("depto", txtDepto.Text);
+                    gestor.parametroPorValor("codigo_postal", txtCodigoPostal.Text);
+                    gestor.parametroPorValor("localidad", txtLocalidad.Text);
+                    gestor.parametroPorValor("mail", txtMail.Text);
+                    gestor.parametroPorValor("telefono", txtTelefono.Text);
+                    gestor.parametroPorValor("tarjeta_de_credito_asociada", numeroTarjeta);
+                    if (!modif)
+                    {
+                        gestor.parametroPorValor("fecha_creacion", Config.dateTime);
+                    }
+
+                    int resultado = gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+
+                    if (resultado == 0)
+                    {
+                        MessageBox.Show("Ya existe un usuario con ese número de CUIL.", "Alerta");
+                    }
+                    else
+                    {
+                        if (!modif)
+                        {
+                            MessageBox.Show("Usuario: " + usuario
+                                + "\nContraseña: " + contrasena
+                                + "\n\n Por favor recuerde la contraseña e inicie sesión para actualizarla.");
+
+                            creacion = true;
+                        }
+                        else
+                        {
+                            if (ckbHabilitado.Visible)
+                            {
+                                int cambioID = -1;
+                                gestor.conectar();
+                                gestor.consulta(
+                                    "SELECT id_usuario FROM PEAKY_BLINDERS.clientes WHERE id_cliente = '" + clienteID + "'");
+                                SqlDataReader lector = gestor.obtenerRegistros();
+                                if (lector.Read())
+                                {
+                                    cambioID = Convert.ToInt32(lector["id_usuario"]);
+                                }
+                                gestor.desconectar();
+
+                                gestor.conectar();
+                                gestor.generarStoredProcedure("actualizar_estado_usuario");
+                                gestor.parametroPorValor("id_usuario", cambioID);
+                                gestor.parametroPorValor("habilitado", Convert.ToInt32(ckbHabilitado.Checked));
+                                gestor.ejecutarStoredProcedure();
+                                gestor.desconectar();
+                            }
+
+                            MessageBox.Show("¡Datos actualizados!");
+                        }
+
+                        Form formDestino;
+                        if (abm)
+                        {
+                            formDestino = new FormABMCliente(userID, rolID);
+                        }
+                        else if (creacion)
+                        {
+                            formDestino = new FormLogin(usuario);
+                        }
+                        else
+                        {
+                            formDestino = new FormLogin();
+                        }
+
+                        this.Hide();
+                        formTarjetaDeCredito.Hide();
+                        formDestino.Show();
+                    }
                 }
             }
         }
