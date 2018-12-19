@@ -20,8 +20,7 @@ namespace PalcoNet.funciones_utiles
 
         public void conectar()
         {
-            string connectionString = ConfigurationManager.AppSettings["database"].ToString();
-            conexion = new SqlConnection(connectionString);
+            conexion = new SqlConnection(Config.connectionString);
             conexion.Open();
         }
 

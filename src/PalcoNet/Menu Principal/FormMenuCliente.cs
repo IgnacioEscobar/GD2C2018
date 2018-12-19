@@ -90,7 +90,7 @@ namespace PalcoNet.Menu_Principal
                     "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
                     "JOIN PEAKY_BLINDERS.estados E ON PU.id_estado = E.id_estado ";
             string query_publicaciones = query_defecto +
-                "WHERE PR.fecha_presentacion > GETDATE() AND E.descripcion = 'Publicada' " +
+                "WHERE PR.fecha_presentacion > " + Config.date + " AND E.descripcion = 'Publicada' " +
                 "ORDER BY PR.fecha_presentacion ASC";
             gestor.consulta(query_publicaciones);
             this.mostrarPublicaciones(gestor.obtenerRegistros());
@@ -137,7 +137,7 @@ namespace PalcoNet.Menu_Principal
             lsvPublicaciones.Items.Clear();
 
             string condicion = "LEFT JOIN PEAKY_BLINDERS.rubros R ON PU.id_rubro = R.id_rubro " +
-                "WHERE PR.fecha_presentacion > GETDATE() AND E.descripcion = 'Publicada' ";
+                "WHERE PR.fecha_presentacion > " + Config.date + " AND E.descripcion = 'Publicada' ";
             string descripcion = txtDescripcion.Text;
 
             if (descripcion != "")

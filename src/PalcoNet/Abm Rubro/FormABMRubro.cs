@@ -37,7 +37,7 @@ namespace PalcoNet.Abm_Rubro
                 "FROM PEAKY_BLINDERS.publicaciones PU " +
                     "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
                     "LEFT JOIN PEAKY_BLINDERS.rubros R ON PU.id_rubro = R.id_rubro " +
-                "WHERE PR.fecha_presentacion >= GETDATE() ORDER BY PU.id_publicacion ASC";
+                "WHERE PR.fecha_presentacion >= " + Config.date + " ORDER BY PU.id_publicacion ASC";
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
 

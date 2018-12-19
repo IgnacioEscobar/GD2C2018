@@ -133,6 +133,7 @@
     <Compile Include="Editar Publicacion\FormEditarPublicacion.Designer.cs">
       <DependentUpon>FormEditarPublicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="funciones_utiles\Config.cs" />
     <Compile Include="funciones_utiles\GeneradorDeFechas.cs" />
     <Compile Include="funciones_utiles\GestorDB.cs" />
     <Compile Include="funciones_utiles\ValidadorDeDatos.cs" />
