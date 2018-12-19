@@ -378,7 +378,8 @@ create table PEAKY_BLINDERS.compras (
   id_publicacion int REFERENCES PEAKY_BLINDERS.publicaciones (id_publicacion),
   -- ^^ desnormalizacion para hacer mas simple la migración y cualquier consulta futura
   id_ubicacion int REFERENCES PEAKY_BLINDERS.ubicaciones (id_ubicacion),
-  monto int
+  monto int,
+  facturada bit default 0
 );
 
 insert into PEAKY_BLINDERS.compras (
@@ -389,7 +390,8 @@ insert into PEAKY_BLINDERS.compras (
   id_presentacion,
   id_publicacion,
   id_ubicacion,
-  monto
+  monto,
+  facturada
 )
 select distinct
   C.id_cliente,
@@ -399,7 +401,8 @@ select distinct
   PRS.id_presentacion,
   M.Espectaculo_Cod,
   U.id_ubicacion,
-  M.Ubicacion_Precio
+  M.Ubicacion_Precio,
+  1
 from gd_esquema.Maestra M
 join PEAKY_BLINDERS.clientes C on C.numero_de_documento = M.Cli_Dni
 join PEAKY_BLINDERS.presentaciones PRS on M.Espectaculo_Cod = PRS.id_publicacion

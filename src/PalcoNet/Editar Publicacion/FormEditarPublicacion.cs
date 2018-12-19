@@ -52,7 +52,7 @@ namespace PalcoNet.Editar_Publicacion
                     lector["id_publicacion"].ToString(),
                     lector["descripcionP"].ToString(),
                     lector["descripcionE"].ToString(),
-                    lector["descripcionG"].ToString(),
+                    lector["descripcionG"].ToString()
                 };
                 dgvPublicaciones.Rows.Add(row);
             }

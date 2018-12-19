@@ -37,6 +37,7 @@
             this.btnFacturarVentas = new System.Windows.Forms.Button();
             this.dgvVentas = new System.Windows.Forms.DataGridView();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
+            this.btnTodas = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVentas)).BeginInit();
             this.SuspendLayout();
@@ -44,10 +45,10 @@
             // btnMenuPrincipal
             // 
             this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnMenuPrincipal.Location = new System.Drawing.Point(568, 370);
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(722, 442);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(197, 42);
-            this.btnMenuPrincipal.TabIndex = 15;
+            this.btnMenuPrincipal.TabIndex = 6;
             this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
             this.btnMenuPrincipal.UseVisualStyleBackColor = true;
             this.btnMenuPrincipal.Click += new System.EventHandler(this.btnMenuPrincipal_Click);
@@ -57,10 +58,11 @@
             this.dtpFechaRendicion.Location = new System.Drawing.Point(6, 19);
             this.dtpFechaRendicion.Name = "dtpFechaRendicion";
             this.dtpFechaRendicion.Size = new System.Drawing.Size(413, 20);
-            this.dtpFechaRendicion.TabIndex = 16;
+            this.dtpFechaRendicion.TabIndex = 1;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnTodas);
             this.groupBox1.Controls.Add(this.dgvVentas);
             this.groupBox1.Controls.Add(this.lblCantidad);
             this.groupBox1.Controls.Add(this.label1);
@@ -68,8 +70,8 @@
             this.groupBox1.Controls.Add(this.dtpFechaRendicion);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(549, 399);
-            this.groupBox1.TabIndex = 17;
+            this.groupBox1.Size = new System.Drawing.Size(703, 471);
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RENDICIÓN DE COMISIONES";
             // 
@@ -77,10 +79,11 @@
             // 
             this.btnSeleccionar.Location = new System.Drawing.Point(425, 19);
             this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(118, 20);
-            this.btnSeleccionar.TabIndex = 17;
+            this.btnSeleccionar.Size = new System.Drawing.Size(133, 20);
+            this.btnSeleccionar.TabIndex = 2;
             this.btnSeleccionar.Text = "SELECCIONAR";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // label1
             // 
@@ -105,10 +108,10 @@
             // btnFacturarVentas
             // 
             this.btnFacturarVentas.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnFacturarVentas.Location = new System.Drawing.Point(568, 322);
+            this.btnFacturarVentas.Location = new System.Drawing.Point(722, 394);
             this.btnFacturarVentas.Name = "btnFacturarVentas";
             this.btnFacturarVentas.Size = new System.Drawing.Size(197, 42);
-            this.btnFacturarVentas.TabIndex = 18;
+            this.btnFacturarVentas.TabIndex = 5;
             this.btnFacturarVentas.Text = "FACTURAR VENTAS";
             this.btnFacturarVentas.UseVisualStyleBackColor = true;
             // 
@@ -123,25 +126,38 @@
             this.dgvVentas.MultiSelect = false;
             this.dgvVentas.Name = "dgvVentas";
             this.dgvVentas.ReadOnly = true;
-            this.dgvVentas.Size = new System.Drawing.Size(537, 309);
-            this.dgvVentas.TabIndex = 20;
+            this.dgvVentas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvVentas.Size = new System.Drawing.Size(691, 381);
+            this.dgvVentas.TabIndex = 4;
             // 
             // lklCerrarSesion
             // 
             this.lklCerrarSesion.AutoSize = true;
-            this.lklCerrarSesion.Location = new System.Drawing.Point(671, 9);
+            this.lklCerrarSesion.Location = new System.Drawing.Point(824, 9);
             this.lklCerrarSesion.Name = "lklCerrarSesion";
             this.lklCerrarSesion.Size = new System.Drawing.Size(95, 13);
             this.lklCerrarSesion.TabIndex = 21;
             this.lklCerrarSesion.TabStop = true;
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
+            this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
+            // 
+            // btnTodas
+            // 
+            this.btnTodas.Location = new System.Drawing.Point(564, 19);
+            this.btnTodas.Name = "btnTodas";
+            this.btnTodas.Size = new System.Drawing.Size(133, 20);
+            this.btnTodas.TabIndex = 3;
+            this.btnTodas.Text = "TODAS";
+            this.btnTodas.UseVisualStyleBackColor = true;
+            this.btnTodas.Click += new System.EventHandler(this.btnTodas_Click);
             // 
             // FormGenerarRendicion
             // 
+            this.AcceptButton = this.btnSeleccionar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
-            this.ClientSize = new System.Drawing.Size(778, 424);
+            this.ClientSize = new System.Drawing.Size(931, 496);
             this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.btnFacturarVentas);
             this.Controls.Add(this.groupBox1);
@@ -170,5 +186,6 @@
         private System.Windows.Forms.Button btnFacturarVentas;
         private System.Windows.Forms.DataGridView dgvVentas;
         private System.Windows.Forms.LinkLabel lklCerrarSesion;
+        private System.Windows.Forms.Button btnTodas;
     }
 }
