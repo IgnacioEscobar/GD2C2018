@@ -55,6 +55,8 @@ namespace PalcoNet.Registro_de_Usuario
             this.query = query;
         }
 
+        // Metodos auxiliares
+
         private bool validarCampos()
         {
             List<string[]> lista = new List<string[]>();
@@ -149,7 +151,7 @@ namespace PalcoNet.Registro_de_Usuario
                 MessageBox.Show(mensaje, "Alerta");
             }
 
-            return hubo_repeticion;
+            return !hubo_repeticion;
         }
 
         private void cargarTexto(SqlDataReader lector, TextBox txtCampo, string campo)
@@ -203,6 +205,8 @@ namespace PalcoNet.Registro_de_Usuario
                 cmbTipoDoc.Items.Add(lector["descripcion"].ToString());
             }
         }
+
+        // -------------------
 
         private void FormRegistroCliente_Load(object sender, EventArgs e)
         {
