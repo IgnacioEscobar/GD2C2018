@@ -208,7 +208,7 @@
             this.Ultima.Name = "Ultima";
             this.Ultima.Size = new System.Drawing.Size(75, 41);
             this.Ultima.TabIndex = 25;
-            this.Ultima.Text = "Ultima";
+            this.Ultima.Text = "Última";
             this.Ultima.UseVisualStyleBackColor = true;
             this.Ultima.Click += new System.EventHandler(this.Ultima_Click);
             // 

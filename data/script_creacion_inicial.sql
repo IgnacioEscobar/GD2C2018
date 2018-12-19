@@ -68,7 +68,7 @@ create table PEAKY_BLINDERS.rubros (
   descripcion varchar(15)
 );
 
-insert into PEAKY_BLINDERS.rubros values ('Vacio');
+insert into PEAKY_BLINDERS.rubros values ('Otros');
 
 -- Grados --
 create table PEAKY_BLINDERS.grados (
