@@ -34,6 +34,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
             {
                 object[] row = new string[]
                 {
+                    lector["id_compra"].ToString(),
                     lector["razon_social"].ToString(),
                     lector["descripcion"].ToString(),
                     lector["fecha"].ToString(),
@@ -48,13 +49,15 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
 
         private void FormGenerarRendicion_Load(object sender, EventArgs e)
         {
-            dgvVentas.ColumnCount = 5;
+            dgvVentas.ColumnCount = 6;
             dgvVentas.ColumnHeadersVisible = true;
-            dgvVentas.Columns[0].Name = "EMPRESA";
-            dgvVentas.Columns[1].Name = "PUBLICACIÓN";
-            dgvVentas.Columns[2].Name = "FECHA DE COMPRA";
-            dgvVentas.Columns[3].Name = "MONTO";
-            dgvVentas.Columns[4].Name = "COMISIÓN";
+            dgvVentas.Columns[0].Name = "ID_COMPRA";
+            dgvVentas.Columns[0].Visible = false;
+            dgvVentas.Columns[1].Name = "EMPRESA";
+            dgvVentas.Columns[2].Name = "PUBLICACIÓN";
+            dgvVentas.Columns[3].Name = "FECHA DE COMPRA";
+            dgvVentas.Columns[4].Name = "MONTO";
+            dgvVentas.Columns[5].Name = "COMISIÓN";
             dgvVentas.AutoResizeColumns();
         }
 
@@ -73,7 +76,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
             GestorDB gestor = new GestorDB();
             gestor.conectar();
             gestor.consulta(
-                "SELECT E.razon_social, P.descripcion, CONVERT(DATE, C.fecha) as fecha, C.monto, (C.monto * G.multiplicador) AS comision " +
+                "SELECT C.id_compra, E.razon_social, P.descripcion, CONVERT(DATE, C.fecha) as fecha, C.monto, (C.monto * G.multiplicador) AS comision " +
                 "FROM PEAKY_BLINDERS.empresas E " +
                     "JOIN PEAKY_BLINDERS.publicaciones P ON E.id_empresa = P.id_empresa " +
                     "JOIN PEAKY_BLINDERS.grados G ON P.id_grado = G.id_grado " +
@@ -132,6 +135,19 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
                 gestor.parametroPorValor("total", monto_total);
                 int facturaID = gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
+
+                foreach (DataGridViewRow row in dgvVentas.Rows)
+                {
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("agregar_item");
+                    gestor.parametroPorValor("id_factura", facturaID);
+                    gestor.parametroPorValor("descripcion", "Comision por compra");
+                    gestor.parametroPorValor("id_compra", Convert.ToInt32(row.Cells[0]));
+                    gestor.parametroPorValor("cantidad", 1);
+                    gestor.parametroPorValor("comision", Convert.ToInt32(row.Cells[4]));
+                    gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+                }
             }
             formConfirmarFacturacion.Dispose();
         }
