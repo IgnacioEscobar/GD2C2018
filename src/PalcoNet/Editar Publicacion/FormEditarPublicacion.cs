@@ -220,8 +220,8 @@ namespace PalcoNet.Editar_Publicacion
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             txtDescripcion.Text = "";
-            mcrDesde.SetDate(DateTime.Today);
-            mcrHasta.SetDate(DateTime.Today);
+            mcrDesde.SetDate(Config.dateTime);
+            mcrHasta.SetDate(Config.dateTime);
             for (int i = 0; i < clbCategorias.Items.Count; i++)
             {
                 clbCategorias.SetItemChecked(i, false);

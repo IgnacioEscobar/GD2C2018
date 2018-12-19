@@ -303,7 +303,7 @@ namespace PalcoNet.Registro_de_Usuario
                 gestor.parametroPorValor("tarjeta_de_credito_asociada", numeroTarjeta);
                 if (!modif)
                 {
-                    gestor.parametroPorValor("fecha_creacion", DateTime.Today);
+                    gestor.parametroPorValor("fecha_creacion", Config.dateTime);
                 }
 
                 int resultado = gestor.ejecutarStoredProcedure();

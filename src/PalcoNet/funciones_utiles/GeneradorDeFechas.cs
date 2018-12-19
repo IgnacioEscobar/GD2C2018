@@ -57,7 +57,7 @@ namespace PalcoNet.funciones_utiles
 
         public void completarAno(ComboBox cmbAno, bool pasado)
         {
-            int ano_actual = DateTime.Today.Year;
+            int ano_actual = Config.dateTime.Year;
             if (pasado)
             {
                 for (int i = ano_actual; i >= 1900; i--)
