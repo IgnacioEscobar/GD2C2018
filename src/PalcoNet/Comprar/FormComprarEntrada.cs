@@ -213,7 +213,7 @@ namespace PalcoNet.Comprar
                     gestor.conectar();
                     gestor.generarStoredProcedure("registrarCompra");
                     gestor.parametroPorValor("id_cliente", clienteID);
-                    gestor.parametroPorValor("id_medio_de_pago", 1);
+                    gestor.parametroPorValor("id_medio_de_pago", 2);
                     gestor.parametroPorValor("id_presentacion", this.idPresentacion);
                     gestor.parametroPorValor("id_publicacion", id_publicacion);
                     gestor.parametroPorValor("id_ubicacion", ubicacionesSeleccionadas[i]);
