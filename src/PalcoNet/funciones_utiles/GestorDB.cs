@@ -8,6 +8,7 @@ using System.Data;
 using System.Windows.Forms;
 
 using PalcoNet.Login;
+using System.Configuration;
 
 namespace PalcoNet.funciones_utiles
 {
@@ -19,7 +20,8 @@ namespace PalcoNet.funciones_utiles
 
         public void conectar()
         {
-            conexion = new SqlConnection(@"Data source=localhost\SQLSERVER2012; Initial Catalog=GD2C2018;user=gdEspectaculos2018;password=gd2018");
+            string connectionString = ConfigurationManager.AppSettings["database"].ToString();
+            conexion = new SqlConnection(connectionString);
             conexion.Open();
         }
 
