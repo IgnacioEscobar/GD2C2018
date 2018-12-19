@@ -24,6 +24,9 @@ namespace PalcoNet.Editar_Publicacion
         int empresaID;
         string query_defecto;
         string query_actual;
+        int pagina;
+        int maxPaginas;
+        GestorDB gestor = new GestorDB();
 
         public FormEditarPublicacion(int userID, int rolID)
         {
@@ -43,8 +46,12 @@ namespace PalcoNet.Editar_Publicacion
             dgvPublicaciones.Columns.Add(column);
         }
 
-        private void mostrarPublicaciones(SqlDataReader lector)
+        private void mostrarPublicaciones(string query)
         {
+            gestor.conectar();
+            gestor.consulta(query);
+            SqlDataReader lector = gestor.obtenerRegistros();
+
             while (lector.Read())
             {
                 object[] row = new string[]
@@ -56,7 +63,10 @@ namespace PalcoNet.Editar_Publicacion
                 };
                 dgvPublicaciones.Rows.Add(row);
             }
+
+            gestor.desconectar();
         }
+
         /* METODO PARA MANTENER FILTROS CUANDO VUELVE DE OTRO FORM
         public void actualizar()
         {
@@ -69,8 +79,11 @@ namespace PalcoNet.Editar_Publicacion
             gestor.desconectar();
         }
         */
-        private void mostrarCategorias(SqlDataReader lector)
+        private void mostrarCategorias(string query_categorias)
         {
+            gestor.conectar();
+            gestor.consulta(query_categorias);
+            SqlDataReader lector = gestor.obtenerRegistros();
             int i = 0;
             while (lector.Read())
             {
@@ -78,6 +91,7 @@ namespace PalcoNet.Editar_Publicacion
                 clbCategorias.SetItemChecked(i, true);
                 i++;
             }
+            gestor.desconectar();
         }
 
         // -------------------
@@ -111,15 +125,10 @@ namespace PalcoNet.Editar_Publicacion
                     "JOIN PEAKY_BLINDERS.estados E ON PU.id_estado = E.id_estado " +
                     "JOIN PEAKY_BLINDERS.grados G ON PU.id_grado = G.id_grado ";
             query_actual = query_defecto + "WHERE PU.id_empresa = '" + empresaID + "' ORDER BY PU.id_publicacion ASC";
-            gestor.consulta(query_actual);
-            this.mostrarPublicaciones(gestor.obtenerRegistros());
-            gestor.desconectar();
+            this.mostrarPublicaciones(query_actual);
 
-            gestor.conectar();
             string query_categorias = "SELECT descripcion FROM PEAKY_BLINDERS.rubros";
-            gestor.consulta(query_categorias);
-            this.mostrarCategorias(gestor.obtenerRegistros());
-            gestor.desconectar();
+            this.mostrarCategorias(query_categorias);
 
             dgvPublicaciones.AutoResizeColumns();
             txtDescripcion.Select();
@@ -194,9 +203,7 @@ namespace PalcoNet.Editar_Publicacion
             gestor.conectar();
 
             query_actual = query_defecto + condicion;
-            gestor.consulta(query_actual);
-            this.mostrarPublicaciones(gestor.obtenerRegistros());
-            gestor.desconectar();
+            this.mostrarPublicaciones(query_actual);
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
@@ -217,6 +224,70 @@ namespace PalcoNet.Editar_Publicacion
             }
             txtDescripcion.Select();
         }
+
+        private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 10)
+        {
+            int offset = (pagina - 1) * tamanio_pagina;
+            string complemento = " OFFSET " + offset + " ROWS FETCH NEXT " + tamanio_pagina + " ROWS ONLY";
+            return condicion + complemento;
+        }
+
+        private void siguiente_Click(object sender, EventArgs e)
+        {
+            pagina = Math.Min(maxPaginas, pagina + 1);
+            paginarYCorrer(query_actual);
+        }
+
+        private void anterior_Click(object sender, EventArgs e)
+        {
+            pagina = Math.Max(1, pagina - 1);
+            paginarYCorrer(query_actual);
+        }
+
+        private void paginarYCorrer(string condicion)
+        {
+            string condicion_paginada = aplicarPagina(condicion, pagina);
+            correrQuery(condicion_paginada);
+            showPageNum();
+        }
+
+        private void showPageNum()
+        {
+            paginaLabel.Text = pagina + " / " + maxPaginas;
+        }
+
+        private void correrQuery(string condicion_paginada)
+        {
+            dgvPublicaciones.Rows.Clear();
+            this.mostrarPublicaciones(condicion_paginada);
+        }
+
+        private void Ultima_Click(object sender, EventArgs e)
+        {
+            pagina = maxPaginas;
+            paginarYCorrer(query_actual);
+        }
+
+        private void Primera_Click(object sender, EventArgs e)
+        {
+            pagina = 1;
+            paginarYCorrer(query_actual);
+        }
+
+        private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 10)
+        {
+            string count_querry = "select count(distinct PP.id_presentacion) as presentaciones from PEAKY_BLINDERS.presentaciones PP ";
+            count_querry += joins_defecto;
+            count_querry += filtro;
+            gestor.conectar();
+            gestor.consulta(count_querry);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            lector.Read();
+            int count = lector.GetInt32(0);
+            gestor.desconectar();
+            return (count + tamanio_pagina - 1) / tamanio_pagina;
+        }
+
 
     }
 }
