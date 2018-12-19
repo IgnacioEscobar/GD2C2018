@@ -157,7 +157,7 @@ namespace PalcoNet.Menu_Principal
                         }
                         break;
                     case "GENERAR PAGO DE COMISIONES":
-                        error = true;
+                        formDestino = new FormGenerarRendicion(userID, rolID);
                         break;
                     case "LISTADO ESTADÍSTICO":
                         formDestino = new FormListadoEstadistico(userID, rolID);
