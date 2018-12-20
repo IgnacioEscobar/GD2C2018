@@ -54,6 +54,8 @@ if OBJECT_ID('PEAKY_BLINDERS.agregar_item', 'P') is not null
   drop procedure PEAKY_BLINDERS.agregar_item;
 if OBJECT_ID('PEAKY_BLINDERS.generar_factura', 'P') is not null
   drop procedure PEAKY_BLINDERS.generar_factura;
+if OBJECT_ID('PEAKY_BLINDERS.obtener_puntos', N'FN') is not null
+  drop function PEAKY_BLINDERS.obtener_puntos;
 if OBJECT_ID('PEAKY_BLINDERS.items', 'U') is not null
   drop table PEAKY_BLINDERS.items;
 if OBJECT_ID('PEAKY_BLINDERS.compras', 'U') is not null
