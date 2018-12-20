@@ -463,6 +463,11 @@ insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
 select id_usuario, 2 from PEAKY_BLINDERS.usuarios
 where nombre_de_usuario like '%#%';
 
+update PEAKY_BLINDERS.clientes
+set id_usuario = U.id_usuario
+from PEAKY_BLINDERS.usuarios U join
+	PEAKY_BLINDERS.clientes C on concat(left(C.nombre, 1), C.apellido, '#', C.id_cliente) = U.nombre_de_usuario
+
 -- Crear usuarios para empresas
 insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
 select
@@ -479,6 +484,12 @@ from PEAKY_BLINDERS.empresas;
 insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
 select id_usuario, 3 from PEAKY_BLINDERS.usuarios
 where nombre_de_usuario like 'empresa%';
+
+update PEAKY_BLINDERS.empresas
+set id_usuario = U.id_usuario
+from PEAKY_BLINDERS.usuarios U join
+	PEAKY_BLINDERS.empresas E on
+  concat('empresa',right(concat('0',right(razon_social, len(razon_social) - 16)),2)) = U.nombre_de_usuario
 
 -- Crear un usuario para un admin
 insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
