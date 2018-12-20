@@ -32,6 +32,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnMenuPrincipal = new System.Windows.Forms.Button();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
+            this.paginaLabel = new System.Windows.Forms.Label();
+            this.Primera = new System.Windows.Forms.Button();
+            this.Ultima = new System.Windows.Forms.Button();
+            this.siguiente = new System.Windows.Forms.Button();
+            this.anterior = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +50,7 @@
             this.dgvHistorial.Location = new System.Drawing.Point(12, 41);
             this.dgvHistorial.Name = "dgvHistorial";
             this.dgvHistorial.ReadOnly = true;
-            this.dgvHistorial.Size = new System.Drawing.Size(665, 497);
+            this.dgvHistorial.Size = new System.Drawing.Size(665, 450);
             this.dgvHistorial.TabIndex = 1;
             // 
             // label1
@@ -61,9 +66,9 @@
             // btnMenuPrincipal
             // 
             this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnMenuPrincipal.Location = new System.Drawing.Point(421, 544);
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(410, 544);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
-            this.btnMenuPrincipal.Size = new System.Drawing.Size(256, 44);
+            this.btnMenuPrincipal.Size = new System.Drawing.Size(194, 44);
             this.btnMenuPrincipal.TabIndex = 0;
             this.btnMenuPrincipal.Text = "MENÚ PRINCIPAL";
             this.btnMenuPrincipal.UseVisualStyleBackColor = true;
@@ -80,6 +85,54 @@
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
+            // paginaLabel
+            // 
+            this.paginaLabel.AutoSize = true;
+            this.paginaLabel.Location = new System.Drawing.Point(332, 511);
+            this.paginaLabel.Name = "paginaLabel";
+            this.paginaLabel.Size = new System.Drawing.Size(0, 13);
+            this.paginaLabel.TabIndex = 32;
+            // 
+            // Primera
+            // 
+            this.Primera.Location = new System.Drawing.Point(96, 497);
+            this.Primera.Name = "Primera";
+            this.Primera.Size = new System.Drawing.Size(75, 41);
+            this.Primera.TabIndex = 31;
+            this.Primera.Text = "Primera";
+            this.Primera.UseVisualStyleBackColor = true;
+            this.Primera.Click += new System.EventHandler(this.Primera_Click);
+            // 
+            // Ultima
+            // 
+            this.Ultima.Location = new System.Drawing.Point(529, 497);
+            this.Ultima.Name = "Ultima";
+            this.Ultima.Size = new System.Drawing.Size(75, 41);
+            this.Ultima.TabIndex = 30;
+            this.Ultima.Text = "Última";
+            this.Ultima.UseVisualStyleBackColor = true;
+            this.Ultima.Click += new System.EventHandler(this.Ultima_Click);
+            // 
+            // siguiente
+            // 
+            this.siguiente.Location = new System.Drawing.Point(410, 497);
+            this.siguiente.Name = "siguiente";
+            this.siguiente.Size = new System.Drawing.Size(113, 41);
+            this.siguiente.TabIndex = 29;
+            this.siguiente.Text = "Siguiente";
+            this.siguiente.UseVisualStyleBackColor = true;
+            this.siguiente.Click += new System.EventHandler(this.siguiente_Click);
+            // 
+            // anterior
+            // 
+            this.anterior.Location = new System.Drawing.Point(177, 497);
+            this.anterior.Name = "anterior";
+            this.anterior.Size = new System.Drawing.Size(113, 41);
+            this.anterior.TabIndex = 28;
+            this.anterior.Text = "Anterior";
+            this.anterior.UseVisualStyleBackColor = true;
+            this.anterior.Click += new System.EventHandler(this.anterior_Click);
+            // 
             // FormHistorialCliente
             // 
             this.AcceptButton = this.btnMenuPrincipal;
@@ -87,6 +140,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(690, 600);
+            this.Controls.Add(this.paginaLabel);
+            this.Controls.Add(this.Primera);
+            this.Controls.Add(this.Ultima);
+            this.Controls.Add(this.siguiente);
+            this.Controls.Add(this.anterior);
             this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.btnMenuPrincipal);
             this.Controls.Add(this.label1);
@@ -108,5 +166,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnMenuPrincipal;
         private System.Windows.Forms.LinkLabel lklCerrarSesion;
+        private System.Windows.Forms.Label paginaLabel;
+        private System.Windows.Forms.Button Primera;
+        private System.Windows.Forms.Button Ultima;
+        private System.Windows.Forms.Button siguiente;
+        private System.Windows.Forms.Button anterior;
     }
 }

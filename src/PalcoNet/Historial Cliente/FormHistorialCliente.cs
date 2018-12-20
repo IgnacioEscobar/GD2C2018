@@ -18,6 +18,10 @@ namespace PalcoNet.Historial_Cliente
     {
         int userID;
         int rolID;
+        int pagina;
+        int maxPaginas;
+        string condicion;
+        GestorDB gestor = new GestorDB();
 
         public FormHistorialCliente(int userID, int rolID)
         {
@@ -26,8 +30,11 @@ namespace PalcoNet.Historial_Cliente
             this.rolID = rolID;
         }
 
-        private void mostrarRegistros(SqlDataReader lector)
+        private void mostrarRegistros(string query)
         {
+            gestor.conectar();
+            gestor.consulta(query);
+            SqlDataReader lector = gestor.obtenerRegistros();
             while (lector.Read())
             {
                 object[] row = new string[]
@@ -41,6 +48,7 @@ namespace PalcoNet.Historial_Cliente
                 dgvHistorial.Rows.Add(row);
             }
             dgvHistorial.AutoResizeColumns();
+            gestor.desconectar();
         }
 
         private void FormHistorial_Load(object sender, EventArgs e)
@@ -71,24 +79,26 @@ namespace PalcoNet.Historial_Cliente
                 return;
             }
 
-            gestor.conectar();
-            string query = 
-                "SELECT ISNULL(PU.descripcion, '---') AS descripcion, " +
+            string select = "SELECT ISNULL(PU.descripcion, '---') AS descripcion, " +
                     "PR.fecha_presentacion, " +
                     "SUM(CO.cantidad) AS cantidad, " +
                     "SUM(CO.monto) AS monto, " +
                     "MP.descripcion AS medio_de_pago " +
-                "FROM PEAKY_BLINDERS.compras CO " +
-                    "JOIN PEAKY_BLINDERS.clientes CL ON CO.id_cliente = CL.id_cliente " +
+                "FROM PEAKY_BLINDERS.compras CO ";
+            string joins = "JOIN PEAKY_BLINDERS.clientes CL ON CO.id_cliente = CL.id_cliente " +
                     "JOIN PEAKY_BLINDERS.publicaciones PU ON CO.id_publicacion = PU.id_publicacion " +
                     "JOIN PEAKY_BLINDERS.presentaciones PR ON CO.id_presentacion = PR.id_presentacion " +
-                    "JOIN PEAKY_BLINDERS.medios_de_pago MP ON CO.id_medio_de_pago = MP.id_medio_de_pago " +
-                "WHERE Cl.id_cliente = '" + clienteID + "' " +
-                "GROUP BY PU.descripcion, PR.fecha_presentacion, MP.descripcion " +
-                "ORDER BY PR.fecha_presentacion DESC";
-            gestor.consulta(query);
-            this.mostrarRegistros(gestor.obtenerRegistros());
-            gestor.desconectar();
+                    "JOIN PEAKY_BLINDERS.medios_de_pago MP ON CO.id_medio_de_pago = MP.id_medio_de_pago ";
+            string filtro = "WHERE Cl.id_cliente = '" + clienteID + "' ";
+            string agrupacion = "GROUP BY PU.descripcion, PR.fecha_presentacion, MP.descripcion ";
+            string order = "ORDER BY PR.fecha_presentacion DESC";
+
+            condicion = select + joins + filtro + agrupacion + order;
+            pagina = 1;
+            string query = aplicarPagina(condicion, pagina);
+            maxPaginas = maximoPaginas(joins, filtro);
+            this.mostrarRegistros(query);
+            showPageNum();
         }
 
         private void btnMenuPrincipal_Click(object sender, EventArgs e)
@@ -103,6 +113,69 @@ namespace PalcoNet.Historial_Cliente
             FormLogin formDestino = new FormLogin();
             this.Hide();
             formDestino.Show();
+        }
+
+        private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 18)
+        {
+            int offset = (pagina - 1) * tamanio_pagina;
+            string complemento = " OFFSET " + offset + " ROWS FETCH NEXT " + tamanio_pagina + " ROWS ONLY";
+            return condicion + complemento;
+        }
+
+        private void siguiente_Click(object sender, EventArgs e)
+        {
+            pagina = Math.Min(maxPaginas, pagina + 1);
+            paginarYCorrer();
+        }
+
+        private void anterior_Click(object sender, EventArgs e)
+        {
+            pagina = Math.Max(1, pagina - 1);
+            paginarYCorrer();
+        }
+
+        private void paginarYCorrer()
+        {
+            string condicion_paginada = aplicarPagina(condicion, pagina);
+            correrQuery(condicion_paginada);
+            showPageNum();
+        }
+
+        private void showPageNum()
+        {
+            paginaLabel.Text = pagina + " / " + maxPaginas;
+        }
+
+        private void correrQuery(string condicion_paginada)
+        {
+            dgvHistorial.Rows.Clear();
+            this.mostrarRegistros(condicion_paginada);
+        }
+
+        private void Ultima_Click(object sender, EventArgs e)
+        {
+            pagina = maxPaginas;
+            paginarYCorrer();
+        }
+
+        private void Primera_Click(object sender, EventArgs e)
+        {
+            pagina = 1;
+            paginarYCorrer();
+        }
+
+        private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 18)
+        {
+            string count_querry = "SELECT count(distinct CO.id_compra) as compras FROM PEAKY_BLINDERS.compras CO ";
+            count_querry += joins_defecto;
+            count_querry += filtro;
+            gestor.conectar();
+            gestor.consulta(count_querry);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            lector.Read();
+            int count = lector.GetInt32(0);
+            gestor.desconectar();
+            return Math.Max(1, (count + tamanio_pagina - 1) / tamanio_pagina);
         }
 
     }
