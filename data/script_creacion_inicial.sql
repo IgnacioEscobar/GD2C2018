@@ -262,8 +262,8 @@ create table PEAKY_BLINDERS.movimientos_de_puntos (
   id_movimiento int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_cliente int REFERENCES PEAKY_BLINDERS.clientes (id_cliente),
   variacion int,
-  fecha datetime default GETDATE(),
-  fecha_vencimiento datetime default DATEADD(day, 30, GETDATE())
+  fecha datetime,
+  fecha_vencimiento datetime
 )
 
 -- Tipos de premios
@@ -364,7 +364,7 @@ create table PEAKY_BLINDERS.compras (
   id_compra int PRIMARY KEY NOT NULL IDENTITY(1, 1),
   id_cliente int REFERENCES PEAKY_BLINDERS.clientes (id_cliente),
   id_medio_de_pago tinyint REFERENCES PEAKY_BLINDERS.medios_de_pago (id_medio_de_pago),
-  fecha datetime default GETDATE(),
+  fecha datetime,
   cantidad tinyint default 1,
   id_presentacion int REFERENCES PEAKY_BLINDERS.presentaciones (id_presentacion),
   id_publicacion int REFERENCES PEAKY_BLINDERS.publicaciones (id_publicacion),
@@ -1137,15 +1137,16 @@ as
   where id_cliente = @id_cliente and id_premio = @id_premio
 
   -- se suman 50 puntos por compra
-  insert into PEAKY_BLINDERS.movimientos_de_puntos (id_cliente, variacion)
-  values (@id_cliente, 50);
+  insert into PEAKY_BLINDERS.movimientos_de_puntos (id_cliente, variacion, fecha, fecha_vencimiento)
+  values (@id_cliente, 50, @fecha, DATEADD(day, 30, @fecha));
   end
 go
 
 CREATE PROCEDURE PEAKY_BLINDERS.canjear_premio
 @id_usuario int,
 @descripcion varchar(100),
-@puntos int
+@puntos int,
+@fecha datetime
 AS
   BEGIN
 	DECLARE @id_tipo_de_premio int
@@ -1166,10 +1167,14 @@ AS
 
 	INSERT INTO PEAKY_BLINDERS.movimientos_de_puntos (
 		id_cliente,
-		variacion
+		variacion,
+		fecha,
+		fecha_vencimiento
 	) VALUES (
 		@id_cliente,
-		-@puntos
+		-@puntos,
+		@fecha,
+		DATEADD(day, 30, @fecha)
 	)
   END
 GO
