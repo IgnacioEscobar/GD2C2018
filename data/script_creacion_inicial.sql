@@ -444,7 +444,6 @@ join PEAKY_BLINDERS.ubicaciones U on
   C.id_ubicacion = U.id_ubicacion and
   U.fila = M.Ubicacion_Fila and
   U.asiento = M.Ubicacion_Asiento
-go
 
 -- Crear usuarios para empresas
 insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
@@ -488,7 +487,7 @@ insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
 select id_usuario, 1 from PEAKY_BLINDERS.usuarios
 where nombre_de_usuario = 'admin';
 
-go;
+go
 
 
 -- Creacion de procedures
