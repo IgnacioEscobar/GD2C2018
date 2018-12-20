@@ -139,7 +139,7 @@ namespace PalcoNet.Generar_Publicacion
             }            
         }
 
-        private void persistirPublicacion(string procedure, string estado)
+        private bool persistirPublicacion(string procedure, string estado)
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
@@ -148,8 +148,14 @@ namespace PalcoNet.Generar_Publicacion
             if (lector.Read())
             {
                 empresaID = Convert.ToInt32(lector["id_empresa"].ToString());
+                gestor.desconectar();
             }
-            gestor.desconectar();
+            else
+            {
+                MessageBox.Show("No tiene los datos necesarios registrados como empresa para generar una publicación.", "Error");
+                gestor.desconectar();
+                return false;
+            }
 
             gestor.conectar();
             gestor.generarStoredProcedure(procedure);
@@ -191,6 +197,8 @@ namespace PalcoNet.Generar_Publicacion
                     enviarUbicacion(id_publicacion, item);
                 }
             }
+
+            return true;
         }
 
         public void reaparecer(List<ListViewItem> listaUbicaciones)
@@ -380,13 +388,13 @@ namespace PalcoNet.Generar_Publicacion
             {
                 if (!modif)
                 {
-                    this.persistirPublicacion("generar_publicacion", "Publicada");
+                    if (!this.persistirPublicacion("generar_publicacion", "Publicada")) return;
                     MessageBox.Show("Publicación registrada existosamente. Ya se encuentra publicada.");
                     formDestino = new FormMenuPrincipal(userID, rolID);
                 }
                 else
                 {
-                    this.persistirPublicacion("modificar_publicacion", "Publicada");
+                    if (!this.persistirPublicacion("modificar_publicacion", "Publicada")) return;
                     MessageBox.Show("Publicación actualizada exitosamente. Ya se encuentra publicada.");
                     formDestino = new FormEditarPublicacion(userID, rolID);
                 }
@@ -403,12 +411,12 @@ namespace PalcoNet.Generar_Publicacion
             {
                 if (!modif)
                 {
-                    this.persistirPublicacion("generar_publicacion", "Borrador");
+                    if (!this.persistirPublicacion("generar_publicacion", "Borrador")) return;
                     MessageBox.Show("Publicación guardada como borrador.");
                 }
                 else
                 {
-                    this.persistirPublicacion("modificar_publicacion", "Borrador");
+                    if (!this.persistirPublicacion("modificar_publicacion", "Borrador")) return;
                     MessageBox.Show("Publicación actualizada exitosamente. Se encuentra como borrador.");
                 }
             }

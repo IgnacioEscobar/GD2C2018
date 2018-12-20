@@ -173,9 +173,18 @@ namespace PalcoNet.Comprar
             string query_tarjeta = "select tarjeta_de_credito_asociada from PEAKY_BLINDERS.clientes where id_cliente = " + clienteID;
             gestor.consulta(query_tarjeta);
             SqlDataReader lector = gestor.obtenerRegistros();
-            lector.Read();
-            string tarjeta = lector["tarjeta_de_credito_asociada"].ToString();
-            gestor.desconectar();
+            string tarjeta = "";
+            if (lector.Read())
+            {
+                tarjeta = lector["tarjeta_de_credito_asociada"].ToString();
+                gestor.desconectar();
+            }
+            else
+            {
+                MessageBox.Show("No tiene los datos necesarios registrados como cliente para efectuar la compra.", "Error");
+                gestor.desconectar();
+                return;
+            }
 
             if (tarjeta == "")
             {

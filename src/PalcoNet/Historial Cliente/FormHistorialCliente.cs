@@ -61,13 +61,15 @@ namespace PalcoNet.Historial_Cliente
             if (lector.Read())
             {
                 clienteID = Convert.ToInt32(lector["id_cliente"].ToString());
+                gestor.desconectar();
             }
             else
             {
                 clienteID = -1;
                 MessageBox.Show("No hay compras en el historial.", "Alerta");
+                gestor.desconectar();
+                return;
             }
-            gestor.desconectar();
 
             gestor.conectar();
             string query = 

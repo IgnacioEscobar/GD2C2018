@@ -491,9 +491,10 @@ from PEAKY_BLINDERS.usuarios U join
 insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
 values ('admin', HASHBYTES('SHA2_256', 'admin'));
 
+declare @id_usuario int
+select @id_usuario = id_usuario from PEAKY_BLINDERS.usuarios where nombre_de_usuario = 'admin';
 insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
-select id_usuario, 1 from PEAKY_BLINDERS.usuarios
-where nombre_de_usuario = 'admin';
+values (@id_usuario, 1), (@id_usuario, 2), (@id_usuario, 3)
 
 go
 
