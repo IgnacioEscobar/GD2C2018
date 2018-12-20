@@ -446,23 +446,6 @@ join PEAKY_BLINDERS.ubicaciones U on
   U.asiento = M.Ubicacion_Asiento
 go
 
--- Crear usuarios para empresas
-insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
-select
-	concat(
-		'empresa',
-		right(
-      concat('0',right(razon_social, len(razon_social) - 16)),
-      2
-    )
-	),
-	HASHBYTES('SHA2_256', cuit)
-from PEAKY_BLINDERS.empresas;
-
-insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
-select id_usuario, 3 from PEAKY_BLINDERS.usuarios
-where nombre_de_usuario like 'empresa%';
-
 -- Crear usuarios para clientes
 insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
 select
@@ -479,6 +462,23 @@ from PEAKY_BLINDERS.clientes;
 insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
 select id_usuario, 2 from PEAKY_BLINDERS.usuarios
 where nombre_de_usuario like '%#%';
+
+-- Crear usuarios para empresas
+insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
+select
+	concat(
+		'empresa',
+		right(
+      concat('0',right(razon_social, len(razon_social) - 16)),
+      2
+    )
+	),
+	HASHBYTES('SHA2_256', cuit)
+from PEAKY_BLINDERS.empresas;
+
+insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
+select id_usuario, 3 from PEAKY_BLINDERS.usuarios
+where nombre_de_usuario like 'empresa%';
 
 -- Crear un usuario para un admin
 insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
