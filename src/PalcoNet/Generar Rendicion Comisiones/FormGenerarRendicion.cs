@@ -44,7 +44,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
                 dgvVentas.Rows.Add(row);
             }
             dgvVentas.AutoResizeColumns();
-            dgvVentas.SelectedRows[0].Selected = false;
+            if (dgvVentas.Rows.Count > 0) dgvVentas.SelectedRows[0].Selected = false;
         }
 
         private void FormGenerarRendicion_Load(object sender, EventArgs e)
@@ -70,7 +70,6 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            btnFacturarVentas.Enabled = true;
             fecha_seleccionada = dtpFechaRendicion.Value;
 
             GestorDB gestor = new GestorDB();
@@ -85,7 +84,16 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
                 "ORDER BY C.fecha ASC");
             this.mostrarVentas(gestor.obtenerRegistros());
             gestor.desconectar();
-            lblCantidad.Text = "CANTIDAD: " + dgvVentas.Rows.Count.ToString();
+            int cantidad = dgvVentas.Rows.Count;
+            lblCantidad.Text = "CANTIDAD: " + cantidad.ToString();
+            if (cantidad > 0)
+            {
+                btnFacturarVentas.Enabled = true;
+            }
+            else
+            {
+                btnFacturarVentas.Enabled = false;
+            }
         }
 
         private void lklCerrarSesion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -116,37 +124,45 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
             FormConfirmarFacturacion formConfirmarFacturacion = new FormConfirmarFacturacion(query);
             if (formConfirmarFacturacion.ShowDialog(this) == DialogResult.OK)
             {
-                GestorDB gestor = new GestorDB();
-
-                gestor.conectar();
-                gestor.consulta(
-                    "SELECT SUM(C.monto) AS monto_total " +
-                    "FROM PEAKY_BLINDERS.compras C " +
-                    "WHERE C.facturada = 0 " +
-                        "AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToShortDateString() + "'");
-                SqlDataReader lector = gestor.obtenerRegistros();
-                int monto_total = -1;
-                if (lector.Read()) monto_total = Convert.ToInt32(lector["monto_total"]);
-                gestor.desconectar();
-
-                gestor.conectar();
-                gestor.generarStoredProcedure("generar_factura");
-                gestor.parametroPorValor("fecha", Config.dateTime);
-                gestor.parametroPorValor("total", monto_total);
-                int facturaID = gestor.ejecutarStoredProcedure();
-                gestor.desconectar();
-
-                foreach (DataGridViewRow row in dgvVentas.Rows)
+                if (formConfirmarFacturacion.getCantidadDeItems() > 0)
                 {
+                    GestorDB gestor = new GestorDB();
+
                     gestor.conectar();
-                    gestor.generarStoredProcedure("agregar_item");
-                    gestor.parametroPorValor("id_factura", facturaID);
-                    gestor.parametroPorValor("descripcion", "Comision por compra");
-                    gestor.parametroPorValor("id_compra", Convert.ToInt32(row.Cells[0].Value));
-                    gestor.parametroPorValor("cantidad", 1);
-                    gestor.parametroPorValor("comision", Convert.ToInt32(row.Cells[4].Value));
-                    gestor.ejecutarStoredProcedure();
+                    gestor.consulta(
+                        "SELECT SUM(C.monto) AS monto_total " +
+                        "FROM PEAKY_BLINDERS.compras C " +
+                        "WHERE C.facturada = 0 " +
+                            "AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToShortDateString() + "'");
+                    SqlDataReader lector = gestor.obtenerRegistros();
+                    int monto_total = -1;
+                    if (lector.Read()) monto_total = Convert.ToInt32(lector["monto_total"]);
                     gestor.desconectar();
+
+                    gestor.conectar();
+                    gestor.generarStoredProcedure("generar_factura");
+                    gestor.parametroPorValor("fecha", DateTime.Today);
+                    gestor.parametroPorValor("total", monto_total);
+                    int facturaID = gestor.ejecutarStoredProcedure();
+                    gestor.desconectar();
+
+                    foreach (DataGridViewRow row in dgvVentas.Rows)
+                    {
+                        gestor.conectar();
+                        gestor.generarStoredProcedure("agregar_item");
+                        gestor.parametroPorValor("id_factura", facturaID);
+                        gestor.parametroPorValor("descripcion", "Comision por compra");
+                        gestor.parametroPorValor("id_compra", Convert.ToInt32(row.Cells[0].Value));
+                        gestor.parametroPorValor("cantidad", 1);
+                        gestor.parametroPorValor("comision", Convert.ToInt32(row.Cells[4].Value));
+                        gestor.ejecutarStoredProcedure();
+                        gestor.desconectar();
+                    }
+                    MessageBox.Show("La factura ha sido concretada exitosamente.");
+                }
+                else
+                {
+                    MessageBox.Show("La factura no tiene items.", "Alerta");
                 }
             }
             formConfirmarFacturacion.Dispose();

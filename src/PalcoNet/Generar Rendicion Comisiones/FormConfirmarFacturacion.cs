@@ -45,6 +45,10 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
             gestor.desconectar();
         }
 
+        public int getCantidadDeItems()
+        {
+            return lsvItemsFactura.Items.Count;
+        }
 
     }
 }
