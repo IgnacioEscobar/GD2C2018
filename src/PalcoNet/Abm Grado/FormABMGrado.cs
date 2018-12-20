@@ -43,6 +43,7 @@ namespace PalcoNet.Abm_Grado
 
         private void mostrarPublicaciones(SqlDataReader lector)
         {
+            dgvPublicaciones.Rows.Clear();
             while (lector.Read())
             {
                 object[] row = new string[]

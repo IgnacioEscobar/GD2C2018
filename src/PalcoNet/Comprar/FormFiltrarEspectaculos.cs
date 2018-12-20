@@ -69,6 +69,7 @@ namespace PalcoNet.Comprar
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
 
+            dgvEspectaculos.Rows.Clear();
             while (lector.Read())
             {
                 object[] row = new string[]

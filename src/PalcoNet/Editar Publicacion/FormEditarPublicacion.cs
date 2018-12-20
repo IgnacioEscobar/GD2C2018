@@ -58,6 +58,7 @@ namespace PalcoNet.Editar_Publicacion
             gestor.consulta(query);
             SqlDataReader lector = gestor.obtenerRegistros();
 
+            dgvPublicaciones.Rows.Clear();
             while (lector.Read())
             {
                 object[] row = new string[]

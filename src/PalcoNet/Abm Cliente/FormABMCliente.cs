@@ -37,6 +37,7 @@ namespace PalcoNet.Abm_Cliente
 
         private void mostrarRegistros(SqlDataReader lector)
         {
+            dgvClientes.Rows.Clear();
             while (lector.Read())
             {
                 object[] row = new object[]

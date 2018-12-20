@@ -226,8 +226,7 @@ create table PEAKY_BLINDERS.clientes (
   codigo_postal varchar(4),
   fecha_nacimiento datetime,
   fecha_creacion datetime,
-  tarjeta_de_credito_asociada varchar(16),
-  activo bit
+  tarjeta_de_credito_asociada varchar(16)
 );
 
 insert into PEAKY_BLINDERS.clientes (
@@ -241,8 +240,7 @@ insert into PEAKY_BLINDERS.clientes (
   piso,
   depto,
   codigo_postal,
-  fecha_nacimiento,
-  activo
+  fecha_nacimiento
 )
 select distinct
   Cli_Nombre,
@@ -255,8 +253,7 @@ select distinct
   Cli_Piso,
   Cli_Depto,
   Cli_Cod_Postal,
-  Cli_Fecha_Nac,
-  1
+  Cli_Fecha_Nac
 from gd_esquema.Maestra
 where Cli_Dni is not null;
 

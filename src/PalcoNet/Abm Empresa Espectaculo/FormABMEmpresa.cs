@@ -36,6 +36,7 @@ namespace PalcoNet.Abm_Empresa_Espectaculo
 
         private void mostrarRegistros(SqlDataReader lector)
         {
+            dgvEmpresas.Rows.Clear();
             while (lector.Read())
             {
                 object[] row = new object[]
