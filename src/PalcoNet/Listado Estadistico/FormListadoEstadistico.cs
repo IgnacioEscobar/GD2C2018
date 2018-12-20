@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +24,23 @@ namespace PalcoNet.Listado_Estadistico
             InitializeComponent();
             this.userID = userID;
             this.rolID = rolID;
+            this.ocultarMesGrado();
+        }
+
+        private void ocultarMesGrado()
+        {
+            labelMes.Visible = false;
+            labelGrado.Visible = false;
+            comboMes.Visible = false;
+            comboGrado.Visible = false;
+        }
+
+        private void mostrarMesGrado()
+        {
+            labelMes.Visible = true;
+            labelGrado.Visible = true;
+            comboMes.Visible = true;
+            comboGrado.Visible = true;
         }
 
         // Metodos auxiliares
@@ -162,18 +179,20 @@ namespace PalcoNet.Listado_Estadistico
                         this.mostrarResultados(query, headers);
                         break;
                     case "CLIENTES CON MAYOR CANTIDAD DE COMPRAS":
-                        query =
-                            "SELECT TOP 5 CL.nombre, CL.apellido, ISNULL(CL.cuil, '---') AS cuil, COUNT(CO.id_compra) AS compras " +
-                            "FROM PEAKY_BLINDERS.clientes CL " +
-                                "JOIN PEAKY_BLINDERS.compras CO ON CL.id_cliente = CO.id_cliente " +
-                            "WHERE YEAR(CO.fecha) = '" + ano + "' " +
-                                "AND MONTH(CO.fecha) BETWEEN '" + desdeMes + "' AND '" + hastaMes + "' " +
-                            "GROUP BY CL.nombre, CL.apellido, CL.cuil " +
-                            "ORDER BY compras DESC";
+                        query = "select CL.nombre as nombre, CL.apellido as apellido, count(C.id_compra) as compras, E.razon_social as 'razon social' from PEAKY_BLINDERS.compras C " +
+                                "join PEAKY_BLINDERS.clientes CL on CL.id_cliente = C.id_cliente " +
+                                "join PEAKY_BLINDERS.publicaciones P on C.id_publicacion = P.id_publicacion " +
+                                "join PEAKY_BLINDERS.empresas E on P.id_empresa = E.id_empresa " +
+                                "where MONTH(C.fecha) BETWEEN '" + desdeMes + "' AND '" + hastaMes + "' " + " and YEAR(C.fecha) = '" + ano + "' and " +
+                                    "C.id_cliente in (select top 5 CL.id_cliente from PEAKY_BLINDERS.compras C " +
+                                                     "join PEAKY_BLINDERS.clientes CL on CL.id_cliente = C.id_cliente " +
+                                                     "group by CL.id_cliente order by count(C.id_compra) desc)" +
+                               "group by CL.nombre, CL.apellido, C.id_cliente, E.razon_social " +
+                               "order by CL.nombre, (select count(C.id_compra) from PEAKY_BLINDERS.compras C1 where C1.id_cliente =  C.id_cliente group by C1.id_cliente) desc";
                         headers.Enqueue("nombre");
                         headers.Enqueue("apellido");
-                        headers.Enqueue("cuil");
                         headers.Enqueue("compras");
+                        headers.Enqueue("razon social");
                         this.mostrarResultados(query, headers);
                         break;
                 }
@@ -192,6 +211,22 @@ namespace PalcoNet.Listado_Estadistico
             FormLogin formDestino = new FormLogin();
             this.Hide();
             formDestino.Show();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbConsulta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string consulta = cmbConsulta.Text;
+
+            if (consulta == "EMPRESAS CON MAYOR CANTIDAD DE LOCALIDADES NO VENDIDAS")
+            {
+                this.mostrarMesGrado();
+            }
+            else { this.ocultarMesGrado(); }
         }
 
     }
