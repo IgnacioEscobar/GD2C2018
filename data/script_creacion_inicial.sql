@@ -446,6 +446,39 @@ join PEAKY_BLINDERS.ubicaciones U on
   U.asiento = M.Ubicacion_Asiento
 go
 
+-- Crear usuarios para empresas
+insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
+select
+	concat(
+		'empresa',
+		right(
+      concat('0',right(razon_social, len(razon_social) - 16)),
+      2
+    )
+	),
+	HASHBYTES('SHA2_256', cuit)
+from PEAKY_BLINDERS.empresas;
+
+-- Crear usuarios para clientes
+insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
+select
+	concat(left(nombre, 1), apellido, '#', id_cliente),
+	HASHBYTES('SHA2_256',
+    concat(
+      right(concat('0', day(fecha_nacimiento)), 2),
+      right(concat('0', month(fecha_nacimiento)), 2),
+      year(fecha_nacimiento)
+    )
+  )
+from PEAKY_BLINDERS.clientes;
+
+-- Crear un usuario para un admin
+insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
+values ('admin', HASHBYTES('SHA2_256', 'admin'));
+
+go;
+
+
 -- Creacion de procedures
 
 CREATE PROCEDURE PEAKY_BLINDERS.autenticar_usuario
