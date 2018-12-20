@@ -56,12 +56,12 @@ namespace PalcoNet.Abm_Rubro
             gestor.desconectar();
 
             gestor.conectar();
-            string query2 = "SELECT descripcion FROM PEAKY_BLINDERS.rubros";
+            string query2 = "SELECT id_rubro, descripcion FROM PEAKY_BLINDERS.rubros";
             gestor.consulta(query2);
             SqlDataReader lector2 = gestor.obtenerRegistros();
             while (lector2.Read())
             {
-                cmbCategoria.Items.Add(lector2["descripcion"]);
+                cmbCategoria.Items.Add(lector2["id_rubro"] + " - " + lector2["descripcion"]);
             }
             gestor.desconectar();
 

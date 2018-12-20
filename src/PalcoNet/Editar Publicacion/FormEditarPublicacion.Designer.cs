@@ -53,6 +53,7 @@
             // 
             // btnMenuPrincipal
             // 
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnMenuPrincipal.Location = new System.Drawing.Point(748, 411);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(197, 42);
@@ -78,9 +79,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 16);
+            this.label1.Size = new System.Drawing.Size(197, 16);
             this.label1.TabIndex = 17;
-            this.label1.Text = "PUBLICACIONES";
+            this.label1.Text = "PUBLICACIONES PROPIAS";
             // 
             // dgvPublicaciones
             // 
@@ -245,6 +246,7 @@
             this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(963, 465);
             this.Controls.Add(this.paginaLabel);
             this.Controls.Add(this.Primera);

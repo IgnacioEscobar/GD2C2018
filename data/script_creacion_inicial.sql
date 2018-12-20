@@ -491,9 +491,10 @@ from PEAKY_BLINDERS.usuarios U join
 insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
 values ('admin', HASHBYTES('SHA2_256', 'admin'));
 
+declare @id_usuario int
+select @id_usuario = id_usuario from PEAKY_BLINDERS.usuarios where nombre_de_usuario = 'admin';
 insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
-select id_usuario, 1 from PEAKY_BLINDERS.usuarios
-where nombre_de_usuario = 'admin';
+values (@id_usuario, 1), (@id_usuario, 2), (@id_usuario, 3)
 
 go
 
@@ -1219,4 +1220,39 @@ AS
 	)
 
 	UPDATE PEAKY_BLINDERS.compras SET facturada = 1 WHERE id_compra = @id_compra
+  END
+GO
+
+CREATE FUNCTION PEAKY_BLINDERS.obtener_puntos (
+@id_usuario int,
+@fecha datetime
+) RETURNS int
+AS
+  BEGIN
+	DECLARE @variacion int
+	DECLARE @total int
+	SET @total = 0
+
+	DECLARE c_puntos CURSOR FOR
+		SELECT MP.variacion
+		FROM PEAKY_BLINDERS.movimientos_de_puntos MP
+            JOIN PEAKY_BLINDERS.clientes C ON MP.id_cliente = C.id_cliente
+        WHERE C.id_usuario = @id_usuario AND MP.fecha_vencimiento >= @fecha
+		ORDER BY MP.fecha_vencimiento ASC
+
+	OPEN c_puntos
+	FETCH NEXT FROM c_puntos INTO @variacion
+
+	WHILE @@FETCH_STATUS = 0
+	  BEGIN
+		SET @total += @variacion
+		IF @total < 0
+			SET @total = 0
+		FETCH NEXT FROM c_puntos INTO @variacion
+	  END
+
+	CLOSE c_puntos
+	DEALLOCATE c_puntos
+
+	RETURN @total
   END

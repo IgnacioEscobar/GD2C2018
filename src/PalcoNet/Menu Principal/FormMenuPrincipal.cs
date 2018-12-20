@@ -148,7 +148,7 @@ namespace PalcoNet.Menu_Principal
                     case "CANJE Y ADMINISTRACIÓN DE PUNTOS":
                         if (rolID != 2) // 2 = Cliente
                         {
-                            MessageBox.Show("Solo un cliente puede canjear y administrar puntos.", "Alerta");
+                            MessageBox.Show("Solo un cliente puede canjear y administrar sus puntos.", "Alerta");
                             error = true;
                         }
                         else

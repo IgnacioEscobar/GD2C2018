@@ -48,6 +48,7 @@
             // 
             // btnMenuPrincipal
             // 
+            this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnMenuPrincipal.Location = new System.Drawing.Point(748, 411);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(197, 42);
@@ -169,6 +170,7 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnBuscar.Location = new System.Drawing.Point(221, 277);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(198, 44);
@@ -179,6 +181,7 @@
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnLimpiar.Location = new System.Drawing.Point(221, 327);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(198, 44);
@@ -192,6 +195,7 @@
             this.AcceptButton = this.btnBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnMenuPrincipal;
             this.ClientSize = new System.Drawing.Size(963, 465);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnMenuPrincipal);

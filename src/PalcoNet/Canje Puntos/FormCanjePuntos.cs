@@ -55,9 +55,7 @@ namespace PalcoNet.Canje_Puntos
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT ISNULL(SUM(MP.variacion), 0) AS puntos FROM PEAKY_BLINDERS.movimientos_de_puntos MP " +
-                "JOIN PEAKY_BLINDERS.clientes C ON MP.id_cliente = C.id_cliente " +
-                "WHERE C.id_usuario = '" + userID + "' AND MP.fecha_vencimiento >= " + Config.date);
+            gestor.consulta("SELECT PEAKY_BLINDERS.obtener_puntos(" + userID + ", " + Config.date + ") AS puntos");
             SqlDataReader lector = gestor.obtenerRegistros();
             if (lector.Read())
             {

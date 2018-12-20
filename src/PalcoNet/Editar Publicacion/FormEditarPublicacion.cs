@@ -74,7 +74,8 @@ namespace PalcoNet.Editar_Publicacion
             gestor.desconectar();
         }
 
-        /* METODO PARA MANTENER FILTROS CUANDO VUELVE DE OTRO FORM
+        /*
+        -- METODO PARA MANTENER FILTROS CUANDO VUELVE DE OTRO FORM --
         public void actualizar()
         {
             dgvPublicaciones.Rows.Clear();
@@ -125,7 +126,15 @@ namespace PalcoNet.Editar_Publicacion
             gestor.desconectar();
             pagina = 1;
 
-            query_actual = query_defecto + "WHERE PU.id_empresa = '" + empresaID + "' ORDER BY PU.id_publicacion ASC";
+            if (rolID == 1) // Si es admin
+            {
+                query_actual = query_defecto + "ORDER BY PU.id_publicacion ASC";
+            }
+            else
+            {
+                query_actual = query_defecto + "WHERE PU.id_empresa = '" + empresaID + "' ORDER BY PU.id_publicacion ASC";
+            }
+
             string query_publicaciones = aplicarPagina(query_actual, pagina);
             this.mostrarPublicaciones(query_publicaciones);
 
