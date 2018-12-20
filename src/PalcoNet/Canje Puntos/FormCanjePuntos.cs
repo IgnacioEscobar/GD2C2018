@@ -130,6 +130,7 @@ namespace PalcoNet.Canje_Puntos
                         gestor.parametroPorValor("id_usuario", userID);
                         gestor.parametroPorValor("descripcion", premio_seleccionado);
                         gestor.parametroPorValor("puntos", puntos_requeridos);
+                        gestor.parametroPorValor("fecha", Config.dateTime);
                         gestor.ejecutarStoredProcedure();
                         gestor.desconectar();
 
