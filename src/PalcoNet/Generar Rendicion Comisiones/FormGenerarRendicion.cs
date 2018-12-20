@@ -105,7 +105,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
 
         private void btnTodas_Click(object sender, EventArgs e)
         {
-            dtpFechaRendicion.Value = DateTime.Today;
+            dtpFechaRendicion.Value = Config.dateTime;
             this.btnSeleccionar_Click(sender, e);
         }
 
@@ -141,7 +141,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
 
                     gestor.conectar();
                     gestor.generarStoredProcedure("generar_factura");
-                    gestor.parametroPorValor("fecha", DateTime.Today);
+                    gestor.parametroPorValor("fecha", Config.dateTime);
                     gestor.parametroPorValor("total", monto_total);
                     int facturaID = gestor.ejecutarStoredProcedure();
                     gestor.desconectar();
