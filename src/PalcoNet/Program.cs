@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PalcoNet.funciones_utiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace PalcoNet
         [STAThread]
         static void Main()
         {
+            Config.initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormLogin());
