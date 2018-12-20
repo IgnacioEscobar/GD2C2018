@@ -142,9 +142,9 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
                     gestor.generarStoredProcedure("agregar_item");
                     gestor.parametroPorValor("id_factura", facturaID);
                     gestor.parametroPorValor("descripcion", "Comision por compra");
-                    gestor.parametroPorValor("id_compra", Convert.ToInt32(row.Cells[0]));
+                    gestor.parametroPorValor("id_compra", Convert.ToInt32(row.Cells[0].Value));
                     gestor.parametroPorValor("cantidad", 1);
-                    gestor.parametroPorValor("comision", Convert.ToInt32(row.Cells[4]));
+                    gestor.parametroPorValor("comision", Convert.ToInt32(row.Cells[4].Value));
                     gestor.ejecutarStoredProcedure();
                     gestor.desconectar();
                 }
