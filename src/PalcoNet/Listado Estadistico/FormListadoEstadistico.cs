@@ -24,6 +24,23 @@ namespace PalcoNet.Listado_Estadistico
             InitializeComponent();
             this.userID = userID;
             this.rolID = rolID;
+            this.ocultarMesGrado();
+        }
+
+        private void ocultarMesGrado()
+        {
+            labelMes.Visible = false;
+            labelGrado.Visible = false;
+            comboMes.Visible = false;
+            comboGrado.Visible = false;
+        }
+
+        private void mostrarMesGrado()
+        {
+            labelMes.Visible = true;
+            labelGrado.Visible = true;
+            comboMes.Visible = true;
+            comboGrado.Visible = true;
         }
 
         // Metodos auxiliares
@@ -194,6 +211,22 @@ namespace PalcoNet.Listado_Estadistico
             FormLogin formDestino = new FormLogin();
             this.Hide();
             formDestino.Show();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbConsulta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string consulta = cmbConsulta.Text;
+
+            if (consulta == "EMPRESAS CON MAYOR CANTIDAD DE LOCALIDADES NO VENDIDAS")
+            {
+                this.mostrarMesGrado();
+            }
+            else { this.ocultarMesGrado(); }
         }
 
     }

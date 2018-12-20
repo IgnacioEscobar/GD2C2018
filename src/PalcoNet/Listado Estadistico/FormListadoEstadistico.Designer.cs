@@ -39,6 +39,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lklCerrarSesion = new System.Windows.Forms.LinkLabel();
+            this.labelMes = new System.Windows.Forms.Label();
+            this.comboMes = new System.Windows.Forms.ComboBox();
+            this.labelGrado = new System.Windows.Forms.Label();
+            this.comboGrado = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnConsultar
@@ -59,6 +63,7 @@
             this.cmbConsulta.Name = "cmbConsulta";
             this.cmbConsulta.Size = new System.Drawing.Size(395, 21);
             this.cmbConsulta.TabIndex = 0;
+            this.cmbConsulta.SelectedIndexChanged += new System.EventHandler(this.cmbConsulta_SelectedIndexChanged);
             // 
             // cmbTrimestre
             // 
@@ -80,9 +85,9 @@
             // 
             // lsvConsulta
             // 
-            this.lsvConsulta.Location = new System.Drawing.Point(12, 127);
+            this.lsvConsulta.Location = new System.Drawing.Point(12, 189);
             this.lsvConsulta.Name = "lsvConsulta";
-            this.lsvConsulta.Size = new System.Drawing.Size(394, 178);
+            this.lsvConsulta.Size = new System.Drawing.Size(394, 335);
             this.lsvConsulta.TabIndex = 5;
             this.lsvConsulta.UseCompatibleStateImageBehavior = false;
             // 
@@ -90,7 +95,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 108);
+            this.label1.Location = new System.Drawing.Point(12, 170);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 9;
@@ -99,7 +104,7 @@
             // btnMenuPrincipal
             // 
             this.btnMenuPrincipal.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 311);
+            this.btnMenuPrincipal.Location = new System.Drawing.Point(12, 530);
             this.btnMenuPrincipal.Name = "btnMenuPrincipal";
             this.btnMenuPrincipal.Size = new System.Drawing.Size(394, 21);
             this.btnMenuPrincipal.TabIndex = 4;
@@ -145,13 +150,57 @@
             this.lklCerrarSesion.Text = "CERRAR SESIÓN";
             this.lklCerrarSesion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lklCerrarSesion_LinkClicked);
             // 
+            // labelMes
+            // 
+            this.labelMes.AutoSize = true;
+            this.labelMes.Location = new System.Drawing.Point(131, 105);
+            this.labelMes.Name = "labelMes";
+            this.labelMes.Size = new System.Drawing.Size(27, 13);
+            this.labelMes.TabIndex = 18;
+            this.labelMes.Text = "Mes";
+            this.labelMes.UseWaitCursor = true;
+            this.labelMes.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // comboMes
+            // 
+            this.comboMes.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.comboMes.FormattingEnabled = true;
+            this.comboMes.Location = new System.Drawing.Point(131, 121);
+            this.comboMes.Name = "comboMes";
+            this.comboMes.Size = new System.Drawing.Size(113, 21);
+            this.comboMes.TabIndex = 17;
+            this.comboMes.SelectedIndexChanged += new System.EventHandler(this.cmbConsulta_SelectedIndexChanged);
+            // 
+            // labelGrado
+            // 
+            this.labelGrado.AutoSize = true;
+            this.labelGrado.Location = new System.Drawing.Point(12, 105);
+            this.labelGrado.Name = "labelGrado";
+            this.labelGrado.Size = new System.Drawing.Size(36, 13);
+            this.labelGrado.TabIndex = 20;
+            this.labelGrado.Text = "Grado";
+            this.labelGrado.UseWaitCursor = true;
+            // 
+            // comboGrado
+            // 
+            this.comboGrado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.comboGrado.FormattingEnabled = true;
+            this.comboGrado.Location = new System.Drawing.Point(12, 121);
+            this.comboGrado.Name = "comboGrado";
+            this.comboGrado.Size = new System.Drawing.Size(113, 21);
+            this.comboGrado.TabIndex = 19;
+            // 
             // FormListadoEstadistico
             // 
             this.AcceptButton = this.btnConsultar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnMenuPrincipal;
-            this.ClientSize = new System.Drawing.Size(419, 345);
+            this.ClientSize = new System.Drawing.Size(419, 563);
+            this.Controls.Add(this.labelGrado);
+            this.Controls.Add(this.comboGrado);
+            this.Controls.Add(this.labelMes);
+            this.Controls.Add(this.comboMes);
             this.Controls.Add(this.lklCerrarSesion);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -186,5 +235,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel lklCerrarSesion;
+        private System.Windows.Forms.Label labelMes;
+        private System.Windows.Forms.ComboBox comboMes;
+        private System.Windows.Forms.Label labelGrado;
+        private System.Windows.Forms.ComboBox comboGrado;
     }
 }
