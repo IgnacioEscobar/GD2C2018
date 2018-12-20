@@ -1,5 +1,5 @@
 CREATE FUNCTION PEAKY_BLINDERS.obtener_puntos (
-@id_cliente int,
+@id_usuario int,
 @fecha datetime
 ) RETURNS int
 AS
@@ -12,7 +12,7 @@ AS
 		SELECT MP.variacion
 		FROM PEAKY_BLINDERS.movimientos_de_puntos MP
             JOIN PEAKY_BLINDERS.clientes C ON MP.id_cliente = C.id_cliente
-        WHERE C.id_usuario = @id_cliente AND MP.fecha_vencimiento >= @fecha
+        WHERE C.id_usuario = @id_usuario AND MP.fecha_vencimiento >= @fecha
 		ORDER BY MP.fecha_vencimiento ASC
 
 	OPEN c_puntos
