@@ -25,6 +25,21 @@ namespace PalcoNet.Listado_Estadistico
             this.userID = userID;
             this.rolID = rolID;
             this.ocultarMesGrado();
+            this.cargarGrados();
+        }
+
+        private void cargarGrados()
+        {
+            GestorDB gestor = new GestorDB();
+            gestor.conectar();
+            string query_grados = "select descripcion from PEAKY_BLINDERS.grados";
+            gestor.consulta(query_grados);
+            SqlDataReader lector = gestor.obtenerRegistros();
+            while (lector.Read())
+            {
+                comboGrado.Items.Add(lector["descripcion"].ToString());
+            }
+            gestor.desconectar();
         }
 
         private void ocultarMesGrado()
@@ -147,17 +162,32 @@ namespace PalcoNet.Listado_Estadistico
                 switch (consulta)
                 {
                     case "EMPRESAS CON MAYOR CANTIDAD DE LOCALIDADES NO VENDIDAS":
+
+                        string queryMesExacto = "";
+                        string queryGrado = "";
+
+                        if(comboGrado.Text != "") {
+                            queryGrado = "and G.descripcion = '" + comboGrado.Text + "' ";
+                        }
+
+                        if(comboMes.Text != "") {
+                            queryMesExacto = " AND MONTH(PR.fecha_vencimiento) = '" + comboMes.Text + "' ";
+                        }
+
+
                         query =
                             "SELECT TOP 5 E.razon_social, COUNT(U.id_ubicacion) AS no_vendidas " +
                             "FROM PEAKY_BLINDERS.empresas E " +
                                 "JOIN PEAKY_BLINDERS.publicaciones PU ON E.id_empresa = PU.id_empresa " +
                                 "JOIN PEAKY_BLINDERS.presentaciones PR ON PU.id_publicacion = PR.id_publicacion " +
                                 "JOIN PEAKY_BLINDERS.ubicaciones U ON PU.id_publicacion = U.id_publicacion " +
+                                "join PEAKY_BLINDERS.grados G on PU.id_grado = G.id_grado " + queryGrado + " " +
                             "WHERE U.id_ubicacion NOT IN (SELECT C.id_ubicacion FROM PEAKY_BLINDERS.compras C) " +
                                 "AND YEAR(PR.fecha_vencimiento) = '" + ano + "' " +
                                 "AND MONTH(PR.fecha_vencimiento) BETWEEN '" + desdeMes + "' AND '" + hastaMes + "' " +
-                            "GROUP BY E.razon_social " +
-                            "ORDER BY no_vendidas DESC";
+                                queryMesExacto + " " +
+                            "GROUP BY E.razon_social, G.multiplicador " +
+                            "ORDER BY G.multiplicador desc";
                         headers.Enqueue("razon_social");
                         headers.Enqueue("no_vendidas");
                         this.mostrarResultados(query, headers);
