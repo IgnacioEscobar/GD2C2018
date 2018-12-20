@@ -20,7 +20,8 @@ namespace PalcoNet.funciones_utiles
 
         public void conectar()
         {
-            conexion = new SqlConnection(Config.connectionString);
+            conexion = new SqlConnection(@"Data source=localhost\SQLSERVER2012; Initial Catalog=GD2C2018;user=gdEspectaculos2018;password=gd2018");
+            //conexion = new SqlConnection(Config.connectionString);
             conexion.Open();
         }
 

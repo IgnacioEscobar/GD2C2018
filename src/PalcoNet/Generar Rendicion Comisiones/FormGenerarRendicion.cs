@@ -131,7 +131,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
 
                 gestor.conectar();
                 gestor.generarStoredProcedure("generar_factura");
-                gestor.parametroPorValor("fecha", DateTime.Today);
+                gestor.parametroPorValor("fecha", Config.dateTime);
                 gestor.parametroPorValor("total", monto_total);
                 int facturaID = gestor.ejecutarStoredProcedure();
                 gestor.desconectar();
