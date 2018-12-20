@@ -129,10 +129,12 @@ namespace PalcoNet.Editar_Publicacion
             if (rolID == 1) // Si es admin
             {
                 query_actual = query_defecto + "ORDER BY PU.id_publicacion ASC";
+                maxPaginas = maximoPaginas(join_defecto, " ");
             }
             else
             {
                 query_actual = query_defecto + "WHERE PU.id_empresa = '" + empresaID + "' ORDER BY PU.id_publicacion ASC";
+                maxPaginas = maximoPaginas(join_defecto, " WHERE PU.id_empresa = '" + empresaID + "'");
             }
 
             string query_publicaciones = aplicarPagina(query_actual, pagina);
@@ -140,8 +142,7 @@ namespace PalcoNet.Editar_Publicacion
 
             string query_categorias = "SELECT descripcion FROM PEAKY_BLINDERS.rubros";
             this.mostrarCategorias(query_categorias);
-            
-            maxPaginas = maximoPaginas(join_defecto, " WHERE PU.id_empresa = '" + empresaID + "'");
+
             showPageNum();
 
             dgvPublicaciones.AutoResizeColumns();
@@ -239,7 +240,7 @@ namespace PalcoNet.Editar_Publicacion
             txtDescripcion.Select();
         }
 
-        private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 10)
+        private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 16)
         {
             int offset = (pagina - 1) * tamanio_pagina;
             string complemento = " OFFSET " + offset + " ROWS FETCH NEXT " + tamanio_pagina + " ROWS ONLY";
@@ -288,7 +289,7 @@ namespace PalcoNet.Editar_Publicacion
             paginarYCorrer(query_actual);
         }
 
-        private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 10)
+        private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 16)
         {
             string count_querry = "select count(distinct PU.id_publicacion) as presentaciones FROM PEAKY_BLINDERS.publicaciones PU ";
             count_querry += joins_defecto;

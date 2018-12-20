@@ -184,7 +184,7 @@ namespace PalcoNet.Comprar
             showPageNum();
         }
 
-        private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 10)
+        private int maximoPaginas(string joins_defecto, string filtro, int tamanio_pagina = 16)
         {
             string count_querry = "select count(distinct PP.id_presentacion) as presentaciones from PEAKY_BLINDERS.presentaciones PP ";
             count_querry += joins_defecto;
@@ -227,7 +227,8 @@ namespace PalcoNet.Comprar
             }
         }
 
-        private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 10){
+        private string aplicarPagina(string condicion, int pagina, int tamanio_pagina = 16)
+        {
             int offset = (pagina - 1) * tamanio_pagina;
             string complemento = " OFFSET "+ offset +" ROWS FETCH NEXT "+ tamanio_pagina +" ROWS ONLY";
             return condicion + complemento;
