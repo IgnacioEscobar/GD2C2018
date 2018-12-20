@@ -459,6 +459,10 @@ select
 	HASHBYTES('SHA2_256', cuit)
 from PEAKY_BLINDERS.empresas;
 
+insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
+select id_usuario, 3 from PEAKY_BLINDERS.usuarios
+where nombre_de_usuario like 'empresa%';
+
 -- Crear usuarios para clientes
 insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
 select
@@ -472,9 +476,17 @@ select
   )
 from PEAKY_BLINDERS.clientes;
 
+insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
+select id_usuario, 2 from PEAKY_BLINDERS.usuarios
+where nombre_de_usuario like '%#%';
+
 -- Crear un usuario para un admin
 insert into PEAKY_BLINDERS.usuarios (nombre_de_usuario, password_hash)
 values ('admin', HASHBYTES('SHA2_256', 'admin'));
+
+insert into PEAKY_BLINDERS.roles_por_usuario (id_usuario, id_rol)
+select id_usuario, 1 from PEAKY_BLINDERS.usuarios
+where nombre_de_usuario = 'admin';
 
 go;
 
