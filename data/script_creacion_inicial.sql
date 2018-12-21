@@ -1264,7 +1264,7 @@ AS
 GO
 
 CREATE FUNCTION PEAKY_BLINDERS.obtener_puntos_vencidos (
-@id_usuario int,
+@id_cliente int,
 @ano int,
 @mesDesde int,
 @mesHasta int,
@@ -1280,7 +1280,7 @@ AS
 		SELECT MP.variacion
 		FROM PEAKY_BLINDERS.movimientos_de_puntos MP
             JOIN PEAKY_BLINDERS.clientes C ON MP.id_cliente = C.id_cliente
-        WHERE C.id_usuario = @id_usuario
+        WHERE C.id_cliente = @id_cliente
 			AND MP.fecha_vencimiento < @fecha_actual
 			AND YEAR(MP.fecha) = @ano
 			AND MONTH(MP.fecha) BETWEEN @mesDesde AND @mesHasta
