@@ -80,7 +80,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
                     "JOIN PEAKY_BLINDERS.publicaciones P ON E.id_empresa = P.id_empresa " +
                     "JOIN PEAKY_BLINDERS.grados G ON P.id_grado = G.id_grado " +
                     "JOIN PEAKY_BLINDERS.compras C ON P.id_publicacion = C.id_publicacion " +
-                "WHERE C.facturada = 0 AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToShortDateString() + "' " +
+                "WHERE C.facturada = 0 AND C.fecha <= '" + fecha_seleccionada.ToString("yyyy-MM-dd") + "' " +
                 "ORDER BY C.fecha ASC, E.razon_social");
             this.mostrarVentas(gestor.obtenerRegistros());
             gestor.desconectar();
