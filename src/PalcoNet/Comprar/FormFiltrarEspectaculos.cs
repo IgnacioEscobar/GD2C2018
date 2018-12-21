@@ -102,7 +102,7 @@ namespace PalcoNet.Comprar
             this.mostrarCategorias(gestor.obtenerRegistros());
             gestor.desconectar();
 
-            string filtro_default = "where PP.fecha_vencimiento > " + Config.date + " and "
+            string filtro_default = "where PP.fecha_vencimiento > " + Config.dateConComillas + " and "
                     + " P.id_rubro in (" + String.Join(",", this.categorias.Select(x => x).ToArray()) + ") ";
                 // + "PP.fecha_presentacion > " + fechaInicio + " "
                 // + "PP.fecha_presentacion < " + fechaFin + " "
@@ -130,7 +130,7 @@ namespace PalcoNet.Comprar
             dgvEspectaculos.Rows.Clear();
 
             string filtro = "LEFT JOIN PEAKY_BLINDERS.rubros R ON P.id_rubro = R.id_rubro " +
-                "WHERE PP.fecha_vencimiento >= " + Config.date;
+                "WHERE PP.fecha_vencimiento >= " + Config.dateConComillas;
             string descripcion = txtDescripcion.Text;
 
             if (descripcion != "")
