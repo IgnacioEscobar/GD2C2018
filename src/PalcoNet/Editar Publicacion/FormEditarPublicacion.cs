@@ -182,7 +182,7 @@ namespace PalcoNet.Editar_Publicacion
 
             if (ckbRangoFechas.Checked)
             {
-                condicion += "AND PR.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToShortDateString() + "' AND '" + mcrHasta.SelectionStart.ToShortDateString() + "' ";
+                condicion += "AND PR.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToString("yyyy-MM-dd") + "' AND '" + mcrHasta.SelectionStart.ToString("yyyy-MM-dd") + "' ";
             }
 
             List<string> funcionalidades_tildadas = new List<string> { };
