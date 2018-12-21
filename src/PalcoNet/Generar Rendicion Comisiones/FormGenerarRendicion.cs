@@ -117,7 +117,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
                     "JOIN PEAKY_BLINDERS.publicaciones P ON E.id_empresa = P.id_empresa " +
                     "JOIN PEAKY_BLINDERS.grados G ON P.id_grado = G.id_grado " +
                     "JOIN PEAKY_BLINDERS.compras C ON P.id_publicacion = C.id_publicacion " +
-                "WHERE C.facturada = 0 AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToShortDateString() + "' " +
+                "WHERE C.facturada = 0 AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToString("yyyy-MM-dd") + "' " +
                 "GROUP BY E.razon_social " +
                 "ORDER BY E.razon_social ASC";
 
@@ -133,7 +133,7 @@ namespace PalcoNet.Generar_Rendicion_Comisiones
                         "SELECT SUM(C.monto) AS monto_total " +
                         "FROM PEAKY_BLINDERS.compras C " +
                         "WHERE C.facturada = 0 " +
-                            "AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToShortDateString() + "'");
+                            "AND CONVERT(DATE, C.fecha) <= '" + fecha_seleccionada.ToString("yyyy-MM-dd") + "'");
                     SqlDataReader lector = gestor.obtenerRegistros();
                     int monto_total = -1;
                     if (lector.Read()) monto_total = Convert.ToInt32(lector["monto_total"]);
