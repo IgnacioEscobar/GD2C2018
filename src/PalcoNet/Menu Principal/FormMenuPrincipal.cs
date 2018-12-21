@@ -118,6 +118,11 @@ namespace PalcoNet.Menu_Principal
                             MessageBox.Show("Un cliente no puede editar publicaciones.", "Alerta");
                             error = true;
                         }
+                        else if (rolID == 1) 
+                        {
+                            MessageBox.Show("Un administrador no puede editar publicaciones.", "Alerta");
+                            error = true;
+                        }
                         else
                         {
                             formDestino = new FormEditarPublicacion(userID, rolID);
