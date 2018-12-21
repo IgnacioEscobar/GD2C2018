@@ -192,15 +192,15 @@ namespace PalcoNet.Listado_Estadistico
                         this.mostrarResultados(query, headers);
                         break;
                     case "CLIENTES CON MAYORES PUNTOS VENCIDOS":
+                        
                         query =
-                            "SELECT TOP 5 CL.nombre, CL.apellido, ISNULL(CL.cuil, '---') AS cuil, COUNT(MP.id_movimiento) AS puntos " +
-                            "FROM PEAKY_BLINDERS.clientes CL " +
-                                "JOIN PEAKY_BLINDERS.movimientos_de_puntos MP ON CL.id_cliente = MP.id_cliente " +
-                            "WHERE MP.fecha_vencimiento < GETDATE() " +
-                                "AND YEAR(MP.fecha_vencimiento) = '" + ano + "' " +
-                                "AND MONTH(MP.fecha_vencimiento) BETWEEN '" + desdeMes + "' AND '" + hastaMes + "' " +
-                            "GROUP BY CL.nombre, CL.apellido, CL.cuil " +
+                            "SELECT TOP 5 nombre, apellido, cuil, PEAKY_BLINDERS.obtener_puntos_vencidos(id_cliente, " +
+                                ano + ", " + desdeMes + ", " + hastaMes + ", '" + Config.dateTime.ToString() + "') AS puntos " +
+                            "FROM PEAKY_BLINDERS.clientes " +
+                            "WHERE PEAKY_BLINDERS.obtener_puntos_vencidos(id_cliente, " +
+                                ano + ", " + desdeMes + ", " + hastaMes + ", '" + Config.dateTime.ToString() + "') > 0 " +
                             "ORDER BY puntos DESC";
+                        Console.WriteLine(query);
                         headers.Enqueue("nombre");
                         headers.Enqueue("apellido");
                         headers.Enqueue("cuil");
