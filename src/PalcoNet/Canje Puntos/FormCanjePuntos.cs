@@ -55,7 +55,7 @@ namespace PalcoNet.Canje_Puntos
         {
             GestorDB gestor = new GestorDB();
             gestor.conectar();
-            gestor.consulta("SELECT PEAKY_BLINDERS.obtener_puntos(" + userID + ", " + Config.dateTime.ToString() + ") AS puntos");
+            gestor.consulta("SELECT PEAKY_BLINDERS.obtener_puntos(" + userID + ", " + Config.dateTime.ToShortDateString() + ") AS puntos");
             SqlDataReader lector = gestor.obtenerRegistros();
             if (lector.Read())
             {
