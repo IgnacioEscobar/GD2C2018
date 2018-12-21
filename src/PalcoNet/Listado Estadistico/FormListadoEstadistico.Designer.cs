@@ -73,6 +73,7 @@
             this.cmbTrimestre.Name = "cmbTrimestre";
             this.cmbTrimestre.Size = new System.Drawing.Size(113, 21);
             this.cmbTrimestre.TabIndex = 2;
+            this.cmbTrimestre.SelectedIndexChanged += new System.EventHandler(this.cmbTrimestre_SelectedIndexChanged);
             // 
             // cmbAno
             // 

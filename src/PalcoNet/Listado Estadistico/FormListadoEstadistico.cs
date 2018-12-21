@@ -174,7 +174,6 @@ namespace PalcoNet.Listado_Estadistico
                             queryMesExacto = " AND MONTH(PR.fecha_vencimiento) = '" + comboMes.Text + "' ";
                         }
 
-
                         query =
                             "SELECT TOP 5 E.razon_social, COUNT(U.id_ubicacion) AS no_vendidas " +
                             "FROM PEAKY_BLINDERS.empresas E " +
@@ -257,6 +256,35 @@ namespace PalcoNet.Listado_Estadistico
                 this.mostrarMesGrado();
             }
             else { this.ocultarMesGrado(); }
+        }
+
+        private void cmbTrimestre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string consulta = cmbTrimestre.Text;
+            comboMes.Items.Clear();
+            switch (Convert.ToInt32(consulta))
+            {
+                case 1:
+                    comboMes.Items.Add("1");
+                    comboMes.Items.Add("2");
+                    comboMes.Items.Add("3");
+                    break;
+                case 2:
+                    comboMes.Items.Add("4");
+                    comboMes.Items.Add("5");
+                    comboMes.Items.Add("6");
+                    break;
+                case 3:
+                    comboMes.Items.Add("7");
+                    comboMes.Items.Add("8");
+                    comboMes.Items.Add("9");
+                    break;
+                case 4:
+                    comboMes.Items.Add("10");
+                    comboMes.Items.Add("11");
+                    comboMes.Items.Add("12");
+                    break;
+            }
         }
 
     }
