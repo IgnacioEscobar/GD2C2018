@@ -268,7 +268,7 @@ namespace PalcoNet.Generar_Publicacion
                 while (lector2.Read())
                 {
                     DateTime fecha_presentacion = DateTime.Parse(lector2["fecha_presentacion"].ToString());
-                    ListViewItem item = new ListViewItem(fecha_presentacion.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                    ListViewItem item = new ListViewItem(fecha_presentacion.ToShortDateString());
                     item.SubItems.Add(fecha_presentacion.ToShortTimeString());
                     item.SubItems.Add("");
                     lsvFechaHora.Items.Add(item);

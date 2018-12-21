@@ -158,7 +158,7 @@ namespace PalcoNet.Abm_Grado
 
             if (ckbRangoFechas.Checked)
             {
-                condicion += "AND PR.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToString("yyyy-MM-dd HH:mm:ss.fff") + "' AND '" + mcrHasta.SelectionStart.ToString("yyyy-MM-dd HH:mm:ss.fff") + "' ";
+                condicion += "AND PR.fecha_presentacion BETWEEN '" + mcrDesde.SelectionStart.ToShortDateString() + "' AND '" + mcrHasta.SelectionStart.ToShortDateString() + "' ";
             }
 
             List<string> funcionalidades_tildadas = new List<string> { };
