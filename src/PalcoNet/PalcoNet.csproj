@@ -102,18 +102,6 @@
     <Compile Include="Abm Rubro\FormABMRubro.Designer.cs">
       <DependentUpon>FormABMRubro.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm Usuario\FormABMUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Usuario\FormABMUsuario.Designer.cs">
-      <DependentUpon>FormABMUsuario.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Abm Usuario\FormNuevaContrasena.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm Usuario\FormNuevaContrasena.Designer.cs">
-      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
-    </Compile>
     <Compile Include="Canje Puntos\FormCanjePuntos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,24 +142,6 @@
     </Compile>
     <Compile Include="Login\FormNuevaContrasena.Designer.cs">
       <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Menu Principal\FormMenuAdministrador.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu Principal\FormMenuAdministrador.Designer.cs">
-      <DependentUpon>FormMenuAdministrador.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Menu Principal\FormMenuCliente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu Principal\FormMenuCliente.Designer.cs">
-      <DependentUpon>FormMenuCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Menu Principal\FormMenuEmpresa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menu Principal\FormMenuEmpresa.Designer.cs">
-      <DependentUpon>FormMenuEmpresa.cs</DependentUpon>
     </Compile>
     <Compile Include="Menu Principal\FormMenuPrincipal.cs">
       <SubType>Form</SubType>
@@ -276,12 +246,6 @@
     <EmbeddedResource Include="Abm Rubro\FormABMRubro.resx">
       <DependentUpon>FormABMRubro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Abm Usuario\FormABMUsuario.resx">
-      <DependentUpon>FormABMUsuario.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Abm Usuario\FormNuevaContrasena.resx">
-      <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Canje Puntos\FormCanjePuntos.resx">
       <DependentUpon>FormCanjePuntos.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,15 +284,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\FormNuevaContrasena.resx">
       <DependentUpon>FormNuevaContrasena.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu Principal\FormMenuAdministrador.resx">
-      <DependentUpon>FormMenuAdministrador.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu Principal\FormMenuCliente.resx">
-      <DependentUpon>FormMenuCliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menu Principal\FormMenuEmpresa.resx">
-      <DependentUpon>FormMenuEmpresa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu Principal\FormMenuPrincipal.resx">
       <DependentUpon>FormMenuPrincipal.cs</DependentUpon>
